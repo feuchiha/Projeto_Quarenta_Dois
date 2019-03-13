@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 
 
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -20,6 +21,7 @@ import { LoginComponent } from './login/login.component';
     ErrorComponent,
     ForgotPasswordComponent,
     LoginComponent,
+
   ],
 })
 export class PagesModule { }
