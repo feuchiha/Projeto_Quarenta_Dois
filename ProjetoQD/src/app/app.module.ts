@@ -6,7 +6,7 @@ import { DashboardModule } from './pages/dashboard';
 import { FormsModule } from './pages/forms';
 import { TelaLoginParticulaComponent } from './components/tela-login-particula/tela-login-particula.component';
 import { ImportacaoComponent } from './pages/importacao/importacao.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, TelaLoginParticulaComponent, ImportacaoComponent],
@@ -15,6 +15,7 @@ import { ImportacaoComponent } from './pages/importacao/importacao.component';
     AppRoutingModule,
     DashboardModule,
     FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

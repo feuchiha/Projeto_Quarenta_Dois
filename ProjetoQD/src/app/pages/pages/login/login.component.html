@@ -11,11 +11,11 @@
       </div>
       <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-          <input class="mdl-textfield__input" type="text" id="e-mail">
+          <input class="mdl-textfield__input" type="text" [value]="user.email" (input)="user.email = $event.target.value" id="e-mail">
           <label class="mdl-textfield__label" for="e-mail">Email</label>
         </div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-          <input class="mdl-textfield__input" type="text" id="password">
+          <input class="mdl-textfield__input" type="text" [value]="user.password" (input)="user.password = $event.target.value" id="password">
           <label class="mdl-textfield__label" for="password">Senha</label>
         </div>
         <a routerLink="/pages/forgot-password" class="blank-layout-card-link">Esqueceu a senha?</a>
@@ -23,11 +23,9 @@
       <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone submit-cell">
         <!-- <a routerLink="/pages/sign-up" class="blank-layout-card-link">Don't have account?</a> -->
         <div class="mdl-layout-spacer"></div>
-        <a routerLink="/app/dashboard">
-          <button class="mdl-button mdl-js-button mdl-button--raised color--light-blue">
+          <button (click)="callServer(3002) " class="mdl-button mdl-js-button mdl-button--raised color--light-blue">
             SIGN IN
           </button>
-        </a>
       </div>
     </div>
   </div>
