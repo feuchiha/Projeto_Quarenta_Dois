@@ -11,7 +11,7 @@ export class SidebarComponent extends BaseSidebarComponent {
   public title = '42';
   public menu = [
     { name: 'Início', link: '/app/dashboard', icon: 'home' },
-    { name: 'Importar', link: '/app8/importacao', icon: 'backup' },
+    { name: 'Importar', link: '/app/importacao', icon: 'backup' },
     { name: 'Histórico', link: '/app/Logs', icon: 'history' },
     { name: 'Análises', link: '/app/Analises', icon: 'broken_image' },
     { name: 'Minha conta', link: '/app/forms', icon: 'person'},

@@ -1,15 +1,44 @@
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-
-body { 
-  font-family: Roboto, Arial, sans-serif;
+*{
   margin: 0;
+  padding: 0;
+  font-family: "montesrrat", sans-serif;
+  box-sizing: border-box;
 }
 
-.basic-container {
-  padding: 30px;
+.import-section{
+  background-size: cover;
+  padding: 60px 0;
 }
 
-.version-info {
-  font-size: 8pt;
-  float: right;
+.inner-width{
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+  overflow: hidden;
+}
+
+.H1import-title{
+  text-align: center;
+  color: #03a9f4;
+}
+
+.ImportarCSV{
+  position: absolute;
+  width: 10%;
+  padding: 40%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.ImportarURL{
+    position: absolute;
+    width: 10%;
+    padding: 40%;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
