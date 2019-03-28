@@ -13,30 +13,28 @@ import { ConstantPool } from '@angular/compiler';
 })
   
 export class EmployerFormComponent  {
-  back = {user:{password:""}, params: {token:""}};
+    user = {email:"", username:"", password:""};
    
-  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient) {
-  }
+    constructor(private http: HttpClient) {
+
+    }
     
     signup(port) {
-      this.activatedRoute.queryParams.subscribe((params: Params) => {
       const headers = new HttpHeaders()
             .set('Authorization', 'my-auth-token')
             .set('Content-Type', 'application/json');
       // ports:
       // :3000 - to call nodejs server
       // :3001 - to call aspnet core server
-      this.http.post(`http://localhost:${port}/forgot/reset/` + params.token, 
-      JSON.stringify(this.back.user), {
+      this.http.post(`http://localhost:${port}/users/signup`, 
+      JSON.stringify(this.user), {
       headers: headers
       })
       .subscribe(data => {
-         //if(data['success'] === true){
-          
+         if(data['success'] === true){
           console.log(data);
-          //window.location.href = '../../dashboard/dashboard.component.html'
-         //}
+          console.log('Usuario Cadastrado com sucesso!');
+         }
       });
-    });
     }
   }

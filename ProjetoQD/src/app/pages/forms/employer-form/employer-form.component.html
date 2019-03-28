@@ -9,10 +9,21 @@
         <h3>Personal data</h3>
 
         <div class="mdl-grid">
-          <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="username" [value]="back.user.password" (input)="back.user.password = $event.target.value"/>
-            <label class="mdl-textfield__label" for="username">password</label>
-          </div>
+
+              <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="username" [value]="user.username" (input)="user.username = $event.target.value"/>
+                <label class="mdl-textfield__label" for="username">Username</label>
+              </div>
+
+              <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" id="email" [value]="user.email" (input)="user.email = $event.target.value"/>
+                  <label class="mdl-textfield__label" for="username">email</label>
+                </div>
+
+              <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="password" [value]="user.password" (input)="user.password = $event.target.value"/>
+                <label class="mdl-textfield__label" for="username">password</label>
+              </div>
 
         </div>
      </div>

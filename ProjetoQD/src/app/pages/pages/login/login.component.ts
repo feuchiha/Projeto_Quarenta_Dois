@@ -31,8 +31,8 @@ export class LoginComponent extends BlankLayoutCardComponent {
       })
       .subscribe(data => {
          if(data['success'] === true){
-          console.log(data['token']);
-          window.location.href = '../../dashboard/dashboard.component.html'
+          alert(data['token']);
+          //window.location.href = '../../dashboard/dashboard.component.html'
          }
       });
     }
