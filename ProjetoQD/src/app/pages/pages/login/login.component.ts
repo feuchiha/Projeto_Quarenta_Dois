@@ -31,9 +31,31 @@ export class LoginComponent extends BlankLayoutCardComponent {
       })
       .subscribe(data => {
          if(data['success'] === true){
-          alert(data['token']);
+         let token = data['token'];  
+         this.verifytoken(token);  
           //window.location.href = '../../dashboard/dashboard.component.html'
          }
       });
     }
+
+    verifytoken(token){
+
+      const headers = new HttpHeaders()
+      .set('Authorization', 'my-auth-token')
+      .set('Content-Type', 'application/json');
+      // ports:
+      // :3000 - to call nodejs server
+      // :3001 - to call aspnet core server
+      this.http.post(`http://localhost:3002/login/verifytoken`, 
+      JSON.stringify({token}), {
+      headers: headers
+      })
+      .subscribe(data => {
+        if(data['success'] === true){
+          alert('logged');
+          //window.location.href = '../../dashboard/dashboard.component.html'
+        }
+      });
+
   }
+}

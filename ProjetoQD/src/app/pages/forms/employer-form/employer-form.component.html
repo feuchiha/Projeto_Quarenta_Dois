@@ -21,7 +21,7 @@
                 </div>
 
               <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="password" [value]="user.password" (input)="user.password = $event.target.value"/>
+                <input class="mdl-textfield__input" type="password" id="password" [value]="user.password" (input)="user.password = $event.target.value"/>
                 <label class="mdl-textfield__label" for="username">password</label>
               </div>
 
@@ -31,7 +31,7 @@
      <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone submit-cell">
         <!-- <a routerLink="/pages/sign-up" class="blank-layout-card-link">Don't have account?</a> -->
         <div class="mdl-layout-spacer"></div>
-          <button (click)="signup(3002) " class="mdl-button mdl-js-button mdl-button--raised color--light-blue">
+          <button (click)="findUser(3002) " class="mdl-button mdl-js-button mdl-button--raised color--light-blue">
             SIGN UP
           </button>
       </div>
