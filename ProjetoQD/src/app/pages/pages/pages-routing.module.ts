@@ -5,6 +5,7 @@ import { LayoutsModule } from 'app/layouts';
 import { BlankLayoutComponent } from 'app/layouts/blank-layout';
 import { ErrorComponent } from './error';
 import { ForgotPasswordComponent } from './forgot-password';
+import { CadastroComponent } from './cadastro';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { ForgotPasswordComponent } from './forgot-password';
           { path: '404', component: ErrorComponent, pathMatch: 'full' },
           { path: 'forgot-password', component: ForgotPasswordComponent, pathMatch: 'full' },
           { path: 'login', component: LoginComponent, pathMatch: 'full' },
+          { path: 'cadastro', component: CadastroComponent, pathMatch:'full'},
           { path: '**', redirectTo: '404' },
         ],
       },

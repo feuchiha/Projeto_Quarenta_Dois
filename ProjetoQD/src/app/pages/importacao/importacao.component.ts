@@ -7,4 +7,4 @@ import {BlankLayoutCardComponent} from 'app/components/blank-layout-card';
   templateUrl: './importacao.component.html',
   styleUrls: ['/importacao.component.css']
 })
-export class ImportacaoComponent extends BlankLayoutCardComponent {}
+export class ImportacaoComponent extends BlankLayoutCardComponent{}
