@@ -19,22 +19,43 @@ export class EmployerFormComponent  {
 
     }
     
-    signup(port) {
+    findUser(port) {
       const headers = new HttpHeaders()
             .set('Authorization', 'my-auth-token')
             .set('Content-Type', 'application/json');
       // ports:
       // :3000 - to call nodejs server
       // :3001 - to call aspnet core server
-      this.http.post(`http://localhost:${port}/users/signup`, 
+      this.http.post(`http://localhost:${port}/users/findUser`, 
       JSON.stringify(this.user), {
       headers: headers
       })
       .subscribe(data => {
          if(data['success'] === true){
-          console.log(data);
-          console.log('Usuario Cadastrado com sucesso!');
+          console.log(data['message']);
+          this.signup(port);
+        } else{
+           alert(data['message']);
          }
       });
     }
+  
+  signup(port) {
+    const headers = new HttpHeaders()
+          .set('Authorization', 'my-auth-token')
+          .set('Content-Type', 'application/json');
+    // ports:
+    // :3000 - to call nodejs server
+    // :3001 - to call aspnet core server
+    this.http.post(`http://localhost:${port}/users/signup`, 
+    JSON.stringify(this.user), {
+    headers: headers
+    })
+    .subscribe(data => {
+       if(data['success'] === true){
+        console.log(data);
+        alert('Usuario Cadastrado com sucesso!');
+       }
+    });
   }
+}
