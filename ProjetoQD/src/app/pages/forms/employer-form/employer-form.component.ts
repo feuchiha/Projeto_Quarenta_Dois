@@ -2,10 +2,6 @@ import { Component, HostBinding, NgModule } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { PARAMETERS } from '@angular/core/src/util/decorators';
-import { ConstantPool } from '@angular/compiler';
-
 @Component({
   selector: 'app-employer-form',
   styleUrls: ['./employer-form.component.scss'],

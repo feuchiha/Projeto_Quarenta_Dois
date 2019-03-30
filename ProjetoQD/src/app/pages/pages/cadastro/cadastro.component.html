@@ -7,28 +7,28 @@
 
   <div class="txtb">
     <label>Nome Completo</label>
-    <input type="text" value="" name="nomeCompletoCadastro" placeholder="Digite seu nome completo">
+    <input type="text" value="" name="nomeCompletoCadastro" placeholder="Digite seu nome completo"[value]="user.username" (input)="user.username = $event.target.value">
   </div>
 
   <div class="txtb">
     <label>Nome de usuário</label>
-    <input type="text" value="" name="" placeholder="Digite um nome de usuário">
+    <input type="text" value="" name="nomeUsuario" placeholder="Digite um nome de usuário" [value]="user.nickname" (input)="user.nickname = $event.target.value">
   </div>
 
   <div class="txtb">
     <label>Email</label>
-    <input type="text" value="" name="" placeholder="Digite seu email">
+    <input type="text" value="" name="" placeholder="Digite seu email" [value]="user.email" (input)="user.email = $event.target.value">
   </div>
 
   <div class="txtb">
     <label>Senha</label>
-    <input type="password" value="" name="" placeholder="Digite uma senha">
+    <input type="password" value="" name="" placeholder="Digite uma senha" [value]="user.password" (input)="user.password = $event.target.value">
   </div>
 
   <div class="txtb">
     <label>Confirma Senha</label>
-    <input type="password" value="" name="" placeholder="Confirme sua senha">
+    <input type="password" value="" name="" placeholder="Confirme sua senha" [value]="user.confirmepw" (input)="user.confirmepw = $event.target.value">
   </div>
-  <a class="btn">Criar conta</a>
+  <a (click)="findUser(3002) " class="btn">Criar conta</a>
 </div>
 
