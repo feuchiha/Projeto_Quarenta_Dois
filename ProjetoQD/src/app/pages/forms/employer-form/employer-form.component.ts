@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-employer-form',
-  styleUrls: ['./employer-form.component.scss'],
+  styleUrls: ['./employer-form.component.css'],
   templateUrl: 'employer-form.component.html',
 })
   

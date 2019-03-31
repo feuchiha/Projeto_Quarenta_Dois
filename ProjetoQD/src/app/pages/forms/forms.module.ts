@@ -16,6 +16,7 @@ import { FormsComponent } from './forms.component';
   declarations: [
     FormsComponent,
     EmployerFormComponent,
+
   ],
   providers: [],
 })

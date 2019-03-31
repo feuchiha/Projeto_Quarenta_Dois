@@ -8,13 +8,13 @@ import { ImportacaoComponent } from './pages/importacao/importacao.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent, ImportacaoComponent],
+  declarations: [AppComponent, ImportacaoComponent, ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     DashboardModule,
     FormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

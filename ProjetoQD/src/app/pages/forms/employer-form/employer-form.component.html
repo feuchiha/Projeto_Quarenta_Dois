@@ -1,4 +1,7 @@
-<base-card>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- <base-card>
   <base-card-title>
     <h2>Form</h2>
     <div class="mdl-card__subtitle">Please complete the form</div>
@@ -6,7 +9,7 @@
   <base-card-body>
     <form action="#" class="form">
       <div class="form__article">
-        <h3>Personal data</h3>
+        <h3>Minhas informções </h3>
 
         <div class="mdl-grid">
 
@@ -29,8 +32,8 @@
      </div>
     
      <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone submit-cell">
-        <!-- <a routerLink="/pages/sign-up" class="blank-layout-card-link">Don't have account?</a> -->
-        <div class="mdl-layout-spacer"></div>
+        <a routerLink="/pages/sign-up" class="blank-layout-card-link">Don't have account?</a> -->
+        <!-- <div class="mdl-layout-spacer"></div>
           <button (click)="findUser(3002) " class="mdl-button mdl-js-button mdl-button--raised color--light-blue">
             SIGN UP
           </button>
@@ -39,4 +42,28 @@
      
     </form>
   </base-card-body>
-</base-card>
+</base-card> -->
+
+
+
+<div class="contact-form">
+    <h1 class="register-title">Minha Conta</h1>
+    <div class="border"></div>
+    <div class="txtb"> 
+      <label>Nome de usuário</label> 
+      <input type="text" id="username" [value]="user.username" (input)="user.username = $event.target.value" name=""
+        placeholder="Digite um novo nome de usuário"> </div>
+    <div class="txtb"> 
+      <label>Email</label> 
+      <input type="text" id="email" [value]="user.email" (input)="user.email = $event.target.value" name="" placeholder="Digite seu email"> </div>
+    <div class="txtb"> 
+      <label>Senha</label> 
+      <input type="password" id="password" [value]="user.password" (input)="user.password = $event.target.value" name="" placeholder="Digite uma nova senha"> </div>
+    <div class="txtb"> 
+      <label>Confirma Senha</label> <input type="password" value="" name=""
+        placeholder="Confirme sua senha"> 
+    </div>
+    <button class="contact-form-btn mdl-button mdl-js-button mdl-button--raised color--light-blue">Alterar</button>
+  </div>
+
+
