@@ -3,39 +3,6 @@
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
 <link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
- <!-- <div class="ImportarCardCSV">
-  <div class="demo-card-square mdl-card mdl-shadow--2dp">
-    <div class="mdl-card__title mdl-card--expand">
-      <h2 class="mdl-card__title-text">Importação de CSV</h2>
-    </div>
-    <div class="mdl-card__supporting-text">
-      Clique no botão + para importar arquivos CSV.
-    </div>
-    <div class="mdl-card__menu mdl-card__supporting-tex">
-      <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect ButtonColorImport">
-        <i class="material-icons">add</i>
-      </button>
-    </div>
-  </div>
- </div> 
-
- <div class="ImportarCardURL">
-  <div class="demo-card-square mdl-card mdl-shadow--2dp">
-    <div class="mdl-card__title mdl-card--expand">
-      <h2 class="mdl-card__title-text">Importação de CSV</h2>
-    </div>
-    <div class="mdl-card__supporting-text">
-      Importe arquivos CSV para adicionar as bases.
-    </div>
-    <div class="mdl-card__menu mdl-card__supporting-tex">
-      <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect ButtonColorImport">
-        <i class="material-icons">add</i>
-      </button>
-    </div>
-  </div>
- </div>  -->
-
-
 <div class="service-section">
   <div class="inner-width">
     <h1 class="section-title">Importação de Arquivos</h1>
@@ -49,9 +16,10 @@
         <div class="service-title">Upload CSV</div>
         <div class="service-desc">Importação de Arquivo em CSV</div>
         <div class="service-button">
-          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect ButtonColorImport">
-            <i class="material-icons">add</i>
-          </button>
+          <div class="upload-btn-wrapper ">
+            <button class="btn mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect ButtonColorImport">+</button>
+            <input type="file" name="myfile" />
+          </div>
         </div>
       </div>
 
@@ -62,10 +30,10 @@
         <div class="service-title">Upload URL</div>
         <div class="service-desc">Importação de Arquivo em URL</div>
         <div class="service-button">
-          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect ButtonColorImport">
-            <i class="material-icons">add</i>
-          </button>
-          <input class="material-icons" type="file" (change)="inputFileChange($event)">add
+          <div class="upload-btn-wrapper ">
+            <button class="btn mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect ButtonColorImport">+</button>
+            <input type="file" name="myfile" />
+          </div>
         </div>
       </div>
 

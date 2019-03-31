@@ -1,4 +1,4 @@
-.contact-form{
+.contact-form {
     width: 85%;
     max-width: 600px;
     background: #545859;
@@ -7,54 +7,73 @@
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 30px 40px;
-    box-sizing: border-box; 
+    box-sizing: border-box;
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 0 5px #0baeb7;
     font-family: "Montserrat", sans-serif;
 }
 
-.contact-form h1{
+.contact-form h1 {
     margin-top: 0;
-    font-weight: 200;
+    font-weight: 400;
 }
 
-.txtb{
+.txtb {
     border: 1px solid #545859;
     margin: 8px 0;
     padding: 12px 18px;
     border-radius: 8px;
 }
 
-.txtb label{
+.txtb label {
     display: block;
     text-align: left;
-    color: #333;
-    text-transform: uppercase;
+    color: #0baeb7;
     font-size: 13px;
+    font-size: 16px;
 }
 
-.txtb input, .txtb textarea{
+.txtb input, .txtb textarea {
     width: 100%;
     border: none;
     background: none;
     outline: none;
     font-size: 18px;
     margin-top: 6px;
+    color: white;
 }
 
-.btn{
+.txtb input:focus, .txtb textarea:focus {
+    border-bottom: #0baeb7 solid 1px;
+}
+
+.btn {
     display: inline-block;
     background: #0baeb7;
-    padding: 20px 100px;
+    padding: 10px 70px;
     color: white;
-    text-transform: uppercase;
     cursor: pointer;
-    margin-top: 8px;
-    width: 10%;
+    margin-top: 1px;
+    width: 20%;
+    text-transform: capitalize;
 }
 
-.ButtonCriarUser{
+.ButtonCriarUser {
     background: #0baeb7;
     color: #0baeb7;
+}
+
+.register-title {
+    text-align: center;
+    color: #0baeb7;
+    font-size: 52px;
+    text-transform: capitalize;
+}
+
+.border {
+    width: 180px;
+    height: 2px;
+    background: #0baeb7;
+    margin: 20px auto;
 }

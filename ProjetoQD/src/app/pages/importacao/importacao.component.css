@@ -43,7 +43,7 @@
   padding: 10px;
   text-align: center;
   color: #ddd;
-  cursor: pointer;
+  cursor: auto;
 }
 
 .service-icon{
@@ -162,5 +162,28 @@
     text-align: center;
     left: 25%;
     top: 1%;
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  margin-top: 7%;
+}
+
+.upload-btn-wrapper:hover{
+  background: #0baeb7;
+  color: #ddd;
+  border-radius: 50%;
+}
+
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
 }
 

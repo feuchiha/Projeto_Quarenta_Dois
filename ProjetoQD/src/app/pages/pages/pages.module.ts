@@ -8,6 +8,7 @@ import { ForgotPasswordComponent } from './forgot-password';
 import { PagesRoutingModule } from './pages-routing.module';
 import { LoginComponent } from './login/login.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
+import { LoginParticulaComponent } from './login-particula/login-particula.component';
 
 
 
@@ -23,6 +24,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
     ForgotPasswordComponent,
     LoginComponent,
     CadastroComponent,
+    LoginParticulaComponent,
 
   ],
 })
