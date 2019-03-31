@@ -4,12 +4,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardModule } from './pages/dashboard';
 import { FormsModule } from './pages/forms';
-import { TelaLoginParticulaComponent } from './components/tela-login-particula/tela-login-particula.component';
 import { ImportacaoComponent } from './pages/importacao/importacao.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent, TelaLoginParticulaComponent, ImportacaoComponent],
+  declarations: [AppComponent, ImportacaoComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

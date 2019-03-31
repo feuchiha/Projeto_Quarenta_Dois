@@ -20,7 +20,6 @@ export class SidebarComponent extends BaseSidebarComponent {
       { name: 'Esqueceu a senha', link: '/pages/forgot-password' },
       { name: 'Login', link: '/pages/login'},
       { name: 'Cadastro', link: '/pages/cadastro'},
-      { name: 'Login Partícula', link: '/pages/login-particula'},
     ], icon: 'pages' },
   ];
 }
