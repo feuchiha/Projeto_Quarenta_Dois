@@ -15,7 +15,7 @@
           <label class="mdl-textfield__label" for="e-mail">Email</label>
         </div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-          <input class="mdl-textfield__input" type="text" [value]="user.password" (input)="user.password = $event.target.value" id="password">
+          <input class="mdl-textfield__input" type="password" [value]="user.password" (input)="user.password = $event.target.value" id="password">
           <label class="mdl-textfield__label" for="password">Senha</label>
         </div>
         <a routerLink="/pages/forgot-password" class="blank-layout-card-link">Esqueceu a senha?</a>

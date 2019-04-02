@@ -6,9 +6,10 @@ import { DashboardModule } from './pages/dashboard';
 import { FormsModule } from './pages/forms';
 import { ImportacaoComponent } from './pages/importacao/importacao.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
-  declarations: [AppComponent, ImportacaoComponent, ],
+  declarations: [AppComponent, ImportacaoComponent, AboutComponent, ],
   imports: [
     BrowserModule,
     AppRoutingModule,

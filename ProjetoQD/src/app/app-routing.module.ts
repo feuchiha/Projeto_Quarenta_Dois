@@ -5,6 +5,7 @@ import { CommonLayoutComponent } from './layouts/common-layout';
 import { DashboardComponent } from './pages/dashboard';
 import { FormsComponent } from './pages/forms';
 import { ImportacaoComponent} from './pages/importacao';
+import { AboutComponent } from './pages/about';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { ImportacaoComponent} from './pages/importacao';
           { path: 'dashboard', component: DashboardComponent, pathMatch: 'full' },
           { path: 'forms', component: FormsComponent, pathMatch: 'full' },
           { path: 'importacao', component: ImportacaoComponent, pathMatch: 'full' },
+          { path: 'about', component: AboutComponent, pathMatch: 'full'},
           { path: '**', redirectTo: '/pages/404' },
         ] },
         { path: 'pages', loadChildren: './pages/pages/pages.module#PagesModule' },
