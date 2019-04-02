@@ -1,0 +1,34 @@
+
+<link href="./visualizacoes-dados.component.css">
+<style>
+    
+    #viz {
+                width: 900px;
+                height: 700px;
+                border: 1px solid lightgray;
+                font: 22pt arial;
+            }
+</style>
+<!-- Cypher query: <textarea rows="4" cols=50 id="cypher"  (input)="cypher = $event.target.value"></textarea><br> -->
+<!-- <input type="submit" value="Submit" id="reload" (click)="reload()"> -->
+
+<div id="labels" class="labels"></div>
+<input id="inputLabel"/>
+ <select id="nodes">
+  <option value='{"value":"user", "queryName":":User"}' (click)="adicionar()">User</option>
+  <option value='{"value":"troll", "queryName":":Troll"}' (click)="adicionar()">Troll</option>
+  <option value='{"value":"url", "queryName":":URL"}' (click)="adicionar()">URL</option>
+  <option value='{"value":"tweet", "queryName":":Tweet"}' (click)="adicionar()">Tweet</option>
+</select> 
+ <select id="relationship">
+  <option value='{"value":"posted", "queryName":":POSTED"}' (click)="adicionar(true)">Posted</option>
+  <option value='{"value":"mentions", "queryName":":MENTIONS"}' (click)="adicionar(true)">Mentions</option>
+  <option value='{"value":"retweet", "queryName":":RETWEET"}' (click)="adicionar(true)">Retweet</option>
+  <option value='{"value":"posted_via", "queryName":":POSTED_VIA"}' (click)="adicionar(true)">Posted Via</option>
+</select> 
+<input type="number" id="quantidade" min="1">
+<button (click)="AdicionarInput()"> Adicionar </button>
+<button (click)="Buscar()"> Buscar </button>
+<button (click)="exclui('All')"> Excluir Tudo </button>
+
+<div id="viz"></div>

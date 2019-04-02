@@ -1,0 +1,48 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    min-width: 300px;
+    background: #2f2f2f;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 20px;
+  }
+  
+  .mat-header-row {
+    position: sticky;
+    z-index: 1;
+    background-color: inherit;
+    top: 0;
+  }
+  
+  .mat-header-cell {
+    background-color: #03a9f4;
+  }
+  
+  .curva-direita {
+    border-top-right-radius: 10px;
+  }
+  
+  .curva-esquerda {
+    border-top-left-radius: 10px;
+  }
+  
+  .mat-cell {
+    text-align: center;
+    background-color: #DCDCDC;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    max-height: 500px;
+  }
+  
+  .element-row {
+    position: relative;
+    &:not(.expanded) {
+      cursor: pointer;
+    }
+    &.expanded {
+      border-bottom-color: transparent;
+    }
+  }
