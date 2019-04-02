@@ -1,0 +1,38 @@
+<!-- <div class="example-container mat-elevation-z8"> -->
+  <mat-table #table [dataSource]="dataSource">
+    <ng-container matColumnDef="position">
+      <mat-header-cell *matHeaderCellDef class="curva-esquerda"> No. </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.position}} 
+
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element" (click)="cellClicked(element)"> {{element.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="weight">
+      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.weight}} 333</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="symbol">
+      <mat-header-cell *matHeaderCellDef class="curva-direita"> Symbol </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="expandedDetail">
+      <mat-cell *matCellDef="let detail"> 
+       <!-- <h1>{{detail.element.symbol}} - {{detail.element.name}}</h1><br> -->
+       <p> {{detail.element.description}}</p>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"
+            class="element-row" 
+            [class.expanded]="expandedElement == row"
+            (click)="expandedElement = row; isExpanded = isExpanded"></mat-row>
+    <mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow"
+            [@detailExpand]="cellClicked(row)"
+            style="overflow: hidden"> 
+    </mat-row>
+  </mat-table>
+<!-- </div> -->
