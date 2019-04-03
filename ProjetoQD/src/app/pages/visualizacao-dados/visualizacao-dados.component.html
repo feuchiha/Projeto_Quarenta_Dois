@@ -1,34 +1,23 @@
-<link type="text/html" rel="stylesheet" href="/src/assets/styles/material-design-lite/material.min.css" >
+<link type="text/html" rel="stylesheet" href="/src/assets/styles/material-design-lite/material.min.css">
 <script src="/node_modules/material-design-lite/material.js"></script>
-<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
+<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-<link href="./visualizacoes-dados.component.css">
-<style>
-    
-    #viz {
-                width: 900px;
-                height: 700px;
-                border: 1px solid lightgray;
-                font: 22pt arial;
-            }
-</style>
-<!-- Cypher query: <textarea rows="4" cols=50 id="cypher"  (input)="cypher = $event.target.value"></textarea><br> -->
-<!-- <input type="submit" value="Submit" id="reload" (click)="reload()"> -->
+
 
 <div id="labels" class="labels"></div>
-<input id="inputLabel" class="inputDadosDropdown" placeholder="Pesquisa"/>
- <select id="nodes" class="mdl-button selectDrop">
+<input id="inputLabel" class="inputDadosDropdown" placeholder="Pesquisa" />
+<select id="nodes" class="mdl-button selectDrop">
   <option value='{"value":"user", "queryName":":User"}' (click)="adicionar()">User</option>
   <option value='{"value":"troll", "queryName":":Troll"}' (click)="adicionar()">Troll</option>
   <option value='{"value":"url", "queryName":":URL"}' (click)="adicionar()">URL</option>
   <option value='{"value":"tweet", "queryName":":Tweet"}' (click)="adicionar()">Tweet</option>
-</select> 
- <select id="relationship" class="mdl-button selectDrop">
+</select>
+<select id="relationship" class="mdl-button selectDrop">
   <option value='{"value":"posted", "queryName":":POSTED"}' (click)="adicionar(true)">Posted</option>
   <option value='{"value":"mentions", "queryName":":MENTIONS"}' (click)="adicionar(true)">Mentions</option>
   <option value='{"value":"retweet", "queryName":":RETWEET"}' (click)="adicionar(true)">Retweet</option>
   <option value='{"value":"posted_via", "queryName":":POSTED_VIA"}' (click)="adicionar(true)">Posted Via</option>
-</select> 
+</select>
 <input type="number" id="quantidade" min="1" class="inputDadosDropdown" placeholder="Quantidade">
 <button (click)="AdicionarInput()" class="btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect buttonAcao"> Adicionar </button>
 <button (click)="Buscar()" class="btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect buttonAcao"> Buscar </button>
