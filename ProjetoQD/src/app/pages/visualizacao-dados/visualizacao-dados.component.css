@@ -1,0 +1,110 @@
+.buttonAcao{
+  text-transform: capitalize;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  margin: 1%;
+}
+
+.buttonAcao:hover{
+  background: #0baeb7;
+}
+
+.inputDadosDropdown{
+ background: #545859;
+ color: #0baeb7;
+  outline: none;
+  font-size: 16px;
+  border-bottom: 1px solid #373a3a;
+  border: solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 5px;
+  margin: 1%;
+}
+
+.selectDrop{
+  background: #373a3a;
+  margin: 1%;
+}
+
+.selectDrop:hover{
+  background: #0baeb7;
+}
+
+
+.example-card {
+}
+.example-header-image {
+  max-width: 400px;
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  ::ng-deep .mat-card {
+    background-color: white !important;
+  }
+  #chartContainer {
+    height: 370px;
+    width: inherit;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .label {
+    color: white;
+    padding: 8px;
+    font-family: Arial;
+    -webkit-border-radius: 65px;
+    -moz-border-radius: 65px;
+    border-radius: 65px;
+  }
+  .button {
+    display: inline-block;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+  }
+  .labels {
+    padding-bottom: 8px;
+  }
+  .user {
+    background-color: #4caf50;
+  }
+  /* Green */
+  .troll {
+    background-color: #2196f3;
+  }
+  /* Blue */
+  .url {
+    background-color: #ff9800;
+  }
+  /* Orange */
+  .tweet {
+    background-color: #f44336;
+  }
+  /* Red */
+  .other {
+    background-color: #e7e7e7;
+    color: black;
+  }
+  /* Gray */
+  .posted {
+    background-color: #4caf50;
+  }
+  /* Green */
+  .mentions {
+    background-color: #2196f3;
+  }
+  /* Blue */
+  .retweet {
+    background-color: #ff9800;
+  }
+  /* Orange */
+  .posted_via {
+    background-color: #f44336;
+  }
+  /* Red */
+

@@ -4,7 +4,7 @@ import * as NeoVis from 'neovis.js';
 @Component({
   selector: 'app-visualizacao-dados',
   templateUrl: './visualizacao-dados.component.html',
-  styleUrls: ['./visualizacao-dados.component.scss']
+  styleUrls: ['./visualizacao-dados.component.css']
 })
 export class VisualizacaoDadosComponent implements OnInit {
 
