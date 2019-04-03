@@ -25,9 +25,7 @@
             ],
             "scripts": [
               "node_modules/material-design-lite/material.js",
-              "node_modules/getmdl-select/getmdl-select.min.js",
-              "src/app/pages/pages/login-particle/app.js",
-              "src/app/pages/pages/login-particle/particles.min.js"
+              "node_modules/getmdl-select/getmdl-select.min.js"
             ]
           },
           "configurations": {

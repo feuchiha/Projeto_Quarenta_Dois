@@ -21,7 +21,6 @@
 .section-title{
   text-align: center;
   color: #0baeb7;
-
   font-size: 40px;
 }
 
@@ -163,6 +162,8 @@
     left: 25%;
     top: 1%;
 }
+
+//Buton
 
 .upload-btn-wrapper {
   position: relative;

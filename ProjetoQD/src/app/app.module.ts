@@ -49,7 +49,9 @@ import { VisualizacaoDadosComponent } from './pages/visualizacao-dados/visualiza
 import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
+
   declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
