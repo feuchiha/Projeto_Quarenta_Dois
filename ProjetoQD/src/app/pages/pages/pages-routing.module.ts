@@ -7,7 +7,6 @@ import { ErrorComponent } from './error';
 import { ForgotPasswordComponent } from './forgot-password';
 import { CadastroComponent } from './cadastro';
 
-//import { LoginParticleComponent } from './login';
 
 
 @NgModule({
@@ -21,9 +20,6 @@ import { CadastroComponent } from './cadastro';
           { path: 'forgot-password', component: ForgotPasswordComponent, pathMatch: 'full' },
           { path: 'login', component: LoginComponent, pathMatch: 'full' },
           { path: 'cadastro', component: CadastroComponent, pathMatch:'full'},
-
-          //{ path: 'login-particle', component: LoginParticleComponent, pathMatch: 'full'},
-
           { path: '**', redirectTo: '404' },
         ],
       },

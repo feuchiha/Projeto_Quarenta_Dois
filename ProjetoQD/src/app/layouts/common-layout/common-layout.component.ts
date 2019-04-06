@@ -18,6 +18,6 @@ export class CommonLayoutComponent {
 
   constructor() {
     this.user = JSON.parse(localStorage.getItem('usr'));
-    console.log(this.user)
+
   }
 }
