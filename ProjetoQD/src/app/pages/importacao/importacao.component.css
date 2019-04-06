@@ -163,13 +163,12 @@
     top: 1%;
 }
 
-//Buton
-
 .upload-btn-wrapper {
   position: relative;
   overflow: hidden;
   display: inline-block;
   margin-top: 7%;
+  cursor: grab;
 }
 
 .upload-btn-wrapper:hover{

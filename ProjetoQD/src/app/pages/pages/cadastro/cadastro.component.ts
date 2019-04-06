@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class CadastroComponent extends BlankLayoutCardComponent {
 
-  user = {email:"", username:"", password:"", nickname:"", confirmepw:""};
+  user = {email:"", username:"", password:"", confirmepw:""};
    
   constructor(private http: HttpClient) {
     super();

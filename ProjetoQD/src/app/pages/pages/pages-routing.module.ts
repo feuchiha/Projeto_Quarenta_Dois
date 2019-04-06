@@ -6,7 +6,6 @@ import { BlankLayoutComponent } from 'app/layouts/blank-layout';
 import { ErrorComponent } from './error';
 import { ForgotPasswordComponent } from './forgot-password';
 import { CadastroComponent } from './cadastro';
-
 //import { LoginParticleComponent } from './login';
 
 
