@@ -3,6 +3,7 @@
   padding: 0;
   font-family: "montserrat", sans-serif;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 .services-section{
@@ -163,13 +164,13 @@
     top: 1%;
 }
 
-//Buton
 
 .upload-btn-wrapper {
   position: relative;
   overflow: hidden;
   display: inline-block;
   margin-top: 7%;
+  cursor: pointer;
 }
 
 .upload-btn-wrapper:hover{
@@ -187,4 +188,42 @@
   opacity: 0;
   cursor: pointer;
 }
+.bg-modal{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
 
+.modal-content{
+  width: 500px;
+  height: 300px;
+  background-color: #3b3d3d;
+  border-radius: 8px;
+  text-align: center;
+  position: relative;
+}
+
+.importarH1{
+  font-size: 25px;
+}
+
+.linkURL{
+  width: 50%;
+  display: block;
+  margin: 15px auto;
+}
+
+.close{
+  position: absolute;
+  top: 1%;
+  right: 2%;
+  font-size: 30px;
+  transform: rotate(45deg);
+  cursor: pointer;
+}

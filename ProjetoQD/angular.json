@@ -25,7 +25,9 @@
             ],
             "scripts": [
               "node_modules/material-design-lite/material.js",
-              "node_modules/getmdl-select/getmdl-select.min.js"
+              "node_modules/getmdl-select/getmdl-select.min.js",
+              "node_modules/42JS/importacaoURL.js",
+              "src/assets/jscustom/customJS.js"
             ]
           },
           "configurations": {
