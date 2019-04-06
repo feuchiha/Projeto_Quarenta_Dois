@@ -50,7 +50,7 @@ import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
 
-  declarations: [AppComponent, AboutComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, ],
+  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent ],
 
   imports: [
     BrowserModule,

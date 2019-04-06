@@ -13,7 +13,6 @@ export class EmployerFormComponent  {
     user = {email:"", username:"", password:""};
    
     constructor(private http: HttpClient) {
-
     }
     
     findUser(port) {
@@ -27,7 +26,6 @@ export class EmployerFormComponent  {
       .subscribe(data => {
          if(data['success'] === true){
           console.log(data['message']);
-          this.signup(port);
         } else{
            alert(data['message']);
          }

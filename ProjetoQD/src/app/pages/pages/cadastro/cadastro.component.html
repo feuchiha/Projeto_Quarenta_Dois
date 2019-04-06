@@ -6,12 +6,16 @@
   <h1 class="register-title">Cadastro de Usuário</h1>
   <div class="border"></div>
   <div class="txtb"> <label>Nome Completo</label> <input type="text" value="" name="nomeCompletoCadastro"
-      placeholder="Digite seu nome completo"> </div>
+      placeholder="Digite seu nome completo" [value]="user.username" (input)="user.username = $event.target.value"> </div>
+
   <div class="txtb"> <label>Nome de usuário</label> <input type="text" value="" name=""
-      placeholder="Digite um nome de usuário"> </div>
-  <div class="txtb"> <label>Email</label> <input type="text" value="" name="" placeholder="Digite seu email"> </div>
-  <div class="txtb"> <label>Senha</label> <input type="password" value="" name="" placeholder="Digite uma senha"> </div>
+      placeholder="Digite um nome de usuário" [value]="user.nickname" (input)="user.nickname = $event.target.value" > </div>
+
+  <div class="txtb"> <label>Email</label> <input type="text" value="" name="" placeholder="Digite seu email" [value]="user.email" (input)="user.email = $event.target.value"> </div>
+
+  <div class="txtb"> <label>Senha</label> <input type="password" value="" name="" placeholder="Digite uma senha" [value]="user.password" (input)="user.password = $event.target.value"> </div>
+
   <div class="txtb"> <label>Confirma Senha</label> <input type="password" value="" name=""
-      placeholder="Confirme sua senha"> </div>
-    <button class="contact-form-btn mdl-button mdl-js-button mdl-button--raised color--light-blue">Criar Conta</button>
+      placeholder="Confirme sua senha" [value]="user.confirmepw" (input)="user.confirmepw = $event.target.value"> </div>
+    <button (click)="findUser(3002) " class="contact-form-btn mdl-button mdl-js-button mdl-button--raised color--light-blue">Criar Conta</button>
 </div>

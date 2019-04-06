@@ -12,11 +12,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class LoginComponent extends BlankLayoutCardComponent { 
     user = {email:"", password:""};
-    
+    email: String;
+    usr: {email:"",name:"", image: any};
     constructor(private http: HttpClient) {
       super();
     }
-  
     callServer(port) {
       const headers = new HttpHeaders()
             .set('Authorization', 'my-auth-token')
@@ -26,14 +26,15 @@ export class LoginComponent extends BlankLayoutCardComponent {
       headers: headers
       })
       .subscribe(data => {
-         if(data['success'] === true){
+         if(data['success'] === true){  
          let token = data['token'];  
-         this.verifytoken(token);
+          this.email = data['email'];
+         this.verifytoken(token, this.email);
          }
       });
     }
 
-    verifytoken(token){
+    verifytoken(token, email){
       const headers = new HttpHeaders()
       .set('Authorization', 'my-auth-token')
       .set('Content-Type', 'application/json');
@@ -43,10 +44,35 @@ export class LoginComponent extends BlankLayoutCardComponent {
       })
       .subscribe(data => {
         if(data['success'] === true){
-          alert('logged');
-          //window.location.href = '../../dashboard/dashboard.component.html'
+          this.callMe(this.email);
+          window.location.href = 'http://localhost:4200/#/app/dashboard'
         }
       });
-
   }
+
+  callMe(email){
+    const headers = new HttpHeaders()
+          .set('Authorization', 'my-auth-token')
+          .set('Content-Type', 'application/json');
+    this.http.post(`http://localhost:3002/users/findEmail`, 
+    JSON.stringify({email}), {
+    headers: headers
+    })
+    .subscribe(data => {
+       if(data['success'] === true){
+        this.usr = {
+          email: data['email'],
+          name: data['nickname'],
+          image: "assets/images/Icon_header.png"
+        }
+        localStorage.setItem('usr', JSON.stringify(this.usr));
+      } else{
+         alert(data['message']);
+       }
+    });
+  }
+
+  
+
 }
+
