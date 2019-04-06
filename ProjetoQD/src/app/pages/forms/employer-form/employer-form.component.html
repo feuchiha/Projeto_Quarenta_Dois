@@ -1,51 +1,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- <base-card>
-  <base-card-title>
-    <h2>Form</h2>
-    <div class="mdl-card__subtitle">Please complete the form</div>
-  </base-card-title>
-  <base-card-body>
-    <form action="#" class="form">
-      <div class="form__article">
-        <h3>Minhas informções </h3>
-
-        <div class="mdl-grid">
-
-              <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="username" [value]="user.username" (input)="user.username = $event.target.value"/>
-                <label class="mdl-textfield__label" for="username">Username</label>
-              </div>
-
-              <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="text" id="email" [value]="user.email" (input)="user.email = $event.target.value"/>
-                  <label class="mdl-textfield__label" for="username">email</label>
-                </div>
-
-              <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="password" id="password" [value]="user.password" (input)="user.password = $event.target.value"/>
-                <label class="mdl-textfield__label" for="username">password</label>
-              </div>
-
-        </div>
-     </div>
-    
-     <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone submit-cell">
-        <a routerLink="/pages/sign-up" class="blank-layout-card-link">Don't have account?</a> -->
-        <!-- <div class="mdl-layout-spacer"></div>
-          <button (click)="findUser(3002) " class="mdl-button mdl-js-button mdl-button--raised color--light-blue">
-            SIGN UP
-          </button>
-      </div>
-
-     
-    </form>
-  </base-card-body>
-</base-card> -->
-
-
-
 <div class="contact-form">
     <h1 class="register-title">Minha Conta</h1>
     <div class="border"></div>
@@ -56,14 +11,17 @@
     <div class="txtb"> 
       <label>Email</label> 
       <input type="text" id="email" [value]="user.email" (input)="user.email = $event.target.value" name="" placeholder="Digite seu email"> </div>
+      <div class="txtb"> 
+        <label>Senha Atual</label> 
+        <input type="password" id="password" (input)="user.password = $event.target.value" name="" placeholder="Digite uma nova senha"> </div>
+      <div class="txtb"> 
+      <label>Nova Senha</label> 
+      <input type="password" id="newpassword" (input)="user.newpassword = $event.target.value" name="" placeholder="Digite uma nova senha"> </div>
     <div class="txtb"> 
-      <label>Senha</label> 
-      <input type="password" id="password" [value]="user.password" (input)="user.password = $event.target.value" name="" placeholder="Digite uma nova senha"> </div>
-    <div class="txtb"> 
-      <label>Confirma Senha</label> <input type="password" value="" name=""
+      <label>Confirma Nova Senha</label> <input type="password" value="" name="" id="confirmenewpw" (input)="user.confirmenewpw = $event.target.value"
         placeholder="Confirme sua senha"> 
     </div>
-    <button class="contact-form-btn mdl-button mdl-js-button mdl-button--raised color--light-blue">Alterar</button>
+    <button (click)="findUser(3002)" class="contact-form-btn mdl-button mdl-js-button mdl-button--raised color--light-blue">Alterar</button>
   </div>
 
 
