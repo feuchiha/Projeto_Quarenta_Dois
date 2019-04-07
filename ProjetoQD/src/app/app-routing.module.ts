@@ -10,6 +10,7 @@ import { AboutComponent } from './pages/about';
 
 import { LogsComponent } from './pages/logs/logs.component';
 import { VisualizacaoDadosComponent } from './pages/visualizacao-dados/visualizacao-dados.component';
+import { UsersComponent } from './pages/users';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { VisualizacaoDadosComponent } from './pages/visualizacao-dados/visualiza
           { path: 'dashboard', component: DashboardComponent, pathMatch: 'full' },
           { path: 'forms', component: FormsComponent, pathMatch: 'full' },
           { path: 'importacao', component: ImportacaoComponent, pathMatch: 'full' },
+          { path: 'users', component: UsersComponent, pathMatch: 'full' },
           { path: 'about', component: AboutComponent, pathMatch: 'full'},
           { path: 'logs', component:LogsComponent, pathMatch:'full'},
           { path: 'visualizacao-dados', component:VisualizacaoDadosComponent, pathMatch:'full'},

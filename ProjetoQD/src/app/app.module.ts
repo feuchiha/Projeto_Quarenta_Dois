@@ -47,10 +47,11 @@ import { FormsModule } from './pages/forms'
 import { VisualizacaoDadosComponent } from './pages/visualizacao-dados/visualizacao-dados.component';
 
 import { AboutComponent } from './pages/about/about.component';
+import { UsersComponent } from './pages/users/users.component';
 
 @NgModule({
 
-  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent ],
+  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent ],
 
   imports: [
     BrowserModule,

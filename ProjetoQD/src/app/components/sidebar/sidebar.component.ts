@@ -15,6 +15,7 @@ export class SidebarComponent extends BaseSidebarComponent {
     { name: 'Histórico', link: '/app/logs', icon: 'history' },
     { name: 'Análises', link: '/app/visualizacao-dados', icon: 'broken_image' },
     { name: 'Minha conta', link: '/app/forms', icon: 'person'},
+    { name: 'Usuários', link: 'app/users', icon: 'assignment_ind'},
     { name: 'Sobre', link: '/app/about', icon: 'casino' },
     { name: 'Pages', children: [
       { name: '404', link: '/pages/error' },
