@@ -26,6 +26,7 @@
             "scripts": [
               "node_modules/material-design-lite/material.js",
               "node_modules/getmdl-select/getmdl-select.min.js"
+
             ]
           },
           "configurations": {
