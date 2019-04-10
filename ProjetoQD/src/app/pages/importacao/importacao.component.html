@@ -1,67 +1,71 @@
-<link type="text/html" rel="stylesheet" href="/src/assets/styles/material-design-lite/material.min.css" >
-<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
+<link type="text/html" rel="stylesheet" href="/src/assets/styles/material-design-lite/material.min.css">
+<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
 
 <div class="service-section">
-  <div class="inner-width">
-    <h1 class="section-title">Importação de Arquivos</h1>
-    <div class="border"></div>
-    <div class="services-container">
-      
-      <div class="service-box">
-        <div class="service-icon">
-          <i class="fas fa-file-csv"></i>
-        </div>
-        <div class="service-title">Upload CSV</div>
-        <div class="service-desc">Importação de Arquivo em CSV</div>
-        <div class="service-button">
-          <div class="upload-btn-wrapper ">
-            <button class="btn mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect ButtonColorImport">+</button>
-            <input type="file" name="myfile" />
-          </div>
-        </div>
-      </div>
+    <div class="inner-width">
+        <h1 class="section-title">Importação de Arquivos</h1>
+        <div class="border"></div>
+        <div class="services-container">
 
-      <div class="service-box">
-        <div class="service-icon">
-          <i class="fas fa-code"></i>
-        </div>
-        <div class="service-title">Upload URL</div>
-        <div class="service-desc">Importação de Arquivo em URL</div>
-        <div class="service-button">
-          <div class="upload-btn-wrapper ">
-            <button class="btn mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect ButtonImportURL" id="ButtonImportURL">+</button>
-            <!-- <input type="file" name="myfile" /> -->
-          </div>
-        </div>
-        
-      </div>
+            <div class="service-box">
+                <div class="service-icon">
+                    <i class="fas fa-file-csv"></i>
+                </div>
+                <div class="service-title">Upload CSV</div>
+                <div class="service-desc">Importação de Arquivo em CSV</div>
+                <div class="service-button">
+                    <div class="upload-btn-wrapper ">
+                        <button class="btn mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect ButtonColorImport">+</button>
+                        <input type="file" name="myfile" />
+                    </div>
+                </div>
+            </div>
 
+            <div class="service-box">
+                <div class="service-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="service-title">Upload URL</div>
+                <div class="service-desc">Importação de Arquivo em URL</div>
+                <div class="service-button">
+                    <div class="upload-btn-wrapper ">
+                        <button class="btn mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect ButtonImportURL" id="ButtonImportURL">+</button>
+                        <!-- <input type="file" name="myfile" /> -->
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
     </div>
-  </div>
 </div>
 
 <div class="bg-modal">
-  <div class="modal-content">
-    <div class="close" id="close">+</div>
-    <h1 class="importarH1">Importar URL</h1>
-    <input type="text" placeholder="Digite a URL" class="linkURL">
-    <a class="verificaoTime">Verificar a cada</a>
-    <div class="diasDrop">
-      <select id="" class="mdl-button">
+    <div class="modal-content">
+        <div class="close" id="close">+</div>
+        <h1 class="importarH1">Importar URL</h1>
+        <input type="text" placeholder="Digite a URL" class="linkURL">
+        <a class="verificaoTime">Verificar a cada</a>
+        <div class="diasDrop">
+            <select id="" class="mdl-button">
           <option value='{"value":"7Days", "queryName":":7Days"}' (click)="adicionar(true)">7 dias</option>
           <option value='{"value":"15Days", "queryName":":15Days"}' (click)="adicionar(true)">15 dias</option>
           <option value='{"value":"30Days", "queryName":":30Days"}' (click)="adicionar(true)">30 dias</option>
           <option value='{"value":"90Days", "queryName":":90Days"}' (click)="adicionar(true)">90 dias</option>
       </select>
+        </div>
+        <div class="buttonEnviar">
+            <a href="" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button buttonURL"> Enviar</a>
+        </div>
     </div>
-    <div class="buttonEnviar">
-      <a href=""  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button buttonURL"> Enviar</a>
-    </div>
-  </div>
 </div>
 
-<!-- <script src="/src/assets/jquery/dist/jquery.js"></script>
+
+
+
+<!-- 
+<script src="/src/assets/jquery/dist/jquery.js"></script>
 <script src="/src/assets/jscustom/customJS.js"></script>
 <script src="/node_modules/material-design-lite/material.js"></script> -->
