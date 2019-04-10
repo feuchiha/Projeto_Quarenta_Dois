@@ -78,11 +78,12 @@
     font-size: 14px;
 }
 
-.ButtonColorImport {
-    margin-top: 10%;
-}
 
 .ButtonColorImport:hover {
+    background-color: #0baeb7;
+}
+
+.ButtonImportURL:hover{
     background-color: #0baeb7;
 }
 
@@ -122,44 +123,6 @@
     left: 25%;
     transform: translate(-50%, -50%);
     text-align: center;
-}
-
-.ImportarCard {
-    position: absolute;
-    width: 100%;
-    padding: 40%;
-    top: 20%;
-    left: 20%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-.demo-card-square.mdl-card {
-    width: 320px;
-    height: 320px;
-}
-
-.demo-card-square>.mdl-card__title {
-    color: #fff;
-    background: url('../../../assets/images/excelBlack.jpeg') bottom right 50% no-repeat #46B6AC;
-}
-
-.ImportarCardCSV {
-    position: absolute;
-    width: 100%;
-    padding: 1%;
-    text-align: center;
-    left: 1%;
-    top: 1%;
-}
-
-.ImportarCardURL {
-    position: absolute;
-    width: 100%;
-    padding: 1%;
-    text-align: center;
-    left: 25%;
-    top: 1%;
 }
 
 .upload-btn-wrapper {
@@ -208,13 +171,21 @@
 
 .importarH1 {
     font-size: 25px;
+    color: #0baeb7;
 }
 
 .linkURL {
-    width: 50%;
     display: block;
     margin: 15px auto;
+    width: 50%;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 18px;
+    color: white;
+    border-bottom: #0baeb7 solid 1px;
 }
+
 
 .close {
     position: absolute;
@@ -223,4 +194,18 @@
     font-size: 30px;
     transform: rotate(45deg);
     cursor: pointer;
+}
+
+.verificaoTime{
+    font-size: 16px;
+    color: #ddd;
+    margin: 5%;
+}
+
+.diasDrop{
+    padding-bottom: 5%; 
+}
+
+.buttonURL{
+    background-color: #0baeb7;
 }
