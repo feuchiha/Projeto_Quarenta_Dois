@@ -19,6 +19,8 @@ export class EmployerFormComponent {
     }
 
     findUser(port) {
+
+     console.log(this.user); 
       const headers = new HttpHeaders()
             .set('Authorization', 'my-auth-token')
             .set('Content-Type', 'application/json');

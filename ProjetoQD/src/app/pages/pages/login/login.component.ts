@@ -46,8 +46,10 @@ export class LoginComponent extends BlankLayoutCardComponent {
       .subscribe(data => {
         if(data['success'] === true){
           this.callMe(this.email);
+        }setTimeout(
+          function(){ 
           window.location.href = 'http://localhost:4200/#/app/dashboard'
-        }
+          }, 500);
       });
   }
 

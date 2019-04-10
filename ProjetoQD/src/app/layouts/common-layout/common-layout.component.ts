@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LoginComponent } from 'app/pages/pages/login';
 
 export interface User{
    email:String, 
@@ -20,4 +21,11 @@ export class CommonLayoutComponent {
     this.user = JSON.parse(localStorage.getItem('usr'));
 
   }
+
+  logout(){
+    console.log("teste");
+    localStorage.removeItem('usr');
+    window.location.href = '../pages/pages/LoginComponent';
+  }
+
 }
