@@ -1,27 +1,29 @@
 <!-- <div class="example-container mat-elevation-z8"> -->
   <mat-table #table [dataSource]="dataSource">
-    <ng-container matColumnDef="position">
-      <mat-header-cell *matHeaderCellDef class="curva-esquerda"> No. </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.position}} 
-
+    <ng-container matColumnDef="titulo">
+      <mat-header-cell *matHeaderCellDef> Base </mat-header-cell>
+      <mat-cell *matCellDef="let element" (click)="cellClicked(element)"> {{element.titulo}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Data de Insercao">
+      <mat-header-cell *matHeaderCellDef> Data de Inserção </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.dataInsercao}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Adicionado">
+      <mat-header-cell *matHeaderCellDef> Adicionado </mat-header-cell>
+      <!-- <mat-cell *matCellDef="let element"> {{element.inserido}}</mat-cell> -->
+      <mat-cell *matCellDef="let element">
+        <span *ngIf="element.inserido" style='font-size:30px; color:white'>&#10003;</span>
+        <span *ngIf="!element.inserido" style='font-size:25px; color:white'>&#935;</span>
       </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let element" (click)="cellClicked(element)"> {{element.name}} </mat-cell>
+    <ng-container matColumnDef="Fonte">
+      <mat-header-cell *matHeaderCellDef class="curva-direita"> Fonte </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.lugar}} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="weight">
-      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.weight}} 333</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="symbol">
-      <mat-header-cell *matHeaderCellDef class="curva-direita"> Symbol </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-    </ng-container>
+
     <ng-container matColumnDef="expandedDetail">
       <mat-cell *matCellDef="let detail"> 
-       <!-- <h1>{{detail.element.symbol}} - {{detail.element.name}}</h1><br> -->
-       <p> {{detail.element.description}}</p>
+       <p> {{detail.element.campos}}</p>
       </mat-cell>
     </ng-container>
 
