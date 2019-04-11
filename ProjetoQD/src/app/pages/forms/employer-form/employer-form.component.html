@@ -5,21 +5,21 @@
     <h1 class="register-title">Minha Conta</h1>
     <div class="border"></div>
     <div class="txtb"> 
-      <label>Nome de usuário</label> 
+      <label>Nome Completo</label> 
       <input type="text" id="username" [value]="user.username" (input)="user.username = $event.target.value" name=""
-        placeholder="Digite um novo nome de usuário"> </div>
+        placeholder="Digite seu nome para alteração"> </div>
     <div class="txtb"> 
       <label>Email</label> 
       <input type="text" id="email" [value]="user.email" (input)="user.email = $event.target.value" name="" placeholder="Digite seu email"> </div>
       <div class="txtb"> 
         <label>Senha Atual</label> 
-        <input type="password" id="password" (input)="user.password = $event.target.value" name="" placeholder="Digite uma nova senha"> </div>
+        <input type="password" id="password" (input)="user.password = $event.target.value" name="" placeholder="Digite a senha atual"> </div>
       <div class="txtb"> 
       <label>Nova Senha</label> 
       <input type="password" id="newpassword" (input)="user.newpassword = $event.target.value" name="" placeholder="Digite uma nova senha"> </div>
     <div class="txtb"> 
       <label>Confirma Nova Senha</label> <input type="password" value="" name="" id="confirmenewpw" (input)="user.confirmenewpw = $event.target.value"
-        placeholder="Confirme sua senha"> 
+        placeholder="Confirme sua nova senha"> 
     </div>
     <button (click)="findUser(3002)" class="contact-form-btn mdl-button mdl-js-button mdl-button--raised color--light-blue">Alterar</button>
   </div>
