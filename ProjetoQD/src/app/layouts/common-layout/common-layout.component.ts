@@ -5,7 +5,6 @@ import { LoginComponent } from 'app/pages/pages/login';
 export interface User{
    email:String, 
    name:String,
-   image:String
 }
 
 @Component({
@@ -15,7 +14,7 @@ export interface User{
   styleUrls: ['./common-layout.component.css'],
 })
 export class CommonLayoutComponent {
-  user:  {email:"",name:"",image: any};
+  user:  {email:"",name:""};
 
   constructor() {
     this.user = JSON.parse(localStorage.getItem('usr'));
