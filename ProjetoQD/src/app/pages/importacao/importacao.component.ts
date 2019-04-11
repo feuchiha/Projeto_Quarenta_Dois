@@ -8,6 +8,17 @@ import {BlankLayoutCardComponent} from 'app/components/blank-layout-card';
   templateUrl: './importacao.component.html',
   styleUrls: ['/importacao.component.css']
 })
-export class ImportacaoComponent extends BlankLayoutCardComponent{
+export class ImportacaoComponent extends BlankLayoutCardComponent implements OnInit{
 
+  
+  ngOnInit() {
+    document.getElementById('ButtonImportURL')['addEventListener']("click", function() {
+      document.querySelector('.bg-modal')['style']['display'] = "flex";
+    });
+
+    document.querySelector('.close').addEventListener("click", function() {
+      document.querySelector('.bg-modal')['style']['display'] = "none";
+    });
+
+  }
 }

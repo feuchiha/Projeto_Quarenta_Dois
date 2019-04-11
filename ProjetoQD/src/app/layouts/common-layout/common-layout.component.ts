@@ -22,7 +22,6 @@ export class CommonLayoutComponent {
   }
 
   logout(){
-    console.log("teste");
     localStorage.removeItem('usr');
     window.location.href = '../pages/pages/LoginComponent';
   }
