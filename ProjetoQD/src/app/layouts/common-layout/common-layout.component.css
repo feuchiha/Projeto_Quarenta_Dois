@@ -1,3 +1,9 @@
 .ButtonDesconectar{
-    color: blue;
+    cursor: pointer;
+}
+
+.nomeUserSideBar{
+    margin-right: 2%;
+    font-size: 16px;
+    color: #0baeb7;
 }
