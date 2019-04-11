@@ -14,6 +14,7 @@
 // }
 
 document.getElementById('ButtonImportURL').addEventListener("click", function() {
+	alert('aaaaaaaaaaaaaaaaaaaaaaaaaa');
 	document.querySelector('.bg-modal').style.display = "flex";
 });
 
