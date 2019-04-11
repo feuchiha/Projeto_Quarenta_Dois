@@ -13,19 +13,19 @@ export class EmployerFormComponent {
 
     user = {email:"", username:"", password:"", newpassword:"", confirmenewpw:""};
     usr = {_id:"", username:"", password:"", newpassword:"", confirmenewpw:"", email:""};
+    local = {id:"", email:"", username:""};
 
     constructor(private http: HttpClient) {
       this.user = JSON.parse(localStorage.getItem('usr'));
     }
 
     findUser(port) {
-
-     console.log(this.user); 
+     this.local = JSON.parse(localStorage.getItem('usr'));
       const headers = new HttpHeaders()
             .set('Authorization', 'my-auth-token')
             .set('Content-Type', 'application/json');
       this.http.post(`http://localhost:${port}/users/findEmail`,
-      JSON.stringify(this.user), {
+      JSON.stringify(this.local), {
       headers: headers
       })
       .subscribe(data => {
@@ -40,7 +40,6 @@ export class EmployerFormComponent {
             confirmenewpw: this.user.confirmenewpw,
           }
           this.updateUser(port)
-
         } else{
            alert(data['message']);
          }
@@ -49,7 +48,6 @@ export class EmployerFormComponent {
 
    
   updateUser(port) {
-    console.log(this.usr);
     const headers = new HttpHeaders()
           .set('Authorization', 'my-auth-token')
           .set('Content-Type', 'application/json');
@@ -59,8 +57,7 @@ export class EmployerFormComponent {
     })
     .subscribe(data => {
        if(data['success'] === true){
-        localStorage.setItem('usr', JSON.stringify(this.usr.username));
-        localStorage.setItem('usr', JSON.stringify(this.usr.email));
+        localStorage.setItem('usr', JSON.stringify(this.usr));
         alert('Usuario Alterado com sucesso!');
        }setTimeout(
         function(){ 
