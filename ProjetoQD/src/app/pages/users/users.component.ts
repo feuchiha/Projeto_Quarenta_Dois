@@ -7,4 +7,5 @@ import { BlankLayoutCardComponent } from 'app/components/blank-layout-card';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent extends BlankLayoutCardComponent {
+  
 }
