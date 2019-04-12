@@ -22,6 +22,7 @@ export class SidebarComponent extends BaseSidebarComponent {
       { name: 'Esqueceu a senha', link: '/pages/forgot-password' },
       { name: 'Login', link: '/pages/login'},
       { name: 'Cadastro', link: '/pages/cadastro'},
+      { name: 'Altera Senha', link: '/pages/altera-senha'},
 
 
     ], icon: 'pages' },

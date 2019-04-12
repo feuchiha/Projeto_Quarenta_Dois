@@ -75,3 +75,12 @@
     background: #0baeb7;
     margin: 20px auto;
 }
+
+.buttonLogin{
+    margin-right: 30%;
+}
+
+.buttonLogin:hover{
+    background-color: #0baeb7;
+}
+

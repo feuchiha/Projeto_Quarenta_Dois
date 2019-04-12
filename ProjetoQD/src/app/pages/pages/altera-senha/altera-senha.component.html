@@ -1,0 +1,29 @@
+<div class="mdl-card mdl-card__blank-layout-card mdl-shadow--2dp">
+  <div class="mdl-card__supporting-text color--dark-gray">
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
+        <span class="mdl-card__title-text text-color--smooth-gray">42</span>
+      </div>
+      
+      <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
+        <span class="blank-layout-card-name text-color--white">Alterar a Senha</span>
+      </div>
+
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+        <input class="mdl-textfield__input" type="password" [value]="user.password" (input)="user.password = $event.target.value" id="password">
+        <label class="mdl-textfield__label" for="password">Nova Senha</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+        <input class="mdl-textfield__input" type="password" [value]="user.password" (input)="user.passwordconfirm = $event.target.value" id="passwordConfir">
+        <label class="mdl-textfield__label" for="password">Confirmar Senha</label>
+      </div>
+
+      <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone submit-cell">
+        <div class="mdl-layout-spacer"></div>
+          <button (click)="forgot(3002)" class="mdl-button mdl-js-button mdl-button--raised color--light-blue">
+            Alterar Senha
+          </button>
+      </div>
+    </div>
+  </div>
+</div>
