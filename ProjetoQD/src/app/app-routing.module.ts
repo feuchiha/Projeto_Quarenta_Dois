@@ -16,7 +16,7 @@ import { UsersComponent } from './pages/users';
   imports: [
     RouterModule.forRoot(
       [
-        { path: '', redirectTo: 'pages/login', pathMatch: 'full' },
+        { path: '', redirectTo: 'app/visualizacao-dados', pathMatch: 'full' },
         { path: 'app', component: CommonLayoutComponent, children: [
           { path: 'dashboard', component: DashboardComponent, pathMatch: 'full' },
           { path: 'forms', component: FormsComponent, pathMatch: 'full' },
