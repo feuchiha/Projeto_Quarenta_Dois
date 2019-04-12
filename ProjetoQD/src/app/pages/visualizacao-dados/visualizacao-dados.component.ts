@@ -28,9 +28,9 @@ export class VisualizacaoDadosComponent implements OnInit {
     }
     var config = {
       container_id: "viz",
-      server_url: "bolt://52.91.116.38:37310",
+      server_url: "bolt://100.25.48.12:32968",
       server_user: "neo4j",
-      server_password: "dealers-index-morale",
+      server_password: "seasoning-shields-translator",
       labels: {
         "User": {
           caption: "user_key",
