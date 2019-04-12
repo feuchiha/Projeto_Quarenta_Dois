@@ -10,7 +10,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   
 export class EmployerFormComponent {
 
-
     user = {email:"", username:"", password:"", newpassword:"", confirmenewpw:""};
     usr = {_id:"", username:"", password:"", newpassword:"", confirmenewpw:"", email:""};
     local = {id:"", email:"", username:""};
@@ -39,6 +38,7 @@ export class EmployerFormComponent {
             newpassword: this.user.newpassword,
             confirmenewpw: this.user.confirmenewpw,
           }
+          console.log(this.usr); 
           this.updateUser(port)
         } else{
            alert(data['message']);
@@ -56,13 +56,18 @@ export class EmployerFormComponent {
     headers: headers
     })
     .subscribe(data => {
-       if(data['success'] === true){
+       if(data['success'] === false){ 
+        console.log(data['message']); 
+      }else{
         localStorage.setItem('usr', JSON.stringify(this.usr));
         alert('Usuario Alterado com sucesso!');
-       }setTimeout(
+      }
+      if(data['success'] === true){
+      setTimeout(
         function(){ 
         window.location.reload();
         }, 500);
+      }
     });
   }
 }

@@ -26,4 +26,8 @@ export class CommonLayoutComponent {
     window.location.href = '../pages/pages/LoginComponent';
   }
 
+  logar(){
+    alert(prompt('POR FAVOR. LOGE-se'));
+  }
+
 }

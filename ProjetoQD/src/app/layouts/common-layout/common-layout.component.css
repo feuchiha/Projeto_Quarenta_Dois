@@ -1,9 +1,34 @@
-.ButtonDesconectar{
-    cursor: pointer;
+.ButtonDesconectar {
+  cursor: pointer;
 }
 
-.nomeUserSideBar{
-    margin-right: 2%;
-    font-size: 16px;
-    color: #0baeb7;
+.nomeUserSideBar {
+  margin-right: 2%;
+  font-size: 16px;
+  color: #0baeb7;
+}
+
+#viz {
+  height: 90%;
+}
+
+.buttonAcao {
+  text-transform: capitalize;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  margin: 1%;
+}
+
+.buttonAcao:hover {
+  background: #0baeb7;
+}
+.button {
+  display: inline-block;
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
 }
