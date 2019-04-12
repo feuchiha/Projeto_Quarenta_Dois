@@ -1,9 +1,9 @@
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer">
-    <div class="mdl-layout__header">
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer" >
+    <div class="mdl-layout__header" *ngIf="user">
         <base-page-top>
             <div class="mdl-layout-spacer"></div>
             
-            <span id="icon" class="nomeUserSideBar"> <!--{{user.username}}--> Felipe Valim</span>
+            <span id="icon" class="nomeUserSideBar"> {{user.username}} </span>
 
             <span class="mdl-list__item-primary-content ButtonDesconectar">
                 <i (click)="logout()" class="material-icons mdl-list__item-icon text-color--secondary ButtonDesconectar">exit_to_app</i>

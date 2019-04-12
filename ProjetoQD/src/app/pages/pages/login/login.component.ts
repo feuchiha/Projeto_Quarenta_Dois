@@ -31,6 +31,8 @@ export class LoginComponent extends BlankLayoutCardComponent {
          let token = data['token'];  
           this.email = data['email'];
          this.verifytoken(token, this.email);
+         }else{
+           alert(data['message']);
          }
       });
     }
@@ -44,7 +46,9 @@ export class LoginComponent extends BlankLayoutCardComponent {
       headers: headers
       })
       .subscribe(data => {
-        if(data['success'] === true){
+        if(data['success'] === false){
+          alert(data['message']);
+        }else{
           this.callMe(this.email);
         }setTimeout(
           function(){ 
