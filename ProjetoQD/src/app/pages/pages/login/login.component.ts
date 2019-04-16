@@ -13,7 +13,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class LoginComponent extends BlankLayoutCardComponent { 
     user = {email:"", password:""};
     email: String;
-    usr: {email:"",username:""};
+    usr: {email:"",username:"", status:""};
     
     constructor(private http: HttpClient) {
       super();
@@ -69,7 +69,7 @@ export class LoginComponent extends BlankLayoutCardComponent {
        if(data['success'] === true){
         this.usr = {
           email: data['email'],
-
+          status: data['status'],
           username: data['name']
         }
         localStorage.setItem('usr', JSON.stringify(this.usr));
