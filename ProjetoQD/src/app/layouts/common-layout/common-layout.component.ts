@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastrManager } from 'ng6-toastr-notifications';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginComponent } from 'app/pages/pages/login';
 
@@ -17,7 +18,7 @@ export interface User{
 export class CommonLayoutComponent {
   user:  {email:"",name:"", status:""};
 
-  constructor() {
+  constructor(public toastr: ToastrManager) {
     this.user = JSON.parse(localStorage.getItem('usr'));
 
   }
@@ -28,7 +29,7 @@ export class CommonLayoutComponent {
   }
 
   logar(){
-    alert(prompt('POR FAVOR. LOGE-se'));
+    this.toastr.errorToastr('POR FAVOR. LOGE-se.', 'Oops!');
   }
 
 }

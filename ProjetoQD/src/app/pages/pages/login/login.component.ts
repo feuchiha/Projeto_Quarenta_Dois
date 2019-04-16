@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-
+import { ToastrManager } from 'ng6-toastr-notifications';
 import { BlankLayoutCardComponent } from 'app/components/blank-layout-card';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -15,7 +15,7 @@ export class LoginComponent extends BlankLayoutCardComponent {
     email: String;
     usr: {email:"",username:"", status:""};
     
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, public toastr: ToastrManager) {
       super();
     }
     callServer(port) {
@@ -32,7 +32,7 @@ export class LoginComponent extends BlankLayoutCardComponent {
           this.email = data['email'];
          this.verifytoken(token, this.email);
          }else{
-           alert(data['message']);
+          this.toastr.errorToastr(data['message'], 'Oops!');
          }
       });
     }
@@ -47,7 +47,7 @@ export class LoginComponent extends BlankLayoutCardComponent {
       })
       .subscribe(data => {
         if(data['success'] === false){
-          alert(data['message']);
+          this.toastr.errorToastr(data['message'], 'Oops!');
         }else{
           this.callMe(this.email);
         }setTimeout(
@@ -73,8 +73,8 @@ export class LoginComponent extends BlankLayoutCardComponent {
           username: data['name']
         }
         localStorage.setItem('usr', JSON.stringify(this.usr));
-      } else{
-         alert(data['message']);
+      } else{ 
+        this.toastr.errorToastr(data['message'], 'Oops!');
        }
     });
   }
