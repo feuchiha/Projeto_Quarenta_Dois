@@ -7,10 +7,11 @@ import { ImportacaoComponent } from './pages/importacao/importacao.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LogsComponent } from './pages/logs/logs.component';
 import { FormsModule } from './pages/forms'
-  import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-  import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-  import {ReactiveFormsModule} from '@angular/forms';
-  import {
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {ReactiveFormsModule} from '@angular/forms';
+import {ToastrModule} from 'ng6-toastr-notifications';
+import {
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -68,7 +69,8 @@ import { UsersComponent } from './pages/users/users.component';
     BrowserAnimationsModule,  
     ReactiveFormsModule,
     MatCardModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    ToastrModule.forRoot(),
   ],
   exports: [
     CdkTableModule,

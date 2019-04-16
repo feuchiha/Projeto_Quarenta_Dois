@@ -9,6 +9,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { LoginComponent } from './login/login.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { AlteraSenhaComponent } from './altera-senha/altera-senha.component';
+import { TesteToasrtComponent } from './teste-toasrt/teste-toasrt.component';
 // import { LoginParticleComponent } from './login-particle/login-particle.component';
 
 
@@ -25,7 +26,8 @@ import { AlteraSenhaComponent } from './altera-senha/altera-senha.component';
     ForgotPasswordComponent,
     LoginComponent,
     CadastroComponent,
-    AlteraSenhaComponent
+    AlteraSenhaComponent,
+    TesteToasrtComponent
     // LoginParticleComponent
   ],
 })

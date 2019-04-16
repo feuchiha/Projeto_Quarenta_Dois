@@ -7,6 +7,7 @@ import { ErrorComponent } from './error';
 import { ForgotPasswordComponent } from './forgot-password';
 import { CadastroComponent } from './cadastro';
 import { AlteraSenhaComponent } from './altera-senha/altera-senha.component';
+import { TesteToasrtComponent } from './teste-toasrt';
 
 
 
@@ -22,6 +23,7 @@ import { AlteraSenhaComponent } from './altera-senha/altera-senha.component';
           { path: 'login', component: LoginComponent, pathMatch: 'full' },
           { path: 'cadastro', component: CadastroComponent, pathMatch:'full'},
           { path: 'altera-senha', component: AlteraSenhaComponent, pathMatch: 'full'},
+          { path: 'teste-toasrt', component: TesteToasrtComponent, pathMatch: 'full'},
           { path: '**', redirectTo: '404' },
         ],
       },
