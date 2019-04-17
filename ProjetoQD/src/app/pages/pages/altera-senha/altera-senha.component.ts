@@ -7,5 +7,4 @@ import { BlankLayoutCardComponent } from 'app/components/blank-layout-card';
   styleUrls: ['../../../components/blank-layout-card/blank-layout-card.component.scss']
 })
 export class AlteraSenhaComponent extends BlankLayoutCardComponent {
-
 }
