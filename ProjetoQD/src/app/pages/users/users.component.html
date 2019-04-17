@@ -15,6 +15,13 @@
                                 <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> <span>User</span> </mat-header-cell>
                                     <mat-cell class="corpoTable" *matCellDef="let element">
                                         <a href="#" class="user-link">{{element.user}}</a>
+                                    </mat-cell>
+                            </ng-container>
+
+                            <!--Status Column-->
+                            <ng-container matColumnDef="status">
+                                <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> <span>Status</span> </mat-header-cell>
+                                    <mat-cell class="corpoTable" *matCellDef="let element">
                                         <span class="user-subhead">{{element.status}}</span>
                                     </mat-cell>
                             </ng-container>
