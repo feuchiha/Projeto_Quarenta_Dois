@@ -1,9 +1,9 @@
-<div *ngIf="user" class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer">
-    <div class="mdl-layout__header" *ngIf="user">
+<div *ngIf="local" class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer">
+    <div class="mdl-layout__header" *ngIf="local">
         <base-page-top>
             <div class="mdl-layout-spacer"></div>
 
-            <span id="icon" class="nomeUserSideBar"> {{user.username}} </span>
+            <span id="icon" class="nomeUserSideBar"> {{local.username}} </span>
 
             <span class="mdl-list__item-primary-content ButtonDesconectar">
                 <i (click)="logout()"
@@ -12,14 +12,14 @@
 
         </base-page-top>
     </div>
-    <div class="mdl-layout__drawer" *ngIf="user">
+    <div class="mdl-layout__drawer" *ngIf="local">
         <app-sidebar></app-sidebar>
     </div>
     <main class="mdl-layout__content">
         <router-outlet></router-outlet>
     </main>
 </div>
-<div *ngIf="!user" class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer">
+<div *ngIf="!local" class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer">
     <!-- <main class="mdl-layout__content"> -->
     <main class=" mdl-layout__content">
         <button routerLink="/pages/login" style="z-index: 11;position: fixed;width:85px; margin:10px auto auto 92%;"

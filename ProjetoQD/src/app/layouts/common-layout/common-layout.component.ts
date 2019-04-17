@@ -16,10 +16,11 @@ export interface User{
   styleUrls: ['./common-layout.component.css'],
 })
 export class CommonLayoutComponent {
-  user:  {email:"",name:"", status:""};
+  local:  {email:"",name:"", status:""};
 
   constructor(public toastr: ToastrManager) {
-    this.user = JSON.parse(localStorage.getItem('usr'));
+    console.log(localStorage.getItem('usr'))
+    this.local = JSON.parse(localStorage.getItem('usr'));
 
   }
 

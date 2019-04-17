@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
 import { BlankLayoutCardComponent } from 'app/components/blank-layout-card';
+import { Component, HostBinding, NgModule, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ToastrManager } from 'ng6-toastr-notifications';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { PARAMETERS } from '@angular/core/src/util/decorators';
+import { ConstantPool } from '@angular/compiler';
 
 @Component({
   selector: 'app-altera-senha',
@@ -8,4 +13,34 @@ import { BlankLayoutCardComponent } from 'app/components/blank-layout-card';
 })
 export class AlteraSenhaComponent extends BlankLayoutCardComponent {
 
-}
+  back = {user:{password:""}, params: {token:""}};
+   
+  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient, public toastr: ToastrManager) {
+    super();
+  }
+    
+    forgot(port) {
+      this.activatedRoute.queryParams.subscribe((params: Params) => {
+      const headers = new HttpHeaders()
+            .set('Authorization', 'my-auth-token')
+            .set('Content-Type', 'application/json');
+      this.http.post(`http://localhost:${port}/forgot/reset/` + params.token, 
+      JSON.stringify(this.back.user), {
+      headers: headers
+      })
+      .subscribe(data => {
+         if(data['success'] === true){
+          this.toastr.successToastr(data['message'], 'Success!');
+          console.log(data);
+          //window.location.href = '../../dashboard/dashboard.component.html'
+         }
+      });
+    });
+    }
+  }
+
+
+
+
+  
+ 
