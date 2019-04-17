@@ -1,7 +1,7 @@
 import { Component, HostBinding, NgModule } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { BlankLayoutCardComponent } from 'app/components/blank-layout-card';
-import { ToastrManager } from 'ng6-toastr-notifications';
+// import { ToastrManager } from 'ng6-toastr-notifications';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
