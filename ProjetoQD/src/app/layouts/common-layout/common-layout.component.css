@@ -12,17 +12,6 @@
   height: 90%;
 }
 
-.buttonAcao {
-  text-transform: capitalize;
-  position: relative;
-  overflow: hidden;
-  display: inline-block;
-  margin: 1%;
-}
-
-.buttonAcao:hover {
-  background: #0baeb7;
-}
 .button {
   display: inline-block;
   background-color: Transparent;
@@ -31,4 +20,38 @@
   cursor: pointer;
   overflow: hidden;
   outline: none;
+}
+
+.buttonLogin{
+  position: relative;
+  display: inline-block;
+  margin: 1%;
+  width:85px;
+  margin:10px auto auto 92%;
+  display: inline-block;
+}
+
+.buttonLogin:hover{
+  background: #0baeb7;
+}
+
+@media screen and (max-width: 960px) {
+  .buttonLogin {
+    display: inline;
+    margin: 0.7em;
+  }
+}
+
+@media screen and (max-width: 758px) {
+  .buttonLogin {
+    display: inline;
+    margin: 0.7em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .buttonLogin {
+    display: inline;
+    margin: 0.7em;
+  }
 }

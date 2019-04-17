@@ -1,4 +1,4 @@
-import { Component, HostBinding, NgModule, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -15,11 +15,11 @@ export class EmployerFormComponent {
     local = {id:"", email:"", username:""};
 
     constructor(private http: HttpClient, public toastr: ToastrManager) {
+      console.log(localStorage.getItem('usr'));
       this.user = JSON.parse(localStorage.getItem('usr'));
     }
 
     findUser(port) {
-     this.usr = {_id:undefined, username:undefined, password:undefined, newpassword:undefined, confirmenewpw:undefined, email:undefined};
      this.local = JSON.parse(localStorage.getItem('usr'));
       const headers = new HttpHeaders()
             .set('Authorization', 'my-auth-token')
@@ -38,8 +38,7 @@ export class EmployerFormComponent {
             newpassword: this.user.newpassword,
             confirmenewpw: this.user.confirmenewpw,
           }
-          this.updateUser(port)
-          this.user = {email:undefined, username:undefined, password:undefined, newpassword:undefined, confirmenewpw:undefined};
+          this.updateUser(port);
         } else{
           this.toastr.errorToastr(data['message'], 'Oops!');
          }
@@ -48,6 +47,12 @@ export class EmployerFormComponent {
 
    
   updateUser(port) {
+    for(let name in this.usr){
+      if (this.usr[name] == null || this.usr[name] == "" || 
+          this.usr[name] == " "  || this.usr[name] == undefined){
+            this.usr[name] = undefined;
+          }
+    }
     const headers = new HttpHeaders()
           .set('Authorization', 'my-auth-token')
           .set('Content-Type', 'application/json');
@@ -59,15 +64,44 @@ export class EmployerFormComponent {
        if(data['success'] === false){ 
         this.toastr.errorToastr(data['message'], 'Oops!');
       }else{
-        localStorage.setItem('usr', JSON.stringify(this.usr));
+        this.attLocal(port);
         this.toastr.successToastr(data['message'], 'Success!');
       }
-      if(data['success'] === true){
-      setTimeout(
-        function(){ 
-        window.location.reload();
-        }, 500);
-      }
+      
     });
   }
+
+  attLocal(port){
+    const headers = new HttpHeaders()
+          .set('Authorization', 'my-auth-token')
+          .set('Content-Type', 'application/json');
+    this.http.post(`http://localhost:${port}/users/findEmail`,
+    JSON.stringify(this.local), {
+    headers: headers
+    })
+    .subscribe(data => {
+       if(data['success'] === true){
+         console.log(data);
+        this.user = {
+          username: data['name'],
+          email: data['email'],
+          password: "",
+          newpassword: "",
+          confirmenewpw: "",
+        }
+        localStorage.setItem('usr', JSON.stringify(this.user));
+       }
+       if(data['success'] === true){
+        setTimeout(
+          function(){ 
+          window.location.reload();
+          }, 500);
+        }
+      });
+  }
+  
+
+
 }
+
+      
