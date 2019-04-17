@@ -1,7 +1,7 @@
 import { Component, HostBinding, NgModule } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { BlankLayoutCardComponent } from 'app/components/blank-layout-card';
-
+// import { ToastrManager } from 'ng6-toastr-notifications';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -12,7 +12,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class ForgotPasswordComponent extends BlankLayoutCardComponent {
  email = {email:""}
 
-constructor(private http: HttpClient) {
+constructor(private http: HttpClient, public toastr: ToastrManager) {
   super();
 }
 
@@ -28,7 +28,9 @@ constructor(private http: HttpClient) {
           headers: headers
           })
           .subscribe(data => {
-              console.log(data);
-            })
+            if(data['success'] === true){ 
+              this.toastr.successToastr(data['message'], 'Success!');
+            }
+          })
       };
 }

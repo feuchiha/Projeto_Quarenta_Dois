@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BlankLayoutCardComponent } from 'app/components/blank-layout-card';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-cadastro',
@@ -11,7 +12,7 @@ export class CadastroComponent extends BlankLayoutCardComponent {
 
   user = {email:"", username:"", password:"", confirmepw:""};
    
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public toastr: ToastrManager) {
     super();
   }
   
@@ -25,10 +26,10 @@ export class CadastroComponent extends BlankLayoutCardComponent {
     })
     .subscribe(data => {
        if(data['success'] === true){
-        console.log(data['message']);
+        this.toastr.successToastr(data['message'], 'Success!');
         this.signup(port);
       } else{
-         alert(data['message']);
+        this.toastr.errorToastr(data['message'], 'Oops!');
        }
     });
   }
@@ -43,10 +44,9 @@ signup(port) {
   })
   .subscribe(data => {
      if(data['success'] === true){
-      console.log(data['message']);
-      alert('Usuario Cadastrado com sucesso!');
+      this.toastr.successToastr(data['message'], 'Success!');
      }else{
-      console.log(data['message']); 
+      this.toastr.errorToastr(data['message'], 'Oops!'); 
      }
   });
 }
