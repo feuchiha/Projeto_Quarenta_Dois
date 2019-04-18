@@ -76,11 +76,11 @@
     margin: 20px auto;
 }
 
-.buttonLogin{
+.buttonLoginCad{
     margin-right: 30%;
 }
 
-.buttonLogin:hover{
+.buttonLoginCad:hover{
     background-color: #0baeb7;
 }
 

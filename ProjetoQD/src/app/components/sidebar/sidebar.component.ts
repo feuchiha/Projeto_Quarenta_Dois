@@ -30,7 +30,7 @@ constructor() {
               { name: 'Minha conta', link: '/app/forms', icon: 'person'},
               { name: 'Usuarios', link: '/app/users', icon: 'assignment_ind'},
               { name: 'Sobre', link: '/app/about', icon: 'casino' },
-              { name: 'Pages', children: [
+              /*{ name: 'Pages', children: [
                 { name: '404', link: '/pages/error' },
                 { name: 'Esqueceu a senha', link: '/pages/forgot-password' },
                 { name: 'Login', link: '/pages/login'},
@@ -38,7 +38,7 @@ constructor() {
                 { name: 'Altera Senha', link: '/pages/altera-senha'},
           
           
-              ], icon: 'pages' },
+              ], icon: 'pages' },*/
             ];
       }else{
         
@@ -49,7 +49,7 @@ constructor() {
         { name: 'Análises', link: '/app/visualizacao-dados', icon: 'broken_image' },
         { name: 'Minha conta', link: '/app/forms', icon: 'person'},
         { name: 'Sobre', link: '/app/about', icon: 'casino' },
-        { name: 'Pages', children: [
+        /*{ name: 'Pages', children: [
           { name: '404', link: '/pages/error' },
           { name: 'Esqueceu a senha', link: '/pages/forgot-password' },
           { name: 'Login', link: '/pages/login'},
@@ -57,7 +57,7 @@ constructor() {
           { name: 'Altera Senha', link: '/pages/altera-senha'},
     
     
-        ], icon: 'pages' },
+        ], icon: 'pages' },*/
       ];
     }
   }
