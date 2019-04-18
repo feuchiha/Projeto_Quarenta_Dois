@@ -93,3 +93,7 @@
   .selectDrop:hover {
     background: #0baeb7;
   }
+
+  .cursor{
+    cursor: pointer;
+  }
