@@ -63,9 +63,15 @@ export class EmployerFormComponent {
     .subscribe(data => {
        if(data['success'] === false){ 
         this.toastr.errorToastr(data['message'], 'Oops!');
+        this.user.password = null;
+        this.user.confirmenewpw = null;
+        this.user.newpassword = null;
       }else{
         this.attLocal(port);
         this.toastr.successToastr(data['message'], 'Success!');
+        this.user.password = null;
+        this.user.confirmenewpw = null;
+        this.user.newpassword = null;
       }
       
     });

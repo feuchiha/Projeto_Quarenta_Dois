@@ -13,12 +13,12 @@
       <input type="text" id="email" [value]="user.email" (input)="user.email = $event.target.value" name="" placeholder="Digite seu email"> </div>
       <div class="txtb"> 
         <label>Senha Atual</label> 
-        <input type="password" id="password" (input)="user.password = $event.target.value" name="" placeholder="Digite a senha atual"> </div>
+        <input type="password" id="password" [value]="user.password" (input)="user.password = $event.target.value" name="" placeholder="Digite a senha atual"> </div>
       <div class="txtb"> 
       <label>Nova Senha</label> 
-      <input type="password" id="newpassword" (input)="user.newpassword = $event.target.value" name="" placeholder="Digite uma nova senha"> </div>
+      <input type="password" id="newpassword" [value]="user.newpassword" (input)="user.newpassword = $event.target.value" name="" placeholder="Digite uma nova senha"> </div>
     <div class="txtb"> 
-      <label>Confirma Nova Senha</label> <input type="password" value="" name="" id="confirmenewpw" (input)="user.confirmenewpw = $event.target.value"
+      <label>Confirma Nova Senha</label> <input type="password" value="" name="" id="confirmenewpw" [value]="user.confirmenewpw"  (input)="user.confirmenewpw = $event.target.value"
         placeholder="Confirme sua nova senha"> 
     </div>
     <button (click)="findUser(3002)" class="contact-form-btn mdl-button mdl-js-button mdl-button--raised color--light-blue">Alterar</button>
