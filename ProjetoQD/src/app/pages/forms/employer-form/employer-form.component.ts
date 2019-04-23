@@ -15,7 +15,6 @@ export class EmployerFormComponent {
     local = {id:"", email:"", username:""};
 
     constructor(private http: HttpClient, public toastr: ToastrManager) {
-      console.log(localStorage.getItem('usr'));
       this.user = JSON.parse(localStorage.getItem('usr'));
     }
 
@@ -67,11 +66,9 @@ export class EmployerFormComponent {
         this.user.confirmenewpw = null;
         this.user.newpassword = null;
       }else{
-        this.attLocal(port);
         this.toastr.successToastr(data['message'], 'Success!');
-        this.user.password = null;
-        this.user.confirmenewpw = null;
-        this.user.newpassword = null;
+        this.user = null;
+        this.attLocal(port);
       }
       
     });
@@ -87,7 +84,6 @@ export class EmployerFormComponent {
     })
     .subscribe(data => {
        if(data['success'] === true){
-         console.log(data);
         this.user = {
           username: data['name'],
           email: data['email'],

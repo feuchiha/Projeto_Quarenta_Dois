@@ -30,8 +30,6 @@ export class AlteraSenhaComponent extends BlankLayoutCardComponent {
       .subscribe(data => {
          if(data['success'] === true){
           this.toastr.successToastr(data['message'], 'Success!');
-          console.log(data);
-          //window.location.href = '../../dashboard/dashboard.component.html'
          }
       });
     });

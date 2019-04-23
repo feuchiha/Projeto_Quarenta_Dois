@@ -19,7 +19,6 @@ export class CommonLayoutComponent {
   local:  {email:"",name:"", status:""};
 
   constructor(public toastr: ToastrManager) {
-    console.log(localStorage.getItem('usr'))
     this.local = JSON.parse(localStorage.getItem('usr'));
 
   }

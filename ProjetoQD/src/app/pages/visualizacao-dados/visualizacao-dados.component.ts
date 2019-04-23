@@ -62,7 +62,6 @@ export class VisualizacaoDadosComponent implements OnInit {
     if (this.cypher.length > 3) {
       this.viz.renderWithCypher(this.cypher);
     } else {
-      console.log("reload");
       this.viz.reload();
     }
   }
@@ -155,7 +154,6 @@ export class VisualizacaoDadosComponent implements OnInit {
     } else {
       this.query[attObj].push(objValue.queryName);
     }
-    console.log(this.cont);
     this.divLabels.innerHTML += `<span class="label ${objValue.value}" id='${this.cont}' onClick="(function(){document.getElementById(${this.cont}).parentNode.removeChild(document.getElementById(${this.cont})); ${index =this.query[attObj].findIndex(s => { return s == objValue.value })}; ${this.query[attObj][index] = ''};document.getElementById('relationship')['disabled'] = false;document.getElementById('nodes')['disabled'] = false;})()"> ${text}<button class='label button'>X</button></span>`;
   }
 
@@ -175,7 +173,7 @@ export class VisualizacaoDadosComponent implements OnInit {
   }
 
   exclui(id, type, value) {
-    console.log(id)
+    
     var elem = document.getElementById(id);
 
     if (id == 'All') {
