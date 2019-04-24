@@ -11,9 +11,9 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {user: 'Haruno', created: '2019/04/07', email: 'sakura@haruno.com', status:"INATIVO"},
-  {user: 'Uchiha', created: '2019/04/07', email: 'sasuke@uchiha.com', status:"User"},
-  {user: 'Uzumaki', created: '2019/04/07', email: 'naruto@uzumaki.com', status:"Admin"}
+  {user: 'Haruno', created: '2019/04/07', email: 'sakura@haruno.com', status:"Inativo"},
+  {user: 'Uchiha', created: '2019/04/07', email: 'sasuke@uchiha.com', status:"Ativo"},
+  {user: 'Uzumaki', created: '2019/04/07', email: 'naruto@uzumaki.com', status:"Ativo"}
 ];
 @Component({
   selector: 'app-users',
@@ -21,7 +21,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./users.component.css' ]
 })
 export class UsersComponent  {
-  displayedColumns: string[]  = ['user', 'status', 'created', 'email','aa'];
+  displayedColumns: string[]  = ['user', 'status', 'created', 'email', 'senha', 'aa' ];
  
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
