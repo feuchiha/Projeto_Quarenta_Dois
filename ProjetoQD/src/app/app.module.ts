@@ -49,10 +49,11 @@ import { VisualizacaoDadosComponent } from './pages/visualizacao-dados/visualiza
 
 import { AboutComponent } from './pages/about/about.component';
 import { UsersComponent } from './pages/users/users.component';
+import { QdSelectComponent } from './components/qd-select/qd-select.component';
 
 @NgModule({
 
-  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent ],
+  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent, QdSelectComponent ],
 
   imports: [
     BrowserModule,

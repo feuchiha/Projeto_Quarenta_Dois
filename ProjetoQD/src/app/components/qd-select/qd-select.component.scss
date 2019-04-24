@@ -1,0 +1,96 @@
+$dark: #35414a;
+$semilight: #86919a;
+$blue: #03a9f4;
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+@font-face {
+  font-family: pfs-bold;
+  src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/PFSquareSansPro-Bold.otf');
+}
+
+.drop {
+  // color: $blue;
+  text-transform: uppercase;
+  
+  .option {
+    cursor: pointer;
+    
+    &:not(.active) {
+      display: none;
+      opacity: 0;
+      transform: translateY(-50%);
+    }
+  }
+  
+  &.visible {
+    animation: bounce 1s;
+    
+    &:before, &:after {
+      border-color: #fff;
+    }
+    &:before {
+      opacity: 0;
+    }
+    &:after {
+      opacity: 1;
+    }
+    
+    .option {
+      color: #fff;
+      display: block;
+    }
+  }
+  
+  &.opacity {
+    
+    .option {
+      transform: translateZ(0);
+      opacity: 1;
+      
+      @for $i from 0 to 10 {
+        &:nth-child(#{$i}) {
+          transition: opacity 0.5s 0.1s*$i, transform 0.5s 0.1s*$i;
+        }
+      }
+    }
+  }
+
+&.withBG {
+  
+  .option {
+    transition: background-color 0.1s;
+
+    &:not(.placeholder):hover {
+      background-color: $blue;
+    }
+
+    &:not(.placeholder).active {
+      background-color: $blue;
+    }
+  }
+}
+  
+  &:after, &:before {
+    
+    position: absolute;
+    border: 0.2em solid $blue;
+    transform: rotate(45deg);
+    transform-origin: 50% 50%;
+    transition: opacity 0.2s;
+    background-color: #5aafee;
+  }
+}
+
+.mdl-button:hover {
+
+  background-color:$blue;
+
+}
+
+.mini-hack {
+  opacity: 0;
+  transform: translateY(-50%);
+}
