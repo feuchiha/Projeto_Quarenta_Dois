@@ -16,6 +16,9 @@ export class EmployerFormComponent {
 
     constructor(private http: HttpClient, public toastr: ToastrManager) {
       this.user = JSON.parse(localStorage.getItem('usr'));
+      this.user.confirmenewpw = null;
+      this.user.newpassword = null;
+      this.user.password = null;
     }
 
     findUser(port) {
