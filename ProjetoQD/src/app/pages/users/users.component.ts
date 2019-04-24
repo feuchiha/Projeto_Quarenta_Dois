@@ -9,6 +9,7 @@ export interface PeriodicElement {
   created: string;
   email: string;
   status:string;
+  perfil: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [];
@@ -21,8 +22,9 @@ const ELEMENT_DATA: PeriodicElement[] = [];
 
 export class UsersComponent implements OnInit {
   
-  displayedColumns: string[]  = ['user', 'status', 'created', 'email','aa'];
+  displayedColumns: string[]  = ['user', 'status', 'created', 'email', 'senha', 'perfil'];
   dataSource: any
+  perfilUsuario : string[] = ['Admin', 'User', 'Inativo'];
   constructor(private http: HttpClient, public toastr: ToastrManager) {
   }
 
@@ -39,7 +41,8 @@ export class UsersComponent implements OnInit {
           user: data['data'][obj]['name'],
           created: data['data'][obj]['created'],
           email: data['data'][obj]['email'],
-          status:data['data'][obj]['status']
+          status:data['data'][obj]['status'],
+          perfil:data['data'][obj]['perfil']
         })
       }
       this.dataSource = new MatTableDataSource(ELEMENT_DATA);      

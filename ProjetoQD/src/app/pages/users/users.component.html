@@ -56,15 +56,18 @@
                                     </mat-cell>
                             </ng-container>
 
-                            <ng-container matColumnDef="aa">
+                            <ng-container matColumnDef="perfil">
                                 <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> &nbsp; <span>Perfil</span> </mat-header-cell>
                                     <mat-cell class="corpoTable" style="width: 20%;" *matCellDef="let element">
                                         
-                                        <select class='mdl-button  selectDrop'>
+                                        <!--<select class='mdl-button  selectDrop'>
                                             <option>User</option>
                                             <option>Admin</option>
                                             <option>Inativar</option>
-                                        </select> 
+                                        </select> -->
+
+                                        <app-qd-select [arrSelect]="perfilUsuario"></app-qd-select>
+
                                         
                                         <a class="table-link check cursor">
                                             <span class="fa-stack">
