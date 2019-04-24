@@ -87,7 +87,7 @@
   
   .selectDrop {
     background: #373a3a;
-    margin: 1%;
+    margin-right: 25%;
   }
   
   .selectDrop:hover {
@@ -97,3 +97,85 @@
   .cursor{
     cursor: pointer;
   }
+
+.alteraSenhaAdmin{
+  margin-left: 25%;
+}
+
+.bg-modal {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.modal-content {
+  width: 500px;
+  height: 300px;
+  background-color: #3b3d3d !important;
+  border-radius: 8px;
+  text-align: center;
+  position: relative;
+}
+
+.importarH1 {
+  font-size: 25px;
+  color: #0baeb7;
+}
+
+.linkURL {
+  display: block;
+  margin: 15px auto;
+  width: 50%;
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 18px;
+  color: white;
+  border-bottom: #0baeb7 solid 1px;
+}
+
+
+.close {
+  position: absolute;
+  top: 1%;
+  right: 2%;
+  font-size: 30px;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.verificaoTime{
+  font-size: 16px;
+  color: #ddd;
+  margin: 5%;
+}
+
+.diasDrop{
+  padding-bottom: 5%; 
+}
+
+.buttonURL{
+  background-color: #0baeb7;
+}
+
+.importarH1 {
+  font-size: 25px;
+  color: #0baeb7;
+}
+.campoSenha {
+  display: block;
+  margin: 1% auto;
+  width: 50%;
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 18px;
+  color: white;
+  border-bottom: #0baeb7 solid 1px;
+}

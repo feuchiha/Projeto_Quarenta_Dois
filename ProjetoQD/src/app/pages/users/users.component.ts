@@ -12,11 +12,13 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [];
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css' ]
 })
+
 export class UsersComponent implements OnInit {
   
   displayedColumns: string[]  = ['user', 'status', 'created', 'email','aa'];
