@@ -22,7 +22,9 @@ const ELEMENT_DATA: PeriodicElement[] = [];
 
 export class UsersComponent implements OnInit {
   
+
   displayedColumns: string[]  = ['user', 'status', 'created', 'email', 'senha', 'perfil'];
+
   dataSource: any
   perfilUsuario : string[] = ['Admin', 'User', 'Inativo'];
   constructor(private http: HttpClient, public toastr: ToastrManager) {
