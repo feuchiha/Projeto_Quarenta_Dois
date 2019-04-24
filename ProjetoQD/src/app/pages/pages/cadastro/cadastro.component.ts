@@ -15,7 +15,7 @@ export class CadastroComponent extends BlankLayoutCardComponent {
   constructor(private http: HttpClient, public toastr: ToastrManager) {
     super();
   }
-  
+
   findUser(port) {
     const headers = new HttpHeaders()
           .set('Authorization', 'my-auth-token')
@@ -26,8 +26,18 @@ export class CadastroComponent extends BlankLayoutCardComponent {
     })
     .subscribe(data => {
        if(data['success'] === true){
-        this.toastr.successToastr(data['message'], 'Success!');
-        this.signup(port);
+        if (this.user.email.indexOf("@") == -1 ||
+          this.user.email.indexOf(".") == -1 ||
+          this.user.email.indexOf("@") == 0 ||
+          this.user.email.lastIndexOf(".") + 1 == this.user.email.length ||
+          (this.user.email.indexOf("@") + 1 == this.user.email.indexOf("."))) { 
+          
+            this.toastr.errorToastr('Informe um e-mail válido', 'Oops!');
+          
+            }else{
+              //this.toastr.successToastr(data['message'], 'Success!');
+              this.signup(port); 
+            }
       } else{
         this.toastr.errorToastr(data['message'], 'Oops!');
        }
@@ -43,11 +53,14 @@ signup(port) {
   headers: headers
   })
   .subscribe(data => {
-     if(data['success'] === true){
+     if(data['success'] === false){
+      this.toastr.errorToastr(data['message'], 'Oops!');
+    }else{
       this.toastr.successToastr(data['message'], 'Success!');
-     }else{
-      this.toastr.errorToastr(data['message'], 'Oops!'); 
-     }
+     }setTimeout(function(){ 
+      window.location.href = 'http://localhost:4200/#/pages/login'
+    }, 500);
+     
   });
 }
 }

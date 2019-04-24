@@ -29,8 +29,12 @@ export class LoginComponent extends BlankLayoutCardComponent {
       .subscribe(data => {
          if(data['success'] === true){  
          let token = data['token'];  
-          this.email = data['email'];
-         this.verifytoken(token, this.email);
+         this.email = data['email'];
+         if(data['status'] != "Inativo"){
+          this.verifytoken(token, this.email);
+         }else{
+          this.toastr.errorToastr('Perdão, mas o seu usuário esta Inativo ou foi Bloqueado. Contate um administrador!', 'Oops!');
+         }        
          }else{
           this.toastr.errorToastr(data['message'], 'Oops!');
          }
@@ -74,6 +78,7 @@ export class LoginComponent extends BlankLayoutCardComponent {
         }
         localStorage.setItem('usr', JSON.stringify(this.usr));
       } else{ 
+
         this.toastr.errorToastr(data['message'], 'Oops!');
        }
     });
