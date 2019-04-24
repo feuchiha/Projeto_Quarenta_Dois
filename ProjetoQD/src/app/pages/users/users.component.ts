@@ -21,7 +21,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./users.component.css' ]
 })
 export class UsersComponent  {
-  displayedColumns: string[]  = ['user', 'status', 'created', 'email', 'senha', 'aa' ];
+  displayedColumns: string[]  = ['user', 'status', 'created', 'email', 'senha', 'aa'];
  
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
