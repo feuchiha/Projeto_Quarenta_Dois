@@ -12,20 +12,18 @@ export class QdSelectComponent implements OnInit {
   @Output() retPlaceholder = new EventEmitter<string>();;
   @Input() titulo: string;
 
-  placeholder: string
+  arrSelectAux: string[];
+  placeholder: string;
 
   constructor() { }
   finalWidth: any
   ngOnInit() {
+    this.arrSelectAux = this.arrSelect;
     if (!this.titulo){
       this.titulo = "Escolha uma opção";
       this.placeholder = "placeholder";
     } else {
-      for( var i = 0; i < this.arrSelect.length; i++){ 
-        if ( this.arrSelect[i] === this.titulo) {
-          this.arrSelect.splice(i, 1); 
-        }
-     }
+      this.onUpdate();
     }
     
     $(".drop").click(function(){
@@ -53,6 +51,15 @@ export class QdSelectComponent implements OnInit {
   selection(attr: string){
     this.titulo = attr;
     this.retPlaceholder.emit(attr);
+    this.onUpdate();
+  }
+  onUpdate(){
+    this.arrSelect = Array.from(this.arrSelectAux);
+    for( var i = 0; i < this.arrSelect.length; i++){ 
+      if ( this.arrSelect[i] === this.titulo) {
+        this.arrSelect.splice(i, 1); 
+      }
+   }
   }
 
   openCloseSelect(index:string){
