@@ -24,6 +24,7 @@ export class UsersComponent implements OnInit {
   usr = {id:"", perfil:""};
   dataSource: any
   perfilUsuario : string[] = ['Admin', 'User', 'Inativo'];
+  selected: string;
   constructor(private http: HttpClient, public toastr: ToastrManager) {
    
   }
@@ -80,6 +81,8 @@ export class UsersComponent implements OnInit {
     
   }
   
-
+  onSelect(val: string){
+    this.selected = val;
+  }
 }
 
