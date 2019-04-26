@@ -1,17 +1,34 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, AfterViewInit, EventEmitter } from '@angular/core';
 import * as $ from "jquery";
+import { OutletContext } from '@angular/router';
 @Component({
   selector: 'app-qd-select',
   templateUrl: './qd-select.component.html',
   styleUrls: ['./qd-select.component.scss']
 })
 export class QdSelectComponent implements OnInit {
-  @Input() arrSelect: string;
+
+  @Input() arrSelect: string[];
+  @Output() retPlaceholder = new EventEmitter<string>();;
+  @Input() titulo: string;
+
+  placeholder: string
 
   constructor() { }
   finalWidth: any
   ngOnInit() {
-    $(".drop .option").click(function () {
+    if (!this.titulo){
+      this.titulo = "Escolha uma opção";
+      this.placeholder = "placeholder";
+    } else {
+      for( var i = 0; i < this.arrSelect.length; i++){ 
+        if ( this.arrSelect[i] === this.titulo) {
+          this.arrSelect.splice(i, 1); 
+        }
+     }
+    }
+    
+    $(".drop").click(function(){
       var val = $(this).attr("data-value"),
         $drop = $(".drop"),
         prevActive = $(".drop .option.active").attr("data-value"),
@@ -24,22 +41,21 @@ export class QdSelectComponent implements OnInit {
       $(".mini-hack").removeClass("mini-hack");
       if ($drop.hasClass("visible")) {
         setTimeout(function () {
-          // $drop.addClass("withBG");
         }, 400 + options * 100);
       }
-      this.triggerAnimation();
+
       if (val !== "placeholder" || prevActive === "placeholder") {
-        $(".drop .option").removeClass("active");
+        $(".drop").removeClass("active");
         $(this).addClass("active");
       }
     })
   }
-  triggerAnimation() {
-    this.finalWidth = $(".drop").hasClass("visible") ? 22 : 20;
-    $(".drop").css("width", "24em");
-    setTimeout(function () {
-      $(".drop").css("width", this.finalWidth + "em");
-    }, 400);
+  selection(attr: string){
+    this.titulo = attr;
+    this.retPlaceholder.emit(attr);
   }
 
-}
+  openCloseSelect(index:string){
+    $(".drop")["children"][index]
+  }
+  }

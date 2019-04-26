@@ -1,8 +1,8 @@
 <div class="drop diasDrop" >
-  <div class="option active placeholder mdl-button" data-value="placeholder">
-    Escolha uma opção
+  <div class="option active placeholder mdl-button" attr.data-value="{{titulo}}">
+    {{titulo}}
   </div>
-  <div *ngFor="let options of arrSelect" class="option mdl-button" attr.data-value="{{options}}">
-    {{options}}
+  <div *ngFor="let options of arrSelect" (click)="selection(options)" class="option mdl-button" attr.data-value="{{options}}">
+     {{options}}
   </div>
 </div>

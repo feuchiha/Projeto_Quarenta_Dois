@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import {BlankLayoutCardComponent} from 'app/components/blank-layout-card';
+import { QdSelectComponent } from 'app/components/qd-select/qd-select.component';
 
 
 
@@ -12,6 +13,8 @@ import {BlankLayoutCardComponent} from 'app/components/blank-layout-card';
 })
 export class ImportacaoComponent extends BlankLayoutCardComponent implements OnInit{
 
+  selected: string;
+
   arrSelect: string[];
   ngOnInit() {
     this.arrSelect=['7 dias','15 dias','30 dias', '90 dias'];
@@ -22,6 +25,9 @@ export class ImportacaoComponent extends BlankLayoutCardComponent implements OnI
     document.querySelector('.close').addEventListener("click", function() {
       document.querySelector('.bg-modal')['style']['display'] = "none";
     });
+  }
 
+  onSelect(val: string){
+    this.selected = val;
   }
 }
