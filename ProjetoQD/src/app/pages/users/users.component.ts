@@ -56,13 +56,13 @@ export class UsersComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  updateUser(id, perfil){
+  updateUser(id){
     
     this.usr = {
       id: id,
-      perfil: perfil,
+      perfil: this.selected,
     }
-
+ 
     const headers = new HttpHeaders()
           .set('Authorization', 'my-auth-token')
           .set('Content-Type', 'application/json');
