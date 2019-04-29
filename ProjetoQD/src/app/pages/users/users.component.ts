@@ -58,9 +58,11 @@ export class UsersComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+
   salvaId(id){
       this.id = id;
   }
+
 
   updateUser(id){
     
@@ -68,9 +70,7 @@ export class UsersComponent implements OnInit {
       id: id,
       perfil: this.selected,
     }
-
-    console.log(this.usr);
-
+ 
     const headers = new HttpHeaders()
           .set('Authorization', 'my-auth-token')
           .set('Content-Type', 'application/json');
