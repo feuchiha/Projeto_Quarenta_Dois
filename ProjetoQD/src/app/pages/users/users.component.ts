@@ -21,10 +21,12 @@ export interface PeriodicElement {
 export class UsersComponent implements OnInit {
   
   displayedColumns: string[]  = ['user', 'status', 'created', 'email', 'senha', 'perfil'];
-  usr = {id:"", perfil:""};
   dataSource: any
   perfilUsuario : string[] = ['Admin', 'User', 'Inativo'];
   selected: string;
+  user =  {newpassword:"", confirmepassword:"",id:""};
+  usr = {id:"", perfil:""};
+  id = {id:""};
   constructor(private http: HttpClient, public toastr: ToastrManager) {
    
   }
@@ -56,12 +58,18 @@ export class UsersComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  updateUser(id, perfil){
+  salvaId(id){
+      this.id = id;
+  }
+
+  updateUser(id){
     
     this.usr = {
       id: id,
-      perfil: perfil,
+      perfil: this.selected,
     }
+
+    console.log(this.usr);
 
     const headers = new HttpHeaders()
           .set('Authorization', 'my-auth-token')
@@ -83,6 +91,35 @@ export class UsersComponent implements OnInit {
   
   onSelect(val: string){
     this.selected = val;
+  }
+
+
+
+  Updatepw(port){
+
+    console.log(this.id);
+    this.user = {
+      id: this.id.id,
+      newpassword: this.user.newpassword,
+      confirmepassword: this.user.confirmepassword
+    }
+
+    const headers = new HttpHeaders()
+    .set('Authorization', 'my-auth-token')
+    .set('Content-Type', 'application/json');
+this.http.post(`http://localhost:${port}/users/findUser`, 
+JSON.stringify(this.usr), {
+headers: headers
+})
+.subscribe(data => {
+ if(data['success'] === false){ 
+  this.toastr.errorToastr(data['message'], 'Oops!');
+}else{
+  this.toastr.successToastr(data['message'], 'Success!');
+}
+
+});
+
   }
 }
 

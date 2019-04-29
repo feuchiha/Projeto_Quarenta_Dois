@@ -46,8 +46,8 @@
                             <ng-container matColumnDef="senha">
                                 <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> &nbsp; <span>Alterar Senha</span> </mat-header-cell>
                                     <mat-cell class="corpoTable"  *matCellDef="let element">
-                                        
-                                        <a class="table-link check cursor alteraSenhaAdmin" id="alteraSenhaAdmin">
+                                                                                
+                                        <a (click)="salvaId(element.id)" class="table-link check cursor alteraSenhaAdmin" id="alteraSenhaAdmin">
                                             <span class="fa-stack">
                                                 <i class="fas fa-unlock-alt fa-unlock-alt-2x"></i>
                                             </span>
@@ -59,8 +59,8 @@
                             <ng-container matColumnDef="perfil">
                                 <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> &nbsp; <span>Perfil</span> </mat-header-cell>
                                     <mat-cell class="corpoTable" style="width: 20%;" *matCellDef="let element">
-                                        <app-qd-select (retPlaceholder)="onSelect($event)" [arrSelect]="perfilUsuario" [titulo]="perfil"></app-qd-select>
-                                        <a (click)="updateUser(element.id, element.perfil)" class="table-link check cursor">
+                                        <app-qd-select (retPlaceholder)="onSelect($event)" [arrSelect]="perfilUsuario" [titulo]="element.perfil"></app-qd-select>
+                                        <a (click)="updateUser(element.id)" class="table-link check cursor">
                                             <span class="fa-stack">
                                                 <i class="fa fa-square fa-stack-2x"></i>
                                                 <i class="fa fa-check fa-stack-1x fa-inverse"></i>
@@ -84,23 +84,23 @@
     </div>
 </div>
 
-<!-- <div class="bg-modal">
+<<div class="bg-modal">
     <div class="modal-content">
         <div class="close" id="close">+</div>
-        <h1 class="importarH1">Alterar Senha do: {{element.user}}</h1>
+        <h1 class="importarH1">Alterar Senha do: </h1>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-            <input class="mdl-textfield__input campoSenha" type="password" [value]="user.password" (input)="user.password = $event.target.value" id="password" placeholder="Nova Senha">
+            <input class="mdl-textfield__input campoSenha" type="password" (input)="user.newpassword = $event.target.value" id="password" placeholder="Nova Senha">
         </div>
 
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-            <input class="mdl-textfield__input campoSenha" type="password" [value]="user.password" (input)="user.password = $event.target.value" id="password" placeholder="Confirma Nova Senha">
+            <input class="mdl-textfield__input campoSenha" type="password" (input)="user.confirmepassword = $event.target.value" id="password" placeholder="Confirma Nova Senha">
         </div>
         
         <div class="buttonEnviar">
-            <a href="" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button buttonURL">Alterar</a>
+            <a (click)="Updatepw(3002)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button buttonURL">Alterar</a>
         </div>
     </div>
-</div> -->
+</div>
 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript"></script>
