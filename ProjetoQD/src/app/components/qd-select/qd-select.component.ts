@@ -9,8 +9,11 @@ import { OutletContext } from '@angular/router';
 export class QdSelectComponent implements OnInit {
 
   @Input() arrSelect: string[];
-  @Output() retPlaceholder = new EventEmitter<string>();;
+  @Output() retPlaceholder = new EventEmitter<string>();
+  elementId: string;
+
   @Input() titulo: string;
+  @Input() id: string;
 
   arrSelectAux: string[];
   placeholder: string;
@@ -26,15 +29,18 @@ export class QdSelectComponent implements OnInit {
       this.onUpdate();
     }
     
-    $(".drop").click(function(){
-      var val = $(this).attr("data-value"),
-        $drop = $(".drop"),
-        prevActive = $(".drop .option.active").attr("data-value"),
-        options = $(".drop .option").length;
+    this.elementId = `user_${this.id}`; 
+  }
+
+  clickSelect(id){
+    console.log('click ' + id)
+      var $drop = $("#"+ id),
+        prevActive = $("#"+ id).attr("data-value"),
+        options = $("#"+ id).children.length;
       $drop.find(".option.active").addClass("mini-hack");
       $drop.toggleClass("visible");
       $drop.removeClass("withBG");
-      $(this).css("top");
+      $('#'+id).css("top");
       $drop.toggleClass("opacity");
       $(".mini-hack").removeClass("mini-hack");
       if ($drop.hasClass("visible")) {
@@ -42,12 +48,12 @@ export class QdSelectComponent implements OnInit {
         }, 400 + options * 100);
       }
 
-      if (val !== "placeholder" || prevActive === "placeholder") {
+      if (prevActive === "placeholder") {
         $(".drop").removeClass("active");
-        $(this).addClass("active");
+        $('#'+id).addClass("active");
       }
-    })
   }
+
   selection(attr: string){
     this.titulo = attr;
     this.retPlaceholder.emit(attr);
