@@ -20,7 +20,7 @@ export interface PeriodicElement {
 
 export class UsersComponent implements OnInit {
   
-  displayedColumns: string[]  = ['user', 'status', 'created', 'email', 'senha', 'perfil'];
+  displayedColumns: string[]  = ['user', 'status', 'created', 'email', 'senha', 'perfil', 'check'];
   dataSource: any
   perfilUsuario : string[] = ['Admin', 'User', 'Inativo'];
   selected: string;
@@ -54,6 +54,15 @@ export class UsersComponent implements OnInit {
       }
       this.dataSource = new MatTableDataSource(ELEMENT_DATA);    
     });
+
+    document.getElementById('alteraSenhaAdmin')['addEventListener']("click", function() {
+      document.querySelector('.bg-modal')['style']['display'] = "flex";
+    });
+
+    document.querySelector('.close').addEventListener("click", function() {
+      document.querySelector('.bg-modal')['style']['display'] = "none";
+    });
+
   }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
