@@ -9,7 +9,7 @@ import { SidebarComponent as BaseSidebarComponent } from 'theme/components/sideb
 })
 export class SidebarComponent extends BaseSidebarComponent implements OnInit {
 
-user:  {email:"",name:"", status: any};
+user:  {email:"",name:"", perfil: any};
 
 constructor() {
   super();
@@ -21,7 +21,7 @@ constructor() {
   public menu = [];
 
     ngOnInit(){
-        if(this.user.status != "User" ){
+        if(this.user.perfil != "User" ){
             this.menu =  [
               { name: 'Início', link: '/app/dashboard', icon: 'home' },
               { name: 'Importar', link: '/app/importacao', icon: 'backup' },
