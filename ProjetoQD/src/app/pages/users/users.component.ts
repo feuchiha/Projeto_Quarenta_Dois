@@ -27,6 +27,7 @@ export class UsersComponent implements OnInit {
   user =  {newpassword:"", confirmepassword:"",id:""};
   usr = {id:"", perfil:""};
   id = {id:""};
+
   constructor(private http: HttpClient, public toastr: ToastrManager) {
    
   }
@@ -93,11 +94,7 @@ export class UsersComponent implements OnInit {
     this.selected = val;
   }
 
-
-
   Updatepw(port){
-
-    console.log(this.id);
     this.user = {
       id: this.id.id,
       newpassword: this.user.newpassword,
