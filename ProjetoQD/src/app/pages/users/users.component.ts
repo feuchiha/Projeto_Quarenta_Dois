@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
-
+import * as $ from "jquery";
 export interface PeriodicElement {
   id: string;
   user: string;
@@ -58,7 +58,6 @@ export class UsersComponent implements OnInit {
     document.getElementById('alteraSenhaAdmin')['addEventListener']("click", function() {
       document.querySelector('.bg-modal')['style']['display'] = "flex";
     });
-
     document.querySelector('.close').addEventListener("click", function() {
       document.querySelector('.bg-modal')['style']['display'] = "none";
     });
