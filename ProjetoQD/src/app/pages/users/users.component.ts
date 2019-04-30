@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import * as $ from 'jquery';
 
 export interface PeriodicElement {
   id: string;
@@ -54,9 +55,13 @@ export class UsersComponent implements OnInit {
       }
       this.dataSource = new MatTableDataSource(ELEMENT_DATA);    
     });
+    
+    // document.getElementById('alteraSenhaAdmin')['addEventListener']("click", function() {
+    //   document.querySelector('.bg-modal')['style']['display'] = "flex";
+    // });
 
-    document.getElementById('alteraSenhaAdmin')['addEventListener']("click", function() {
-      document.querySelector('.bg-modal')['style']['display'] = "flex";
+    $('alteraSenhaAdmin').on('click', function(){
+      
     });
 
     document.querySelector('.close').addEventListener("click", function() {
@@ -64,18 +69,23 @@ export class UsersComponent implements OnInit {
     });
 
   }
+
+  setFlexModal(){
+    document.querySelector('.bg-modal')['style']['display'] = "flex";
+  }
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 
   salvaId(id){
+    this.setFlexModal()
       this.id = id;
   }
 
 
   updateUser(id){
-
     this.usr = {
       id: id,
       perfil: this.selected,
