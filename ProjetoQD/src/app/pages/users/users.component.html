@@ -60,6 +60,13 @@
                                 <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> &nbsp; <span>Perfil</span> </mat-header-cell>
                                 <mat-cell class="corpoTable" style="width: 20%;" *matCellDef="let element">
                                     <app-qd-select [id]="element.id" (retPlaceholder)="onSelect($event)" [arrSelect]="perfilUsuario" [titulo]="element.perfil"></app-qd-select>
+                                </mat-cell>
+
+                            </ng-container>
+
+                            <ng-container matColumnDef="check">
+                                <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> <span>check</span> </mat-header-cell>
+                                <mat-cell class="corpoTable" *matCellDef="let element">
                                     <a (click)="updateUser(element.id)" class="table-link check cursor">
                                         <span class="fa-stack">
 
@@ -67,9 +74,7 @@
                                                 <i class="fa fa-check fa-stack-1x fa-inverse"></i>
                                             </span>
                                     </a>
-
                                 </mat-cell>
-
                             </ng-container>
 
 
@@ -85,7 +90,7 @@
     </div>
 </div>
 
-<<div class="bg-modal">
+<div class="bg-modal">
     <div class="modal-content">
         <div class="close" id="close">+</div>
         <h1 class="importarH1">Alterar Senha do: </h1>
@@ -101,7 +106,7 @@
             <a (click)="Updatepw(3002)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button buttonURL">Alterar</a>
         </div>
     </div>
-    </div>
+</div>
 
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"></script>
