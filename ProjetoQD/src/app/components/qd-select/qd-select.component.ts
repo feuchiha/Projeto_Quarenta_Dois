@@ -11,7 +11,6 @@ export class QdSelectComponent implements OnInit {
   @Input() arrSelect: string[];
   @Output() retPlaceholder = new EventEmitter<string>();
   elementId: string;
-
   @Input() titulo: string;
   @Input() id: string;
 
@@ -30,6 +29,7 @@ export class QdSelectComponent implements OnInit {
     }
     
     this.elementId = `user_${this.id}`; 
+    this.retPlaceholder.emit(this.titulo);
   }
 
   clickSelect(id){

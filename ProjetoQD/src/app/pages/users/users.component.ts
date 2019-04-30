@@ -75,12 +75,6 @@ export class UsersComponent implements OnInit {
 
 
   updateUser(id){
-    
-    if (this.selected == null || this.selected == undefined){
-      this.selected = JSON.parse(localStorage.getItem('usr')).perfil;
-    }
-
-    console.log(this.selected);
 
     this.usr = {
       id: id,
