@@ -90,6 +90,9 @@ export class UsersComponent implements OnInit {
         this.toastr.errorToastr(data['message'], 'Oops!');
       }else{
         this.toastr.successToastr(data['message'], 'Success!');
+        setTimeout(function(){ 
+          window.location.reload();
+          }, 500);
       }
       
     });
