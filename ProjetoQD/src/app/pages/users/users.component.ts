@@ -22,7 +22,7 @@ export interface PeriodicElement {
 })
 
 export class UsersComponent implements OnInit {
-  
+  userSet:string;
   displayedColumns: string[]  = ['user', 'status', 'created', 'email', 'senha', 'perfil', 'check'];
   dataSource: any
   perfilUsuario : string[] = ['Admin', 'User', 'Inativo'];
@@ -80,8 +80,9 @@ export class UsersComponent implements OnInit {
   }
 
 
-  salvaId(id){
-    this.setFlexModal()
+  salvaId(id, nameUser: string){
+    this.setFlexModal();
+    this.userSet = nameUser;
     this.id = {
       idUser: id,
   }

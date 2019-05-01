@@ -47,7 +47,7 @@
                                 <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> &nbsp; <span>Alterar Senha</span> </mat-header-cell>
                                 <mat-cell class="corpoTable" *matCellDef="let element">
 
-                                    <a (click)="salvaId(element.id)" class="table-link check cursor alteraSenhaAdmin" id="  ">
+                                    <a (click)="salvaId(element.id, element.user)" class="table-link check cursor alteraSenhaAdmin" id="  ">
                                         <span class="fa-stack">
                                                 <i class="fas fa-unlock-alt fa-unlock-alt-2x"></i>
                                             </span>
@@ -93,7 +93,7 @@
 <div class="bg-modal">
     <div class="modal-content">
         <div class="close" id="close">+</div>
-        <h1 class="importarH1">Alterar Senha do: </h1>
+        <h1 class="importarH1">Alterar Senha de: {{userSet}}</h1>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
             <input class="mdl-textfield__input campoSenha" type="password" (input)="user.newpassword = $event.target.value" id="password" placeholder="Nova Senha">
         </div>

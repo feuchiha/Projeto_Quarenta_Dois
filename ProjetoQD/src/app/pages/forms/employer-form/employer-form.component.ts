@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
   
 export class EmployerFormComponent {
-
+  
     user = {email:"", username:"", password:"", newpassword:"", confirmenewpw:""};
     usr = {_id:"", username:"", password:"", newpassword:"", confirmenewpw:"", email:""};
     local = {id:"", email:"", username:""};
