@@ -27,9 +27,9 @@ export class UsersComponent implements OnInit {
   dataSource: any
   perfilUsuario : string[] = ['Admin', 'User', 'Inativo'];
   selected: string;
-  user =  {newpassword:"", confirmepassword:"",id:""};
+  user =  {newpassword:"", confirmepassword:"",id: ""};
   usr = {id:"", perfil:""};
-  id = {id:""};
+  id = {idUser:""};
 
   constructor(private http: HttpClient, public toastr: ToastrManager) {
    
@@ -82,8 +82,10 @@ export class UsersComponent implements OnInit {
 
   salvaId(id){
     this.setFlexModal()
-      this.id = id;
+    this.id = {
+      idUser: id,
   }
+}
 
 
   updateUser(id){
@@ -118,8 +120,9 @@ export class UsersComponent implements OnInit {
   }
 
   Updatepw(port){
+
     this.user = {
-      id: this.id.id,
+      id: this.id.idUser,
       newpassword: this.user.newpassword,
       confirmepassword: this.user.confirmepassword
     }
@@ -127,14 +130,15 @@ export class UsersComponent implements OnInit {
     const headers = new HttpHeaders()
     .set('Authorization', 'my-auth-token')
     .set('Content-Type', 'application/json');
-this.http.post(`http://localhost:${port}/users/findUser`, 
-JSON.stringify(this.usr), {
+this.http.post(`http://localhost:${port}/users/updateADMPW`, 
+JSON.stringify(this.user), {
 headers: headers
 })
 .subscribe(data => {
  if(data['success'] === false){ 
   this.toastr.errorToastr(data['message'], 'Oops!');
 }else{
+  document.querySelector('.bg-modal')['style']['display'] = "none";
   this.toastr.successToastr(data['message'], 'Success!');
 }
 
