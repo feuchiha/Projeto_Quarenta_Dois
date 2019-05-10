@@ -40,7 +40,17 @@ export class EmployerFormComponent {
             newpassword: this.user.newpassword,
             confirmenewpw: this.user.confirmenewpw,
           }
-          this.updateUser(port);
+            if(this.usr.username == "" || this.usr.username == undefined ){
+              this.toastr.errorToastr("Informe seu nome para efetuar a alteração do cadastro", 'Oops!');
+            }else if (this.usr.email.indexOf("@") == -1 ||
+              this.user.email.indexOf(".") == -1 ||
+              this.user.email.indexOf("@") == 0 ||
+              this.user.email.lastIndexOf(".") + 1 == this.user.email.length ||
+              (this.user.email.indexOf("@") + 1 == this.user.email.indexOf("."))) { 
+              this.toastr.errorToastr('Informe um e-mail válido', 'Oops!');
+            }else{
+              this.updateUser(port); 
+            }          
         } else{
           this.toastr.errorToastr(data['message'], 'Oops!');
          }

@@ -26,12 +26,16 @@ export class CadastroComponent extends BlankLayoutCardComponent {
     })
     .subscribe(data => {
        if(data['success'] === true){
-        if (this.user.email.indexOf("@") == -1 ||
+        if(this.user.username == "" || this.user.username == undefined ){
+
+          this.toastr.errorToastr("Informe seu nome para efetuar a alteração do cadastro", 'Oops!');
+        
+        }else if (this.user.email.indexOf("@") == -1 ||
           this.user.email.indexOf(".") == -1 ||
           this.user.email.indexOf("@") == 0 ||
           this.user.email.lastIndexOf(".") + 1 == this.user.email.length ||
           (this.user.email.indexOf("@") + 1 == this.user.email.indexOf("."))) { 
-          
+         
             this.toastr.errorToastr('Informe um e-mail válido', 'Oops!');
           
             }else{
@@ -39,6 +43,7 @@ export class CadastroComponent extends BlankLayoutCardComponent {
               this.signup(port); 
             }
       } else{
+
         this.toastr.errorToastr(data['message'], 'Oops!');
        }
     });
