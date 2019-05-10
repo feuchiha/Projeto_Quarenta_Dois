@@ -1,57 +1,58 @@
 .ButtonDesconectar {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .nomeUserSideBar {
-  margin-right: 2%;
-  font-size: 16px;
-  color: #0baeb7;
+    margin-right: 2%;
+    font-size: 16px;
+    color: #0baeb7;
+    cursor: pointer;
 }
 
 #viz {
-  height: 90%;
+    height: 90%;
 }
 
 .button {
-  display: inline-block;
-  background-color: Transparent;
-  background-repeat: no-repeat;
-  border: none;
-  cursor: pointer;
-  overflow: hidden;
-  outline: none;
+    display: inline-block;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
 }
 
-.buttonLogin{
-  position: absolute;
-  display: inline-block;
-  margin: 1%;
-  width:85px;
-  margin:10px auto auto 92%;
-  display: inline-block;
+.buttonLogin {
+    position: absolute;
+    display: inline-block;
+    margin: 1%;
+    width: 85px;
+    margin: 10px auto auto 92%;
+    display: inline-block;
 }
 
-.buttonLogin:hover{
-  background: #0baeb7;
+.buttonLogin:hover {
+    background: #0baeb7;
 }
 
 @media screen and (max-width: 960px) {
-  .buttonLogin {
-    display: inline;
-    margin: 0.7em;
-  }
+    .buttonLogin {
+        display: inline;
+        margin: 0.7em;
+    }
 }
 
 @media screen and (max-width: 758px) {
-  .buttonLogin {
-    display: inline;
-    margin: 0.7em;
-  }
+    .buttonLogin {
+        display: inline;
+        margin: 0.7em;
+    }
 }
 
 @media screen and (max-width: 480px) {
-  .buttonLogin {
-    display: inline;
-    margin: 0.7em;
-  }
+    .buttonLogin {
+        display: inline;
+        margin: 0.7em;
+    }
 }
