@@ -7,6 +7,7 @@ import { ThemeModule } from 'theme';
 import { DashboardComponent } from './dashboard.component';
 import { LineChartComponent } from './line-chart';
 import { PieChartComponent } from './pie-chart';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { PieChartComponent } from './pie-chart';
     DashboardComponent,
     LineChartComponent,
     PieChartComponent,
+    CardComponent,
     // CotoneasterCardComponent,
 
   ],

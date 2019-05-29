@@ -11,6 +11,7 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ToastrModule} from 'ng6-toastr-notifications';
+import { IgxCardModule } from 'igniteui-angular';
 import {
     MatAutocompleteModule,
     MatButtonModule,
@@ -50,10 +51,11 @@ import { VisualizacaoDadosComponent } from './pages/visualizacao-dados/visualiza
 import { AboutComponent } from './pages/about/about.component';
 import { UsersComponent } from './pages/users/users.component';
 import { QdSelectComponent } from './components/qd-select/qd-select.component';
+import { User2testeComponent } from './pages/user2teste/user2teste.component';
 
 @NgModule({
 
-  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent, QdSelectComponent ],
+  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent, QdSelectComponent, User2testeComponent ],
 
   imports: [
     BrowserModule,
@@ -71,6 +73,7 @@ import { QdSelectComponent } from './components/qd-select/qd-select.component';
     ReactiveFormsModule,
     MatCardModule,
     MatNativeDateModule,
+    IgxCardModule,
     ToastrModule.forRoot(),
   ],
   exports: [

@@ -4,8 +4,6 @@ import {BlankLayoutCardComponent} from 'app/components/blank-layout-card';
 import { QdSelectComponent } from 'app/components/qd-select/qd-select.component';
 
 
-
-
 @Component({
   selector: 'app-importacao',
   templateUrl: './importacao.component.html',

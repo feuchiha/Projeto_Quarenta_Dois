@@ -29,6 +29,7 @@ constructor() {
               { name: 'Análises', link: '/app/visualizacao-dados', icon: 'broken_image' },
               { name: 'Minha conta', link: '/app/forms', icon: 'person'},
               { name: 'Usuarios', link: '/app/users', icon: 'assignment_ind'},
+              { name: 'Usuarios 2', link: '/app/user2teste', icon: 'assignment_ind'},
               { name: 'Sobre', link: '/app/about', icon: 'casino' },
               /*{ name: 'Pages', children: [
                 { name: '404', link: '/pages/error' },

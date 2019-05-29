@@ -11,6 +11,7 @@ import { AboutComponent } from './pages/about';
 import { LogsComponent } from './pages/logs/logs.component';
 import { VisualizacaoDadosComponent } from './pages/visualizacao-dados/visualizacao-dados.component';
 import { UsersComponent } from './pages/users';
+import { User2testeComponent } from './pages/user2teste/user2teste.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { UsersComponent } from './pages/users';
           { path: 'forms', component: FormsComponent, pathMatch: 'full' },
           { path: 'importacao', component: ImportacaoComponent, pathMatch: 'full' },
           { path: 'users', component: UsersComponent, pathMatch: 'full' },
+          { path: 'user2teste', component: User2testeComponent, pathMatch: 'full' },
           { path: 'about', component: AboutComponent, pathMatch: 'full'},
           { path: 'logs', component:LogsComponent, pathMatch:'full'},
           { path: 'visualizacao-dados', component:VisualizacaoDadosComponent, pathMatch:'full'},
