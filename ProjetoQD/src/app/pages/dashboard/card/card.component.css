@@ -1,10 +1,14 @@
-<style>
 .demo-card-square.mdl-card {
-  width: 320px;
-  height: 320px;
+    width: 320px;
+    height: 320px;
 }
-.demo-card-square > .mdl-card__title {
-  color: #fff;
-  background-color:#0baeb7;
- opacity: 0.5;
+
+.demo-card-square>.mdl-card__title {
+    color: #fff;
+    background-color: #0baeb7;
+    opacity: 0.5;
+}
+
+.demo-card-square {
+    margin: 5%;
 }

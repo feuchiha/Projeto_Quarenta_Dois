@@ -11,7 +11,6 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ToastrModule} from 'ng6-toastr-notifications';
-import { IgxCardModule } from 'igniteui-angular';
 import {
     MatAutocompleteModule,
     MatButtonModule,
@@ -73,7 +72,6 @@ import { User2testeComponent } from './pages/user2teste/user2teste.component';
     ReactiveFormsModule,
     MatCardModule,
     MatNativeDateModule,
-    IgxCardModule,
     ToastrModule.forRoot(),
   ],
   exports: [

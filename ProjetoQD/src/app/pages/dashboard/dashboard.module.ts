@@ -8,6 +8,10 @@ import { DashboardComponent } from './dashboard.component';
 import { LineChartComponent } from './line-chart';
 import { PieChartComponent } from './pie-chart';
 import { CardComponent } from './card/card.component';
+import { CardgeoComponent } from './cardgeo/cardgeo.component';
+import { CardlineComponent } from './cardline/cardline.component';
+import { CardcolumnComponent } from './cardcolumn/cardcolumn.component';
+import { CardpieComponent } from './cardpie/cardpie.component';
 
 @NgModule({
   imports: [
@@ -20,6 +24,10 @@ import { CardComponent } from './card/card.component';
     LineChartComponent,
     PieChartComponent,
     CardComponent,
+    CardgeoComponent,
+    CardlineComponent,
+    CardcolumnComponent,
+    CardpieComponent,
     // CotoneasterCardComponent,
 
   ],
