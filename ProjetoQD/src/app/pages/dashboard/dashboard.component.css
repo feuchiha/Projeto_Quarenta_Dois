@@ -1,223 +1,50 @@
-* {
-    margin: 0;
-    padding: 0;
-    font-family: "montserrat", sans-serif;
-    box-sizing: border-box;
-    text-decoration: none;
-  }
-  
-  .services-section {
-    background-size: cover;
-  }
-  
-  .inner-width {
-    width: 100%;
-    max-width: 1200px;
+body {
+    margin: 0%;
+    padding: 0%;
+    background-attachment: fixed;
+}
+
+.card-table {
+    max-width: 1980px;
     margin: auto;
-    padding: 0 20px;
-    overflow: hidden;
-  }
-  
-  .section-title {
-    text-align: center;
-    color: #0baeb7;
-    font-size: 40px;
-  }
-  
-  .border {
-    width: 160px;
-    height: 2px;
-    background: #0baeb7;
-    margin: 40px auto;
-  }
-  
-  .services-container {
     display: flex;
+    justify-content: center;
+    text-align: center;
     flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .service-box {
-    max-width: 33.33%;
-    padding: 10%;
-    text-align: center;
-    color: #ddd;
-    cursor: auto;
-  }
-  
-  .service-icon {
-    display: inline-block;
-    width: 70px;
-    height: 70px;
-    border: 3px solid #0baeb7;
-    color: #0baeb7;
-    transform: rotate(45deg);
-    margin-bottom: 30px;
-    margin-top: 16px;
-    transition: 0.3s linear;
-  }
-  
-  .service-icon i {
-    line-height: 70px;
-    transform: rotate(-45deg);
-    font-size: 26px;
-  }
-  
-  .service-title {
-    font-size: 20px;
-    text-transform: uppercase;
-  }
-  
-  .service-desc {
-    font-size: 14px;
-  }
-  
-  .ButtonImport {
-    cursor: pointer;
-  }
-  
-  .ButtonImport:hover {
-    background-color: #0baeb7;
-  }
-  
-  @media screen and (max-width: 960px) {
-    .service-box {
-      max-width: 45%;
-    }
-  }
-  
-  @media screen and (max-width: 758px) {
-    .service-box {
-      max-width: 50%;
-    }
-  }
-  
-  @media screen and (max-width: 480px) {
-    .service-box {
-      max-width: 100%;
-    }
-  }
-  
-  .ImportarCSV {
-    position: absolute;
-    width: 10%;
-    padding: 40%;
-    top: 20%;
-    left: 40%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-  
-  .ImportarURL {
-    position: absolute;
-    width: 10%;
-    padding: 40%;
-    top: 20%;
-    left: 25%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-  
-  .upload-btn-wrapper {
+}
+
+.card-box {
+    flex: 25%;
+    padding: 10px;
+    max-width: 500px;
+    box-sizing: border-box;
+}
+
+.table {
+    padding: 40px 20px;
+    font-family: "montserrat", sans-serif;
     position: relative;
     overflow: hidden;
-    display: inline-block;
-    margin-top: 7%;
-    cursor: pointer;
-  }
-  
-  .upload-btn-wrapper:hover {
-    background: #0baeb7;
-    color: #ddd;
-    border-radius: 50%;
-  }
-  
-  .upload-btn-wrapper input[type="file"] {
-    font-size: 100px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0;
-    cursor: pointer;
-  }
-  
-  .bg-modal {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    position: absolute;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    display: none;
-  }
-  
-  .modal-content {
-    width: 500px;
-    height: 300px;
-    background-color: #3b3d3d;
-    border-radius: 8px;
-    text-align: center;
-    position: relative;
-    height: auto;
-  }
-  
-  .importarH1 {
-    font-size: 25px;
-    color: #0baeb7;
-  }
-  
-  .linkURL {
-    display: block;
-    margin: 15px auto;
-    width: 50%;
-    border: none;
-    background: none;
-    outline: none;
-    font-size: 18px;
-    color: white;
-    border-bottom: #0baeb7 solid 1px;
-  }
-  
-  .close {
-    position: absolute;
-    top: 1%;
-    right: 2%;
-    font-size: 30px;
-    transform: rotate(45deg);
-    cursor: pointer;
-  }
-  
-  .verificaoTime {
-    font-size: 16px;
-    color: #ddd;
-    margin: 5%;
-  }
-  
-  .diasDrop {
-    padding-bottom: 5%;
-  }
-  
-  .buttonURL {
-    background-color: #0baeb7;
-  }
-  
-  .buttonEnviar {
-    margin-bottom: 50px;
-  }
-  
+}
 
-/* Teste de card */
+.table h2 {
+    text-transform: uppercase;
+    color: aqua;
+}
 
-.demo-card-wide.mdl-card {
-    width: 512px;
-  }
-  .demo-card-wide > .mdl-card__title {
-    color: #fff;
-    height: 176px;
-    /* background: url('../assets/demos/welcome_card.jpg') center / cover; */
-  }
-  .demo-card-wide > .mdl-card__menu {
-    color: #fff;
-  }
+@media screen and (max-width:980px) {
+    .card-box {
+        flex: 50%;
+    }
+}
+
+@media screen and (max-width:700px) {
+    .card-box {
+        flex: 100%;
+    }
+}
+
+
+/* pricing-table = card-table
+col = card-box 
+table = table */

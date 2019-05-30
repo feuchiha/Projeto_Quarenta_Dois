@@ -17,7 +17,7 @@ export class DashboardComponent extends BlankLayoutCardComponent implements OnIn
 
 arrSelect: string[];
 ngOnInit() {
-  this.arrSelect=['7 dias','15 dias','30 dias', '90 dias'];
+
 }
   @HostBinding('class.mdl-grid') private readonly mdlGrid = true;
   @HostBinding('class.mdl-grid--no-spacing') private readonly mdlGridNoSpacing = true;
