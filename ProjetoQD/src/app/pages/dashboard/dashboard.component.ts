@@ -5,7 +5,6 @@ import { BlankLayoutCardComponent } from 'app/components/blank-layout-card';
 import { QdSelectComponent } from 'app/components/qd-select/qd-select.component';
 
 
-
 @Component({
   selector: 'app-dashboard',
   styleUrls: ['dashboard.component.css'],
@@ -25,5 +24,6 @@ ngOnInit() {
   onSelect(val: string){
     this.selected = val;
   }
+  
 }
 

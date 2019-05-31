@@ -20,6 +20,11 @@ body {
     box-sizing: border-box;
 }
 
+.buttonAdd {
+    justify-content: left;
+    text-align: left;
+}
+
 .table {
     padding: 40px 20px;
     font-family: "montserrat", sans-serif;
