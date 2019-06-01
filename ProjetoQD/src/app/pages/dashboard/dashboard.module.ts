@@ -12,7 +12,6 @@ import { CardgeoComponent } from './cardgeo/cardgeo.component';
 import { CardlineComponent } from './cardline/cardline.component';
 import { CardcolumnComponent } from './cardcolumn/cardcolumn.component';
 import { CardpieComponent } from './cardpie/cardpie.component';
-import { ChipsAutocompleteComponent } from './chips-autocomplete/chips-autocomplete.component';
 
 @NgModule({
   imports: [
@@ -29,7 +28,6 @@ import { ChipsAutocompleteComponent } from './chips-autocomplete/chips-autocompl
     CardlineComponent,
     CardcolumnComponent,
     CardpieComponent,
-    ChipsAutocompleteComponent,
     // CotoneasterCardComponent,
 
   ],
