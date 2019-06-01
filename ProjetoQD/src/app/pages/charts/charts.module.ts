@@ -13,6 +13,7 @@ import { LineChart2Component } from './line-chart-2';
 import { LinePlusBarChartComponent } from './line-plus-bar-chart';
 import { StackedBarChartComponent } from './stacked-bar-chart';
 
+
 @NgModule({
   imports: [
     CommonModule,

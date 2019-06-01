@@ -11,6 +11,7 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ToastrModule} from 'ng6-toastr-notifications';
+import { GoogleChartsModule } from 'angular-google-charts';
 import {
     MatAutocompleteModule,
     MatButtonModule,
@@ -51,10 +52,11 @@ import { AboutComponent } from './pages/about/about.component';
 import { UsersComponent } from './pages/users/users.component';
 import { QdSelectComponent } from './components/qd-select/qd-select.component';
 import { User2testeComponent } from './pages/user2teste/user2teste.component';
+import { ChartsgoogleComponent } from './pages/chartsgoogle/chartsgoogle.component';
 
 @NgModule({
 
-  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent, QdSelectComponent, User2testeComponent ],
+  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent, QdSelectComponent, User2testeComponent, ChartsgoogleComponent ],
 
   imports: [
     BrowserModule,
@@ -73,6 +75,7 @@ import { User2testeComponent } from './pages/user2teste/user2teste.component';
     MatCardModule,
     MatNativeDateModule,
     ToastrModule.forRoot(),
+    GoogleChartsModule.forRoot(),
   ],
   exports: [
     CdkTableModule,
