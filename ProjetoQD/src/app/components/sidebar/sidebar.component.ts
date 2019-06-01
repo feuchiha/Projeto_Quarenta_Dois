@@ -30,7 +30,7 @@ constructor() {
               { name: 'Minha conta', link: '/app/forms', icon: 'person'},
               { name: 'Usuarios', link: '/app/users', icon: 'assignment_ind'},
               { name: 'Usuarios 2', link: '/app/user2teste', icon: 'assignment_ind'},
-              { name: 'Cards',  link: '/app/chartsgoogle', icon: 'home' },
+              { name: 'Cards',  link: '/app/pie-chart', icon: 'home' },
               { name: 'Sobre', link: '/app/about', icon: 'casino' },
               /*{ name: 'Pages', children: [
                 { name: '404', link: '/pages/error' },
