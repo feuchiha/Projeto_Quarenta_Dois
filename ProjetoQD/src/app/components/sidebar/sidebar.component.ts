@@ -29,7 +29,7 @@ constructor() {
               { name: 'Análises', link: '/app/visualizacao-dados', icon: 'broken_image' },
               { name: 'Minha conta', link: '/app/forms', icon: 'person'},
               { name: 'Usuarios', link: '/app/users', icon: 'assignment_ind'},
-              { name: 'Usuarios 2', link: '/app/user2teste', icon: 'assignment_ind'},
+              { name: 'Graficos', link: '/app/graficos', icon: 'assignment_ind'},
               { name: 'Cards',  link: '/app/pie-chart', icon: 'home' },
               { name: 'Sobre', link: '/app/about', icon: 'casino' },
               /*{ name: 'Pages', children: [

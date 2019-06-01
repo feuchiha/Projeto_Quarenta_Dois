@@ -53,11 +53,17 @@ import { UsersComponent } from './pages/users/users.component';
 import { QdSelectComponent } from './components/qd-select/qd-select.component';
 import { User2testeComponent } from './pages/user2teste/user2teste.component';
 import { ChartsgoogleComponent } from './pages/chartsgoogle/chartsgoogle.component';
-import { PieChartComponent } from './pie-chart/pie-chart.component'; 
+import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { GraficosComponent } from './graficos/graficos.component';
+import { CardsComponent } from './graficos/cards/cards.component';
+import { GeoComponent } from './graficos/geo/geo.component';
+import { LineComponent } from './graficos/line/line.component';
+import { ColumnComponent } from './graficos/column/column.component';
+import { PieComponent } from './graficos/pie/pie.component'; 
 
 @NgModule({
 
-  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent, QdSelectComponent, User2testeComponent, ChartsgoogleComponent, PieChartComponent ],
+  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent, QdSelectComponent, User2testeComponent, ChartsgoogleComponent, PieChartComponent, GraficosComponent, CardsComponent, GeoComponent, LineComponent, ColumnComponent, PieComponent ],
 
   imports: [
     BrowserModule,

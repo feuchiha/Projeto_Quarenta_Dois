@@ -2,12 +2,11 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 declare var google: any;
 
 @Component({
-  selector: 'app-pie-chart',
-  template: '<div #pieChart style="width: 100vw; height: 100vh;"></div>',
-  
+  selector: 'app-pie',
+  template: '<div #pieChart></div>',
+  styleUrls: ['./pie.component.css']
 })
-export class PieChartComponent implements AfterViewInit {
- 
+export class PieComponent implements AfterViewInit { 
   @ViewChild('pieChart') pieChart: ElementRef
 
   drawChart = () => {
@@ -35,5 +34,4 @@ export class PieChartComponent implements AfterViewInit {
     google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(this.drawChart);
   }
-
 }

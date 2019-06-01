@@ -14,6 +14,7 @@ import { UsersComponent } from './pages/users';
 import { User2testeComponent } from './pages/user2teste/user2teste.component';
 import { ChartsgoogleComponent } from './pages/chartsgoogle/chartsgoogle.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { GraficosComponent } from './graficos/graficos.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { PieChartComponent } from './pie-chart/pie-chart.component';
           { path: 'forms', component: FormsComponent, pathMatch: 'full' },
           { path: 'importacao', component: ImportacaoComponent, pathMatch: 'full' },
           { path: 'users', component: UsersComponent, pathMatch: 'full' },
-          { path: 'user2teste', component: User2testeComponent, pathMatch: 'full' },
+          { path: 'graficos', component: GraficosComponent, pathMatch: 'full' },
           { path: 'about', component: AboutComponent, pathMatch: 'full'},
           { path: 'logs', component:LogsComponent, pathMatch:'full'},
           { path: 'pie-chart', component: PieChartComponent, pathMatch: 'full'},
