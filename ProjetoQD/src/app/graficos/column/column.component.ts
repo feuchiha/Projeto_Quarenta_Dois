@@ -23,7 +23,7 @@ export class ColumnComponent implements OnInit {
     const headers = new HttpHeaders()
     .set('Authorization', 'my-auth-token')
     .set('Content-Type', 'application/json')
-    this.http.post(`http://localhost:3002/Mysql/clientes`,{
+    this.http.post(`http://localhost:3002/Mysql/column`,{
       headers: headers
     })
     .subscribe(data => {
@@ -46,7 +46,7 @@ export class ColumnComponent implements OnInit {
       height: 400,
       legend: { position: 'top', maxLines: 3 },
       bar: { groupWidth: '75%' },
-      isStacked: true,
+      isStacked: false,
     };
     const chart = new google.visualization.ColumnChart(this.columnChart.nativeElement);
     chart.draw(data, options);
