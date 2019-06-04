@@ -30,7 +30,7 @@ export class ColumnComponent implements OnInit {
       for (const k in data) {
           const element = data[k];
           this.arrCab.push( element['Regio']);
-          this.arrValues.push([element['M'], element['F']]);
+          this.arrValues.push([parseInt(element['M']), parseInt(element['F'])]);
       }
       this.arrData.push(this.arrCab);
       this.arrData.push(this.arrValues);
@@ -38,8 +38,6 @@ export class ColumnComponent implements OnInit {
       google.charts.setOnLoadCallback(this.drawChart);
     })
   }
-
-
 
   drawChart = () => {
     var data = google.visualization.arrayToDataTable(this.arrData);
