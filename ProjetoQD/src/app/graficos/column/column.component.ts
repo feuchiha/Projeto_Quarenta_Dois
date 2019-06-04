@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { style } from '@angular/animations';
+
 declare var google: any;
 @Component({
   selector: 'app-column',
