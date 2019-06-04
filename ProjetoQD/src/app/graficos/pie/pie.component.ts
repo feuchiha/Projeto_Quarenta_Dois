@@ -44,6 +44,25 @@ export class PieComponent implements OnInit {
     var data = google.visualization.arrayToDataTable(this.arrData);
 
   const options = {
+    width: 500,
+    height: 500,
+    is3D: true,
+    hAxis: {
+      textStyle: {
+          color: '#0baeb7'
+      },
+      titleTextStyle: {
+          color: '#0baeb7'
+      }
+    },
+    vAxis: {
+        textStyle: {
+            color: '#0baeb7'
+        },
+        titleTextStyle: {
+            color: '#0baeb7'
+        }
+    },
     title: 'My Daily Activities',
     legend: {position: 'top'}
   };
