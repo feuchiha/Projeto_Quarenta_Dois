@@ -1,0 +1,56 @@
+.demo-card-square.mdl-card {
+    width: 25vw;
+    height: auto;
+}
+
+.demo-card-square>.mdl-card__title {
+    color: red;
+    background-color: #0baeb7;
+    opacity: 0.5;
+}
+
+ody {
+    margin: 0%;
+    padding: 0%;
+    background-attachment: fixed;
+}
+
+.card-table {
+    max-width: 1980px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.card-box {
+    flex: 25%;
+    padding: 10px;
+    max-width: 500px;
+    box-sizing: border-box;
+}
+
+.table {
+    padding: 40px 20px;
+    font-family: "montserrat", sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.table h2 {
+    text-transform: uppercase;
+    color: aqua;
+}
+
+@media screen and (max-width:980px) {
+    .card-box {
+        flex: 50%;
+    }
+}
+
+@media screen and (max-width:700px) {
+    .card-box {
+        flex: 100%;
+    }
+}
