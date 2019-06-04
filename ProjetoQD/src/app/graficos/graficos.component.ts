@@ -17,15 +17,7 @@ export class GraficosComponent implements OnInit {
   }
 
   ngOnInit() {
-    const headers = new HttpHeaders()
-          .set('Authorization', 'my-auth-token')
-          .set('Content-Type', 'application/json')
-    this.http.post(`http://localhost:3002/Mysql/clientes`,{
-    headers: headers
-    })
-    .subscribe(data => {
-      console.log(data);
-  })
+ 
   
   }
 
