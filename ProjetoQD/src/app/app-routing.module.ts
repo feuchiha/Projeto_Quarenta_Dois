@@ -20,7 +20,7 @@ import { GraficosComponent } from './graficos/graficos.component';
   imports: [
     RouterModule.forRoot(
       [
-        { path: '', redirectTo: 'app/visualizacao-dados', pathMatch: 'full' },
+        { path: '', redirectTo: '/pages/login', pathMatch: 'full' },
         { path: 'app', component: CommonLayoutComponent, children: [
           { path: 'dashboard', component: DashboardComponent, pathMatch: 'full' },
           { path: 'forms', component: FormsComponent, pathMatch: 'full' },

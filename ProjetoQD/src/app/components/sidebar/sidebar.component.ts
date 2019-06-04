@@ -24,13 +24,12 @@ constructor() {
         if(this.user.perfil != "User" ){
             this.menu =  [
               { name: 'Início', link: '/app/dashboard', icon: 'home' },
+              { name: 'Gráficos', link: '/app/graficos', icon: 'insert_chart'},
               { name: 'Importar', link: '/app/importacao', icon: 'backup' },
               { name: 'Histórico', link: '/app/logs', icon: 'history' },
               { name: 'Análises', link: '/app/visualizacao-dados', icon: 'broken_image' },
               { name: 'Minha conta', link: '/app/forms', icon: 'person'},
               { name: 'Usuarios', link: '/app/users', icon: 'assignment_ind'},
-              { name: 'Graficos', link: '/app/graficos', icon: 'assignment_ind'},
-              { name: 'Cards',  link: '/app/pie-chart', icon: 'home' },
               { name: 'Sobre', link: '/app/about', icon: 'casino' },
               /*{ name: 'Pages', children: [
                 { name: '404', link: '/pages/error' },
@@ -45,7 +44,8 @@ constructor() {
       }else{
         
       this.menu =  [
-        { name: 'Início', link: '/app/dashboard', icon: 'home' },
+        { name: 'Inicio', link: '/app/graficos', icon: 'home'},
+        // { name: 'Início', link: '/app/dashboard', icon: 'home' },
         { name: 'Importar', link: '/app/importacao', icon: 'backup' },
         { name: 'Histórico', link: '/app/logs', icon: 'history' },
         { name: 'Análises', link: '/app/visualizacao-dados', icon: 'broken_image' },
