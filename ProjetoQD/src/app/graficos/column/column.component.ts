@@ -41,11 +41,29 @@ export class ColumnComponent implements OnInit {
   drawChart = () => {
     var data = google.visualization.arrayToDataTable(this.arrData);
     var options = {
-      width: 600,
-      height: 400,
-      legend: { position: 'top', maxLines: 3 },
+      width: 500,
+      height: 500,
+      title: 'Filmes',
+      // backgroundColor: 'white',
+      legend: { position: 'top', maxLines: 3},
       bar: { groupWidth: '75%' },
       isStacked: false,
+      hAxis: {
+        textStyle: {
+            color: '#0baeb7'
+        },
+        titleTextStyle: {
+            color: '#0baeb7'
+        }
+      },
+      vAxis: {
+          textStyle: {
+              color: '#0baeb7'
+          },
+          titleTextStyle: {
+              color: '#0baeb7'
+          }
+      },
     };
     const chart = new google.visualization.ColumnChart(this.columnChart.nativeElement);
     chart.draw(data, options);

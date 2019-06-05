@@ -58,11 +58,28 @@ export class LineComponent implements OnInit {
 
   drawChart = () => {
     var data = google.visualization.arrayToDataTable(this.arrData);
-    const options = {
+    const options = {      width: 500,
+      height: 500,
       title: 'Company Performance',
       curveType: 'function',
       legend: { 
-        position: 'bottom' }
+        position: 'bottom' },
+        hAxis: {
+          textStyle: {
+              color: '#0baeb7'
+          },
+          titleTextStyle: {
+              color: '#0baeb7'
+          }
+        },
+        vAxis: {
+            textStyle: {
+                color: '#0baeb7'
+            },
+            titleTextStyle: {
+                color: '#0baeb7'
+            }
+        },
     };
 
     const chart = new google.visualization.LineChart(this.lineChart.nativeElement);

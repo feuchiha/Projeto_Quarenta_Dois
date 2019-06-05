@@ -46,7 +46,25 @@ export class GeoComponent implements OnInit{
   drawChart = () => {
     var data = google.visualization.arrayToDataTable(this.arrData);
     var options = {
+      width: 500,
+      height: 500,
       region: 'IT',
+      hAxis: {
+        textStyle: {
+            color: '#0baeb7'
+        },
+        titleTextStyle: {
+            color: '#0baeb7'
+        }
+      },
+      vAxis: {
+          textStyle: {
+              color: '#0baeb7'
+          },
+          titleTextStyle: {
+              color: '#0baeb7'
+          }
+      },
       displayMode: 'markers',
       colorAxis: {colors: ['green', 'blue']}
     };
