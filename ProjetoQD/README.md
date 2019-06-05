@@ -2,4 +2,4 @@ Projeto 42 dos alunos Alvaro Zago, Anderson Paterno e Felipe Valim da faculdade 
 
 Pit sobre o projeto se encontra no arquivo Video_Datathon.
 
-Informações sobre o projeto se encontram no arquivo Informacoes.
+Informações sobre o projeto e sobre o back-end se encontram no arquivo Informacoes.
