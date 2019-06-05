@@ -28,6 +28,7 @@ export class PieComponent implements OnInit {
       headers: headers
     })
     .subscribe(data => {
+      console.log(data)
       for (const k in data) {
           const element = data[k];
           this.arrCab.push('10a14', 'Mortes'); //tentar mandar do back a legenda
@@ -63,7 +64,7 @@ export class PieComponent implements OnInit {
             color: '#0baeb7'
         }
     },
-    title: 'My Daily Activities',
+    title: 'Obitos Anuais por Idades',
     legend: {position: 'top'}
   };
 

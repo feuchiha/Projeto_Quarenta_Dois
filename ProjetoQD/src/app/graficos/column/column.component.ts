@@ -29,11 +29,14 @@ export class ColumnComponent implements OnInit {
     .subscribe(data => {
       for (const k in data) {
           const element = data[k];
-          this.arrCab.push( element['Regio']);
-          this.arrValues.push([parseInt(element['M']), parseInt(element['F'])]);
+          this.arrData.push( [ 'Homens' , 'Mulheres']);
+          for (var i = 0; i < Object.keys(element).length; i++){
+            if (element[`M${i}`]){
+              this.arrData.push([parseInt(element[`M${i}`]), parseInt(element[`F${i}`])]);
+            }
+            
+          }
       }
-      this.arrData.push(this.arrCab);
-      this.arrData.push(this.arrValues);
       google.charts.setOnLoadCallback(this.drawChart);
     })
   }
@@ -43,7 +46,7 @@ export class ColumnComponent implements OnInit {
     var options = {
       width: 500,
       height: 500,
-      title: 'Filmes',
+      title: 'Generos dos Obitos por Região',
       // backgroundColor: 'white',
       legend: { position: 'top', maxLines: 3},
       bar: { groupWidth: '75%' },

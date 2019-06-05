@@ -21,26 +21,26 @@ export class GeoComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    google.charts.load('current', { 'packages':['geochart'], 'mapsApiKey': 'AIzaSyBVSTOIEEgYfQXgDmSby4jPOfLTR-vG4WA'  });
-    const headers = new HttpHeaders()
-    .set('Authorization', 'my-auth-token')
-    .set('Content-Type', 'application/json')
-    this.http.post(`http://localhost:3002/Mysql/geo`,{
-      headers: headers
-    })
-    .subscribe(data => {
-      console.log(data)
+    // google.charts.load('current', { 'packages':['geochart'], 'mapsApiKey': 'AIzaSyBVSTOIEEgYfQXgDmSby4jPOfLTR-vG4WA'  });
+    // const headers = new HttpHeaders()
+    // .set('Authorization', 'my-auth-token')
+    // .set('Content-Type', 'application/json')
+    // this.http.post(`http://localhost:3002/Mysql/geo`,{
+    //   headers: headers
+    // })
+    // .subscribe(data => {
+    //   console.log(data)
       
-      for (const k in data) {
-          const element = data[k];
-          this.arrCab.push(element['regio']);
-          this.arrValues.push([(element['regio']) , parseInt(element['Mdia_permanncia']), parseInt(element['Taxa_mortalidade'])]);
-      }
-      this.arrData.push(this.arrCab);
-      this.arrData.push(this.arrValues);
-      console.log(this.arrData)
-      google.charts.setOnLoadCallback(this.drawChart);
-    })
+    //   for (const k in data) {
+    //       const element = data[k];
+    //       this.arrCab.push(element['regio']);
+    //       this.arrValues.push([(element['regio']) , parseInt(element['Mdia_permanncia']), parseInt(element['Taxa_mortalidade'])]);
+    //   }
+    //   this.arrData.push(this.arrCab);
+    //   this.arrData.push(this.arrValues);
+    //   console.log(this.arrData)
+    //   google.charts.setOnLoadCallback(this.drawChart);
+    // })
   }
 
   drawChart = () => {

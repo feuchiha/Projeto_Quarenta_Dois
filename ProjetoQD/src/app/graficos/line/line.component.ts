@@ -29,13 +29,18 @@ export class LineComponent implements OnInit {
       headers: headers
     })
     .subscribe(data => {
+      // console.log(data)
       for (const k in data) {
           const element = data[k];
-          this.arrCab.push('Faixa Etaria' , 'Homens' , 'Mulheres');
-          this.arrValues.push(('10a14') ,(element['M']) , (element['F']));
+          this.arrData.push(['Homens' , 'Mulheres']);
+          for (var i = 0; i < Object.keys(element).length; i++){
+            if (element[`M${i}`]){
+              this.arrData.push([element[`M${i}`], element[`F${i}`]]);
+            }
+            
+          }  
       }
-      this.arrData.push(this.arrCab);
-      this.arrData.push(this.arrValues);
+      // console.log(this.arrData);
       google.charts.setOnLoadCallback(this.drawChart);
     })
   }
@@ -60,7 +65,7 @@ export class LineComponent implements OnInit {
     var data = google.visualization.arrayToDataTable(this.arrData);
     const options = {      width: 500,
       height: 500,
-      title: 'Company Performance',
+      title: 'Generos dos Obitos por Dia de Permanencia Internados',
       curveType: 'function',
       legend: { 
         position: 'bottom' },
