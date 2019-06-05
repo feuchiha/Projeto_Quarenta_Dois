@@ -7,6 +7,7 @@ declare var google: any;
   template: '<div #columnChart></div>',
   styleUrls: ['./column.component.scss']
 })
+
 export class ColumnComponent implements OnInit {
   arrData:any = [];
   arrCab: any = [];
@@ -17,7 +18,6 @@ export class ColumnComponent implements OnInit {
   constructor(private http: HttpClient, public toastr: ToastrManager) {
   }
 
-  
   ngOnInit(): void {
     google.charts.load('current', { 'packages': ['corechart'] });
     const headers = new HttpHeaders()
@@ -34,7 +34,6 @@ export class ColumnComponent implements OnInit {
       }
       this.arrData.push(this.arrCab);
       this.arrData.push(this.arrValues);
-      console.log(this.arrData)
       google.charts.setOnLoadCallback(this.drawChart);
     })
   }

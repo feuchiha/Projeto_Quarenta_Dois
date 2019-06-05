@@ -8,14 +8,14 @@ declare var google: any;
   template: '<div #lineChart></div>',
   styleUrls: ['./line.component.scss']
 })
-export class LineComponent implements OnInit {
 
+export class LineComponent implements OnInit {
+  ages:any = [];
   arrData:any = [];
   arrCab: any = [];
   arrValues: any = [];
 
   @ViewChild('lineChart') lineChart: ElementRef
-
 
   constructor(private http: HttpClient, public toastr: ToastrManager) {
   }
@@ -31,13 +31,28 @@ export class LineComponent implements OnInit {
     .subscribe(data => {
       for (const k in data) {
           const element = data[k];
-          this.arrCab.push( element['Regio']);
-          this.arrValues.push([parseInt(element['M']), parseInt(element['F'])]);
+          this.arrCab.push('Faixa Etaria' , 'Homens' , 'Mulheres');
+          this.arrValues.push(('10a14') ,(element['M']) , (element['F']));
       }
       this.arrData.push(this.arrCab);
       this.arrData.push(this.arrValues);
-      console.log(this.arrData)
       google.charts.setOnLoadCallback(this.drawChart);
+    })
+  }
+
+  Selectages(): void {
+    google.charts.load('current', { 'packages': ['corechart'] });
+    const headers = new HttpHeaders()
+    .set('Authorization', 'my-auth-token')
+    .set('Content-Type', 'application/json')
+    this.http.post(`http://localhost:3002/Mysql/ages`,{
+      headers: headers
+    })
+    .subscribe(data => {
+      for (const k in data) {
+        const element = data[k];
+        this.ages.push((element['idades']));
+      }
     })
   }
 

@@ -8,6 +8,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
   template: '<div #geoChart></div>',
   styleUrls: ['./geo.component.scss']
 })
+
 export class GeoComponent implements OnInit{
 
   arrData:any = [];
@@ -28,10 +29,12 @@ export class GeoComponent implements OnInit{
       headers: headers
     })
     .subscribe(data => {
+      console.log(data)
+      
       for (const k in data) {
           const element = data[k];
-          this.arrCab.push( element['Regio']);
-          this.arrValues.push([parseInt(element['M']), parseInt(element['F'])]);
+          this.arrCab.push(element['regio']);
+          this.arrValues.push([(element['regio']) , parseInt(element['Mdia_permanncia']), parseInt(element['Taxa_mortalidade'])]);
       }
       this.arrData.push(this.arrCab);
       this.arrData.push(this.arrValues);

@@ -8,6 +8,7 @@ declare var google: any;
   template: '<div #pieChart></div>',
   styleUrls: ['./pie.component.css']
 })
+
 export class PieComponent implements OnInit { 
   arrData:any = [];
   arrCab: any = [];
@@ -29,12 +30,11 @@ export class PieComponent implements OnInit {
     .subscribe(data => {
       for (const k in data) {
           const element = data[k];
-          this.arrCab.push( element['Regio']);
-          this.arrValues.push([parseInt(element['M']), parseInt(element['F'])]);
+          this.arrCab.push('10a14', 'Mortes'); //tentar mandar do back a legenda
+          this.arrValues.push(('10a14'), parseInt(element['10a14']));
       }
       this.arrData.push(this.arrCab);
       this.arrData.push(this.arrValues);
-      console.log(this.arrData)
       google.charts.setOnLoadCallback(this.drawChart);
     })
   }
