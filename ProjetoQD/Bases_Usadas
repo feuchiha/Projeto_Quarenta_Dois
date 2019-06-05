@@ -1,0 +1,167 @@
+Utilizamos as bases principalmente do Datasus no link:
+
+http://tabnet.datasus.gov.br/cgi/tabcgi.exe?sih/cnv/niuf.def
+
+Neste link geramos bases setando as informações que queríamos.
+
+Com todas estas bases adicionadas a um server com banco SQL, realizamos querys e geramos os gráficos com a aplicação do Google Chart.
+
+Os usuários para logar na aplicação utilizamos um banco MongoDB.
+
+Geo > Na base Datasus setamos a Taxa de Mortalidade, todas as regiões do Brasil, a Média de dias de permanência de pacientes nas
+unidade, selecionamos todas as idades nos anos de 2013 até março de 2019. Gerando assim as bases:
+
+DataSus_Geo_TaxaMortalidade_Regiao_MediaDiasPermanencia_TodasIdades_2019
+DataSus_Geo_TaxaMortalidade_Regiao_MediaDiasPermanencia_TodasIdades_2018
+DataSus_Geo_TaxaMortalidade_Regiao_MediaDiasPermanencia_TodasIdades_2017
+DataSus_Geo_TaxaMortalidade_Regiao_MediaDiasPermanencia_TodasIdades_2016
+DataSus_Geo_TaxaMortalidade_Regiao_MediaDiasPermanencia_TodasIdades_2015
+DataSus_Geo_TaxaMortalidade_Regiao_MediaDiasPermanencia_TodasIdades_2014
+DataSus_Geo_TaxaMortalidade_Regiao_MediaDiasPermanencia_TodasIdades_2013
+
+Line > Na base Datasus setamos os óbitos, todas as regiões do Brasil, selecionamos todas as idades nos anos de 2013 até março
+de 2019. Gerando assim as bases:
+
+DataSus_Line_Ano_Obitos_Mas_TodasIdades_2019
+DataSus_Line_Ano_Obitos_Mas_TodasIdades_2018
+DataSus_Line_Ano_Obitos_Mas_TodasIdades_2017
+DataSus_Line_Ano_Obitos_Mas_TodasIdades_2016
+DataSus_Line_Ano_Obitos_Mas_TodasIdades_2015
+DataSus_Line_Ano_Obitos_Mas_TodasIdades_2014
+DataSus_Line_Ano_Obitos_Mas_TodasIdades_2013
+
+DataSus_Line_Ano_Obitos_Fem_TodasIdades_2019
+DataSus_Line_Ano_Obitos_Fem_TodasIdades_2018
+DataSus_Line_Ano_Obitos_Fem_TodasIdades_2017
+DataSus_Line_Ano_Obitos_Fem_TodasIdades_2016
+DataSus_Line_Ano_Obitos_Fem_TodasIdades_2015
+DataSus_Line_Ano_Obitos_Fem_TodasIdades_2014
+DataSus_Line_Ano_Obitos_Fem_TodasIdades_2013
+
+Pie> Na base Datasus setamos os óbitos, todas as regiões do Brasil, dividimos as bases por idadese e anos de 2013 até março
+de 2019. Gerando assim as bases:
+
+
+Menor de 1 ano:
+
+DataSus_Pie_Idade_Obito_Menor1_2019
+DataSus_Pie_Idade_Obito_Menor1_2018
+DataSus_Pie_Idade_Obito_Menor1_2017
+DataSus_Pie_Idade_Obito_Menor1_2016
+DataSus_Pie_Idade_Obito_Menor1_2015
+DataSus_Pie_Idade_Obito_Menor1_2014
+DataSus_Pie_Idade_Obito_Menor1_2013
+
+
+1 a 4 anos:
+
+DataSus_Pie_Idade_Obito_1a4_2019
+DataSus_Pie_Idade_Obito_1a4_2018
+DataSus_Pie_Idade_Obito_1a4_2017
+DataSus_Pie_Idade_Obito_1a4_2016
+DataSus_Pie_Idade_Obito_1a4_2015
+DataSus_Pie_Idade_Obito_1a4_2014
+DataSus_Pie_Idade_Obito_1a4_2013
+
+
+5 a 9 anos:
+
+DataSus_Pie_Idade_Obito_5a9_2019
+DataSus_Pie_Idade_Obito_5a9_2018
+DataSus_Pie_Idade_Obito_5a9_2017
+DataSus_Pie_Idade_Obito_5a9_2016
+DataSus_Pie_Idade_Obito_5a9_2015
+DataSus_Pie_Idade_Obito_5a9_2014
+DataSus_Pie_Idade_Obito_5a9_2013
+
+10 a 14 anos
+
+DataSus_Pie_Idade_Obito_10a14_2019
+DataSus_Pie_Idade_Obito_10a14_2018
+DataSus_Pie_Idade_Obito_10a14_2017
+DataSus_Pie_Idade_Obito_10a14_2016
+DataSus_Pie_Idade_Obito_10a14_2015
+DataSus_Pie_Idade_Obito_10a14_2014
+DataSus_Pie_Idade_Obito_10a14_2013
+
+15 a 19 anos
+
+DataSus_Pie_Idade_Obito_15a19_2019
+DataSus_Pie_Idade_Obito_15a19_2018
+DataSus_Pie_Idade_Obito_15a19_2017
+DataSus_Pie_Idade_Obito_15a19_2016
+DataSus_Pie_Idade_Obito_15a19_2015
+DataSus_Pie_Idade_Obito_15a19_2014
+DataSus_Pie_Idade_Obito_15a19_2013
+
+20 a 29
+
+DataSus_Pie_Idade_Obito_20a29_2019
+DataSus_Pie_Idade_Obito_20a29_2018
+DataSus_Pie_Idade_Obito_20a29_2017
+DataSus_Pie_Idade_Obito_20a29_2016
+DataSus_Pie_Idade_Obito_20a29_2015
+DataSus_Pie_Idade_Obito_20a29_2014
+DataSus_Pie_Idade_Obito_20a29_2013
+
+
+
+30 a 39
+
+DataSus_Pie_Idade_Obito_30a39_2019
+DataSus_Pie_Idade_Obito_30a39_2018
+DataSus_Pie_Idade_Obito_30a39_2017
+DataSus_Pie_Idade_Obito_30a39_2016
+DataSus_Pie_Idade_Obito_30a39_2015
+DataSus_Pie_Idade_Obito_30a39_2014
+DataSus_Pie_Idade_Obito_30a39_2013
+
+40 a 49
+
+DataSus_Pie_Idade_Obito_40a49_2019
+DataSus_Pie_Idade_Obito_40a49_2018
+DataSus_Pie_Idade_Obito_40a49_2017
+DataSus_Pie_Idade_Obito_40a49_2016
+DataSus_Pie_Idade_Obito_40a49_2015
+DataSus_Pie_Idade_Obito_40a49_2014
+DataSus_Pie_Idade_Obito_40a49_2013
+
+50 a 59
+
+DataSus_Pie_Idade_Obito_50a59_2019
+DataSus_Pie_Idade_Obito_50a59_2018
+DataSus_Pie_Idade_Obito_50a59_2017
+DataSus_Pie_Idade_Obito_50a59_2016
+DataSus_Pie_Idade_Obito_50a59_2015
+DataSus_Pie_Idade_Obito_50a59_2014
+DataSus_Pie_Idade_Obito_50a59_2013
+
+60 a 69
+
+DataSus_Pie_Idade_Obito_60a69_2019
+DataSus_Pie_Idade_Obito_60a69_2018
+DataSus_Pie_Idade_Obito_60a69_2017
+DataSus_Pie_Idade_Obito_60a69_2016
+DataSus_Pie_Idade_Obito_60a69_2015
+DataSus_Pie_Idade_Obito_60a69_2014
+DataSus_Pie_Idade_Obito_60a69_2013
+
+70 a 79
+
+DataSus_Pie_Idade_Obito_70a79_2019
+DataSus_Pie_Idade_Obito_70a79_2018
+DataSus_Pie_Idade_Obito_70a79_2017
+DataSus_Pie_Idade_Obito_70a79_2016
+DataSus_Pie_Idade_Obito_70a79_2015
+DataSus_Pie_Idade_Obito_70a79_2014
+DataSus_Pie_Idade_Obito_70a79_2013
+
+80 ou +
+
+DataSus_Pie_Idade_Obito_80+_2019
+DataSus_Pie_Idade_Obito_80+_2018
+DataSus_Pie_Idade_Obito_80+_2017
+DataSus_Pie_Idade_Obito_80+_2016
+DataSus_Pie_Idade_Obito_80+_2015
+DataSus_Pie_Idade_Obito_80+_2014
+DataSus_Pie_Idade_Obito_80+_2013
