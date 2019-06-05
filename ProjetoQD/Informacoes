@@ -8,6 +8,9 @@ Com todas estas bases adicionadas a um server com banco SQL, realizamos querys e
 
 Os usuários para logar na aplicação utilizamos um banco MongoDB.
 
+O back nos fizemos no projeto https://github.com/Paterninho/myapp.git, toda a parte de autenticação de usuários nós fizemos
+neste projeto.
+
 Geo > Na base Datasus setamos a Taxa de Mortalidade, todas as regiões do Brasil, a Média de dias de permanência de pacientes nas
 unidade, selecionamos todas as idades nos anos de 2013 até março de 2019. Gerando assim as bases:
 
