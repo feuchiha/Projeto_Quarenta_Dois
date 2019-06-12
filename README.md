@@ -18,18 +18,21 @@ O projeto foi desenvolvido:
   c. Importação e Logs de datasets, como acabamos importando os datasets manualmente, não terminamos a aplicação de importação e logs de datasets, mas o correto seria importar datasets diretamente pelo navegador.
   d. Sobre, uma tela apenas explicando um pouco sobre os desenvolvedores.
 4. O backend, onde tratamos as requisições de usuários, do gráficos foi feita no repositório: 
-https://github.com/Paterninho/myapp.git.
+https://github.com/Paterninho/myapp.git
+5. As bases abertas que utilizamos estão na pasta DataSets do projeto.
 
 Para utilizar nosso projeto, por favor siga estas indicações:
 1. Importe o repositório.
 2. Tenha instalado o nodejs e o npm.
-3. Abra o terminal, navegue até a pasta onde clonou o repositório e execute o comando npm install, ele irá baixar todas as dependências que são necessárias para que o projeto execute.
-4. Importe o repositório do backend (https://github.com/Paterninho/myapp.git).
-5. Execute o passo 3 na pasta onde importou o repositório do backend.
-6. Execute o comado npm start no terminal na pasta do repositório do backend, ele irá criar a conexão com o banco não relaciona MongoDB.
-7. Execute o comando ng serve no terminal na pasta do repositório Projeto_Quarenta_Dois, irá iniciar a aplicação web.
-8. Em um navegador digite http://localhost:4200 e acesse, irá acessar a aplicação.
-9. Crie um usuário inicialmente para utilizar a aplicação.
-10. Visualize os gráficos gerados e informações que eles contém.
+3. Instale um banco de dados relacional, utilizamos no nosso projeto o MySQL.
+4. Importe as bases que estão na pasta DataSets para o banco relacional.
+5. Abra o terminal, navegue até a pasta onde clonou o repositório e execute o comando npm install, ele irá baixar todas as dependências que são necessárias para que o projeto execute.
+6. Importe o repositório do backend (https://github.com/Paterninho/myapp.git).
+7. Execute o passo 3 na pasta onde importou o repositório do backend.
+8. Execute o comado npm start no terminal na pasta do repositório do backend, ele irá criar a conexão com o banco não relaciona MongoDB.
+9. Execute o comando ng serve no terminal na pasta do repositório Projeto_Quarenta_Dois, irá iniciar a aplicação web.
+10. Em um navegador digite http://localhost:4200 e acesse, irá acessar a aplicação.
+11. Crie um usuário inicialmente para utilizar a aplicação.
+12. Visualize os gráficos gerados e informações que eles contém.
 
 Caso queira colaborar com a nossa ideia ficamos muito felizes.
