@@ -19,6 +19,7 @@ export class LoginComponent extends BlankLayoutCardComponent {
     constructor(private http: HttpClient, public toastr: ToastrManager) {
       super();
     }
+    
     callServer(port) {
       const headers = new HttpHeaders()
             .set('Authorization', 'my-auth-token')

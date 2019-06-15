@@ -37,7 +37,7 @@ export class UsersComponent implements OnInit {
     this.token = JSON.parse(localStorage.getItem('usr'));
   }
   
-
+  
   ngOnInit(){
     if(this.token != null && this.token.perfil != 'User'){
       const headers = new HttpHeaders()

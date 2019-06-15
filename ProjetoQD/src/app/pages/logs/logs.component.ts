@@ -70,11 +70,11 @@ export class LogsComponent implements OnInit {
         console.log(data);
         if(data['success'] === false){
           window.location.href = 'http://localhost:4200/#/app/visualizacao-dados'
+          }
+        })
+      }else{
+        window.location.href = 'http://localhost:4200/#/app/visualizacao-dados'
       }
-    })
-  }else{
-    window.location.href = 'http://localhost:4200/#/app/visualizacao-dados'
-  }
 }
 
 
