@@ -13,13 +13,37 @@ export class EmployerFormComponent {
     user = {email:"", username:"", password:"", newpassword:"", confirmenewpw:""};
     usr = {_id:"", username:"", password:"", newpassword:"", confirmenewpw:"", email:""};
     local = {id:"", email:"", username:""};
+    token:  {email:"",name:"", perfil: any, token:""};
 
     constructor(private http: HttpClient, public toastr: ToastrManager) {
+      this.token = JSON.parse(localStorage.getItem('usr'));
       this.user = JSON.parse(localStorage.getItem('usr'));
-      this.user.confirmenewpw = null;
-      this.user.newpassword = null;
-      this.user.password = null;
+           
     }
+
+    ngOnInit(){
+      if(this.token != null){
+        this.user.confirmenewpw = null;
+        this.user.newpassword = null;
+        this.user.password = null;
+        const headers = new HttpHeaders()
+        .set('Authorization', 'my-auth-token')
+        .set('Content-Type', 'application/json');
+        this.http.post(`http://localhost:3002/login/verifytoken`, 
+        JSON.stringify(this.token), {
+        headers: headers
+        })
+        .subscribe(data => {
+          console.log(data);
+          if(data['success'] === false){
+            window.location.href = 'http://localhost:4200/#/app/visualizacao-dados'
+           }
+        })
+        }else{
+          window.location.href = 'http://localhost:4200/#/app/visualizacao-dados'
+        }
+  }
+  
 
     findUser(port) {
      this.local = JSON.parse(localStorage.getItem('usr'));
@@ -77,7 +101,7 @@ export class EmployerFormComponent {
         this.toastr.errorToastr(data['message'], 'Oops!');
         this.user.password = null;
         this.user.confirmenewpw = null;
-        this.user.newpassword = null;
+        this.user.newpassword = null
       }else{
         this.toastr.successToastr(data['message'], 'Success!');
         this.user = null;
@@ -102,7 +126,7 @@ export class EmployerFormComponent {
           email: data['email'],
           password: "",
           newpassword: "",
-          confirmenewpw: "",
+          confirmenewpw: ""
         }
         localStorage.setItem('usr', JSON.stringify(this.user));
        }

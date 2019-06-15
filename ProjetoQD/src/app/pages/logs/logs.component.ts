@@ -18,16 +18,16 @@ const table: DialogData[] = [
    dataInsercao:"28/12/2018",
    inserido:true,
    lugar:'http://lugarAleatorio.com.br/dataset/lugaresAleatorios',
-   campos:["Código Cnes", "Latitude", "Longitude",
-          "Nome Fantasia", "Nome Logradouro", "Número do Endereço", "Nome do Bairro",
-          "Número de Telefone", "Código CEP", "UF", "Cidade"]},
+   campos:["Código Cnes", " Latitude", " Longitude",
+          " Nome Fantasia", " Nome Logradouro", " Número do Endereço", " Nome do Bairro",
+          " Número de Telefone", " Código CEP", " UF", " Cidade"]},
           {titulo:"Unidades Básicas de Saúde em Construção",
    dataInsercao:"28/12/2018",
    inserido:false,
    lugar:'Arquivo',
-   campos:["Código Cnes", "Latitude", "Longitude",
-           "Nome Fantasia", "Nome Logradouro", "Número do Endereço", "Nome do Bairro",
-           "Número de Telefone", "Código CEP", "UF", "Cidade"]}
+   campos:["Código Cnes", " Latitude", " Longitude",
+           " Nome Fantasia", " Nome Logradouro", " Número do Endereço", " Nome do Bairro",
+           " Número de Telefone", " Código CEP", " UF", " Cidade"]}
   ]
 
 @Component({

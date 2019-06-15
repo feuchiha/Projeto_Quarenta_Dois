@@ -13,7 +13,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class LoginComponent extends BlankLayoutCardComponent { 
     user = {email:"", password:""};
     email: String;
-    usr: {email:"",username:"", status:"", perfil:""};
+    token: String;
+    usr: {email:"",username:"", status:"", perfil:"",token:""};
     
     constructor(private http: HttpClient, public toastr: ToastrManager) {
       super();
@@ -28,10 +29,10 @@ export class LoginComponent extends BlankLayoutCardComponent {
       })
       .subscribe(data => {
          if(data['success'] === true){  
-         let token = data['token'];  
+         this.token = data['token'];  
          this.email = data['email'];
          if(data['status'] != "Inativo"){
-          this.verifytoken(token, this.email);
+          this.verifytoken(this.token, this.email);
          }else{
           this.toastr.errorToastr('Perdão, mas o seu usuário esta Inativo ou foi Bloqueado. Contate um administrador!', 'Oops!');
          }        
@@ -53,15 +54,15 @@ export class LoginComponent extends BlankLayoutCardComponent {
         if(data['success'] === false){
           this.toastr.errorToastr(data['message'], 'Oops!');
         }else{
-          this.callMe(this.email);
+          this.callMe(this.email, this.token);
         }setTimeout(
           function(){ 
-          window.location.href = 'http://localhost:4200/#/app/dashboard'
+          window.location.href = 'http://localhost:4200/#/app/visualizacao-dados'
           }, 500);
       });
   }
 
-  callMe(email){
+  callMe(email, token){
     const headers = new HttpHeaders()
           .set('Authorization', 'my-auth-token')
           .set('Content-Type', 'application/json');
@@ -75,7 +76,8 @@ export class LoginComponent extends BlankLayoutCardComponent {
           email: data['email'],
           status: data['status'],
           username: data['name'],
-          perfil: data['perfil']
+          perfil: data['perfil'],
+          token: token
         }
         localStorage.setItem('usr', JSON.stringify(this.usr));
       } else{ 

@@ -22,6 +22,7 @@ export interface PeriodicElement {
 })
 
 export class UsersComponent implements OnInit {
+ 
   userSet:string;
   displayedColumns: string[]  = ['user', 'status', 'created', 'email', 'senha', 'perfil', 'check'];
   dataSource: any
@@ -30,12 +31,37 @@ export class UsersComponent implements OnInit {
   user =  {newpassword:"", confirmepassword:"",id: ""};
   usr = {id:"", perfil:""};
   id = {idUser:""};
+  token:  {email:"",name:"", perfil: any, token:""};
 
   constructor(private http: HttpClient, public toastr: ToastrManager) {
-   
+    this.token = JSON.parse(localStorage.getItem('usr'));
+  }
+  
+
+  ngOnInit(){
+    if(this.token != null && this.token.perfil != 'User'){
+      const headers = new HttpHeaders()
+      .set('Authorization', 'my-auth-token')
+      .set('Content-Type', 'application/json');
+      this.http.post(`http://localhost:3002/login/verifytoken`, 
+      JSON.stringify(this.token), {
+      headers: headers
+      })
+      .subscribe(data => {
+        console.log(data);
+        if(data['success'] === true){
+          this.loadUsers();
+        }else{
+          window.location.href = 'http://localhost:4200/#/app/visualizacao-dados'
+      }
+    })
+    }else{
+      window.location.href = 'http://localhost:4200/#/app/visualizacao-dados'
+    }
   }
 
-  ngOnInit() {
+
+  loadUsers() {
     const ELEMENT_DATA: PeriodicElement[] = [];
 
     const headers = new HttpHeaders()

@@ -13,7 +13,7 @@
                         <mat-table #table class="table user-list" [dataSource]="dataSource">
                             <!-- Position Column -->
                             <ng-container matColumnDef="user">
-                                <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> <span>Usuário</span> </mat-header-cell>
+                                <mat-header-cell class=" cabecalhoTableInicio" *matHeaderCellDef> <span>Usuário</span> </mat-header-cell>
                                 <mat-cell class="corpoTable" *matCellDef="let element">
                                     <a class="user-link cursor">{{element.user}} </a>
                                 </mat-cell>
@@ -59,13 +59,13 @@
                             <ng-container matColumnDef="perfil">
                                 <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> &nbsp; <span>Perfil</span> </mat-header-cell>
                                 <mat-cell class="corpoTable" style="width: 90%;" *matCellDef="let element">
-                                    <app-qd-select [id]="element.id" (retPlaceholder)="onSelect($event)" [arrSelect]="perfilUsuario" [titulo]="element.perfil"></app-qd-select>
+                                    <app-qd-select class="perfilDeUser" [id]="element.id" (retPlaceholder)="onSelect($event)" [arrSelect]="perfilUsuario" [titulo]="element.perfil"></app-qd-select>
                                 </mat-cell>
 
                             </ng-container>
 
                             <ng-container matColumnDef="check">
-                                <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> <span>Aplicar</span> </mat-header-cell>
+                                <mat-header-cell class="cabecalhoTableFim" *matHeaderCellDef> <span>Aplicar</span> </mat-header-cell>
                                 <mat-cell class="corpoTable" *matCellDef="let element">
                                     <a (click)="updateUser(element.id)" class="table-link check cursor">
                                         <span class="fa-stack">
