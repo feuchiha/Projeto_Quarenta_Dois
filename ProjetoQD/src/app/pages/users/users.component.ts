@@ -31,7 +31,7 @@ export class UsersComponent extends SidebarComponent implements OnInit {
   usr = {id:"", perfil:""};
   id = {idUser:""};
   token:  {email:"",name:"", perfil: any, token:""};
-  
+ 
   ngOnInit(){
       if(this.loadSession()){
         this.token = JSON.parse(localStorage.getItem('usr'));
