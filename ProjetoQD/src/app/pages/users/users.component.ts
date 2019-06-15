@@ -2,9 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
-
+import { SidebarComponent} from '../../components/sidebar/sidebar.component';
 import * as $ from 'jquery';
-
 
 export interface PeriodicElement {
   id: string;
@@ -21,7 +20,7 @@ export interface PeriodicElement {
   styleUrls: ['./users.component.css' ]
 })
 
-export class UsersComponent implements OnInit {
+export class UsersComponent extends SidebarComponent implements OnInit {
  
   userSet:string;
   displayedColumns: string[]  = ['user', 'status', 'created', 'email', 'senha', 'perfil', 'check'];
@@ -32,34 +31,17 @@ export class UsersComponent implements OnInit {
   usr = {id:"", perfil:""};
   id = {idUser:""};
   token:  {email:"",name:"", perfil: any, token:""};
-
-  constructor(private http: HttpClient, public toastr: ToastrManager) {
-    this.token = JSON.parse(localStorage.getItem('usr'));
-  }
-  
   
   ngOnInit(){
-    if(this.token != null && this.token.perfil != 'User'){
-      const headers = new HttpHeaders()
-      .set('Authorization', 'my-auth-token')
-      .set('Content-Type', 'application/json');
-      this.http.post(`http://localhost:3002/login/verifytoken`, 
-      JSON.stringify(this.token), {
-      headers: headers
-      })
-      .subscribe(data => {
-        console.log(data);
-        if(data['success'] === true){
-          this.loadUsers();
-        }else{
-          window.location.href = 'http://localhost:4200/#/app/visualizacao-dados'
+      if(this.loadSession()){
+        this.token = JSON.parse(localStorage.getItem('usr'));
       }
-    })
-    }else{
-      window.location.href = 'http://localhost:4200/#/app/visualizacao-dados'
-    }
+        if(this.token.perfil != "User"){
+            this.loadUsers();
+        }else{
+            window.location.href = 'http://localhost:4200'
+        }
   }
-
 
   loadUsers() {
     const ELEMENT_DATA: PeriodicElement[] = [];
@@ -92,7 +74,7 @@ export class UsersComponent implements OnInit {
       
     });
     document.querySelector('.close').addEventListener("click", function() {
-      document.querySelector('.bg-modal')['style']['display'] = "none";
+    document.querySelector('.bg-modal')['style']['display'] = "none";
     });
 
   }
@@ -105,7 +87,6 @@ export class UsersComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-
   salvaId(id, nameUser: string){
     this.setFlexModal();
     this.userSet = nameUser;
@@ -113,7 +94,6 @@ export class UsersComponent implements OnInit {
       idUser: id,
   }
 }
-
 
   updateUser(id){
     this.usr = {

@@ -1,10 +1,11 @@
-import {Component,  OnInit} from '@angular/core';
+import {Component,  OnInit, Injectable} from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { of as observableOf } from 'rxjs'
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { SidebarComponent} from '../../components/sidebar/sidebar.component';
 
 
 
@@ -47,36 +48,11 @@ const table: DialogData[] = [
   ]
 })
 
-
-
-export class LogsComponent implements OnInit {
-
-  token:  {email:"",name:"", perfil: any, token:""};
-
-  constructor(private http: HttpClient, public toastr: ToastrManager) {
-    this.token = JSON.parse(localStorage.getItem('usr'));
-  }
+export class LogsComponent extends SidebarComponent {
 
   ngOnInit(){
-    if(this.token != null){
-      const headers = new HttpHeaders()
-      .set('Authorization', 'my-auth-token')
-      .set('Content-Type', 'application/json');
-      this.http.post(`http://localhost:3002/login/verifytoken`, 
-      JSON.stringify(this.token), {
-      headers: headers
-      })
-      .subscribe(data => {
-        console.log(data);
-        if(data['success'] === false){
-          window.location.href = 'http://localhost:4200/#/app/visualizacao-dados'
-          }
-        })
-      }else{
-        window.location.href = 'http://localhost:4200/#/app/visualizacao-dados'
-      }
-}
-
+    this.loadSession();
+  }
 
   displayedColumns = ['titulo', 'Data de Insercao',  'Adicionado','Fonte'];
   dataSource = new ExampleDataSource();
@@ -91,8 +67,6 @@ isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow
      return 'collapsed'
   }
 }
-
-
 
 export class ExampleDataSource extends DataSource<any> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */

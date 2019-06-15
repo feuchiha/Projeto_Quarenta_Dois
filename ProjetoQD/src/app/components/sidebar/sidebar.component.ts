@@ -1,27 +1,52 @@
 import { Component, Input, OnInit } from '@angular/core';
-
 import { SidebarComponent as BaseSidebarComponent } from 'theme/components/sidebar';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-sidebar',
   styleUrls: ['../../../theme/components/sidebar/sidebar.component.scss'],
   templateUrl: '../../../theme/components/sidebar/sidebar.component.html',
 })
+
 export class SidebarComponent extends BaseSidebarComponent implements OnInit {
 
-user:  {email:"",name:"", perfil: any};
+  token:  {email:"",name:"", perfil: any , token:""};
 
-constructor() {
-  super();
-  this.user = JSON.parse(localStorage.getItem('usr'));
+  constructor(public http: HttpClient, public toastr: ToastrManager) {
+    super();
+  this.token = JSON.parse(localStorage.getItem('usr'));
 
+}
+
+loadSession(){
+  if(this.token != null){
+    const headers = new HttpHeaders()
+    .set('Authorization', 'my-auth-token')
+    .set('Content-Type', 'application/json');
+    this.http.post(`http://localhost:3002/login/verifytoken`, 
+    JSON.stringify(this.token), {
+    headers: headers
+    })
+    .subscribe(data => {
+      if(data['success'] === true){
+        return true;
+
+      }else{
+        window.location.href = 'http://localhost:4200'
+    }
+      })
+        return true;
+      }else{
+        window.location.href = 'http://localhost:4200'
+      }
 }
 
   public title = '42';
   public menu = [];
 
-    ngOnInit(){
-        if(this.user.perfil != "User" ){
+  ngOnInit(){
+        if(this.token.perfil != "User" ){
             this.menu =  [
               { name: 'Início', link: '/app/dashboard', icon: 'home' },
               { name: 'Importar', link: '/app/importacao', icon: 'backup' },
