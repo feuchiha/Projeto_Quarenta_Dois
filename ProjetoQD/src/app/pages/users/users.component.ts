@@ -27,14 +27,15 @@ export class UsersComponent extends SidebarComponent implements OnInit {
   dataSource: any
   perfilUsuario : string[] = ['Admin', 'User', 'Inativo'];
   selected: string;
-  user =  {newpassword:"", confirmepassword:"",id: ""};
+
+  updatepw =  {newpassword:"", confirmepassword:"",id: ""};
   usr = {id:"", perfil:""};
   id = {idUser:""};
-  token:  {email:"",name:"", perfil: any, token:""};
- 
+   
   ngOnInit(){
       if(this.loadSession()){
         this.token = JSON.parse(localStorage.getItem('usr'));
+        console.log(this.token);
       }
         if(this.token.perfil != "User"){
             this.loadUsers();
@@ -128,17 +129,16 @@ export class UsersComponent extends SidebarComponent implements OnInit {
 
   Updatepw(port){
 
-    this.user = {
+    this.updatepw = {
       id: this.id.idUser,
-      newpassword: this.user.newpassword,
-      confirmepassword: this.user.confirmepassword
+      newpassword: this.updatepw.newpassword,
+      confirmepassword: this.updatepw.confirmepassword
     }
-
     const headers = new HttpHeaders()
     .set('Authorization', 'my-auth-token')
     .set('Content-Type', 'application/json');
 this.http.post(`http://localhost:${port}/users/updateADMPW`, 
-JSON.stringify(this.user), {
+JSON.stringify(this.updatepw), {
 headers: headers
 })
 .subscribe(data => {

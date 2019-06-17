@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { SidebarComponent} from '../../../components/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-employer-form',
@@ -8,65 +9,40 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   templateUrl: 'employer-form.component.html',
 })
   
-export class EmployerFormComponent {
-  
-    user = {email:"", username:"", password:"", newpassword:"", confirmenewpw:""};
-    usr = {_id:"", username:"", password:"", newpassword:"", confirmenewpw:"", email:""};
-    local = {id:"", email:"", username:""};
-    token:  {email:"",name:"", perfil: any, token:""};
-
-    constructor(private http: HttpClient, public toastr: ToastrManager) {
-      this.token = JSON.parse(localStorage.getItem('usr'));
-      this.user = JSON.parse(localStorage.getItem('usr'));
-           
-    }
+export class EmployerFormComponent extends SidebarComponent implements OnInit {
 
     ngOnInit(){
-      if(this.token != null){
+      if(this.loadSession()){
+        this.user = JSON.parse(localStorage.getItem('usr'));
+        this.token = JSON.parse(localStorage.getItem('usr'));
         this.user.confirmenewpw = null;
         this.user.newpassword = null;
         this.user.password = null;
-        const headers = new HttpHeaders()
-        .set('Authorization', 'my-auth-token')
-        .set('Content-Type', 'application/json');
-        this.http.post(`http://localhost:3002/login/verifytoken`, 
-        JSON.stringify(this.token), {
-        headers: headers
-        })
-        .subscribe(data => {
-          console.log(data);
-          if(data['success'] === false){
-            window.location.href = 'http://localhost:4200/#/app/visualizacao-dados'
-           }
-        })
-        }else{
-          window.location.href = 'http://localhost:4200/#/app/visualizacao-dados'
-        }
-  }
-  
-
+      }
+    }
+   
     findUser(port) {
-     this.local = JSON.parse(localStorage.getItem('usr'));
       const headers = new HttpHeaders()
             .set('Authorization', 'my-auth-token')
             .set('Content-Type', 'application/json');
       this.http.post(`http://localhost:${port}/users/findEmail`,
-      JSON.stringify(this.local), {
+      JSON.stringify(this.token), {
       headers: headers
       })
       .subscribe(data => {
          if(data['success'] === true){
-          this.usr = {
-            _id: data['id'],
+          this.user = {
+            id: data['id'],
             username: this.user.username,
             email: this.user.email,
             password: this.user.password,
             newpassword: this.user.newpassword,
             confirmenewpw: this.user.confirmenewpw,
+            token: this.token.token
           }
-            if(this.usr.username == "" || this.usr.username == undefined ){
+            if(this.user.username == "" || this.user.username == undefined ){
               this.toastr.errorToastr("Informe seu nome para efetuar a alteração do cadastro", 'Oops!');
-            }else if (this.usr.email.indexOf("@") == -1 ||
+            }else if (this.user.email.indexOf("@") == -1 ||
               this.user.email.indexOf(".") == -1 ||
               this.user.email.indexOf("@") == 0 ||
               this.user.email.lastIndexOf(".") + 1 == this.user.email.length ||
@@ -83,17 +59,17 @@ export class EmployerFormComponent {
 
    
   updateUser(port) {
-    for(let name in this.usr){
-      if (this.usr[name] == null || this.usr[name] == "" || 
-          this.usr[name] == " "  || this.usr[name] == undefined){
-            this.usr[name] = undefined;
+    for(let name in this.user){
+      if (this.user[name] == null || this.user[name] == "" || 
+          this.user[name] == " "  || this.user[name] == undefined){
+            this.user[name] = undefined;
           }
     }
     const headers = new HttpHeaders()
           .set('Authorization', 'my-auth-token')
           .set('Content-Type', 'application/json');
     this.http.post(`http://localhost:${port}/users/updateUser/`,
-    JSON.stringify(this.usr), {
+    JSON.stringify(this.user), {
     headers: headers
     })
     .subscribe(data => {
@@ -104,7 +80,6 @@ export class EmployerFormComponent {
         this.user.newpassword = null
       }else{
         this.toastr.successToastr(data['message'], 'Success!');
-        this.user = null;
         this.attLocal(port);
       }
       
@@ -116,17 +91,19 @@ export class EmployerFormComponent {
           .set('Authorization', 'my-auth-token')
           .set('Content-Type', 'application/json');
     this.http.post(`http://localhost:${port}/users/findEmail`,
-    JSON.stringify(this.local), {
+    JSON.stringify(this.token), {
     headers: headers
     })
     .subscribe(data => {
        if(data['success'] === true){
         this.user = {
+          id: this.user.id,
           username: data['name'],
           email: data['email'],
           password: "",
           newpassword: "",
-          confirmenewpw: ""
+          confirmenewpw: "",
+          token: this.token.token
         }
         localStorage.setItem('usr', JSON.stringify(this.user));
        }

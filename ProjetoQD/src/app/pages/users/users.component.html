@@ -95,11 +95,11 @@
         <div class="close" id="close">+</div>
         <h1 class="importarH1">Alterar Senha de: {{userSet}}</h1>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-            <input class="mdl-textfield__input campoSenha" type="password" (input)="user.newpassword = $event.target.value" id="password" placeholder="Nova Senha">
+            <input class="mdl-textfield__input campoSenha" type="password" (input)="updatepw.newpassword = $event.target.value" id="password" placeholder="Nova Senha">
         </div>
 
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-            <input class="mdl-textfield__input campoSenha" type="password" (input)="user.confirmepassword = $event.target.value" id="password" placeholder="Confirma Nova Senha">
+            <input class="mdl-textfield__input campoSenha" type="password" (input)="updatepw.confirmepassword = $event.target.value" id="password" placeholder="Confirma Nova Senha">
         </div>
 
         <div class="buttonEnviar">
