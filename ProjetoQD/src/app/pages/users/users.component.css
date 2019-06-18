@@ -168,13 +168,14 @@ mat-header-row.mat-header-cell {
     border-bottom: #0baeb7 solid 1px;
 }
 
-.close {
+.fechar {
     position: absolute;
     top: 1%;
     right: 2%;
     font-size: 30px;
     transform: rotate(45deg);
     cursor: pointer;
+    color: white;
 }
 
 .verificaoTime {
@@ -189,6 +190,10 @@ mat-header-row.mat-header-cell {
 
 .buttonURL {
     background-color: #0baeb7;
+}
+
+.buttonURL:hover, .buttonURLa:focus {
+    color: #ffffff;
 }
 
 .importarH1 {

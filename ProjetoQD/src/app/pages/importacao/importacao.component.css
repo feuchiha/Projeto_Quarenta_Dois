@@ -188,6 +188,7 @@
     font-size: 30px;
     transform: rotate(45deg);
     cursor: pointer;
+    color: white;
 }
 
 .verificaoTime {

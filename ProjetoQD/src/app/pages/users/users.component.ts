@@ -74,7 +74,7 @@ export class UsersComponent extends SidebarComponent implements OnInit {
     $('alteraSenhaAdmin').on('click', function(){
       
     });
-    document.querySelector('.close').addEventListener("click", function() {
+    document.querySelector('.fechar').addEventListener("click", function() {
     document.querySelector('.bg-modal')['style']['display'] = "none";
     });
 
