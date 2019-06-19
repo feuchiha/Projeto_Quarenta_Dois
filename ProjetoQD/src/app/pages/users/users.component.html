@@ -10,78 +10,70 @@
             <div class="main-box no-header clearfix ">
                 <div class="main-box-body clearfix tableUsers">
                     <div class="table-responsive ">
-                        <mat-table #table class="table user-list" [dataSource]="dataSource">
+                        <table mat-table [dataSource]="dataSource" class="table user-list mat-elevation-z8">
+
+                            <!--- Note that these columns can be defined in any order.
+                                  The actual rendered columns are set as a property on the row definition" -->
+
                             <!-- Position Column -->
                             <ng-container matColumnDef="user">
-                                <mat-header-cell class=" cabecalhoTableInicio" *matHeaderCellDef> <span>Usuário</span> </mat-header-cell>
-                                <mat-cell class="corpoTable" *matCellDef="let element">
-                                    <a class="user-link cursor">{{element.user}} </a>
-                                </mat-cell>
+                                <th mat-header-cell class=" cabecalhoTableInicio" *matHeaderCellDef> Usuário </th>
+                                <td mat-cell class="corpoTable" *matCellDef="let element"> {{element.user}} </td>
                             </ng-container>
 
-                            <!--Status Column-->
+                            <!-- Status Column -->
                             <ng-container matColumnDef="status">
-                                <mat-header-cell class="cabecalhoTable " *matHeaderCellDef> <span>Status</span> </mat-header-cell>
-                                <mat-cell class="corpoTable columnStatus" *matCellDef="let element">
-                                    <span class="user-subhead">{{element.status}}</span>
-                                </mat-cell>
+                                <th mat-header-cell class="cabecalhoTable" *matHeaderCellDef> Status </th>
+                                <td mat-cell class="corpoTable columnStatus" *matCellDef="let element"> {{element.status}} </td>
                             </ng-container>
 
                             <!-- Name Column -->
                             <ng-container matColumnDef="created">
-                                <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> <span>Criação</span> </mat-header-cell>
-                                <mat-cell class="corpoTable" *matCellDef="let element" class="dateCreated">
-                                    {{element.created}}
-                                </mat-cell>
+                                <th mat-header-cell class="cabecalhoTable" *matHeaderCellDef> Criação </th>
+                                <td mat-cell class="corpoTable" *matCellDef="let element"> {{element.created}} </td>
                             </ng-container>
 
                             <!-- Weight Column -->
                             <ng-container matColumnDef="email" class="email">
-                                <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> <span>Email</span> </mat-header-cell>
-                                <mat-cell class="corpoTable" *matCellDef="let element">
-                                    <a class="email cursor">{{element.email}}</a>
-                                </mat-cell>
+                                <th mat-header-cell class="cabecalhoTable" *matHeaderCellDef> Email </th>
+                                <td mat-cell class="corpoTable" *matCellDef="let element"> {{element.email}} </td>
                             </ng-container>
 
+                            <!-- Password Column -->
                             <ng-container matColumnDef="senha">
-                                <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> &nbsp; <span>Alterar Senha</span> </mat-header-cell>
-                                <mat-cell class="corpoTable" *matCellDef="let element">
-
+                                <th mat-header-cell class="cabecalhoTable" *matHeaderCellDef> Alterar Senha </th>
+                                <td mat-cell class="corpoTable" *matCellDef="let element">
                                     <a (click)="salvaId(element.id, element.user)" class="table-link check cursor alteraSenhaAdmin" id="  ">
                                         <span class="fa-stack">
-                                                <i class="fas fa-unlock-alt fa-unlock-alt-2x"></i>
-                                            </span>
+                                                                               <i class="fas fa-unlock-alt fa-unlock-alt-2x"></i>
+                                                                           </span>
                                     </a>
-
-                                </mat-cell>
+                                </td>
                             </ng-container>
 
                             <ng-container matColumnDef="perfil">
-                                <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> &nbsp; <span>Perfil</span> </mat-header-cell>
-                                <mat-cell class="corpoTable" style="width: 90%;" *matCellDef="let element">
+                                <th mat-header-cell class="cabecalhoTable" *matHeaderCellDef> Perfil </th>
+                                <td mat-cell class="corpoTable columnPerfil" *matCellDef="let element">
                                     <app-qd-select class="perfilDeUser" [id]="element.id" (retPlaceholder)="onSelect($event)" [arrSelect]="perfilUsuario" [titulo]="element.perfil"></app-qd-select>
-                                </mat-cell>
-
+                                </td>
                             </ng-container>
 
                             <ng-container matColumnDef="check">
-                                <mat-header-cell class="cabecalhoTableFim" *matHeaderCellDef> <span>Aplicar</span> </mat-header-cell>
-                                <mat-cell class="corpoTable" *matCellDef="let element">
+                                <th mat-header-cell class="cabecalhoTableFim" *matHeaderCellDef> Aplicar </th>
+                                <td mat-cell class="corpoTable" style="width: 50%;" *matCellDef="let element">
                                     <a (click)="updateUser(element.id)" class="table-link check cursor">
                                         <span class="fa-stack">
-
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-check fa-stack-1x fa-inverse"></i>
-                                            </span>
+                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                    <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                                                </span>
                                     </a>
-                                </mat-cell>
+                                </td>
                             </ng-container>
 
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns" [ngClass]="{gray: even}"></tr>
+                            <tr mat-row class="line" *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
 
-                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                            <mat-row style="align-items: end;" *matRowDef="let row; columns: displayedColumns;">
-                            </mat-row>
-                        </mat-table>
 
                     </div>
                 </div>
@@ -107,89 +99,6 @@
         </div>
     </div>
 </div>
-
-<!--Teste de utilização de tabela com th e th-->
-
-<!-- 
-<table role="table">
-    <thead role="rowgroup">
-      <tr role="row">
-        <th role="columnheader">First Name</th>
-        <th role="columnheader">Last Name</th>
-        <th role="columnheader">Job Title</th>
-        <th role="columnheader">Favorite Color</th>
-        <th role="columnheader">Wars or Trek?</th>
-        <th role="columnheader">Secret Alias</th>
-        <th role="columnheader">Date of Birth</th>
-        <th role="columnheader">Dream Vacation City</th>
-        <th role="columnheader">GPA</th>
-        <th role="columnheader">Arbitrary Data</th>
-      </tr>
-    </thead>
-    <tbody role="rowgroup">
-      <tr role="row">
-        <td role="cell">James</td>
-        <td role="cell">Matman</td>
-        <td role="cell">Chief Sandwich Eater</td>
-        <td role="cell">Lettuce Green</td>
-        <td role="cell">Trek</td>
-        <td role="cell">Digby Green</td>
-        <td role="cell">January 13, 1979</td>
-        <td role="cell">Gotham City</td>
-        <td role="cell">3.1</td>
-        <td role="cell">RBX-12</td>
-      </tr>
-      <tr role="row">
-        <td role="cell">The</td>
-        <td role="cell">Tick</td>
-        <td role="cell">Crimefighter Sorta</td>
-        <td role="cell">Blue</td>
-        <td role="cell">Wars</td>
-        <td role="cell">John Smith</td>
-        <td role="cell">July 19, 1968</td>
-        <td role="cell">Athens</td>
-        <td role="cell">N/A</td>
-        <td role="cell">Edlund, Ben (July 1996).</td>
-      </tr>
-      <tr role="row">
-        <td role="cell">Jokey</td>
-        <td role="cell">Smurf</td>
-        <td role="cell">Giving Exploding Presents</td>
-        <td role="cell">Smurflow</td>
-        <td role="cell">Smurf</td>
-        <td role="cell">Smurflane Smurfmutt</td>
-        <td role="cell">Smurfuary Smurfteenth, 1945</td>
-        <td role="cell">New Smurf City</td>
-        <td role="cell">4.Smurf</td>
-        <td role="cell">One</td>
-      </tr>
-      <tr role="row">
-        <td role="cell">Cindy</td>
-        <td role="cell">Beyler</td>
-        <td role="cell">Sales Representative</td>
-        <td role="cell">Red</td>
-        <td role="cell">Wars</td>
-        <td role="cell">Lori Quivey</td>
-        <td role="cell">July 5, 1956</td>
-        <td role="cell">Paris</td>
-        <td role="cell">3.4</td>
-        <td role="cell">3451</td>
-      </tr>
-      <tr role="row">
-        <td role="cell">Captain</td>
-        <td role="cell">Cool</td>
-        <td role="cell">Tree Crusher</td>
-        <td role="cell">Blue</td>
-        <td role="cell">Wars</td>
-        <td role="cell">Steve 42nd</td>
-        <td role="cell">December 13, 1982</td>
-        <td role="cell">Las Vegas</td>
-        <td role="cell">1.9</td>
-        <td role="cell">Under the couch</td>
-      </tr>
-    </tbody>
-  </table> -->
-
 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript"></script>

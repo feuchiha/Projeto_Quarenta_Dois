@@ -84,6 +84,7 @@ mat-header-row.mat-header-cell {
     color: white;
     font-size: 15px;
     background-color: #0baeb7;
+    border-bottom: #0baeb7 solid 1px !important;
 }
 
 .cabecalhoTableInicio {
@@ -91,6 +92,8 @@ mat-header-row.mat-header-cell {
     font-size: 15px;
     background-color: #0baeb7;
     border-radius: 5px 0 0 5px;
+    border-bottom: #0baeb7 solid 1px !important;
+    border-bottom-left-radius: 5px !important;
 }
 
 .cabecalhoTableFim {
@@ -98,10 +101,14 @@ mat-header-row.mat-header-cell {
     font-size: 15px;
     background-color: #0baeb7;
     border-radius: 0 5px 5px 0;
+    border-bottom: #0baeb7 solid 1px !important;
 }
 
 .corpoTable {
     color: white;
+    width: 15%;
+    border-bottom-width: 1px !important;
+    border-bottom-color: #3b3d3d !important;
 }
 
 .email {
@@ -192,7 +199,8 @@ mat-header-row.mat-header-cell {
     background-color: #0baeb7;
 }
 
-.buttonURL:hover, .buttonURLa:focus {
+.buttonURL:hover,
+.buttonURLa:focus {
     color: #ffffff;
 }
 
@@ -211,13 +219,4 @@ mat-header-row.mat-header-cell {
     font-size: 18px;
     color: white;
     border-bottom: #0baeb7 solid 1px;
-}
-
-.columnStatus {
-    width: 20px !important;
-}
-
-.mat-header-cell {
-    /* background-color: #0baeb7;
-    border-radius: 5px; */
 }
