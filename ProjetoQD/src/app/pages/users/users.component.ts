@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {MatTableDataSource} from '@angular/material';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ToastrManager } from 'ng6-toastr-notifications';
+import { Component, OnInit} from '@angular/core';
+import { MatTableDataSource} from '@angular/material';
+import { HttpHeaders } from '@angular/common/http'; 
 import { SidebarComponent} from '../../components/sidebar/sidebar.component';
 import * as $ from 'jquery';
 
