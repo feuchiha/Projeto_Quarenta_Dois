@@ -1,10 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {MatTableDataSource} from '@angular/material';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ToastrManager } from 'ng6-toastr-notifications';
-
+import { Component, OnInit} from '@angular/core';
+import { MatTableDataSource} from '@angular/material';
+import { HttpHeaders } from '@angular/common/http'; 
+import { SidebarComponent} from '../../components/sidebar/sidebar.component';
 import * as $ from 'jquery';
-
 
 export interface PeriodicElement {
   id: string;
@@ -21,21 +19,31 @@ export interface PeriodicElement {
   styleUrls: ['./users.component.css' ]
 })
 
-export class UsersComponent implements OnInit {
+export class UsersComponent extends SidebarComponent implements OnInit {
+ 
   userSet:string;
   displayedColumns: string[]  = ['user', 'status', 'created', 'email', 'senha', 'perfil', 'check'];
   dataSource: any
   perfilUsuario : string[] = ['Admin', 'User', 'Inativo'];
   selected: string;
-  user =  {newpassword:"", confirmepassword:"",id: ""};
+
+  updatepw =  {newpassword:"", confirmepassword:"",id: ""};
   usr = {id:"", perfil:""};
   id = {idUser:""};
-
-  constructor(private http: HttpClient, public toastr: ToastrManager) {
    
+  ngOnInit(){
+      if(this.loadSession()){
+        this.token = JSON.parse(localStorage.getItem('usr'));
+        console.log(this.token);
+      }
+        if(this.token.perfil != "User"){
+            this.loadUsers();
+        }else{
+            window.location.href = 'http://localhost:4200'
+        }
   }
 
-  ngOnInit() {
+  loadUsers() {
     const ELEMENT_DATA: PeriodicElement[] = [];
 
     const headers = new HttpHeaders()
@@ -65,8 +73,8 @@ export class UsersComponent implements OnInit {
     $('alteraSenhaAdmin').on('click', function(){
       
     });
-    document.querySelector('.close').addEventListener("click", function() {
-      document.querySelector('.bg-modal')['style']['display'] = "none";
+    document.querySelector('.fechar').addEventListener("click", function() {
+    document.querySelector('.bg-modal')['style']['display'] = "none";
     });
 
   }
@@ -79,7 +87,6 @@ export class UsersComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-
   salvaId(id, nameUser: string){
     this.setFlexModal();
     this.userSet = nameUser;
@@ -87,7 +94,6 @@ export class UsersComponent implements OnInit {
       idUser: id,
   }
 }
-
 
   updateUser(id){
     this.usr = {
@@ -122,17 +128,16 @@ export class UsersComponent implements OnInit {
 
   Updatepw(port){
 
-    this.user = {
+    this.updatepw = {
       id: this.id.idUser,
-      newpassword: this.user.newpassword,
-      confirmepassword: this.user.confirmepassword
+      newpassword: this.updatepw.newpassword,
+      confirmepassword: this.updatepw.confirmepassword
     }
-
     const headers = new HttpHeaders()
     .set('Authorization', 'my-auth-token')
     .set('Content-Type', 'application/json');
 this.http.post(`http://localhost:${port}/users/updateADMPW`, 
-JSON.stringify(this.user), {
+JSON.stringify(this.updatepw), {
 headers: headers
 })
 .subscribe(data => {

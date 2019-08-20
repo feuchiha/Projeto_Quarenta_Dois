@@ -3,6 +3,7 @@ declare var google: any;
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
 
+
 @Component({
   selector: 'app-geo',
   template: '<div #geoChart></div>',
@@ -72,5 +73,4 @@ export class GeoComponent implements OnInit{
     const chart = new google.visualization.GeoChart(this.geoChart.nativeElement);
     chart.draw(data, options);
   }
-
 }

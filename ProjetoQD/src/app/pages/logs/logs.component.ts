@@ -1,8 +1,13 @@
-import {Component} from '@angular/core';
+import {Component,  OnInit, Injectable} from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { of as observableOf } from 'rxjs'
 import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ToastrManager } from 'ng6-toastr-notifications';
+import { SidebarComponent} from '../../components/sidebar/sidebar.component';
+
+
 
 export interface DialogData {
   titulo: string;
@@ -18,16 +23,16 @@ const table: DialogData[] = [
    dataInsercao:"28/12/2018",
    inserido:true,
    lugar:'http://lugarAleatorio.com.br/dataset/lugaresAleatorios',
-   campos:["Código Cnes", "Latitude", "Longitude",
-          "Nome Fantasia", "Nome Logradouro", "Número do Endereço", "Nome do Bairro",
-          "Número de Telefone", "Código CEP", "UF", "Cidade"]},
+   campos:["Código Cnes", " Latitude", " Longitude",
+          " Nome Fantasia", " Nome Logradouro", " Número do Endereço", " Nome do Bairro",
+          " Número de Telefone", " Código CEP", " UF", " Cidade"]},
           {titulo:"Unidades Básicas de Saúde em Construção",
    dataInsercao:"28/12/2018",
    inserido:false,
    lugar:'Arquivo',
-   campos:["Código Cnes", "Latitude", "Longitude",
-           "Nome Fantasia", "Nome Logradouro", "Número do Endereço", "Nome do Bairro",
-           "Número de Telefone", "Código CEP", "UF", "Cidade"]}
+   campos:["Código Cnes", " Latitude", " Longitude",
+           " Nome Fantasia", " Nome Logradouro", " Número do Endereço", " Nome do Bairro",
+           " Número de Telefone", " Código CEP", " UF", " Cidade"]}
   ]
 
 @Component({
@@ -42,7 +47,13 @@ const table: DialogData[] = [
     ]),
   ]
 })
-export class LogsComponent {
+
+export class LogsComponent extends SidebarComponent {
+
+  ngOnInit(){
+    this.loadSession();
+  }
+
   displayedColumns = ['titulo', 'Data de Insercao',  'Adicionado','Fonte'];
   dataSource = new ExampleDataSource();
   
@@ -56,8 +67,6 @@ isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow
      return 'collapsed'
   }
 }
-
-
 
 export class ExampleDataSource extends DataSource<any> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */

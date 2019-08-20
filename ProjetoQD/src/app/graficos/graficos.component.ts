@@ -17,10 +17,6 @@ export class GraficosComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    
- 
-  
   }
 
 }
