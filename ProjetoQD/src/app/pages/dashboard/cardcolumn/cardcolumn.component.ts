@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // import * as google from  '../src/assets/jscustom/googlechart.js';
+import * as google from 'assets/jscustom/googlechart'
+
 @Component({
   selector: 'app-cardcolumn',
   templateUrl: './cardcolumn.component.html',

@@ -1,9 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {BlankLayoutCardComponent} from 'app/components/blank-layout-card';
 import { QdSelectComponent } from 'app/components/qd-select/qd-select.component';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ToastrManager } from 'ng6-toastr-notifications';
-import { SidebarComponent} from '../../components/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-importacao',
