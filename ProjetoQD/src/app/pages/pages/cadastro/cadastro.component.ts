@@ -20,12 +20,12 @@ export class CadastroComponent extends BlankLayoutCardComponent {
     const headers = new HttpHeaders()
           .set('Authorization', 'my-auth-token')
           .set('Content-Type', 'application/json');
-    this.http.post(`http://localhost:${port}/users/findUser`, 
+    this.http.post(`http://localhost:${port}/users/findEmail`, 
     JSON.stringify(this.user), {
     headers: headers
     })
     .subscribe(data => {
-       if(data['success'] === true){
+       if(data['success'] === false){
         if(this.user.username == "" || this.user.username == undefined ){
 
           this.toastr.errorToastr("Informe seu nome para efetuar a alteração do cadastro", 'Oops!');

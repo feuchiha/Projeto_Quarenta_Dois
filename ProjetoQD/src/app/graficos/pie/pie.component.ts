@@ -43,7 +43,6 @@ export class PieComponent implements OnInit {
   drawChart = () => {
 
     var data = google.visualization.arrayToDataTable(this.arrData);
-
   const options = {
     width: 500,
     height: 500,

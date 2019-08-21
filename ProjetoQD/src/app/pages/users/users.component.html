@@ -1,6 +1,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
@@ -10,78 +10,70 @@
             <div class="main-box no-header clearfix ">
                 <div class="main-box-body clearfix tableUsers">
                     <div class="table-responsive ">
-                        <mat-table #table class="table user-list" [dataSource]="dataSource">
+                        <table mat-table [dataSource]="dataSource" class="table user-list mat-elevation-z8">
+
+                            <!--- Note that these columns can be defined in any order.
+                                  The actual rendered columns are set as a property on the row definition" -->
+
                             <!-- Position Column -->
                             <ng-container matColumnDef="user">
-                                <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> <span>Usuário</span> </mat-header-cell>
-                                <mat-cell class="corpoTable" *matCellDef="let element">
-                                    <a class="user-link cursor">{{element.user}} </a>
-                                </mat-cell>
+                                <th mat-header-cell class=" cabecalhoTableInicio" *matHeaderCellDef> Usuário </th>
+                                <td mat-cell class="corpoTable" *matCellDef="let element"> {{element.user}} </td>
                             </ng-container>
 
-                            <!--Status Column-->
+                            <!-- Status Column -->
                             <ng-container matColumnDef="status">
-                                <mat-header-cell class="cabecalhoTable " *matHeaderCellDef> <span>Status</span> </mat-header-cell>
-                                <mat-cell class="corpoTable columnStatus" *matCellDef="let element">
-                                    <span class="user-subhead">{{element.status}}</span>
-                                </mat-cell>
+                                <th mat-header-cell class="cabecalhoTable" *matHeaderCellDef> Status </th>
+                                <td mat-cell class="corpoTable columnStatus" *matCellDef="let element"> {{element.status}} </td>
                             </ng-container>
 
                             <!-- Name Column -->
                             <ng-container matColumnDef="created">
-                                <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> <span>Criação</span> </mat-header-cell>
-                                <mat-cell class="corpoTable" *matCellDef="let element" class="dateCreated">
-                                    {{element.created}}
-                                </mat-cell>
+                                <th mat-header-cell class="cabecalhoTable" *matHeaderCellDef> Criação </th>
+                                <td mat-cell class="corpoTable" *matCellDef="let element"> {{element.created}} </td>
                             </ng-container>
 
                             <!-- Weight Column -->
                             <ng-container matColumnDef="email" class="email">
-                                <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> <span>Email</span> </mat-header-cell>
-                                <mat-cell class="corpoTable" *matCellDef="let element">
-                                    <a class="email cursor">{{element.email}}</a>
-                                </mat-cell>
+                                <th mat-header-cell class="cabecalhoTable" *matHeaderCellDef> Email </th>
+                                <td mat-cell class="corpoTable" *matCellDef="let element"> {{element.email}} </td>
                             </ng-container>
 
+                            <!-- Password Column -->
                             <ng-container matColumnDef="senha">
-                                <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> &nbsp; <span>Alterar Senha</span> </mat-header-cell>
-                                <mat-cell class="corpoTable" *matCellDef="let element">
-
+                                <th mat-header-cell class="cabecalhoTable" *matHeaderCellDef> Alterar Senha </th>
+                                <td mat-cell class="corpoTable" *matCellDef="let element">
                                     <a (click)="salvaId(element.id, element.user)" class="table-link check cursor alteraSenhaAdmin" id="  ">
                                         <span class="fa-stack">
-                                                <i class="fas fa-unlock-alt fa-unlock-alt-2x"></i>
-                                            </span>
+                                                                               <i class="fas fa-unlock-alt fa-unlock-alt-2x"></i>
+                                                                           </span>
                                     </a>
-
-                                </mat-cell>
+                                </td>
                             </ng-container>
 
                             <ng-container matColumnDef="perfil">
-                                <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> &nbsp; <span>Perfil</span> </mat-header-cell>
-                                <mat-cell class="corpoTable" style="width: 90%;" *matCellDef="let element">
-                                    <app-qd-select [id]="element.id" (retPlaceholder)="onSelect($event)" [arrSelect]="perfilUsuario" [titulo]="element.perfil"></app-qd-select>
-                                </mat-cell>
-
+                                <th mat-header-cell class="cabecalhoTable" *matHeaderCellDef> Perfil </th>
+                                <td mat-cell class="corpoTable columnPerfil" *matCellDef="let element">
+                                    <app-qd-select class="perfilDeUser" [id]="element.id" (retPlaceholder)="onSelect($event)" [arrSelect]="perfilUsuario" [titulo]="element.perfil"></app-qd-select>
+                                </td>
                             </ng-container>
 
                             <ng-container matColumnDef="check">
-                                <mat-header-cell class="cabecalhoTable" *matHeaderCellDef> <span>Aplicar</span> </mat-header-cell>
-                                <mat-cell class="corpoTable" *matCellDef="let element">
+                                <th mat-header-cell class="cabecalhoTableFim" *matHeaderCellDef> Aplicar </th>
+                                <td mat-cell class="corpoTable" style="width: 50%;" *matCellDef="let element">
                                     <a (click)="updateUser(element.id)" class="table-link check cursor">
                                         <span class="fa-stack">
-
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-check fa-stack-1x fa-inverse"></i>
-                                            </span>
+                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                    <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                                                </span>
                                     </a>
-                                </mat-cell>
+                                </td>
                             </ng-container>
 
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns" [ngClass]="{gray: even}"></tr>
+                            <tr mat-row class="line" *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
 
-                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                            <mat-row style="align-items: end;" *matRowDef="let row; columns: displayedColumns;">
-                            </mat-row>
-                        </mat-table>
 
                     </div>
                 </div>
@@ -92,14 +84,14 @@
 
 <div class="bg-modal">
     <div class="modal-content">
-        <div class="close" id="close">+</div>
+        <div class="fechar" id="close">+</div>
         <h1 class="importarH1">Alterar Senha de: {{userSet}}</h1>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-            <input class="mdl-textfield__input campoSenha" type="password" (input)="user.newpassword = $event.target.value" id="password" placeholder="Nova Senha">
+            <input class="mdl-textfield__input campoSenha" type="password" (input)="updatepw.newpassword = $event.target.value" id="password" placeholder="Nova Senha">
         </div>
 
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-            <input class="mdl-textfield__input campoSenha" type="password" (input)="user.confirmepassword = $event.target.value" id="password" placeholder="Confirma Nova Senha">
+            <input class="mdl-textfield__input campoSenha" type="password" (input)="updatepw.confirmepassword = $event.target.value" id="password" placeholder="Confirma Nova Senha">
         </div>
 
         <div class="buttonEnviar">
@@ -107,9 +99,5 @@
         </div>
     </div>
 </div>
-
-
-
-
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript"></script>

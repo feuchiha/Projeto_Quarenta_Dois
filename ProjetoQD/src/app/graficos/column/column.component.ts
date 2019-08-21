@@ -8,6 +8,7 @@ declare var google: any;
   styleUrls: ['./column.component.scss']
 })
 
+
 export class ColumnComponent implements OnInit {
   arrData:any = [];
   arrCab: any = [];
@@ -72,7 +73,6 @@ export class ColumnComponent implements OnInit {
     chart.draw(data, options);
   }
 
-  ngAfterViewInit() {
-   
+  ngAfterViewInit() {   
   }
 }
