@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {BlankLayoutCardComponent} from 'app/components/blank-layout-card';
 import { QdSelectComponent } from 'app/components/qd-select/qd-select.component';
+import { SidebarComponent } from 'app/components/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-importacao',

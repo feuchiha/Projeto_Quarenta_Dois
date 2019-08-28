@@ -20,7 +20,10 @@ export class GeoComponent implements OnInit{
 
   constructor(private http: HttpClient, public toastr: ToastrManager) {
   }
-
+  ngOnInit(){
+    
+  }
+/*
   ngOnInit(): void {
     // google.charts.load('current', { 'packages':['geochart'], 'mapsApiKey': 'AIzaSyBVSTOIEEgYfQXgDmSby4jPOfLTR-vG4WA'  });
     // const headers = new HttpHeaders()
@@ -73,4 +76,5 @@ export class GeoComponent implements OnInit{
     const chart = new google.visualization.GeoChart(this.geoChart.nativeElement);
     chart.draw(data, options);
   }
+  */
 }

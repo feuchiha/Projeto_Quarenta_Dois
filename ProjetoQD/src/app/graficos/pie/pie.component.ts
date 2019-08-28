@@ -13,6 +13,8 @@ export class PieComponent implements OnInit {
   arrData:any = [];
   arrCab: any = [];
   arrValues: any = [];
+  Mas: any = [];
+  Fem: any = [];
 
   @ViewChild('pieChart') pieChart: ElementRef
 
@@ -24,18 +26,26 @@ export class PieComponent implements OnInit {
     const headers = new HttpHeaders()
     .set('Authorization', 'my-auth-token')
     .set('Content-Type', 'application/json')
-    this.http.post(`http://localhost:3002/Mysql/pie`,{
+    this.http.post(`http://localhost:3002/index/bases`,{
       headers: headers
     })
     .subscribe(data => {
-      console.log(data)
-      for (const k in data) {
-          const element = data[k];
-          this.arrCab.push('10a14', 'Mortes'); //tentar mandar do back a legenda
-          this.arrValues.push(('10a14'), parseInt(element['10a14']));
+    this.arrData.push(['Homens' , 'Mulheres']);
+      for(let obj in data['data']){
+          if(data['data'][obj]['Regi?o'] != "total" ){
+              if(data['data'][obj]['Ano'] === "2013"){
+              if(data['data'][obj]['Genero'] === "Mas"){
+                this.Mas.push(data['data'][obj]['Regi?o']);
+              }else{
+                this.Fem.push(data['data'][obj]['?bitos']);
+              }        
+            }    
+          }
       }
-      this.arrData.push(this.arrCab);
-      this.arrData.push(this.arrValues);
+      for(var i = 0;i < this.Fem.length; i++){
+        this.arrData.push([this.Mas[i], parseInt(this.Fem[i])]);
+      }
+      //console.log(this.arrData);
       google.charts.setOnLoadCallback(this.drawChart);
     })
   }
@@ -71,4 +81,5 @@ export class PieComponent implements OnInit {
 
   chart.draw(data, options);
 }
+
 }

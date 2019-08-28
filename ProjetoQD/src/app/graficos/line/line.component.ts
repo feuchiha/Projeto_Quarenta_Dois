@@ -14,6 +14,8 @@ export class LineComponent implements OnInit {
   arrData:any = [];
   arrCab: any = [];
   arrValues: any = [];
+  Mas: any = [];
+  Fem: any = [];
 
   @ViewChild('lineChart') lineChart: ElementRef
 
@@ -21,29 +23,33 @@ export class LineComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    google.charts.load('current', { 'packages': ['corechart'] });
-    const headers = new HttpHeaders()
-    .set('Authorization', 'my-auth-token')
-    .set('Content-Type', 'application/json')
-    this.http.post(`http://localhost:3002/Mysql/line`,{
-      headers: headers
-    })
-    .subscribe(data => {
-      // console.log(data)
-      for (const k in data) {
-          const element = data[k];
-          this.arrData.push(['Homens' , 'Mulheres']);
-          for (var i = 0; i < Object.keys(element).length; i++){
-            if (element[`M${i}`]){
-              this.arrData.push([element[`M${i}`], element[`F${i}`]]);
+        google.charts.load('current', { 'packages': ['corechart'] });
+        const headers = new HttpHeaders()
+        .set('Authorization', 'my-auth-token')
+        .set('Content-Type', 'application/json')
+        this.http.post(`http://localhost:3002/index/bases`,{
+          headers: headers
+        })
+        .subscribe(data => {
+        this.arrData.push(['Homens' , 'Mulheres']);
+          for(let obj in data['data']){
+              if(data['data'][obj]['Regi?o'] != "total" ){
+                if(data['data'][obj]['Ano'] === "2013"){
+                  if(data['data'][obj]['Genero'] === "Mas"){
+                    this.Mas.push(data['data'][obj]['?bitos']);
+                  }else{
+                    this.Fem.push(data['data'][obj]['?bitos']);
+                  }            
+              }
             }
-            
-          }  
+          }
+          for(var i = 0;i < this.Fem.length; i++){
+            this.arrData.push([[this.Mas[i]], [this.Fem[i]]]);
+          }
+          google.charts.setOnLoadCallback(this.drawChart);
+          console.log(this.arrData)
+        })
       }
-      // console.log(this.arrData);
-      google.charts.setOnLoadCallback(this.drawChart);
-    })
-  }
 
   Selectages(): void {
     google.charts.load('current', { 'packages': ['corechart'] });

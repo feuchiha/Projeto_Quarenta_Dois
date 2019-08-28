@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angula
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
 declare var google: any;
+
 @Component({
   selector: 'app-column',
   template: '<div #columnChart></div>',
@@ -13,6 +14,9 @@ export class ColumnComponent implements OnInit {
   arrData:any = [];
   arrCab: any = [];
   arrValues: any = [];
+  Mas: any = [];
+  Fem: any = [];
+
   @ViewChild('columnChart') columnChart: ElementRef
 
 
@@ -24,24 +28,27 @@ export class ColumnComponent implements OnInit {
     const headers = new HttpHeaders()
     .set('Authorization', 'my-auth-token')
     .set('Content-Type', 'application/json')
-    this.http.post(`http://localhost:3002/Mysql/column`,{
+    this.http.post(`http://localhost:3002/index/bases`,{
       headers: headers
     })
     .subscribe(data => {
-      for (const k in data) {
-          const element = data[k];
-          this.arrData.push( [ 'Homens' , 'Mulheres']);
-          for (var i = 0; i < Object.keys(element).length; i++){
-            if (element[`M${i}`]){
-              this.arrData.push([parseInt(element[`M${i}`]), parseInt(element[`F${i}`])]);
-            }
-            
+    this.arrData.push(['Homens' , 'Mulheres']);
+      for(let obj in data['data']){
+          if(data['data'][obj]['Regi?o'] != "total" ){
+              if(data['data'][obj]['Genero'] === "Mas"){
+                this.Mas.push(data['data'][obj]['?bitos']);
+              }else{
+                this.Fem.push(data['data'][obj]['?bitos']);
+              }            
           }
+      }
+      for(var i = 0;i < this.Fem.length; i++){
+        this.arrData.push([[this.Mas[i]], [this.Fem[i]]]);
       }
       google.charts.setOnLoadCallback(this.drawChart);
     })
   }
-
+      
   drawChart = () => {
     var data = google.visualization.arrayToDataTable(this.arrData);
     var options = {
@@ -75,4 +82,10 @@ export class ColumnComponent implements OnInit {
 
   ngAfterViewInit() {   
   }
+
+/*
+  drawChart(drawChart: any) {
+    throw new Error("Method not implemented.");
+  }
+*/
 }

@@ -17,24 +17,6 @@ export class GraficosComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    const headers = new HttpHeaders()
-    .set('Authorization', 'my-auth-token')
-    .set('Content-Type', 'application/json');
-    this.http.post(`http://localhost:3002/iateste/iaback`, 
-     {
-    headers: headers
-    })
-    .subscribe(data => {
-      //if(data['success'] === true){
-        //this.toastr.errorToastr(data['message'], 'Oops!');
-      //}
-      console.log(data);
-    });
-    
- 
-  
-
   }
 
 }
