@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { stringify } from '@angular/compiler/src/util';
 declare var google: any;
 
 @Component({
@@ -14,8 +15,14 @@ export class ColumnComponent implements OnInit {
   arrData:any = [];
   arrCab: any = [];
   arrValues: any = [];
-  Mas: any = [];
-  Fem: any = [];
+  masNorte: any = [];
+  masNordeste: any = [];
+  masSudeste: any = [];
+  masSul: any = [];
+  masCentro: any[];
+  femNorte: any = [];
+  Fem: any = ""; 
+  Regiao: any = [];
 
   @ViewChild('columnChart') columnChart: ElementRef
 
@@ -32,19 +39,36 @@ export class ColumnComponent implements OnInit {
       headers: headers
     })
     .subscribe(data => {
-    this.arrData.push(['Homens' , 'Mulheres']);
+    this.arrData.push(['Região', 'Homens' , 'Mulheres']);
       for(let obj in data['data']){
-          if(data['data'][obj]['Regi?o'] != "total" ){
-              if(data['data'][obj]['Genero'] === "Mas"){
-                this.Mas.push(data['data'][obj]['?bitos']);
-              }else{
-                this.Fem.push(data['data'][obj]['?bitos']);
+        if(data['data'][obj]['Ano'] === "2013" && data['data'][obj]['Genero'] === "Mas" ){
+          this.Regiao.push(data['data'][obj]['Regi?o']);
+        }
+          if(data['data'][obj]['Genero'] === "Mas"){
+            this.masNorte.push(data['data'][obj]['?bitos']);
+        }else if(data['data'][obj]['Genero'] === "Fem"){
+            this.femNorte.push(data['data'][obj]['?bitos']);
+        }
+    }
+       /*  
+        if(data['data'][obj]['Regi?o'] != "total" ){
+              if(data['data'][obj]['Genero'] === "Mas" && data['data'][obj]['Genero'] != undefined ){
+                this.Mas += data['data'][obj]['?bitos'] + ",";
+              }else if(data['data'][obj]['Genero'] === "Fem" || data['data'][obj]['Genero'] != undefined){
+                this.Fem += data['data'][obj]['?bitos'] + ",";
               }            
           }
       }
-      for(var i = 0;i < this.Fem.length; i++){
-        this.arrData.push([[this.Mas[i]], [this.Fem[i]]]);
+      */
+      //console.log(this.masNorte + " Masculino");
+      //console.log(this.femNorte + " Feminino");
+      //console.log(this.Regiao + " Região");
+
+
+      for(var i = 0;i < this.Regiao.length; i++){
+        this.arrData.push([stringify(this.Regiao[i]), parseInt(this.masNorte[i]), parseInt(this.femNorte[i])]);
       }
+      //console.log(this.arrData);
       google.charts.setOnLoadCallback(this.drawChart);
     })
   }
