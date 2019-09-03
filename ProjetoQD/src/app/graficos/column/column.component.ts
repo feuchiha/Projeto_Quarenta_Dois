@@ -66,7 +66,7 @@ export class ColumnComponent implements OnInit {
 
 
       for(var i = 0;i < this.Regiao.length; i++){
-        this.arrData.push([stringify(this.Regiao[i]), parseInt(this.masNorte[i]), parseInt(this.femNorte[i])]);
+        this.arrData.push([this.Regiao[i], parseInt(this.masNorte[i]), parseInt(this.femNorte[i])]);
       }
       //console.log(this.arrData);
       google.charts.setOnLoadCallback(this.drawChart);

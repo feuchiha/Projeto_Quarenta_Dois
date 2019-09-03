@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { stringify } from '@angular/compiler/src/util';
 declare var google: any;
 
 @Component({
@@ -14,8 +15,9 @@ export class LineComponent implements OnInit {
   arrData:any = [];
   arrCab: any = [];
   arrValues: any = [];
-  Mas: any = [];
-  Fem: any = [];
+  Mas: any = [11,66,86,55,23,241,10,60,68,30,189];
+  Fem: any = [21, 96, 114, 42, 39, 288, 18,59, 90, 30, 14, 30];
+  ano: any = ['1', '2', '3', '4', '5', '6','7','8','9','10','11','12'];
 
   @ViewChild('lineChart') lineChart: ElementRef
 
@@ -24,6 +26,7 @@ export class LineComponent implements OnInit {
 
   ngOnInit(): void {
         google.charts.load('current', { 'packages': ['corechart'] });
+        /*
         const headers = new HttpHeaders()
         .set('Authorization', 'my-auth-token')
         .set('Content-Type', 'application/json')
@@ -31,24 +34,30 @@ export class LineComponent implements OnInit {
           headers: headers
         })
         .subscribe(data => {
-        this.arrData.push(['Homens' , 'Mulheres']);
+
+        this.arrData.push(['Regiao', 'Atual', 'Preditado']);
           for(let obj in data['data']){
-              if(data['data'][obj]['Regi?o'] != "total" ){
-                if(data['data'][obj]['Ano'] === "2013"){
+            if(data['data'][obj]['Regi?o'] === "total" && data['data'][obj]['Genero'] === "Mas"){
+              this.ano.push(data['data'][obj]['Ano']);
+          }
+              if(data['data'][obj]['Regi?o'] === "total" ){
                   if(data['data'][obj]['Genero'] === "Mas"){
                     this.Mas.push(data['data'][obj]['?bitos']);
                   }else{
                     this.Fem.push(data['data'][obj]['?bitos']);
-                  }            
-              }
+                  }     
+
+              
             }
           }
-          for(var i = 0;i < this.Fem.length; i++){
-            this.arrData.push([[this.Mas[i]], [this.Fem[i]]]);
+          */
+         this.arrData.push(['Regiao', 'Atual', 'Preditado']);
+          for(var i = 0;i < this.ano.length; i++){
+            this.arrData.push([stringify(this.ano[i]), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
           }
           google.charts.setOnLoadCallback(this.drawChart);
-         // console.log(this.arrData)
-        })
+          //console.log(this.arrData)
+        //})
       }
 
   Selectages(): void {

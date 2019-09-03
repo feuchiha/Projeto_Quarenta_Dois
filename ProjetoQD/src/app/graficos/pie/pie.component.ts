@@ -74,7 +74,8 @@ export class PieComponent implements OnInit {
         }
     },
     title: 'Obitos Anuais por Idades',
-    legend: {position: 'top'}
+    legend: {position: 'bottom', aligment:'end'},
+    chartArea:{left:'12%',top:'10%',width:'65%',height:'75%'}
   };
 
   const chart = new google.visualization.PieChart(this.pieChart.nativeElement);
