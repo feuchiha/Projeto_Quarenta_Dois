@@ -30,7 +30,7 @@ export class PieComponent implements OnInit {
       headers: headers
     })
     .subscribe(data => {
-    this.arrData.push(['Homens' , 'Mulheres']);
+    this.arrData.push(['Masculino' , 'Feminino']);
       for(let obj in data['data']){
           if(data['data'][obj]['Regi?o'] != "total" ){
               if(data['data'][obj]['Ano'] === "2013"){
@@ -54,8 +54,8 @@ export class PieComponent implements OnInit {
 
     var data = google.visualization.arrayToDataTable(this.arrData);
   const options = {
-    width: 500,
-    height: 500,
+    width: 1200,
+    height: 520,
     is3D: true,
     hAxis: {
       textStyle: {
@@ -73,8 +73,8 @@ export class PieComponent implements OnInit {
             color: '#0baeb7'
         }
     },
-    title: 'Obitos Anuais por Idades',
-    legend: {position: 'bottom', aligment:'end'},
+    title: 'Obitos do sexo feminino em 2013 todas as Idades por região',
+    legend: {position: 'bottom'},
     chartArea:{left:'12%',top:'10%',width:'65%',height:'75%'}
   };
 

@@ -28,9 +28,11 @@ body {
 }
 
 .card-box {
+    /*
     flex: 25%;
     padding: 10px;
     max-width: 500px;
+    */
     box-sizing: border-box;
 }
 

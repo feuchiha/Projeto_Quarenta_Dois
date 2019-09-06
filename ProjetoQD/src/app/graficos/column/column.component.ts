@@ -39,14 +39,14 @@ export class ColumnComponent implements OnInit {
       headers: headers
     })
     .subscribe(data => {
-    this.arrData.push(['Região', 'Homens' , 'Mulheres']);
+    this.arrData.push(['Região', 'Masculino' , 'Feminino']);
       for(let obj in data['data']){
-        if(data['data'][obj]['Ano'] === "2013" && data['data'][obj]['Genero'] === "Mas" ){
+        if(data['data'][obj]['Ano'] === "2013" && data['data'][obj]['Genero'] === "Mas" && data['data'][obj]['Regi?o'] != "total"){
           this.Regiao.push(data['data'][obj]['Regi?o']);
         }
-          if(data['data'][obj]['Genero'] === "Mas"){
+          if(data['data'][obj]['Genero'] === "Mas" && data['data'][obj]['Regi?o'] != "total"){
             this.masNorte.push(data['data'][obj]['?bitos']);
-        }else if(data['data'][obj]['Genero'] === "Fem"){
+        }else if(data['data'][obj]['Genero'] === "Fem" && data['data'][obj]['Regi?o'] != "total"){
             this.femNorte.push(data['data'][obj]['?bitos']);
         }
     }
@@ -76,9 +76,9 @@ export class ColumnComponent implements OnInit {
   drawChart = () => {
     var data = google.visualization.arrayToDataTable(this.arrData);
     var options = {
-      width: 500,
-      height: 500,
-      title: 'Generos dos Obitos por Região',
+      width: 1200,
+      height: 520,
+      title: 'Obitos em 2013 todas as Idades por região',
       // backgroundColor: 'white',
       legend: { position: 'top', maxLines: 3},
       bar: { groupWidth: '75%' },
