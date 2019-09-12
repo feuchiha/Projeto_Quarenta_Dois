@@ -87,15 +87,15 @@
         <div class="fechar" id="close">+</div>
         <h1 class="importarH1">Alterar Senha de: {{userSet}}</h1>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-            <input class="mdl-textfield__input campoSenha" type="password" [value]="updatepw.newpassword" (input)="updatepw.newpassword = $event.target.value" id="password" placeholder="Nova Senha">
+            <input class="mdl-textfield__input campoSenha" type="password" (input)="updatepw.newpassword = $event.target.value" id="password" placeholder="Nova Senha">
         </div>
 
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-            <input class="mdl-textfield__input campoSenha" type="password" [value]="updatepw.confirmepassword" (input)="updatepw.confirmepassword = $event.target.value" id="password" placeholder="Confirma Nova Senha">
+            <input class="mdl-textfield__input campoSenha" type="password" (input)="updatepw.confirmepassword = $event.target.value" id="password" placeholder="Confirma Nova Senha">
         </div>
 
         <div class="buttonEnviar">
-            <a (click)="Updatepw(3002)" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button buttonURL">Alterar</a>
+            <a (click)="Updatepw(3002)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button buttonURL">Alterar</a>
         </div>
     </div>
 </div>

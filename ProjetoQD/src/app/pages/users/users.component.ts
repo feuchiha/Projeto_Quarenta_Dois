@@ -34,7 +34,7 @@ export class UsersComponent extends SidebarComponent implements OnInit {
   ngOnInit(){
       if(this.loadSession()){
         this.token = JSON.parse(localStorage.getItem('usr'));
-        //console.log(this.token);
+        console.log(this.token);
       }
         if(this.token.perfil != "User"){
             this.loadUsers();
@@ -75,7 +75,7 @@ export class UsersComponent extends SidebarComponent implements OnInit {
     });
     document.querySelector('.fechar').addEventListener("click", function() {
     document.querySelector('.bg-modal')['style']['display'] = "none";
-  });
+    });
 
   }
 
@@ -146,8 +146,6 @@ headers: headers
 }else{
   document.querySelector('.bg-modal')['style']['display'] = "none";
   this.toastr.successToastr(data['message'], 'Success!');
-  this.updatepw.newpassword = null;
-  this.updatepw.confirmepassword = null;
 }
 
 });

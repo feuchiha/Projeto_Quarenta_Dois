@@ -63,7 +63,7 @@ export class LineComponent implements OnInit {
             this.arrData.push([stringify(this.ano[i]), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
           }
           google.charts.setOnLoadCallback(this.drawChart);
-          //console.log(this.arrData)
+          console.log(this.arrData)
         //})
       }
 

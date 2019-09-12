@@ -12,8 +12,8 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 export class SidebarComponent extends BaseSidebarComponent implements OnInit {
 
   token:  {email:"",name:"", perfil: any , token:""};
-  user = {id:"", email:"", username:"", password:"", newpassword:"", confirmenewpw:"", token:"", emailnew:""};
- 
+  user = {id:"", email:"", username:"", password:"", newpassword:"", confirmenewpw:"", token:""};
+
   constructor(public http: HttpClient, public toastr: ToastrManager) {
     super();
   this.token = JSON.parse(localStorage.getItem('usr'));
