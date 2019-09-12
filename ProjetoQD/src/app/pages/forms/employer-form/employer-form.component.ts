@@ -34,11 +34,12 @@ export class EmployerFormComponent extends SidebarComponent implements OnInit {
           this.user = {
             id: data['id'],
             username: this.user.username,
-            email: this.user.email,
+            email:  this.token.email,
             password: this.user.password,
             newpassword: this.user.newpassword,
             confirmenewpw: this.user.confirmenewpw,
-            token: this.token.token
+            token: this.token.token,
+            emailnew: this.user.email
           }
             if(this.user.username == "" || this.user.username == undefined ){
               this.toastr.errorToastr("Informe seu nome para efetuar a alteração do cadastro", 'Oops!');
@@ -65,6 +66,8 @@ export class EmployerFormComponent extends SidebarComponent implements OnInit {
             this.user[name] = undefined;
           }
     }
+
+    //console.log(this.user);
     const headers = new HttpHeaders()
           .set('Authorization', 'my-auth-token')
           .set('Content-Type', 'application/json');
@@ -73,29 +76,30 @@ export class EmployerFormComponent extends SidebarComponent implements OnInit {
     headers: headers
     })
     .subscribe(data => {
-       if(data['success'] === false){ 
+       if(data['success'] === true){ 
+        this.toastr.successToastr(data['message'], 'Success!');
+        this.attLocal();
+      }else{
         this.toastr.errorToastr(data['message'], 'Oops!');
         this.user.password = null;
         this.user.confirmenewpw = null;
         this.user.newpassword = null
-      }else{
-        this.toastr.successToastr(data['message'], 'Success!');
-        this.attLocal(port);
       }
       
     });
   }
 
-  attLocal(port){
+  attLocal(){
     const headers = new HttpHeaders()
           .set('Authorization', 'my-auth-token')
           .set('Content-Type', 'application/json');
-    this.http.post(`http://localhost:${port}/users/findEmail`,
+    this.http.post(`http://localhost:3002/users/findEmail`,
     JSON.stringify(this.token), {
     headers: headers
     })
     .subscribe(data => {
        if(data['success'] === true){
+        console.log('entrou');
         this.user = {
           id: this.user.id,
           username: data['name'],
@@ -103,17 +107,14 @@ export class EmployerFormComponent extends SidebarComponent implements OnInit {
           password: "",
           newpassword: "",
           confirmenewpw: "",
-          token: this.token.token
+          token: this.token.token,
+          emailnew: this.token.email
         }
+        console.log(this.user);
         localStorage.setItem('usr', JSON.stringify(this.user));
+        window.location.href = 'http://localhost:4200/#/app/forms';
        }
-       if(data['success'] === true){
-        setTimeout(
-          function(){ 
-          window.location.reload();
-          }, 500);
-        }
-      });
+    });
   }
   
 
