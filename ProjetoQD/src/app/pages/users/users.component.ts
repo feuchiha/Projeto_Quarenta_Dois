@@ -146,6 +146,8 @@ headers: headers
 }else{
   document.querySelector('.bg-modal')['style']['display'] = "none";
   this.toastr.successToastr(data['message'], 'Success!');
+  this.updatepw.newpassword = null,
+  this.updatepw.confirmepassword = null;
 }
 
 });
