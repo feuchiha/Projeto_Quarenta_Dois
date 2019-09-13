@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrManager } from 'ng6-toastr-notifications';
 import { HttpHeaders } from '@angular/common/http';
 import { SidebarComponent} from '../../../components/sidebar/sidebar.component';
+
 
 @Component({
   selector: 'app-employer-form',
@@ -34,11 +34,12 @@ export class EmployerFormComponent extends SidebarComponent implements OnInit {
           this.user = {
             id: data['id'],
             username: this.user.username,
-            email: this.user.email,
+            email: data['email'],
             password: this.user.password,
             newpassword: this.user.newpassword,
             confirmenewpw: this.user.confirmenewpw,
-            token: this.token.token
+            token: this.token.token,
+            emailnew : this.user.email
           }
             if(this.user.username == "" || this.user.username == undefined ){
               this.toastr.errorToastr("Informe seu nome para efetuar a alteração do cadastro", 'Oops!');
@@ -95,7 +96,8 @@ export class EmployerFormComponent extends SidebarComponent implements OnInit {
     headers: headers
     })
     .subscribe(data => {
-       if(data['success'] === true){
+       if(data['success'] === false){
+       }else{
         this.user = {
           id: this.user.id,
           username: data['name'],
@@ -103,16 +105,16 @@ export class EmployerFormComponent extends SidebarComponent implements OnInit {
           password: "",
           newpassword: "",
           confirmenewpw: "",
-          token: this.token.token
+          token: this.token.token,
+          emailnew: this.user.email
         }
+       
         localStorage.setItem('usr', JSON.stringify(this.user));
-       }
-       if(data['success'] === true){
-        setTimeout(
-          function(){ 
+        console.log(this.user);
+        setTimeout(function(){ 
           window.location.reload();
           }, 500);
-        }
+       }
       });
   }
   

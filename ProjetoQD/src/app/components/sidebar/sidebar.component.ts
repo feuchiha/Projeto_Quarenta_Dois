@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { SidebarComponent as BaseSidebarComponent } from 'theme/components/sidebar';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,7 +13,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 export class SidebarComponent extends BaseSidebarComponent implements OnInit {
 
   token:  {email:"",name:"", perfil: any , token:""};
-  user = {id:"", email:"", username:"", password:"", newpassword:"", confirmenewpw:"", token:""};
+  user = {id:"", email:"", username:"", password:"", newpassword:"", confirmenewpw:"", token:"", emailnew:""};
 
   constructor(public http: HttpClient, public toastr: ToastrManager) {
     super();
