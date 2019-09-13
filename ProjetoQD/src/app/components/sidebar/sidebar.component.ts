@@ -12,7 +12,7 @@ import { ViewEncapsulation } from '@angular/core';
 
 export class SidebarComponent extends BaseSidebarComponent implements OnInit {
 
-  token:  {email:"",name:"", perfil: any , token:""};
+  token:  {email: any ,name:"", perfil: any , token:""};
   user = {id:"", email:"", username:"", password:"", newpassword:"", confirmenewpw:"", token:"", emailnew:""};
 
   constructor(public http: HttpClient, public toastr: ToastrManager) {

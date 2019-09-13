@@ -81,6 +81,12 @@ export class EmployerFormComponent extends SidebarComponent implements OnInit {
         this.user.newpassword = null
       }else{
         this.toastr.successToastr(data['message'], 'Success!');
+        this.token = {
+          email: this.user.emailnew,
+          name: this.token.name,
+          perfil: this.token.perfil ,
+          token: this.token.token
+        }
         this.attLocal(port);
       }
       
@@ -88,6 +94,7 @@ export class EmployerFormComponent extends SidebarComponent implements OnInit {
   }
 
   attLocal(port){
+    console.log(this.user);
     const headers = new HttpHeaders()
           .set('Authorization', 'my-auth-token')
           .set('Content-Type', 'application/json');
@@ -96,8 +103,11 @@ export class EmployerFormComponent extends SidebarComponent implements OnInit {
     headers: headers
     })
     .subscribe(data => {
+      console.log(data['success']);
        if(data['success'] === false){
+         //console.log(false);
        }else{
+         //console.log(true);
         this.user = {
           id: this.user.id,
           username: data['name'],
@@ -108,9 +118,11 @@ export class EmployerFormComponent extends SidebarComponent implements OnInit {
           token: this.token.token,
           emailnew: this.user.email
         }
-       
+        console.log(data);
         localStorage.setItem('usr', JSON.stringify(this.user));
-        console.log(this.user);
+       
+       }
+       if(data['success'] === true){
         setTimeout(function(){ 
           window.location.reload();
           }, 500);
