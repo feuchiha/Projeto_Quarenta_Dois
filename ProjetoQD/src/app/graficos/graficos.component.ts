@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UpgradableComponent } from 'theme/components/upgradable';
 import { BlankLayoutCardComponent } from 'app/components/blank-layout-card';
 import { QdSelectComponent } from 'app/components/qd-select/qd-select.component';
+import { SidebarComponent} from '../components/sidebar/sidebar.component';
 
 
 @Component({
@@ -11,12 +12,10 @@ import { QdSelectComponent } from 'app/components/qd-select/qd-select.component'
   templateUrl: './graficos.component.html',
   styleUrls: ['./graficos.component.scss']
 })
-export class GraficosComponent implements OnInit {
+export class GraficosComponent extends SidebarComponent implements OnInit {
 
-  constructor(private http: HttpClient, public toastr: ToastrManager) {
-  }
-
-  ngOnInit() {
-  }
+  ngOnInit(){
+    this.loadSession()
+    }
 
 }

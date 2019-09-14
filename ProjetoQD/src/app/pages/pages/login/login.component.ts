@@ -1,7 +1,6 @@
 import { Component} from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { BlankLayoutCardComponent } from 'app/components/blank-layout-card';
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -10,16 +9,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   templateUrl: './login.component.html',
 })
 
-export class LoginComponent extends BlankLayoutCardComponent { 
+export class LoginComponent extends  BlankLayoutCardComponent { 
+
     user = {email:"", password:""};
-    email: String;
-    token: String;
     usr: {email:"",username:"", status:"", perfil:"",token:""};
-    
-    constructor(private http: HttpClient, public toastr: ToastrManager) {
+
+    constructor(public http: HttpClient, public toastr: ToastrManager) {
       super();
     }
-    
+        
     callServer(port) {
       const headers = new HttpHeaders()
             .set('Authorization', 'my-auth-token')
@@ -29,11 +27,17 @@ export class LoginComponent extends BlankLayoutCardComponent {
       headers: headers
       })
       .subscribe(data => {
-         if(data['success'] === true){  
-         this.token = data['token'];  
-         this.email = data['email'];
+         if(data['success'] === true){
+        this.usr = {
+          token: data['token'],
+          username: data['name'],
+          email: data['email'],
+          perfil: data['perfil'],
+          status: data['status']
+        }
+        localStorage.setItem('usr', JSON.stringify(this.usr));
          if(data['status'] != "Inativo"){
-          this.verifytoken(this.token, this.email);
+          this.verifytoken()
          }else{
           this.toastr.errorToastr('Perdão, mas o seu usuário esta Inativo ou foi Bloqueado. Contate um administrador!', 'Oops!');
          }        
@@ -43,49 +47,23 @@ export class LoginComponent extends BlankLayoutCardComponent {
       });
     }
 
-    verifytoken(token, email){
+    verifytoken(){
       const headers = new HttpHeaders()
       .set('Authorization', 'my-auth-token')
       .set('Content-Type', 'application/json');
       this.http.post(`http://localhost:3002/login/verifytoken`, 
-      JSON.stringify({token}), {
+      JSON.stringify(this.usr), {
       headers: headers
       })
       .subscribe(data => {
         if(data['success'] === false){
           this.toastr.errorToastr(data['message'], 'Oops!');
         }else{
-          this.callMe(this.email, this.token);
         }setTimeout(
           function(){ 
           window.location.href = 'http://localhost:4200/#/app/graficos'
           }, 500);
       });
-  }
-
-  callMe(email, token){
-    const headers = new HttpHeaders()
-          .set('Authorization', 'my-auth-token')
-          .set('Content-Type', 'application/json');
-    this.http.post(`http://localhost:3002/users/findEmail`, 
-    JSON.stringify({email}), {
-    headers: headers
-    })
-    .subscribe(data => {
-       if(data['success'] === true){
-        this.usr = {
-          email: data['email'],
-          status: data['status'],
-          username: data['name'],
-          perfil: data['perfil'],
-          token: token
-        }
-        localStorage.setItem('usr', JSON.stringify(this.usr));
-      } else{ 
-
-        this.toastr.errorToastr(data['message'], 'Oops!');
-       }
-    });
   }
 }
 

@@ -10,7 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { AlteraSenhaComponent } from './altera-senha/altera-senha.component';
 import { TesteToasrtComponent } from './teste-toasrt/teste-toasrt.component';
-// import { LoginParticleComponent } from './login-particle/login-particle.component';
+//import { LoginParticleComponent } from './login-particle/login-particle.component';
 
 
 
@@ -28,7 +28,7 @@ import { TesteToasrtComponent } from './teste-toasrt/teste-toasrt.component';
     CadastroComponent,
     AlteraSenhaComponent,
     TesteToasrtComponent
-    // LoginParticleComponent
+    //LoginParticleComponent
   ],
 })
 export class PagesModule { }

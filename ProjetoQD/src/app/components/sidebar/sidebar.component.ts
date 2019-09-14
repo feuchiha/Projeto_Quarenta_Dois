@@ -12,35 +12,12 @@ import { ViewEncapsulation } from '@angular/core';
 
 export class SidebarComponent extends BaseSidebarComponent implements OnInit {
 
-  token:  {email: any ,name:"", perfil: any , token:""};
+  token: {email: any ,name:"", perfil: any , token:""};
   user = {id:"", email:"", username:"", password:"", newpassword:"", confirmenewpw:"", token:"", emailnew:""};
 
   constructor(public http: HttpClient, public toastr: ToastrManager) {
     super();
-  this.token = JSON.parse(localStorage.getItem('usr'));
-}
-
-loadSession(){
-  if(this.token != null){
-    const headers = new HttpHeaders()
-    .set('Authorization', 'my-auth-token')
-    .set('Content-Type', 'application/json');
-    this.http.post(`http://localhost:3002/login/verifytoken`, 
-    JSON.stringify(this.token), {
-    headers: headers
-    })
-    .subscribe(data => {
-      if(data['success'] === true){
-        return true;
-
-      }else{
-        window.location.href = 'http://localhost:4200'
-    }
-      })
-        return true;
-      }else{
-        window.location.href = 'http://localhost:4200'
-      }
+    this.token = JSON.parse(localStorage.getItem('usr'));
 }
 
   public title = '42';
@@ -88,5 +65,28 @@ loadSession(){
         ], icon: 'pages' },*/
       ];
     }
+  }
+
+  loadSession(){
+    if(this.token != null){
+      const headers = new HttpHeaders()
+      .set('Authorization', 'my-auth-token')
+      .set('Content-Type', 'application/json');
+      this.http.post(`http://localhost:3002/login/verifytoken`, 
+      JSON.stringify(this.token), {
+      headers: headers
+      })
+      .subscribe(data => {
+        if(data['success'] === true){
+          return true;
+  
+        }else{
+          window.location.href = 'http://localhost:4200'
+      }
+        })
+          return true;
+        }else{
+          window.location.href = 'http://localhost:4200'
+        }
   }
 }
