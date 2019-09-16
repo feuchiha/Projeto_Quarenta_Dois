@@ -14,6 +14,7 @@ import { CardcolumnComponent } from './cardcolumn/cardcolumn.component';
 import { CardpieComponent } from './cardpie/cardpie.component';
 import { ChipsAutocompleteComponent } from './chips-autocomplete/chips-autocomplete.component';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { SidebarComponent } from 'theme/components/sidebar';
 
 @NgModule({
   imports: [
@@ -30,7 +31,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
     CardgeoComponent,
     CardlineComponent,
     CardcolumnComponent,
-    CardpieComponent,
+    CardpieComponent
     // CotoneasterCardComponent,
 
   ],

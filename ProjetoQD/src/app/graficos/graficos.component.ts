@@ -4,7 +4,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UpgradableComponent } from 'theme/components/upgradable';
 import { BlankLayoutCardComponent } from 'app/components/blank-layout-card';
 import { QdSelectComponent } from 'app/components/qd-select/qd-select.component';
-import { SidebarComponent} from '../components/sidebar/sidebar.component';
+import { SidebarComponent } from 'theme/components/sidebar';
+
+
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+import { ThemeModule } from 'theme';
 
 
 @Component({
@@ -12,10 +19,10 @@ import { SidebarComponent} from '../components/sidebar/sidebar.component';
   templateUrl: './graficos.component.html',
   styleUrls: ['./graficos.component.scss']
 })
-export class GraficosComponent extends SidebarComponent implements OnInit {
+export class GraficosComponent extends BlankLayoutCardComponent implements OnInit {
 
   ngOnInit(){
-    this.loadSession()
+   
     }
 
 }
