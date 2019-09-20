@@ -12,17 +12,14 @@ declare var google: any;
 
 
 export class ColumnComponent implements OnInit {
+  filtros = {faixaEtaria:"", ano:"", genero:""};
   arrData:any = [];
-  arrCab: any = [];
-  arrValues: any = [];
-  masNorte: any = [];
-  masNordeste: any = [];
-  masSudeste: any = [];
-  masSul: any = [];
-  masCentro: any[];
-  femNorte: any = [];
-  Fem: any = ""; 
-  Regiao: any = [];
+  Norte: any = [];
+  Nordeste: any = [];
+  Sudeste: any = [];
+  Sul: any = [];
+  Centro: any = [];
+  mes: any = [];
 
   @ViewChild('columnChart') columnChart: ElementRef
 
@@ -31,42 +28,42 @@ export class ColumnComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.filtros = {
+      faixaEtaria: " 30 a 39 anos",
+      ano: "2008",
+      genero:" Masc"
+    }
+
     google.charts.load('current', { 'packages': ['corechart'] });
     const headers = new HttpHeaders()
     .set('Authorization', 'my-auth-token')
     .set('Content-Type', 'application/json')
-    this.http.post(`http://localhost:3002/index/bases`,{
+    this.http.post(`http://localhost:3002/index/column`,
+      JSON.stringify(this.filtros),{
       headers: headers
     })
     .subscribe(data => {
-    this.arrData.push(['Região', 'Masculino' , 'Feminino']);
+      console.log(data);
+    this.arrData.push(['Mês', 'Norte' , 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
       for(let obj in data['data']){
-        if(data['data'][obj]['Ano'] === "2013" && data['data'][obj]['Genero'] === "Mas" && data['data'][obj]['Regi?o'] != "total"){
-          this.Regiao.push(data['data'][obj]['Regi?o']);
+        if(data['data'][obj]['regio'] === "1 Região Norte"){
+          this.mes.push(data['data'][obj]['mes']);
         }
-          if(data['data'][obj]['Genero'] === "Mas" && data['data'][obj]['Regi?o'] != "total"){
-            this.masNorte.push(data['data'][obj]['?bitos']);
-        }else if(data['data'][obj]['Genero'] === "Fem" && data['data'][obj]['Regi?o'] != "total"){
-            this.femNorte.push(data['data'][obj]['?bitos']);
-        }
-    }
-       /*  
-        if(data['data'][obj]['Regi?o'] != "total" ){
-              if(data['data'][obj]['Genero'] === "Mas" && data['data'][obj]['Genero'] != undefined ){
-                this.Mas += data['data'][obj]['?bitos'] + ",";
-              }else if(data['data'][obj]['Genero'] === "Fem" || data['data'][obj]['Genero'] != undefined){
-                this.Fem += data['data'][obj]['?bitos'] + ",";
-              }            
-          }
+        if(data['data'][obj]['regio'] === "1 Região Norte"){
+            this.Norte.push(data['data'][obj]['bitos']);
+        }else if(data['data'][obj]['regio'] === "2 Região Nordeste"){
+            this.Nordeste.push(data['data'][obj]['bitos']);
+        }else if(data['data'][obj]['regio'] === "3 Região Sudeste"){
+            this.Sudeste.push(data['data'][obj]['bitos']);
+        }else if(data['data'][obj]['regio'] === "4 Região Sul"){
+          this.Sul.push(data['data'][obj]['bitos']);
+        }else if(data['data'][obj]['regio'] === "5 Região Centro-Oeste"){
+          this.Centro.push(data['data'][obj]['bitos']);
       }
-      */
-      //console.log(this.masNorte + " Masculino");
-      //console.log(this.femNorte + " Feminino");
-      //console.log(this.Regiao + " Região");
-
-
-      for(var i = 0;i < this.Regiao.length; i++){
-        this.arrData.push([this.Regiao[i], parseInt(this.masNorte[i]), parseInt(this.femNorte[i])]);
+    }
+      for(var i = 0;i < this.mes.length; i++){
+        this.arrData.push([this.mes[i], parseInt(this.Norte[i]), parseInt(this.Nordeste[i]), parseInt(this.Sudeste[i]), parseInt(this.Sul[i]), parseInt(this.Centro[i]),]);
       }
       //console.log(this.arrData);
       google.charts.setOnLoadCallback(this.drawChart);
@@ -76,13 +73,13 @@ export class ColumnComponent implements OnInit {
   drawChart = () => {
     var data = google.visualization.arrayToDataTable(this.arrData);
     var options = {
-      width: 1200,
+      width: 620,
       height: 520,
       title: 'Obitos em 2013 todas as Idades por região',
       // backgroundColor: 'white',
       legend: { position: 'top', maxLines: 3},
       bar: { groupWidth: '75%' },
-      isStacked: false,
+      isStacked: true,
       hAxis: {
         textStyle: {
             color: '#0baeb7'

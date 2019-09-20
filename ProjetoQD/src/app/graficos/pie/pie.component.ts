@@ -10,9 +10,8 @@ declare var google: any;
 })
 
 export class PieComponent implements OnInit { 
+  filtros = {genero:"", mes:"", faixaEtaria:"", ano:""};
   arrData:any = [];
-  arrCab: any = [];
-  arrValues: any = [];
   Mas: any = [];
   Fem: any = [];
 
@@ -22,29 +21,32 @@ export class PieComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.filtros = {
+      genero: " Masc",
+      mes: "Jan",
+      faixaEtaria: " 30 a 39 anos",
+      ano: "2018"
+    }
+
     google.charts.load('current', { 'packages': ['corechart'] });
     const headers = new HttpHeaders()
     .set('Authorization', 'my-auth-token')
     .set('Content-Type', 'application/json')
-    this.http.post(`http://localhost:3002/index/bases`,{
+    this.http.post(`http://localhost:3002/index/pie`,
+    JSON.stringify(this.filtros),{
       headers: headers
     })
     .subscribe(data => {
-    this.arrData.push(['Masculino' , 'Feminino']);
+    this.arrData.push(['Região' , 'Obitos']);
       for(let obj in data['data']){
-          if(data['data'][obj]['Regi?o'] != "total" ){
-              if(data['data'][obj]['Ano'] === "2013"){
-              if(data['data'][obj]['Genero'] === "Mas"){
-                this.Mas.push(data['data'][obj]['Regi?o']);
-              }else{
-                this.Fem.push(data['data'][obj]['?bitos']);
-              }        
-            }    
-          }
+            this.Mas.push(data['data'][obj]['regio']);
+            this.Fem.push(data['data'][obj]['bitos']);
       }
-      for(var i = 0;i < this.Fem.length; i++){
+      for(var i = 0; i < this.Mas.length; i++){
         this.arrData.push([this.Mas[i], parseInt(this.Fem[i])]);
       }
+      //console.log(this.Fem);
       //console.log(this.arrData);
       google.charts.setOnLoadCallback(this.drawChart);
     })
