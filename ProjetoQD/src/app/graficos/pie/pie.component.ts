@@ -26,7 +26,7 @@ export class PieComponent implements OnInit {
       genero: " Masc",
       mes: "Jan",
       faixaEtaria: " 30 a 39 anos",
-      ano: "2018"
+      ano: "2018",
     }
 
     google.charts.load('current', { 'packages': ['corechart'] });
@@ -38,10 +38,12 @@ export class PieComponent implements OnInit {
       headers: headers
     })
     .subscribe(data => {
-    this.arrData.push(['Região' , 'Obitos']);
+    this.arrData.push(['Região' , 'Valor Gasto']);
       for(let obj in data['data']){
+        if(data['data'][obj]['regio'] != "Total"){
             this.Mas.push(data['data'][obj]['regio']);
-            this.Fem.push(data['data'][obj]['bitos']);
+            this.Fem.push(data['data'][obj]['valorServicoesHospitalares']);
+        }
       }
       for(var i = 0; i < this.Mas.length; i++){
         this.arrData.push([this.Mas[i], parseInt(this.Fem[i])]);
@@ -56,7 +58,7 @@ export class PieComponent implements OnInit {
 
     var data = google.visualization.arrayToDataTable(this.arrData);
   const options = {
-    width: 1200,
+    width: 620,
     height: 520,
     is3D: true,
     hAxis: {

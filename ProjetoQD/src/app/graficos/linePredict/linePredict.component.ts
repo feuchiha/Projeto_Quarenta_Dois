@@ -5,12 +5,12 @@ import { stringify } from '@angular/compiler/src/util';
 declare var google: any;
 
 @Component({
-  selector: 'app-line',
+  selector: 'app-line-predict',
   template: '<div #lineChart></div>',
-  styleUrls: ['./line.component.scss']
+  styleUrls: ['./linePredict.component.scss']
 })
 
-export class LineComponent implements OnInit {
+export class LinePredictComponent implements OnInit {
   filtros = {ano:"", faixaEtaria:"", regio:""};
   arrData:any = [];
   Mas: any = [];
@@ -25,7 +25,7 @@ export class LineComponent implements OnInit {
   ngOnInit(): void {
 
       this.filtros = {
-          ano: "2018",
+          ano: "2019",
           faixaEtaria: " 30 a 39 anos",
           regio: "1 Região Norte",
         }
@@ -34,7 +34,7 @@ export class LineComponent implements OnInit {
         const headers = new HttpHeaders()
         .set('Authorization', 'my-auth-token')
         .set('Content-Type', 'application/json')
-        this.http.post(`http://localhost:3002/index/line`,
+        this.http.post(`http://localhost:3002/index/linePredict`,
           JSON.stringify(this.filtros),{
           headers: headers
         })

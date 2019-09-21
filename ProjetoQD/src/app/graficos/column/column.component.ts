@@ -44,7 +44,7 @@ export class ColumnComponent implements OnInit {
       headers: headers
     })
     .subscribe(data => {
-      console.log(data);
+      //console.log(data);
     this.arrData.push(['Mês', 'Norte' , 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
       for(let obj in data['data']){
         if(data['data'][obj]['regio'] === "1 Região Norte"){

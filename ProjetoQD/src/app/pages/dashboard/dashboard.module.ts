@@ -16,6 +16,7 @@ import { ChipsAutocompleteComponent } from './chips-autocomplete/chips-autocompl
 import { GoogleChartsModule } from 'angular-google-charts';
 import { SidebarComponent } from 'theme/components/sidebar';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -26,6 +27,7 @@ import { SidebarComponent } from 'theme/components/sidebar';
   declarations: [
     DashboardComponent,
     LineChartComponent,
+
     PieChartComponent,
     CardComponent,
     CardgeoComponent,
