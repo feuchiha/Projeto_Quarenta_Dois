@@ -5,13 +5,13 @@ import { stringify } from '@angular/compiler/src/util';
 declare var google: any;
 
 @Component({
-  selector: 'app-column',
-  template: '<div #columnChart></div>',
-  styleUrls: ['./column.component.scss']
+  selector: 'app-area',
+  template: '<div #areaChart></div>',
+  styleUrls: ['./area.component.scss']
 })
 
 
-export class ColumnComponent implements OnInit {
+export class AreaComponent implements OnInit {
   filtros = {faixaEtaria:"", ano:"", genero:""};
   arrData:any = [];
   Norte: any = [];
@@ -21,7 +21,7 @@ export class ColumnComponent implements OnInit {
   Centro: any = [];
   mes: any = [];
 
-  @ViewChild('columnChart') columnChart: ElementRef
+  @ViewChild('areaChart') areaChart: ElementRef
 
 
   constructor(private http: HttpClient, public toastr: ToastrManager) {
@@ -39,7 +39,7 @@ export class ColumnComponent implements OnInit {
     const headers = new HttpHeaders()
     .set('Authorization', 'my-auth-token')
     .set('Content-Type', 'application/json')
-    this.http.post(`http://localhost:3002/index/column`,
+    this.http.post(`http://localhost:3002/index/area`,
       JSON.stringify(this.filtros),{
       headers: headers
     })
@@ -51,15 +51,15 @@ export class ColumnComponent implements OnInit {
           this.mes.push(data['data'][obj]['mes']);
         }
         if(data['data'][obj]['regio'] === "1 Região Norte"){
-            this.Norte.push(data['data'][obj]['bitos']);
+            this.Norte.push(data['data'][obj]['internacoes']);
         }else if(data['data'][obj]['regio'] === "2 Região Nordeste"){
-            this.Nordeste.push(data['data'][obj]['bitos']);
+            this.Nordeste.push(data['data'][obj]['internacoes']);
         }else if(data['data'][obj]['regio'] === "3 Região Sudeste"){
-            this.Sudeste.push(data['data'][obj]['bitos']);
+            this.Sudeste.push(data['data'][obj]['internacoes']);
         }else if(data['data'][obj]['regio'] === "4 Região Sul"){
-          this.Sul.push(data['data'][obj]['bitos']);
+          this.Sul.push(data['data'][obj]['internacoes']);
         }else if(data['data'][obj]['regio'] === "5 Região Centro-Oeste"){
-          this.Centro.push(data['data'][obj]['bitos']);
+          this.Centro.push(data['data'][obj]['internacoes']);
       }
     }
       for(var i = 0;i < this.mes.length; i++){
@@ -78,8 +78,6 @@ export class ColumnComponent implements OnInit {
       title: 'Obitos em '+this.filtros.ano +' do sexo '+ this.filtros.genero+' de '+this.filtros.faixaEtaria+' todas as regiões',
       // backgroundColor: 'white',
       legend: { position: 'top', maxLines: 3},
-      bar: { groupWidth: '75%' },
-      isStacked: true,
       hAxis: {
         textStyle: {
             color: '#0baeb7'
@@ -97,7 +95,7 @@ export class ColumnComponent implements OnInit {
           }
       },
     };
-    const chart = new google.visualization.ColumnChart(this.columnChart.nativeElement);
+    const chart = new google.visualization.AreaChart(this.areaChart.nativeElement);
     chart.draw(data, options);
   }
 

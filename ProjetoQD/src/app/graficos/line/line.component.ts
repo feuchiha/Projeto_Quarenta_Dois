@@ -80,7 +80,7 @@ export class LineComponent implements OnInit {
     const options = {      
       width: 620,
       height: 520,
-      title: 'Total de obitos por genero de '+ this.filtros.faixaEtaria + " no ano de " + this.filtros.ano,
+      title: 'Total de obitos por genero de '+ this.filtros.faixaEtaria + " no ano de " + this.filtros.ano + ' na ' + this.filtros.regio,
       curveType: 'function',
       legend: { 
         position: 'bottom' },

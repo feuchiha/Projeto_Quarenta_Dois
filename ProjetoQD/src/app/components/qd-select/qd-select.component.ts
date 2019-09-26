@@ -20,55 +20,58 @@ export class QdSelectComponent implements OnInit {
   constructor() { }
   finalWidth: any
   ngOnInit() {
+    console.table(this.arrSelect)
     this.arrSelectAux = this.arrSelect;
-    if (!this.titulo){
+    if (!this.titulo) {
       this.titulo = "Escolha uma opção";
       this.placeholder = "placeholder";
     } else {
       this.onUpdate();
     }
-    
-    this.elementId = `user_${this.id}`; 
+
+    this.elementId = `user_${this.id}`;
     this.retPlaceholder.emit(this.titulo);
   }
 
-  clickSelect(id){
+  clickSelect(id) {
     console.log('click ' + id)
-      var $drop = $("#"+ id),
-        prevActive = $("#"+ id).attr("data-value"),
-        options = $("#"+ id).children.length;
-      $drop.find(".option.active").addClass("mini-hack");
-      $drop.toggleClass("visible");
-      $drop.removeClass("withBG");
-      $('#'+id).css("top");
-      $drop.toggleClass("opacity");
-      $(".mini-hack").removeClass("mini-hack");
-      if ($drop.hasClass("visible")) {
-        setTimeout(function () {
-        }, 400 + options * 100);
-      }
+    var $drop = $("#" + id),
+      prevActive = $("#" + id).attr("data-value"),
+      options = $("#" + id).children.length;
+    $drop.find(".option.active").addClass("mini-hack");
+    $drop.toggleClass("visible");
+    $drop.removeClass("withBG");
+    $('#' + id).css("top");
+    $drop.toggleClass("opacity");
+    $(".mini-hack").removeClass("mini-hack");
+    if ($drop.hasClass("visible")) {
+      setTimeout(function () {
+      }, 400 + options * 100);
+    }
 
-      if (prevActive === "placeholder") {
-        $(".drop").removeClass("active");
-        $('#'+id).addClass("active");
-      }
+    if (prevActive === "placeholder") {
+      $(".drop").removeClass("active");
+      $('#' + id).addClass("active");
+    }
   }
 
-  selection(attr: string){
+  selection(attr: string) {
     this.titulo = attr;
     this.retPlaceholder.emit(attr);
     this.onUpdate();
   }
-  onUpdate(){
+  onUpdate() {
     this.arrSelect = Array.from(this.arrSelectAux);
-    for( var i = 0; i < this.arrSelect.length; i++){ 
-      if ( this.arrSelect[i] === this.titulo) {
-        this.arrSelect.splice(i, 1); 
+    console.log(this.arrSelect)
+    for (var i = 0; i < this.arrSelect.length; i++) {
+      console.log(this.titulo)
+      if (this.arrSelect[i] === this.titulo) {
+        this.arrSelect.splice(i, 1);
       }
-   }
+    }
   }
 
-  openCloseSelect(index:string){
+  openCloseSelect(index: string) {
     $(".drop")["children"][index]
   }
-  }
+}

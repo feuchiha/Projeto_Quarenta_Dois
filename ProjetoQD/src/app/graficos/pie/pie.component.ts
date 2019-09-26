@@ -21,7 +21,15 @@ export class PieComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    /*
+    this.filtros = {
+      genero: " Masc",
+      regio: "Total",
+      faixaEtaria: " 30 a 39 anos",
+      ano: "2018",
+      
+    }
+    */
     this.filtros = {
       genero: " Masc",
       mes: "Jan",
@@ -77,9 +85,9 @@ export class PieComponent implements OnInit {
             color: '#0baeb7'
         }
     },
-    title: 'Obitos do sexo feminino em 2013 todas as Idades por região',
-    legend: {position: 'bottom'},
-    chartArea:{left:'12%',top:'10%',width:'65%',height:'75%'}
+    title: 'Custos de internação do sexo ' + this.filtros.genero +  ' em ' + this.filtros.mes + ' ' + this.filtros.ano + ' de ' + this.filtros.faixaEtaria,
+    legend: {position: 'top', maxLines: 3},
+    chartArea:{left:'12%',top:'20%',width:'65%',height:'75%'}
   };
 
   const chart = new google.visualization.PieChart(this.pieChart.nativeElement);

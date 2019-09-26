@@ -5,13 +5,13 @@ import { stringify } from '@angular/compiler/src/util';
 declare var google: any;
 
 @Component({
-  selector: 'app-column',
+  selector: 'app-columnPredict',
   template: '<div #columnChart></div>',
-  styleUrls: ['./column.component.scss']
+  styleUrls: ['./columnPredict.component.scss']
 })
 
 
-export class ColumnComponent implements OnInit {
+export class ColumnPredictComponent implements OnInit {
   filtros = {faixaEtaria:"", ano:"", genero:""};
   arrData:any = [];
   Norte: any = [];
@@ -31,7 +31,7 @@ export class ColumnComponent implements OnInit {
 
     this.filtros = {
       faixaEtaria: " 70 a 79 anos",
-      ano: "2008",
+      ano: "2019",
       genero:" Masc"
     }
 
@@ -39,7 +39,7 @@ export class ColumnComponent implements OnInit {
     const headers = new HttpHeaders()
     .set('Authorization', 'my-auth-token')
     .set('Content-Type', 'application/json')
-    this.http.post(`http://localhost:3002/index/column`,
+    this.http.post(`http://localhost:3002/index/columnPredict`,
       JSON.stringify(this.filtros),{
       headers: headers
     })
@@ -75,7 +75,7 @@ export class ColumnComponent implements OnInit {
     var options = {
       width: 620,
       height: 520,
-      title: 'Obitos em '+this.filtros.ano +' do sexo '+ this.filtros.genero+' de '+this.filtros.faixaEtaria+' todas as regiões',
+      title: 'Previsão de obitos em '+this.filtros.ano +' do sexo '+ this.filtros.genero+' de '+this.filtros.faixaEtaria+' todas as regiões',
       // backgroundColor: 'white',
       legend: { position: 'top', maxLines: 3},
       bar: { groupWidth: '75%' },

@@ -1,8 +1,8 @@
-<div  id= "{{elementId}}" class="drop diasDrop" (click)="clickSelect(elementId)">
-  <div class="option active placeholder mdl-button" attr.data-value="{{titulo}}">
+<div  id= "{{elementId}}" class="drop diasDrop" style="position: absolute;" (click)="clickSelect(elementId)">
+  <div class="option active placeholder mdl-button" style="background-color: #35414a;" attr.data-value="{{titulo}}">
     {{titulo}}
   </div>
-  <div *ngFor="let options of arrSelect" (click)="selection(options)" class="option mdl-button" attr.data-value="{{options}}">
+  <div *ngFor="let options of arrSelect" (click)="selection(options)" style="background-color: #35414a;   z-index: 10000;" class="option mdl-button" attr.data-value="{{options}}">
      {{options}}
   </div>
 </div>

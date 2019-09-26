@@ -60,11 +60,13 @@ import { GeoComponent } from './graficos/geo/geo.component';
 import { LineComponent } from './graficos/line/line.component';
 import { LinePredictComponent } from './graficos/linePredict/linePredict.component';
 import { ColumnComponent } from './graficos/column/column.component';
+import { ColumnPredictComponent } from './graficos/columnPredict/columnPredict.component';
+import { AreaComponent } from './graficos/area/area.component'; 
 import { PieComponent } from './graficos/pie/pie.component'; 
 
 @NgModule({
 
-  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent, QdSelectComponent, User2testeComponent, ChartsgoogleComponent, PieChartComponent, GraficosComponent, CardsComponent, GeoComponent, LineComponent, LinePredictComponent, ColumnComponent, PieComponent ],
+  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent, QdSelectComponent, User2testeComponent, ChartsgoogleComponent, PieChartComponent, GraficosComponent, CardsComponent, GeoComponent, LineComponent, LinePredictComponent, ColumnComponent, ColumnPredictComponent, AreaComponent, PieComponent ],
 
   imports: [
     BrowserModule,
