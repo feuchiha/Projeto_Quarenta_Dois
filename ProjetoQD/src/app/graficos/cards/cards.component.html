@@ -60,8 +60,14 @@
     </div>
     <div class="card-box">
         <div class="table">
-            <app-qd-select style="z-index: 10000" [arrSelect]="perfilUsuario" [titulo]="Admin" (retPlaceholder)="onSelect($event)"
+            <div class="filtro1">
+            <app-qd-select class="filtro" [arrSelect]="perfilUsuario" [titulo]="Admin" (retPlaceholder)="onSelect($event)"
                 [id]="element_id1"></app-qd-select>
+                </div>
+                <div class="filtro2">
+                <app-qd-select class="filtro" [arrSelect]="generoUsuario" [titulo]="genero" (retPlaceholder)="onSelect2($event)"
+                [id]="element_id2"></app-qd-select>
+                </div>
             <app-pie></app-pie>
         </div>
     </div>

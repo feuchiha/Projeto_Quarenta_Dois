@@ -9,12 +9,18 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 })
 export class CardsComponent implements OnInit {
   perfilUsuario: string[] = ['Admin', 'User', 'Inativo'];
+  generoUsuario: string[] = ['Masc', 'Fem'];
   selected: string;
+  genero: string = 'Masc'
   
   constructor(private http: HttpClient, public toastr: ToastrManager) {
   }
 
   onSelect(val: string) {
+    this.selected = val;
+  }
+
+  onSelect2(val: string) {
     this.selected = val;
   }
 

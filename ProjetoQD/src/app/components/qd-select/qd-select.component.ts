@@ -20,7 +20,7 @@ export class QdSelectComponent implements OnInit {
   constructor() { }
   finalWidth: any
   ngOnInit() {
-    console.table(this.arrSelect)
+    console.log(this.id)
     this.arrSelectAux = this.arrSelect;
     if (!this.titulo) {
       this.titulo = "Escolha uma opção";
