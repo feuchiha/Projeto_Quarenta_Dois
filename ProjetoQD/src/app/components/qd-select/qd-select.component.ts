@@ -1,12 +1,13 @@
 import { Component, OnInit, Input, Output, AfterViewInit, EventEmitter } from '@angular/core';
 import * as $ from "jquery";
+import { CardsComponent } from '../../graficos/cards/cards.component';
 import { OutletContext } from '@angular/router';
 @Component({
   selector: 'app-qd-select',
   templateUrl: './qd-select.component.html',
   styleUrls: ['./qd-select.component.scss']
 })
-export class QdSelectComponent implements OnInit {
+export class QdSelectComponent extends CardsComponent implements OnInit {
 
   @Input() arrSelect: string[];
   @Output() retPlaceholder = new EventEmitter<string>();
@@ -17,10 +18,9 @@ export class QdSelectComponent implements OnInit {
   arrSelectAux: string[];
   placeholder: string;
 
-  constructor() { }
   finalWidth: any
   ngOnInit() {
-    console.log(this.id)
+    //console.log(this.id)
     this.arrSelectAux = this.arrSelect;
     if (!this.titulo) {
       this.titulo = "Escolha uma opção";
@@ -34,7 +34,7 @@ export class QdSelectComponent implements OnInit {
   }
 
   clickSelect(id) {
-    console.log('click ' + id)
+    //console.log('click ' + id)
     var $drop = $("#" + id),
       prevActive = $("#" + id).attr("data-value"),
       options = $("#" + id).children.length;
@@ -62,9 +62,9 @@ export class QdSelectComponent implements OnInit {
   }
   onUpdate() {
     this.arrSelect = Array.from(this.arrSelectAux);
-    console.log(this.arrSelect)
+    //console.log(this.arrSelect)
     for (var i = 0; i < this.arrSelect.length; i++) {
-      console.log(this.titulo)
+      //console.log(this.titulo)
       if (this.arrSelect[i] === this.titulo) {
         this.arrSelect.splice(i, 1);
       }

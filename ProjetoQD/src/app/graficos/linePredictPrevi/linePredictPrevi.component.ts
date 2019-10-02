@@ -5,17 +5,20 @@ import { stringify } from '@angular/compiler/src/util';
 declare var google: any;
 
 @Component({
-  selector: 'app-line-predict',
+  selector: 'app-line-predictPrevi',
   template: '<div #lineChart></div>',
-  styleUrls: ['./linePredict.component.scss']
+  styleUrls: ['./LinePredictPrevi.component.scss']
 })
 
-export class LinePredictComponent implements OnInit {
+export class LinePredictPreviComponent implements OnInit {
   filtros = {ano:"", faixaEtaria:"", regio:""};
   arrData:any = [];
   Mas: any = [];
   Fem: any = [];
   meses: any = [];
+  MasPredict: any = [];
+  FemPredict: any = [];
+  mesesPredit: any = [];
 
   @ViewChild('lineChart') lineChart: ElementRef
 
@@ -25,16 +28,16 @@ export class LinePredictComponent implements OnInit {
   ngOnInit(): void {
 
       this.filtros = {
-          ano: "2019",
-          faixaEtaria: " 30 a 39 anos",
-          regio: "1 Região Norte",
+          ano: "2018",
+          faixaEtaria: " 70 a 79 anos",
+          regio: "3 Região Sudeste",
         }
 
         google.charts.load('current', { 'packages': ['corechart'] });
         const headers = new HttpHeaders()
         .set('Authorization', 'my-auth-token')
         .set('Content-Type', 'application/json')
-        this.http.post(`http://localhost:3002/index/linePredict`,
+        this.http.post(`http://localhost:3002/index/line`,
           JSON.stringify(this.filtros),{
           headers: headers
         })
@@ -53,34 +56,56 @@ export class LinePredictComponent implements OnInit {
           }
 
           for(var i = 0;i < this.meses.length; i++){
-            this.arrData.push([stringify(this.meses[i]), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
+            this.arrData.push([stringify(this.meses[i] + '/2018'), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
           }
-          google.charts.setOnLoadCallback(this.drawChart);
+          this.predictBusca();
         })
+
       }
-/*
-  Selectages(): void {
-    google.charts.load('current', { 'packages': ['corechart'] });
-    const headers = new HttpHeaders()
-    .set('Authorization', 'my-auth-token')
-    .set('Content-Type', 'application/json')
-    this.http.post(`http://localhost:3002/Mysql/ages`,{
-      headers: headers
-    })
-    .subscribe(data => {
-      for (const k in data) {
-        const element = data[k];
-        this.ages.push((element['idades']));
+
+
+  predictBusca(): void {
+
+      this.filtros = {
+        ano: "2019",
+        faixaEtaria: " 70 a 79 anos",
+        regio: "3 Região Sudeste",
       }
-    })
-  }
-*/
+
+      google.charts.load('current', { 'packages': ['corechart'] });
+      const headers = new HttpHeaders()
+      .set('Authorization', 'my-auth-token')
+      .set('Content-Type', 'application/json')
+      this.http.post(`http://localhost:3002/index/linePredict`,
+        JSON.stringify(this.filtros),{
+        headers: headers
+      })
+      .subscribe(data => {
+        //console.log(data)
+        for(let obj in data['data']){
+          if(data['data'][obj]['genero'] == " Masc" ){
+            this.mesesPredit.push(data['data'][obj]['mes'] , );
+        }
+          if(data['data'][obj]['genero'] === " Masc"){
+            this.MasPredict.push(data['data'][obj]['bitos']);
+          }else{
+            this.FemPredict.push(data['data'][obj]['bitos']);
+          } 
+        }
+
+        for(var i = 0;i < this.mesesPredit.length; i++){
+          this.arrData.push([stringify(this.mesesPredit[i] + '/2019'), parseInt(this.MasPredict[i]), parseInt(this.FemPredict[i])]);
+        }
+        google.charts.setOnLoadCallback(this.drawChart);
+      })
+    }
+
   drawChart = () => {
     var data = google.visualization.arrayToDataTable(this.arrData);
     const options = {      
-      width: 620,
+      width: 1200,
       height: 520,
-      title: 'Previsão de obitos por genero de '+ this.filtros.faixaEtaria + " no ano de " + this.filtros.ano + ' na ' + this.filtros.regio,
+      title: 'Visualização Previsão de obitos por genero de '+ this.filtros.faixaEtaria + " no ano de " + this.filtros.ano + ' na ' + this.filtros.regio,
       curveType: 'function',
       legend: { 
         position: 'bottom' },

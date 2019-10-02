@@ -28,6 +28,7 @@ export class SidebarComponent extends BaseSidebarComponent implements OnInit {
             this.menu =  [
               { name: 'Início', link: '/app/dashboard', icon: 'home' },
               { name: 'Gráficos', link: '/app/graficos', icon: 'insert_chart'},
+              { name: 'Precisoes', link: '/app/previsoes', icon: 'insert_chart' },
               //{ name: 'Importar', link: '/app/importacao', icon: 'backup' },
               //{ name: 'Histórico', link: '/app/logs', icon: 'history' },
               //{ name: 'Análises', link: '/app/visualizacao-dados', icon: 'broken_image' },
@@ -48,6 +49,8 @@ export class SidebarComponent extends BaseSidebarComponent implements OnInit {
         
       this.menu =  [
         { name: 'Inicio', link: '/app/graficos', icon: 'home'},
+        { name: 'Gráficos', link: '/app/graficos', icon: 'insert_chart'},
+        { name: 'Precisoes', link: '/app/previsoes', icon: 'insert_chart' },
         // { name: 'Início', link: '/app/dashboard', icon: 'home' },
         //{ name: 'Importar', link: '/app/importacao', icon: 'backup' },
         //{ name: 'Histórico', link: '/app/logs', icon: 'history' },

@@ -39,7 +39,7 @@ export class LineComponent implements OnInit {
           headers: headers
         })
         .subscribe(data => {
-          console.log(data)
+          //console.log(data)
           this.arrData.push(['Mês', 'Masculino', 'Feminino']);
           for(let obj in data['data']){
             if(data['data'][obj]['genero'] == " Masc" ){

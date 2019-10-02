@@ -15,6 +15,8 @@ import { User2testeComponent } from './pages/user2teste/user2teste.component';
 import { ChartsgoogleComponent } from './pages/chartsgoogle/chartsgoogle.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { GraficosComponent } from './graficos/graficos.component';
+import { PrevisoesComponent } from './pages/previsoes/previsoes.component';
+
 
 @NgModule({
   imports: [
@@ -31,6 +33,7 @@ import { GraficosComponent } from './graficos/graficos.component';
           { path: 'logs', component:LogsComponent, pathMatch:'full'},
           { path: 'pie-chart', component: PieChartComponent, pathMatch: 'full'},
           { path: 'visualizacao-dados', component:VisualizacaoDadosComponent, pathMatch:'full'},
+          { path: 'previsoes', component: PrevisoesComponent, pathMatch:'full'},
           { path: '**', redirectTo: '/pages/404' },
         ] },
         { path: 'pages', loadChildren: './pages/pages/pages.module#PagesModule' },
