@@ -7,7 +7,7 @@ declare var google: any;
 @Component({
   selector: 'app-line-predictPrevi',
   template: '<div #lineChart></div>',
-  styleUrls: ['./LinePredictPrevi.component.scss']
+  styleUrls: ['./linePredictPrevi.component.scss']
 })
 
 export class LinePredictPreviComponent implements OnInit {

@@ -56,7 +56,6 @@ export class PieComponent implements OnInit {
           this.arrData.push([this.Mas[i], parseInt(this.Fem[i])]);
         }
         //console.log(this.Fem);
-        console.log(this.arrData);
         google.charts.setOnLoadCallback(this.drawChart);
       })
   }
@@ -86,7 +85,7 @@ export class PieComponent implements OnInit {
           color: '#0baeb7'
         }
       },
-      title: 'Custos de internação do sexo em filtro.faixaEtaria',
+      title: `Custos de internação do sexo em ${this.filtro.faixaEtaria}`,
       legend: { position: 'top', maxLines: 3 },
       chartArea: { left: '12%', top: '25%', width: '65%', height: '75%' }
     };
@@ -97,7 +96,6 @@ export class PieComponent implements OnInit {
   }
    
   filtroPie(filtro){ 
-
     const headers = new HttpHeaders()
       .set('Authorization', 'my-auth-token')
       .set('Content-Type', 'application/json')
@@ -138,7 +136,7 @@ export class PieComponent implements OnInit {
               color: '#0baeb7'
             }
           },
-          title: 'Custos de internação do sexo em filtro.faixaEtaria',
+          title: `Custos de internação do sexo em ${filtro.faixaEtaria}`,
           legend: { position: 'top', maxLines: 3 },
           chartArea: { left: '12%', top: '25%', width: '65%', height: '75%' }
         };

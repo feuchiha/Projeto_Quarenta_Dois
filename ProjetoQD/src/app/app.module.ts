@@ -51,6 +51,7 @@ import { VisualizacaoDadosComponent } from './pages/visualizacao-dados/visualiza
 import { AboutComponent } from './pages/about/about.component';
 import { UsersComponent } from './pages/users/users.component';
 import { QdSelectComponent } from './components/qd-select/qd-select.component';
+import { QdFiltroComponent } from './components/qd-filtro/qd-filtro.component';
 import { User2testeComponent } from './pages/user2teste/user2teste.component';
 import { ChartsgoogleComponent } from './pages/chartsgoogle/chartsgoogle.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
@@ -59,7 +60,7 @@ import { CardsComponent } from './graficos/cards/cards.component';
 import { GeoComponent } from './graficos/geo/geo.component';
 import { LineComponent } from './graficos/line/line.component';
 import { LinePredictComponent } from './graficos/linePredict/linePredict.component';
-import { LinePredictPreviComponent } from './graficos/LinePredictPrevi/linePredictPrevi.component';
+import { LinePredictPreviComponent } from './graficos/linePredictPrevi/linePredictPrevi.component';
 import { ColumnComponent } from './graficos/column/column.component';
 import { ColumnPredictComponent } from './graficos/columnPredict/columnPredict.component';
 import { AreaComponent } from './graficos/area/area.component'; 
@@ -68,7 +69,7 @@ import { PrevisoesComponent } from './pages/previsoes/previsoes.component';
 
 @NgModule({
 
-  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent, QdSelectComponent, User2testeComponent, ChartsgoogleComponent, PieChartComponent, GraficosComponent, CardsComponent, GeoComponent, LineComponent, LinePredictComponent, LinePredictPreviComponent, ColumnComponent, ColumnPredictComponent, AreaComponent, PieComponent, PrevisoesComponent ],
+  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent, QdSelectComponent, QdFiltroComponent, User2testeComponent, ChartsgoogleComponent, PieChartComponent, GraficosComponent, CardsComponent, GeoComponent, LineComponent, LinePredictComponent, LinePredictPreviComponent, ColumnComponent, ColumnPredictComponent, AreaComponent, PieComponent, PrevisoesComponent ],
 
   imports: [
     BrowserModule,
