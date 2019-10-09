@@ -64,11 +64,13 @@ import { ColumnComponent } from './graficos/column/column.component';
 import { ColumnPredictComponent } from './graficos/columnPredict/columnPredict.component';
 import { AreaComponent } from './graficos/area/area.component'; 
 import { PieComponent } from './graficos/pie/pie.component';
-import { PrevisoesComponent } from './pages/previsoes/previsoes.component'; 
+import { PrevisoesComponent } from './pages/previsoes/previsoes.component';
+import { TesteFiltroComponent } from './graficos/teste-filtro/teste-filtro.component';
+import { ColumnPreviComponent } from './graficos/columnprevi/columnprevi.component';
 
 @NgModule({
 
-  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent, QdSelectComponent, User2testeComponent, ChartsgoogleComponent, PieChartComponent, GraficosComponent, CardsComponent, GeoComponent, LineComponent, LinePredictComponent, LinePredictPreviComponent, ColumnComponent, ColumnPredictComponent, AreaComponent, PieComponent, PrevisoesComponent ],
+  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent, QdSelectComponent, User2testeComponent, ChartsgoogleComponent, PieChartComponent, GraficosComponent, CardsComponent, GeoComponent, LineComponent, LinePredictComponent, LinePredictPreviComponent, ColumnComponent, ColumnPredictComponent, AreaComponent, PieComponent, PrevisoesComponent, TesteFiltroComponent, ColumnPreviComponent ],
 
   imports: [
     BrowserModule,

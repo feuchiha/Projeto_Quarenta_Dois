@@ -56,11 +56,11 @@ export class LinePredictPreviComponent implements OnInit {
           }
 
           for(var i = 0;i < this.meses.length; i++){
-            this.arrData.push([stringify(this.meses[i] + '/2018'), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
+            this.arrData.push([stringify(this.meses[i] +'/18'), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
           }
           this.predictBusca();
         })
-
+          
       }
 
 
@@ -94,7 +94,7 @@ export class LinePredictPreviComponent implements OnInit {
         }
 
         for(var i = 0;i < this.mesesPredit.length; i++){
-          this.arrData.push([stringify(this.mesesPredit[i] + '/2019'), parseInt(this.MasPredict[i]), parseInt(this.FemPredict[i])]);
+          this.arrData.push([stringify(this.mesesPredit[i] +'/19'), parseInt(this.MasPredict[i]), parseInt(this.FemPredict[i])]);
         }
         google.charts.setOnLoadCallback(this.drawChart);
       })
@@ -125,7 +125,7 @@ export class LinePredictPreviComponent implements OnInit {
                 color: '#0baeb7'
             }
         },
-        chartArea:{left:'12%',top:'10%',width:'80%',height:'75%'}
+        chartArea:{left:'7%',top:'10%',width:'90%',height:'70%'}
     };
     const chart = new google.visualization.LineChart(this.lineChart.nativeElement);
     chart.draw(data, options);

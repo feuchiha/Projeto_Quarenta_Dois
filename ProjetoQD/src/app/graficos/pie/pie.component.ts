@@ -6,7 +6,7 @@ declare var google: any;
 
 @Component({
   selector: 'app-pie',
-  template: '<div #pieChart></div>',
+  templateUrl: './pie.component.html',
   styleUrls: ['./pie.component.css']
 })
 
