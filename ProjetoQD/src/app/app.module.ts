@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ToastrModule} from 'ng6-toastr-notifications';
 import { GoogleChartsModule } from 'angular-google-charts';
+
 import {
     MatAutocompleteModule,
     MatButtonModule,
@@ -71,7 +72,7 @@ import { ColumnPreviComponent } from './graficos/columnprevi/columnprevi.compone
 
 @NgModule({
 
-  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent, QdSelectComponent, User2testeComponent, ChartsgoogleComponent, PieChartComponent, GraficosComponent, CardsComponent, GeoComponent, LineComponent, LinePredictComponent, LinePredictPreviComponent, ColumnComponent, ColumnPredictComponent, AreaComponent, PieComponent, PrevisoesComponent, TesteFiltroComponent, ColumnPreviComponent ],
+  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent, QdSelectComponent, User2testeComponent, ChartsgoogleComponent, PieChartComponent, GraficosComponent, CardsComponent, GeoComponent, LineComponent, LinePredictComponent, LinePredictPreviComponent, ColumnComponent, ColumnPredictComponent, AreaComponent, PieComponent, PrevisoesComponent, TesteFiltroComponent, ColumnPreviComponent, QdFiltroComponent ],
 
 
   imports: [

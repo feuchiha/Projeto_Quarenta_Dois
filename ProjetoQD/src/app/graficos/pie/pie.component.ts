@@ -1,7 +1,6 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, OnInit, NgModule, Input,  OnChanges, SimpleChanges, SimpleChange} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
-import { CardsComponent } from '../cards/cards.component'
 declare var google: any;
 
 @Component({
@@ -9,21 +8,64 @@ declare var google: any;
   templateUrl: './pie.component.html',
   styleUrls: ['./pie.component.css']
 })
-
 export class PieComponent implements OnInit {
   arrData: any = [];
   Mas: any = [];
   Fem: any = [];
   filtro: any = [];
   chart;
+  @Input() receivedParentMessage: string;
 
-  constructor(private http: HttpClient, public toastr: ToastrManager) {
-  }
+  options = {
+    width: 620,
+    height: 520,
+    is3D: true,
+    hAxis: {
+      textStyle: {
+        color: '#0baeb7'
+      },
+      titleTextStyle: {
+        color: '#0baeb7'
+      }
+    },
+    vAxis: {
+      textStyle: {
+        color: '#0baeb7'
+      },
+      titleTextStyle: {
+        color: '#0baeb7'
+      }
+    },
+    title: `Custos de internação do sexo em ${this.filtro.faixaEtaria}`,
+    legend: { position: 'top', maxLines: 3 },
+    chartArea: { left: '12%', top: '25%', width: '65%', height: '75%' }
+  };
 
   @ViewChild('pieChart') pieChart: ElementRef
-  
-  ngOnInit(): void {
+  piechartUndef
 
+  constructor(private http: HttpClient, public toastr: ToastrManager) {
+    google.charts.load('current', { 'packages': ['corechart'] });
+  //  google.charts.setOnLoadCallback(this.drawChart);   
+  }
+
+  /*ngOnChanges(changes: SimpleChanges) {
+    const receivedParentMessage: SimpleChange = changes.receivedParentMessage;
+    if (receivedParentMessage.currentValue){
+      this.filtroPie(receivedParentMessage.currentValue);  
+    } 
+  }*/
+
+  @Input()
+  set name(name: string) {
+    if (null != name){
+      this.filtroPie(name);
+    }  
+  }
+  
+
+  ngOnInit(): void {    
+    this.chart = new google.visualization.PieChart(this.pieChart.nativeElement);
     this.filtro = {
       ano: '2018',
       genero: ' Masc',
@@ -34,9 +76,7 @@ export class PieComponent implements OnInit {
     this.buscaPie(this.filtro)
   }
 
-    buscaPie(filtro) {
-
-    google.charts.load('current', { 'packages': ['corechart'] });
+  buscaPie(filtro) {  
     const headers = new HttpHeaders()
       .set('Authorization', 'my-auth-token')
       .set('Content-Type', 'application/json')
@@ -60,42 +100,14 @@ export class PieComponent implements OnInit {
       })
   }
 
- 
+
 
   drawChart = () => {
-
     var data = google.visualization.arrayToDataTable(this.arrData);
-    const options = {
-      width: 620,
-      height: 520,
-      is3D: true,
-      hAxis: {
-        textStyle: {
-          color: '#0baeb7'
-        },
-        titleTextStyle: {
-          color: '#0baeb7'
-        }
-      },
-      vAxis: {
-        textStyle: {
-          color: '#0baeb7'
-        },
-        titleTextStyle: {
-          color: '#0baeb7'
-        }
-      },
-      title: `Custos de internação do sexo em ${this.filtro.faixaEtaria}`,
-      legend: { position: 'top', maxLines: 3 },
-      chartArea: { left: '12%', top: '25%', width: '65%', height: '75%' }
-    };
-
-    this.chart = new google.visualization.PieChart(this.pieChart.nativeElement);
-
-    this.chart.draw(data, options);
+    this.chart.draw(data, this.options);
   }
-   
-  filtroPie(filtro){ 
+
+  filtroPie(filtro) {   
     const headers = new HttpHeaders()
       .set('Authorization', 'my-auth-token')
       .set('Content-Type', 'application/json')
@@ -115,33 +127,8 @@ export class PieComponent implements OnInit {
           this.arrData.push([this.Mas[i], parseInt(this.Fem[i])]);
         }
         var data1 = google.visualization.arrayToDataTable(this.arrData);
-
-        const options = {
-          width: 620,
-          height: 520,
-          is3D: true,
-          hAxis: {
-            textStyle: {
-              color: '#0baeb7'
-            },
-            titleTextStyle: {
-              color: '#0baeb7'
-            }
-          },
-          vAxis: {
-            textStyle: {
-              color: '#0baeb7'
-            },
-            titleTextStyle: {
-              color: '#0baeb7'
-            }
-          },
-          title: `Custos de internação do sexo em ${filtro.faixaEtaria}`,
-          legend: { position: 'top', maxLines: 3 },
-          chartArea: { left: '12%', top: '25%', width: '65%', height: '75%' }
-        };
-        
-        this.chart.draw(data1, options);
-    })
+        console.log(this.arrData)
+        this.chart.draw(data1, this.options);
+      })
   }
 }

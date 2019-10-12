@@ -26,8 +26,8 @@
     </div>
     <div class="card-box">
         <div class="table">
-                <app-qd-filtro (filtroEmitter) = "recebeFuncao($event)"></app-qd-filtro>
-            <app-pie></app-pie>
+            <app-qd-filtro (filtroEmitter) = "recebeFuncao($event)"></app-qd-filtro>
+            <app-pie [name]="messageToSendP"></app-pie>
         </div>
     </div>
     <div class="card-box">
