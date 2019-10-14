@@ -68,7 +68,7 @@ import { AreaComponent } from './graficos/area/area.component';
 import { PieComponent } from './graficos/pie/pie.component';
 import { PrevisoesComponent } from './pages/previsoes/previsoes.component';
 import { TesteFiltroComponent } from './graficos/teste-filtro/teste-filtro.component';
-import { ColumnPreviComponent } from './graficos/columnprevi/columnprevi.component';
+import { ColumnPreviComponent } from './graficos/columnPrevi/columnPrevi.component';
 
 @NgModule({
 

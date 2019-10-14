@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, OnInit, NgModule, Input,  OnChanges, SimpleChanges, SimpleChange} from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, OnInit, NgModule, Input, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
 declare var google: any;
@@ -45,27 +45,26 @@ export class PieComponent implements OnInit {
   piechartUndef
 
   constructor(private http: HttpClient, public toastr: ToastrManager) {
-    google.charts.load('current', { 'packages': ['corechart'] });
-  //  google.charts.setOnLoadCallback(this.drawChart);   
+    //   google.charts.load('current', { 'packages': ['corechart'] });
+    // //  google.charts.setOnLoadCallback(this.drawChart);   
   }
-
-  /*ngOnChanges(changes: SimpleChanges) {
-    const receivedParentMessage: SimpleChange = changes.receivedParentMessage;
-    if (receivedParentMessage.currentValue){
-      this.filtroPie(receivedParentMessage.currentValue);  
-    } 
-  }*/
 
   @Input()
   set name(name: string) {
-    if (null != name){
-      this.filtroPie(name);
-    }  
+    if (null != name) {
+      this.filtro = name;
+      this.drawChart();
+      // this.filtroPie(name);
+    }
   }
-  
 
-  ngOnInit(): void {    
-    this.chart = new google.visualization.PieChart(this.pieChart.nativeElement);
+
+  ngOnInit(): void {
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.load("visualization", "1", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(this.drawChart);
+
+    // this.chart = new google.visualization.PieChart(this.pieChart.nativeElement);
     this.filtro = {
       ano: '2018',
       genero: ' Masc',
@@ -73,10 +72,12 @@ export class PieComponent implements OnInit {
       mes: 'Jan',
       regio: '1 Região Norte'
     }
-    this.buscaPie(this.filtro)
+
+    // this.filtroPie(this.filtro);
+    //this.buscaPie(this.filtro)
   }
 
-  buscaPie(filtro) {  
+  buscaPie(filtro) {
     const headers = new HttpHeaders()
       .set('Authorization', 'my-auth-token')
       .set('Content-Type', 'application/json')
@@ -96,18 +97,47 @@ export class PieComponent implements OnInit {
           this.arrData.push([this.Mas[i], parseInt(this.Fem[i])]);
         }
         //console.log(this.Fem);
-        google.charts.setOnLoadCallback(this.drawChart);
+        // google.charts.setOnLoadCallback(this.drawChart);
       })
   }
 
 
 
   drawChart = () => {
-    var data = google.visualization.arrayToDataTable(this.arrData);
-    this.chart.draw(data, this.options);
+    console.log('entrou no draw')
+    console.log(this.filtro)
+    this.arrData = []; 
+this.options.title = `Custos de internação do sexo em ${this.filtro.faixaEtaria}`;
+
+    this.chart = new google.visualization.PieChart(this.pieChart.nativeElement);
+
+    const headers = new HttpHeaders()
+      .set('Authorization', 'my-auth-token')
+      .set('Content-Type', 'application/json')
+    this.http.post(`http://localhost:3002/index/pie`,
+      JSON.stringify(this.filtro), {
+      headers: headers
+    })
+      .subscribe(data => {
+        this.arrData.push(['Região', 'Valor Gasto']);
+        for (let obj in data['data']) {
+          if (data['data'][obj]['regio'] != "Total") {
+            this.Mas.push(data['data'][obj]['regio']);
+            this.Fem.push(data['data'][obj]['valorServicoesHospitalares']);
+          }
+        }
+        for (var i = 0; i < this.Mas.length; i++) {
+          this.arrData.push([this.Mas[i], parseInt(this.Fem[i])]);
+        }
+        var data1 = google.visualization.arrayToDataTable(this.arrData);
+        console.log(this.arrData)
+        this.chart.draw(data1, this.options);
+      })
+    // var data = google.visualization.arrayToDataTable(this.arrData);
+    // this.chart.draw(data, this.options);
   }
 
-  filtroPie(filtro) {   
+  filtroPie(filtro) {
     const headers = new HttpHeaders()
       .set('Authorization', 'my-auth-token')
       .set('Content-Type', 'application/json')
@@ -126,9 +156,9 @@ export class PieComponent implements OnInit {
         for (var i = 0; i < this.Mas.length; i++) {
           this.arrData.push([this.Mas[i], parseInt(this.Fem[i])]);
         }
-        var data1 = google.visualization.arrayToDataTable(this.arrData);
-        console.log(this.arrData)
-        this.chart.draw(data1, this.options);
+        // var data1 = google.visualization.arrayToDataTable(this.arrData);
+        // console.log(this.arrData)
+        // this.chart.draw(data1, this.options);
       })
   }
 }
