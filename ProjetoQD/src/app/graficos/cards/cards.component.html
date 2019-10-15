@@ -2,8 +2,9 @@
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
-<div class="card-table">
+<app-qd-filtro (filtroEmitter) = "recebeFuncao($event)"></app-qd-filtro>
 
+<div class="card-table">
     <div class="card-box">
         <div class="table">
             <app-line></app-line>
@@ -26,7 +27,6 @@
     </div>
     <div class="card-box">
         <div class="table">
-            <app-qd-filtro (filtroEmitter) = "recebeFuncao($event)"></app-qd-filtro>
             <app-pie [name]="messageToSendP"></app-pie>
         </div>
     </div>

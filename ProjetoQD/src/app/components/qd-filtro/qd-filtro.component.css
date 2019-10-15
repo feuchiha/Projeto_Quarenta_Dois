@@ -1,0 +1,42 @@
+.filtro1 {
+    padding: 40px 20px;
+    font-family: "montserrat", sans-serif;
+    position: relative;
+    overflow: hidden;
+    z-index: 1000;
+    left: 3%;
+}
+
+.filtro2 {
+    padding: 100px 20px;
+    font-family: "montserrat", sans-serif;
+    position: relative;
+    overflow: hidden;
+    margin: 0px 100px 0px 200px;
+    z-index: 1000;
+    left: 9%;
+}
+
+.filtro3 {
+    padding: 40px 20px;
+    font-family: "montserrat", sans-serif;
+    position: relative;
+    overflow: hidden;
+    z-index: 1000;
+    left: 15.5%;
+}
+
+.filtro4 {
+    padding: 100px 20px;
+    font-family: "montserrat", sans-serif;
+    position: relative;
+    overflow: hidden;
+    margin: 0px 100px 0px 200px;
+    z-index: 1000;
+    left: 21.5%;
+}
+
+.botao{
+    position: relative;
+    right: 24%;
+}

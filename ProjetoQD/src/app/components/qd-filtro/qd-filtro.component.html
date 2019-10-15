@@ -1,19 +1,17 @@
 <div class="filtro">
     <app-qd-select class="filtro1" [arrSelect]="filtros.ano" [titulo]="filtro.ano"
         (retPlaceholder)="onSelect($event)" [id]="element.id"></app-qd-select>
-</div>
-<div class="filtro">
+
     <app-qd-select class="filtro2" [arrSelect]="filtros.genero" [titulo]="filtro.genero"
         (retPlaceholder)="onSelect($event)" [id]="element2.id"></app-qd-select>
-</div>
-<div class="filtro">
+
     <app-qd-select class="filtro3" [arrSelect]="filtros.mes" [titulo]="filtro.mes"
         (retPlaceholder)="onSelect($event)" [id]="element3.id"></app-qd-select>
-</div>
-<div class="filtro">
+
     <app-qd-select class="filtro4" [arrSelect]="filtros.faixaEtaria" [titulo]="filtro.faixaEtaria"
         (retPlaceholder)="onSelect($event)" [id]="element4.id"></app-qd-select>
-</div>
-<button (click)="onFiltra()" class="mdl-button mdl-js-button mdl-button--raised color--light-blue">
-    Alterar Senha
+
+<button (click)="onFiltra()" class="mdl-button mdl-js-button mdl-button--raised color--light-blue botao">
+    Filtrar
 </button>
+</div>

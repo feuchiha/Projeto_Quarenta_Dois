@@ -63,6 +63,7 @@ body {
 .filtro{
     z-index: 1000;
     position: relative;
+    top: 15px;
 }
 
 .table h2 {

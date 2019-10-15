@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, AfterViewInit, EventEmitter } from '@
 @Component({
   selector: 'app-qd-filtro',
   templateUrl: './qd-filtro.component.html',
-  styleUrls: ['./qd-filtro.component.scss']
+  styleUrls: ['./qd-filtro.component.css']
 })
 export class QdFiltroComponent implements OnInit {
   @Output() filtroEmitter = new EventEmitter();
