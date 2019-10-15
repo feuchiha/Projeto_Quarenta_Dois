@@ -8,7 +8,7 @@ declare var google: any;
   templateUrl: './pie.component.html',
   styleUrls: ['./pie.component.css']
 })
-export class PieComponent implements OnInit, OnChanges {
+export class PieComponent implements OnInit{
   arrData: any = [];
   Mas: any = [];
   Fem: any = [];
@@ -52,14 +52,6 @@ export class PieComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log("change")
-    if (null != changes.name.currentValue) {
-      this.filtro = changes.name.currentValue;
-      this.drawChart();
-    }
-  }
-
   ngOnInit(): void {
     google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.load("visualization", "1", { packages: ["corechart"] });
@@ -77,9 +69,9 @@ export class PieComponent implements OnInit, OnChanges {
 
   drawChart = () => {
     this.arrData = [];
+    this.arrData.push(['Região', 'Valor Gasto']);
     this.Mas = [];
     this.Fem = [];
-    console.log(this.filtro.faixaEtaria);
     this.options.title = `Custos de internação do sexo em ${this.filtro.faixaEtaria}`;
 
     this.chart = new google.visualization.PieChart(this.pieChart.nativeElement);
@@ -92,16 +84,13 @@ export class PieComponent implements OnInit, OnChanges {
       headers: headers
     })
       .subscribe(data => {
-        this.arrData.push(['Região', 'Valor Gasto']);
-        for (let obj in data['data']) {
-          if (data['data'][obj]['regio'] != "Total") {
-            this.Mas.push(data['data'][obj]['regio']);
-            this.Fem.push(data['data'][obj]['valorServicoesHospitalares']);
-          }
-        }
-        for (var i = 0; i < this.Mas.length; i++) {
-          this.arrData.push([this.Mas[i], parseInt(this.Fem[i])]);
-        }
+      
+        data['data'].filter(({regio})=> {
+          return regio != "Total";
+        }).forEach(({regio, valorServicoesHospitalares}) => {
+          this.arrData.push([regio, parseInt(valorServicoesHospitalares)]);
+        });
+
         var data1 = google.visualization.arrayToDataTable(this.arrData);
         this.chart.draw(data1, this.options);
       })
