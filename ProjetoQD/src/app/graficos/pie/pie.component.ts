@@ -1,6 +1,8 @@
 import { Component, ViewChild, ElementRef, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { CardsComponent } from '../cards/cards.component';
+
 declare var google: any;
 
 @Component({
@@ -14,6 +16,8 @@ export class PieComponent implements OnInit{
   Fem: any = [];
   filtro: any = [];
   chart;
+
+  // options = new CardsComponent.Options(620,520);
 
   options = {
     width: 620,

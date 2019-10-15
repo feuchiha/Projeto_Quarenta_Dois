@@ -7,22 +7,22 @@
 <div class="card-table">
     <div class="card-box">
         <div class="table">
-            <app-line></app-line>
+            <app-line [name]="messageToSendP"></app-line>
         </div>
     </div>
     <div class="card-box">
         <div class="table">
-            <app-line-predict></app-line-predict>
+            <app-line-predict [name]="messageToSendP"></app-line-predict>
         </div>
     </div>
     <div class="card-box">
         <div class="table">
-            <app-column></app-column>
+            <app-column [name]="messageToSendP"></app-column>
         </div>
     </div>
     <div class="card-box">
         <div class="table">
-            <app-columnPredict></app-columnPredict>
+            <app-columnPredict [name]="messageToSendP"></app-columnPredict>
         </div>
     </div>
     <div class="card-box">
@@ -32,7 +32,7 @@
     </div>
     <div class="card-box">
         <div class="table">
-            <app-area></app-area>
+            <app-area [name]="messageToSendP"></app-area>
         </div>
     </div>
 </div>  
