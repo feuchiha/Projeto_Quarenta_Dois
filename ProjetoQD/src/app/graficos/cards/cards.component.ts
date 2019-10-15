@@ -9,11 +9,9 @@ import { PieComponent } from '../pie/pie.component';
 export class CardsComponent implements OnInit { 
   messageToSendP: string;
   ngOnInit(){}
-  recebeFiltro;
-
-
 
   recebeFuncao(json){
     this.messageToSendP = json;
+    // console.log(this.messageToSendP)
   }
 }
