@@ -119,9 +119,10 @@ export class ColumnPredictComponent implements OnInit {
         for (var i = 0; i < this.mes.length; i++) {
           this.arrData.push([this.mes[i], parseInt(this.Norte[i]), parseInt(this.Nordeste[i]), parseInt(this.Sudeste[i]), parseInt(this.Sul[i]), parseInt(this.Centro[i]),]);
         }
+        var data1 = google.visualization.arrayToDataTable(this.arrData);
+        this.chart.draw(data1, this.options);
       })
 
-    var data1 = google.visualization.arrayToDataTable(this.arrData);
-    this.chart.draw(data1, this.options);
+   
   }
 }
