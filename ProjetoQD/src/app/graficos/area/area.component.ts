@@ -82,7 +82,7 @@ export class AreaComponent implements OnInit {
     this.Centro = [];
     this.mes = [];
 
-    this.options.title = 'Obitos em ' + this.filtros.ano + ' do sexo ' + this.filtros.genero + ' de ' + this.filtros.faixaEtaria + ' todas as regiões';
+    this.options.title = 'Obitos em ' + this.filtros.ano + ' do sexo ' + this.filtros.genero + ' de ' + this.filtros.faixaEtaria;
 
     this.chart = new google.visualization.AreaChart(this.areaChart.nativeElement);
 

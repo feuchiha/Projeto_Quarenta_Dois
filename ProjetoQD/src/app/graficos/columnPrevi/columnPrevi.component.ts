@@ -144,8 +144,10 @@ export class ColumnPreviComponent implements OnInit {
               color: '#0baeb7'
           }
       },
+      chartArea:{left:'7%',top:'18%',width:'90%',height:'70%'}
     };
     const chart = new google.visualization.ColumnChart(this.columnChart.nativeElement);
+    
     chart.draw(data, options);
   }
 

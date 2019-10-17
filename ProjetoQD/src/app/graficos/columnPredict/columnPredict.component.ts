@@ -87,7 +87,7 @@ export class ColumnPredictComponent implements OnInit {
     this.Centro = [];
     this.mes = [];
 
-    this.options.title = 'Previsão de obitos em ' + this.filtros.ano + ' do sexo ' + this.filtros.genero + ' de ' + this.filtros.faixaEtaria + ' todas as regiões';
+    this.options.title = 'Previsão de obitos em 2019' + ' do sexo ' + this.filtros.genero + ' de ' + this.filtros.faixaEtaria;
 
     this.chart = new google.visualization.ColumnChart(this.columnChart.nativeElement);
 

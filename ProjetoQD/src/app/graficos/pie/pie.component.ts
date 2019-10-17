@@ -76,7 +76,7 @@ export class PieComponent implements OnInit{
     this.arrData.push(['Região', 'Valor Gasto']);
     this.Mas = [];
     this.Fem = [];
-    this.options.title = `Custos de internação do sexo em ${this.filtro.faixaEtaria}`;
+    this.options.title = 'Custos de internação' +' em '+ this.filtro.ano + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria;
 
     this.chart = new google.visualization.PieChart(this.pieChart.nativeElement);
 

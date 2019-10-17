@@ -77,7 +77,7 @@ export class LinePredictComponent implements OnInit {
     this.Fem = [];
     this.meses = [];
 
-    this.options.title = 'Previsão de obitos por genero de ' + this.filtros.faixaEtaria + " no ano de " + this.filtros.ano + ' na ' + this.filtros.regio;
+    this.options.title = 'Previsão de obitos por genero de ' + this.filtros.faixaEtaria + ' no ano de 2019 na ' + this.filtros.regio;
 
     this.chart = new google.visualization.LineChart(this.lineChart.nativeElement);
 

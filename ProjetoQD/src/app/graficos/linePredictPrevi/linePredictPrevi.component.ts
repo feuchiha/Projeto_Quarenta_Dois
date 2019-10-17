@@ -125,7 +125,7 @@ export class LinePredictPreviComponent implements OnInit {
                 color: '#0baeb7'
             }
         },
-        chartArea:{left:'7%',top:'10%',width:'90%',height:'70%'}
+        chartArea:{left:'7%',top:'15%',width:'90%',height:'70%'}
     };
     const chart = new google.visualization.LineChart(this.lineChart.nativeElement);
     chart.draw(data, options);

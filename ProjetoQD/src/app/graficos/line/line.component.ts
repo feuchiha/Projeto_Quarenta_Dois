@@ -22,7 +22,7 @@ export class LineComponent implements OnInit {
   options = {
     width: 620,
     height: 520,
-    title: 'Total de obitos por genero de ' + this.filtros.faixaEtaria + " no ano de " + this.filtros.ano + ' na ' + this.filtros.regio,
+    title: 'Obitos por genero de ' + this.filtros.faixaEtaria + " no ano de " + this.filtros.ano + ' na ' + this.filtros.regio,
     curveType: 'function',
     legend: {
       position: 'bottom'
@@ -105,6 +105,7 @@ export class LineComponent implements OnInit {
         for (var i = 0; i < this.meses.length; i++) {
           this.arrData.push([stringify(this.meses[i]), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
         }
+        console.log(this.arrData);
         var data1 = google.visualization.arrayToDataTable(this.arrData);
         this.chart.draw(data1, this.options);
       })
