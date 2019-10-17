@@ -1,6 +1,7 @@
-import { Component, ViewChild, ElementRef, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, Input, Output, EventEmitter, ViewContainerRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { IFilter } from 'app/components/qd-filtro/filtro';
 import { CardsComponent } from '../cards/cards.component';
 
 declare var google: any;
@@ -10,7 +11,7 @@ declare var google: any;
   templateUrl: './pie.component.html',
   styleUrls: ['./pie.component.css']
 })
-export class PieComponent implements OnInit{
+export class PieComponent implements OnInit, IFilter {
   arrData: any = [];
   Mas: any = [];
   Fem: any = [];
@@ -46,12 +47,22 @@ export class PieComponent implements OnInit{
 
   @ViewChild('pieChart') pieChart: ElementRef
 
-  constructor(private http: HttpClient, public toastr: ToastrManager) { }
+  constructor(private http: HttpClient, public toastr: ToastrManager, private viewContainerRef: ViewContainerRef) { }
 
   @Input() set name(name: string) {
     console.log("set")
     if (null != name) {
       this.filtro = name;
+      this.drawChart();
+    }
+  }
+  getParentComponent(): CardsComponent {
+    return this.viewContainerRef['_data'].componentView.component.viewContainerRef['_view'].component
+  }
+
+  atualizarFiltro(filtro: string): void {
+    if (null != filtro) {
+      this.filtro = filtro;
       this.drawChart();
     }
   }
@@ -68,6 +79,7 @@ export class PieComponent implements OnInit{
       mes: 'Jan',
       regio: '1 Região Norte'
     }
+    this.getParentComponent().addObserver(this);
   }
 
 
@@ -88,10 +100,10 @@ export class PieComponent implements OnInit{
       headers: headers
     })
       .subscribe(data => {
-      
-        data['data'].filter(({regio})=> {
+
+        data['data'].filter(({ regio }) => {
           return regio != "Total";
-        }).forEach(({regio, valorServicoesHospitalares}) => {
+        }).forEach(({ regio, valorServicoesHospitalares }) => {
           this.arrData.push([regio, parseInt(valorServicoesHospitalares)]);
         });
 
