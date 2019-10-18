@@ -69,10 +69,11 @@ import { PieComponent } from './graficos/pie/pie.component';
 import { PrevisoesComponent } from './pages/previsoes/previsoes.component';
 import { TesteFiltroComponent } from './graficos/teste-filtro/teste-filtro.component';
 import { ColumnPreviComponent } from './graficos/columnPrevi/columnPrevi.component';
+import { LineCustoComponent } from './graficos/line-custo/line-custo.component';
 
 @NgModule({
 
-  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent, QdSelectComponent, User2testeComponent, ChartsgoogleComponent, PieChartComponent, GraficosComponent, CardsComponent, GeoComponent, LineComponent, LinePredictComponent, LinePredictPreviComponent, ColumnComponent, ColumnPredictComponent, AreaComponent, PieComponent, PrevisoesComponent, TesteFiltroComponent, ColumnPreviComponent, QdFiltroComponent ],
+  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent, QdSelectComponent, User2testeComponent, ChartsgoogleComponent, PieChartComponent, GraficosComponent, CardsComponent, GeoComponent, LineComponent, LinePredictComponent, LinePredictPreviComponent, ColumnComponent, ColumnPredictComponent, AreaComponent, PieComponent, PrevisoesComponent, TesteFiltroComponent, ColumnPreviComponent, QdFiltroComponent, LineCustoComponent ],
 
 
   imports: [

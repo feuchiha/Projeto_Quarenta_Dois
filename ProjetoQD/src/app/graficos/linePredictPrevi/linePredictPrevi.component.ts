@@ -105,7 +105,7 @@ export class LinePredictPreviComponent implements OnInit {
     const options = {      
       width: 1200,
       height: 520,
-      title: 'Visualização Previsão de obitos por genero de '+ this.filtros.faixaEtaria + " no ano de " + this.filtros.ano + ' na ' + this.filtros.regio,
+      title: 'Previsão de obitos por genero de '+ this.filtros.faixaEtaria + " no ano de " + this.filtros.ano + ' na ' + this.filtros.regio,
       curveType: 'function',
       legend: { 
         position: 'bottom' },

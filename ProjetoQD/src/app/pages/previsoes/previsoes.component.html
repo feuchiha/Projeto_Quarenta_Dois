@@ -2,8 +2,9 @@
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
-<div class="card-table">
+<app-qd-filtro (filtroEmitter) = "recebeFuncao($event)"></app-qd-filtro>
 
+<div class="card-table">
   <div class="card-box">
     <div class="table">
         <app-line-predictPrevi></app-line-predictPrevi>
@@ -14,5 +15,9 @@
       <app-columnPrevi></app-columnPrevi>
   </div>
 </div>
+<div class="card-box">
+  <div class="table">
+      <app-line-custo></app-line-custo>
+  </div>
 </div>
-
+</div>
