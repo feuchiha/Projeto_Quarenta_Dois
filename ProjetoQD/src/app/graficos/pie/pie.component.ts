@@ -49,13 +49,6 @@ export class PieComponent implements OnInit, IFilter {
 
   constructor(private http: HttpClient, public toastr: ToastrManager, private viewContainerRef: ViewContainerRef) { }
 
-  @Input() set name(name: string) {
-    console.log("set")
-    if (null != name) {
-      this.filtro = name;
-      this.drawChart();
-    }
-  }
   getParentComponent(): CardsComponent {
     return this.viewContainerRef['_data'].componentView.component.viewContainerRef['_view'].component
   }
