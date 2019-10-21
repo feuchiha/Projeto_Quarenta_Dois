@@ -110,16 +110,6 @@ export class LineComponent implements OnInit, IFilter, Card {
       this.Fem.push(bitos);
     });
 
-    // for (let obj in data['data']) {
-    //   if (data['data'][obj]['genero'] == " Masc") {
-    //     this.meses.push(data['data'][obj]['mes']);
-    //   }
-    //   if (data['data'][obj]['genero'] === " Masc") {
-    //     this.Mas.push(data['data'][obj]['bitos']);
-    //   } else {
-    //     this.Fem.push(data['data'][obj]['bitos']);
-    //   }
-    // }
     
     for (var i = 0; i < this.meses.length; i++) {
       this.arrData.push([stringify(this.meses[i]), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);

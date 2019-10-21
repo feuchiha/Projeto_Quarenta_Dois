@@ -20,7 +20,7 @@ export class ColumnComponent implements OnInit, IFilter, Card {
   filtro: any = [];
   endpoint: string = "column";
 
-  arrData:any = [];
+  arrData: any = [];
   Norte: any = [];
   Nordeste: any = [];
   Sudeste: any = [];
@@ -32,26 +32,26 @@ export class ColumnComponent implements OnInit, IFilter, Card {
   options = {
     width: 620,
     height: 520,
-    title: 'Obitos em '+this.filtro.ano +' do sexo '+ this.filtro.genero+' de '+this.filtro.faixaEtaria+' todas as regiões',
+    title: 'Obitos em ' + this.filtro.ano + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria + ' todas as regiões',
     // backgroundColor: 'white',
-    legend: { position: 'top', maxLines: 3},
+    legend: { position: 'top', maxLines: 3 },
     bar: { groupWidth: '75%' },
     isStacked: true,
     hAxis: {
       textStyle: {
-          color: '#0baeb7'
+        color: '#0baeb7'
       },
       titleTextStyle: {
-          color: '#0baeb7'
+        color: '#0baeb7'
       }
     },
     vAxis: {
-        textStyle: {
-            color: '#0baeb7'
-        },
-        titleTextStyle: {
-            color: '#0baeb7'
-        }
+      textStyle: {
+        color: '#0baeb7'
+      },
+      titleTextStyle: {
+        color: '#0baeb7'
+      }
     },
   };
 
@@ -67,7 +67,7 @@ export class ColumnComponent implements OnInit, IFilter, Card {
 
   constructor(http: HttpClient, public toastr: ToastrManager, private viewContainerRef: ViewContainerRef) {
     this.http = http;
-  
+
   }
 
   ngOnInit(): void {
@@ -79,12 +79,12 @@ export class ColumnComponent implements OnInit, IFilter, Card {
     this.filtro = {
       faixaEtaria: " 70 a 79 anos",
       ano: "2008",
-      genero:" Masc"
+      genero: " Masc"
     }
 
     GetParent.addObserverToFilter(this);
   }
-      
+
   drawChart = () => {
 
     this.arrData = [];
@@ -95,36 +95,52 @@ export class ColumnComponent implements OnInit, IFilter, Card {
     this.Centro = [];
     this.mes = [];
 
-    this.options.title = 'Obitos em '+this.filtro.ano +' do sexo '+ this.filtro.genero+' de '+this.filtro.faixaEtaria;
+    this.options.title = 'Obitos em ' + this.filtro.ano + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria;
 
     this.chart = new google.visualization.ColumnChart(this.columnChart.nativeElement);
     RequisitonService.montaGrafico(this);
   }
 
   montaGrafico(data: any) {
-    this.arrData.push(['Mês', 'Norte' , 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
-    for(let obj in data['data']){
-      if(data['data'][obj]['regio'] === "1 Região Norte"){
-        this.mes.push(data['data'][obj]['mes']);
-      }
-      if(data['data'][obj]['regio'] === "1 Região Norte"){
-          this.Norte.push(data['data'][obj]['bitos']);
-      }else if(data['data'][obj]['regio'] === "2 Região Nordeste"){
-          this.Nordeste.push(data['data'][obj]['bitos']);
-      }else if(data['data'][obj]['regio'] === "3 Região Sudeste"){
-          this.Sudeste.push(data['data'][obj]['bitos']);
-      }else if(data['data'][obj]['regio'] === "4 Região Sul"){
-        this.Sul.push(data['data'][obj]['bitos']);
-      }else if(data['data'][obj]['regio'] === "5 Região Centro-Oeste"){
-        this.Centro.push(data['data'][obj]['bitos']);
-    }
-  }
-    for(var i = 0;i < this.mes.length; i++){
-      this.arrData.push([this.mes[i], parseInt(this.Norte[i]), parseInt(this.Nordeste[i]), parseInt(this.Sudeste[i]), parseInt(this.Sul[i]), parseInt(this.Centro[i]),]);
-    }
+    this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
+
+    data['data'].filter(({ regio }) => {
+      return "1 Região Norte" === regio;
+    }).forEach(({ mes, bitos }) => {
+      this.mes.push(mes);
+      this.Norte.push(bitos);
+    });
+
+    data['data'].filter(({ regio }) => {
+      return "2 Região Nordeste" === regio;
+    }).forEach(({ bitos }) => {
+      this.Nordeste.push(bitos);
+    });
+
+    data['data'].filter(({ regio }) => {
+      return "3 Região Sudeste" === regio;
+    }).forEach(({ bitos }) => {
+      this.Sudeste.push(bitos);
+    });
+
+    data['data'].filter(({ regio }) => {
+      return "4 Região Sul" === regio;
+    }).forEach(({ bitos }) => {
+      this.Sul.push(bitos);
+    });
+
+    data['data'].filter(({ regio }) => {
+      return "5 Região Centro-Oeste" === regio;
+    }).forEach(({ bitos }) => {
+      this.Centro.push(bitos);
+    });
+
+    this.mes.forEach((mes, index) => {
+      this.arrData.push([mes, parseInt(this.Norte[index]), parseInt(this.Nordeste[index]), parseInt(this.Sudeste[index]), parseInt(this.Sul[index]), parseInt(this.Centro[index]),]);
+    });
 
     var data1 = google.visualization.arrayToDataTable(this.arrData);
-  
+
     this.chart.draw(data1, this.options);
   }
 }

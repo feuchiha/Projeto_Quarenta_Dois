@@ -107,16 +107,19 @@ export class LinePredictComponent implements OnInit, IFilter, Card {
 
   montaGrafico(data: any) {
     this.arrData.push(['Mês', 'Masculino', 'Feminino']);
-    for (let obj in data['data']) {
-      if (data['data'][obj]['genero'] == " Masc") {
-        this.meses.push(data['data'][obj]['mes']);
-      }
-      if (data['data'][obj]['genero'] === " Masc") {
-        this.Mas.push(data['data'][obj]['bitos']);
-      } else {
-        this.Fem.push(data['data'][obj]['bitos']);
-      }
-    }
+
+    data['data'].filter(({genero})=>{
+      return " Masc" === genero
+    }).forEach(({mes, bitos}) => {
+      this.meses.push(mes);
+      this.Mas.push(bitos);
+    });
+
+    data['data'].filter(({genero})=>{
+      return " Masc" !== genero
+    }).forEach(({ bitos}) => {
+      this.Fem.push(bitos);
+    });
 
     for (var i = 0; i < this.meses.length; i++) {
       this.arrData.push([stringify(this.meses[i]), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
