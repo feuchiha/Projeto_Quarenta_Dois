@@ -1,7 +1,11 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, OnInit, Input } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, OnInit, Input, ViewContainerRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { stringify } from '@angular/compiler/src/util';
+import { IFilter } from 'app/components/qd-filtro/filtro';
+import { Card } from '../cards/card';
+import { RequisitonService } from '../cards/requisition.service';
+import { GetParent } from '../cards/parent.directive';
 declare var google: any;
 
 @Component({
@@ -11,9 +15,12 @@ declare var google: any;
 })
 
 
-export class ColumnPredictComponent implements OnInit {
-  // filtros = {faixaEtaria:"", ano:"", genero:""};
-  filtros: any = [];
+export class ColumnPredictComponent implements OnInit, IFilter, Card {
+  http: HttpClient;
+
+  endpoint: string = "columnPredict";
+  // filtro = {faixaEtaria:"", ano:"", genero:""};
+  filtro: any = [];
   arrData: any = [];
   Norte: any = [];
   Nordeste: any = [];
@@ -26,7 +33,7 @@ export class ColumnPredictComponent implements OnInit {
   options = {
     width: 620,
     height: 520,
-    title: 'Previsão de obitos em ' + this.filtros.ano + ' do sexo ' + this.filtros.genero + ' de ' + this.filtros.faixaEtaria + ' todas as regiões',
+    title: 'Previsão de obitos em ' + this.filtro.ano + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria + ' todas as regiões',
     legend: { position: 'top', maxLines: 3 },
     bar: { groupWidth: '75%' },
     isStacked: true,
@@ -49,19 +56,17 @@ export class ColumnPredictComponent implements OnInit {
   };
 
 
-
-
-  @ViewChild('columnChart') columnChart: ElementRef
-
-  @Input() set name(name: string) {
-    console.log("set")
-    if (null != name) {
-      this.filtros = name;
+  atualizarFiltro(filtro: string): void {
+    if (null != filtro) {
+      this.filtro = filtro;
       this.drawChart();
     }
   }
 
-  constructor(private http: HttpClient, public toastr: ToastrManager) {
+  @ViewChild('columnChart') columnChart: ElementRef
+
+  constructor(http: HttpClient, public toastr: ToastrManager,  private viewContainerRef: ViewContainerRef) {
+    this.http = http;
   }
 
   ngOnInit(): void {
@@ -70,11 +75,13 @@ export class ColumnPredictComponent implements OnInit {
     google.charts.load("visualization", "1", { packages: ["corechart"] });
     google.charts.setOnLoadCallback(this.drawChart);
 
-    this.filtros = {
+    this.filtro = {
       faixaEtaria: " 70 a 79 anos",
       ano: "2019",
       genero: " Masc"
     }
+
+    GetParent.addObserverToFilter(this);
   }
 
   drawChart = () => {
@@ -87,42 +94,37 @@ export class ColumnPredictComponent implements OnInit {
     this.Centro = [];
     this.mes = [];
 
-    this.options.title = 'Previsão de obitos em 2019' + ' do sexo ' + this.filtros.genero + ' de ' + this.filtros.faixaEtaria;
+    this.options.title = 'Previsão de obitos em 2019' + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria;
 
     this.chart = new google.visualization.ColumnChart(this.columnChart.nativeElement);
 
-    const headers = new HttpHeaders()
-      .set('Authorization', 'my-auth-token')
-      .set('Content-Type', 'application/json')
-    this.http.post(`http://localhost:3002/index/columnPredict`,
-      JSON.stringify(this.filtros), {
-      headers: headers
-    })
-      .subscribe(data => {
-        this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
-        for (let obj in data['data']) {
-          if (data['data'][obj]['regio'] === "1 Região Norte") {
-            this.mes.push(data['data'][obj]['mes']);
-          }
-          if (data['data'][obj]['regio'] === "1 Região Norte") {
-            this.Norte.push(data['data'][obj]['bitos']);
-          } else if (data['data'][obj]['regio'] === "2 Região Nordeste") {
-            this.Nordeste.push(data['data'][obj]['bitos']);
-          } else if (data['data'][obj]['regio'] === "3 Região Sudeste") {
-            this.Sudeste.push(data['data'][obj]['bitos']);
-          } else if (data['data'][obj]['regio'] === "4 Região Sul") {
-            this.Sul.push(data['data'][obj]['bitos']);
-          } else if (data['data'][obj]['regio'] === "5 Região Centro-Oeste") {
-            this.Centro.push(data['data'][obj]['bitos']);
-          }
-        }
-        for (var i = 0; i < this.mes.length; i++) {
-          this.arrData.push([this.mes[i], parseInt(this.Norte[i]), parseInt(this.Nordeste[i]), parseInt(this.Sudeste[i]), parseInt(this.Sul[i]), parseInt(this.Centro[i]),]);
-        }
-        var data1 = google.visualization.arrayToDataTable(this.arrData);
-        this.chart.draw(data1, this.options);
-      })
+    RequisitonService.montaGrafico(this);
+  }
 
-   
+
+  montaGrafico(data: any) {
+
+    this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
+    for (let obj in data['data']) {
+      if (data['data'][obj]['regio'] === "1 Região Norte") {
+        this.mes.push(data['data'][obj]['mes']);
+      }
+      if (data['data'][obj]['regio'] === "1 Região Norte") {
+        this.Norte.push(data['data'][obj]['bitos']);
+      } else if (data['data'][obj]['regio'] === "2 Região Nordeste") {
+        this.Nordeste.push(data['data'][obj]['bitos']);
+      } else if (data['data'][obj]['regio'] === "3 Região Sudeste") {
+        this.Sudeste.push(data['data'][obj]['bitos']);
+      } else if (data['data'][obj]['regio'] === "4 Região Sul") {
+        this.Sul.push(data['data'][obj]['bitos']);
+      } else if (data['data'][obj]['regio'] === "5 Região Centro-Oeste") {
+        this.Centro.push(data['data'][obj]['bitos']);
+      }
+    }
+    for (var i = 0; i < this.mes.length; i++) {
+      this.arrData.push([this.mes[i], parseInt(this.Norte[i]), parseInt(this.Nordeste[i]), parseInt(this.Sudeste[i]), parseInt(this.Sul[i]), parseInt(this.Centro[i]),]);
+    }
+    var data1 = google.visualization.arrayToDataTable(this.arrData);
+    this.chart.draw(data1, this.options);
   }
 }

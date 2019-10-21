@@ -1,24 +1,23 @@
-import {  Directive, Component, OnInit,  Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { PieComponent } from '../pie/pie.component';
+import { Component, OnInit } from '@angular/core';
 import { IFilter } from 'app/components/qd-filtro/filtro';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-cards',
   templateUrl: './cards.component.html',
   styleUrls: ['./cards.component.css'],
-}) 
-export class CardsComponent implements OnInit { 
-  messageToSendP: string;  
+})
+export class CardsComponent implements OnInit {
   private observers: IFilter[];
+  static http: any;
 
-  ngOnInit(){}
+  ngOnInit() { }
 
   constructor() {
     this.observers = []
   }
 
-  recebeFuncao(json){
-    this.messageToSendP = json;
+  recebeFuncao(json) {
     this.notifyObservers(json);
   }
 
@@ -27,12 +26,11 @@ export class CardsComponent implements OnInit {
   }
 
   notifyObservers(json) {
-    console.log('Notifying clients:')
     this.observers.map((observer) => observer.atualizarFiltro(json))
   }
 
   static Options = class {
-    constructor(width: any, height: any){
+    constructor(width: any, height: any) {
       this.width = width;
       this.height = height;
     }

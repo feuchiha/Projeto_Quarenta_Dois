@@ -1,7 +1,11 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, OnInit, Input } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, OnInit, Input, ViewContainerRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { stringify } from '@angular/compiler/src/util';
+import { IFilter } from 'app/components/qd-filtro/filtro';
+import { Card } from '../cards/card';
+import { RequisitonService } from '../cards/requisition.service';
+import { GetParent } from '../cards/parent.directive';
 declare var google: any;
 
 @Component({
@@ -10,9 +14,14 @@ declare var google: any;
   styleUrls: ['./linePredict.component.scss']
 })
 
-export class LinePredictComponent implements OnInit {
+export class LinePredictComponent implements OnInit, IFilter, Card {
+  http: HttpClient;
+
+  filtro: any;
+  endpoint: string;
+
   // filtros = { ano: "", faixaEtaria: "", regio: "" };
-  filtros:any = [];
+  filtros: any = [];
   arrData: any = [];
   Mas: any = [];
   Fem: any = [];
@@ -46,17 +55,18 @@ export class LinePredictComponent implements OnInit {
     chartArea: { left: '12%', top: '10%', width: '80%', height: '75%' }
   };
 
-  @Input() set name(name: string) {
-    console.log("set")
-    if (null != name) {
-      this.filtros = name;
-      this.drawChart();
-    }
-  }
-
   @ViewChild('lineChart') lineChart: ElementRef
 
-  constructor(private http: HttpClient, public toastr: ToastrManager) {
+  constructor(http: HttpClient, public toastr: ToastrManager, private viewContainerRef: ViewContainerRef) {
+  this.http =http;
+  
+  }
+
+  atualizarFiltro(filtro: string): void {
+    if (null != filtro) {
+      this.filtro = filtro;
+      this.drawChart();
+    }
   }
 
   ngOnInit(): void {
@@ -69,6 +79,7 @@ export class LinePredictComponent implements OnInit {
       faixaEtaria: " 30 a 39 anos",
       regio: "1 Região Norte",
     }
+    GetParent.addObserverToFilter(this);
   }
 
   drawChart = () => {
@@ -80,32 +91,37 @@ export class LinePredictComponent implements OnInit {
     this.options.title = 'Previsão de obitos por genero de ' + this.filtros.faixaEtaria + ' no ano de 2019 na ' + this.filtros.regio;
 
     this.chart = new google.visualization.LineChart(this.lineChart.nativeElement);
+    RequisitonService.montaGrafico(this);
+    // const headers = new HttpHeaders()
+    //   .set('Authorization', 'my-auth-token')
+    //   .set('Content-Type', 'application/json')
+    // this.http.post(`http://localhost:3002/index/linePredict`,
+    //   JSON.stringify(this.filtros), {
+    //   headers: headers
+    // })
+    //   .subscribe(data => {
 
-    const headers = new HttpHeaders()
-      .set('Authorization', 'my-auth-token')
-      .set('Content-Type', 'application/json')
-    this.http.post(`http://localhost:3002/index/linePredict`,
-      JSON.stringify(this.filtros), {
-      headers: headers
-    })
-      .subscribe(data => {
-        this.arrData.push(['Mês', 'Masculino', 'Feminino']);
-        for (let obj in data['data']) {
-          if (data['data'][obj]['genero'] == " Masc") {
-            this.meses.push(data['data'][obj]['mes']);
-          }
-          if (data['data'][obj]['genero'] === " Masc") {
-            this.Mas.push(data['data'][obj]['bitos']);
-          } else {
-            this.Fem.push(data['data'][obj]['bitos']);
-          }
-        }
+    //   })
+  }
 
-        for (var i = 0; i < this.meses.length; i++) {
-          this.arrData.push([stringify(this.meses[i]), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
-        }
-        var data1 = google.visualization.arrayToDataTable(this.arrData);
-        this.chart.draw(data1, this.options);
-      })
+
+  montaGrafico(data: any) {
+    this.arrData.push(['Mês', 'Masculino', 'Feminino']);
+    for (let obj in data['data']) {
+      if (data['data'][obj]['genero'] == " Masc") {
+        this.meses.push(data['data'][obj]['mes']);
+      }
+      if (data['data'][obj]['genero'] === " Masc") {
+        this.Mas.push(data['data'][obj]['bitos']);
+      } else {
+        this.Fem.push(data['data'][obj]['bitos']);
+      }
+    }
+
+    for (var i = 0; i < this.meses.length; i++) {
+      this.arrData.push([stringify(this.meses[i]), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
+    }
+    var data1 = google.visualization.arrayToDataTable(this.arrData);
+    this.chart.draw(data1, this.options);
   }
 }
