@@ -1,9 +1,10 @@
-import { Component, ViewChild, ElementRef, OnInit, Input, Output, EventEmitter, ViewContainerRef } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ToastrManager } from 'ng6-toastr-notifications';
+import { Component, ViewChild, ElementRef, OnInit, ViewContainerRef } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { IFilter } from 'app/components/qd-filtro/filtro';
+import { GetParent } from '../cards/parent.directive';
+import { Card } from '../cards/card';
+import { RequisitonService } from '../cards/requisition.service';
 import { CardsComponent } from '../cards/cards.component';
-
 declare var google: any;
 
 @Component({
@@ -11,11 +12,13 @@ declare var google: any;
   templateUrl: './pie.component.html',
   styleUrls: ['./pie.component.css']
 })
-export class PieComponent implements OnInit, IFilter {
+export class PieComponent implements OnInit, IFilter, Card {
+  endpoint: string = "pie";
   arrData: any = [];
   Mas: any = [];
   Fem: any = [];
   filtro: any = [];
+  http: HttpClient;
   chart;
 
   // options = new CardsComponent.Options(620,520);
@@ -47,10 +50,8 @@ export class PieComponent implements OnInit, IFilter {
 
   @ViewChild('pieChart') pieChart: ElementRef
 
-  constructor(private http: HttpClient, public toastr: ToastrManager, private viewContainerRef: ViewContainerRef) { }
-
-  getParentComponent(): CardsComponent {
-    return this.viewContainerRef['_data'].componentView.component.viewContainerRef['_view'].component
+  constructor(http: HttpClient, private viewContainerRef: ViewContainerRef) {
+    this.http = http;
   }
 
   atualizarFiltro(filtro: string): void {
@@ -72,36 +73,29 @@ export class PieComponent implements OnInit, IFilter {
       mes: 'Jan',
       regio: '1 Região Norte'
     }
-    this.getParentComponent().addObserver(this);
-  }
 
+    GetParent.addObserverToFilter(this);
+  }
 
   drawChart = () => {
     this.arrData = [];
     this.arrData.push(['Região', 'Valor Gasto']);
     this.Mas = [];
     this.Fem = [];
-    this.options.title = 'Custos de internações' +' em '+ this.filtro.ano + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria;
+    this.options.title = 'Custos de internações' + ' em ' + this.filtro.ano + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria;
 
     this.chart = new google.visualization.PieChart(this.pieChart.nativeElement);
 
-    const headers = new HttpHeaders()
-      .set('Authorization', 'my-auth-token')
-      .set('Content-Type', 'application/json')
-    this.http.post(`http://localhost:3002/index/pie`,
-      JSON.stringify(this.filtro), {
-      headers: headers
-    })
-      .subscribe(data => {
+    RequisitonService.montaGrafico(this);
+  }
 
-        data['data'].filter(({ regio }) => {
-          return regio != "Total";
-        }).forEach(({ regio, valorServicoesHospitalares }) => {
-          this.arrData.push([regio, parseInt(valorServicoesHospitalares)]);
-        });
-
-        var data1 = google.visualization.arrayToDataTable(this.arrData);
-        this.chart.draw(data1, this.options);
-      })
+  montaGrafico(data: any) {
+    data['data'].filter(({ regio }) => {
+      return regio != "Total";
+    }).forEach(({ regio, valorServicoesHospitalares }) => {
+      this.arrData.push([regio, parseInt(valorServicoesHospitalares)]);
+    });
+    var data1 = google.visualization.arrayToDataTable(this.arrData);
+    this.chart.draw(data1, this.options);
   }
 }
