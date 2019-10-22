@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./previsoes.component.css']
 })
 export class PrevisoesComponent implements OnInit {
-
+  
   constructor() { }
 
   ngOnInit() {

@@ -66,6 +66,11 @@ body {
     top: 15px;
 }
 
+.botao{
+    position: relative;
+    right: 24%;
+}
+
 .table h2 {
     text-transform: uppercase;
     color: aqua;

@@ -7,7 +7,8 @@ import { IFilter } from 'app/components/qd-filtro/filtro';
   templateUrl: './cards.component.html',
   styleUrls: ['./cards.component.css'],
 }) 
-export class CardsComponent implements OnInit { 
+export class CardsComponent implements OnInit {  
+
   messageToSendP: string;  
   private observers: IFilter[];
 

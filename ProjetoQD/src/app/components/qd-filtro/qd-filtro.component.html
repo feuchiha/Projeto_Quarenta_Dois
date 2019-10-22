@@ -1,5 +1,5 @@
 <div class="filtro">
-    <app-qd-select class="filtro1" [arrSelect]="filtros.ano" [titulo]="filtro.ano"
+    <app-qd-select class="filtro1" *ngIf="utilizaAno" [arrSelect]="filtros.ano" [titulo]="filtro.ano"
         (retPlaceholder)="onSelect($event)" [id]="element.id"></app-qd-select>
 
     <app-qd-select class="filtro2" [arrSelect]="filtros.genero" [titulo]="filtro.genero"

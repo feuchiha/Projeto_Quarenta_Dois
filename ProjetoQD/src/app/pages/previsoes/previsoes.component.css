@@ -70,6 +70,27 @@ body {
     color: aqua;
 }
 
+.filtro2 {
+    padding: 100px 20px;
+    font-family: "montserrat", sans-serif;
+    position: relative;
+    overflow: hidden;
+    margin: 0px 100px 0px 200px;
+    z-index: 1000;
+}
+
+.filtro{
+    z-index: 1000;
+    position: relative;
+    top: 15px;
+}
+
+.botao {
+    position: relative  ;
+    right: 21.5%;
+}
+
+
 @media screen and (max-width:980px) {
     .card-box {
         flex: 50%;
