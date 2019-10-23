@@ -2,6 +2,9 @@ import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angula
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { stringify } from '@angular/compiler/src/util';
+import { IFilter } from 'app/components/qd-filtro/filtro';
+import { Card } from '../cards/card';
+import { RequisitonService } from '../cards/requisition.service';
 declare var google: any;
 
 @Component({
@@ -11,9 +14,24 @@ declare var google: any;
 })
 
 
-export class ColumnPreviComponent implements OnInit {
-  filtros = {faixaEtaria:"", ano:"", genero:""};
-  arrData:any = [];
+export class ColumnPreviComponent implements OnInit, IFilter, Card {
+  http: HttpClient;
+  filtro: any;
+  endpoint: string[] = [];
+
+
+  atualizarFiltro(filtro: string): void {
+    if (null !== filtro) {
+      this.filtro = filtro;
+      this.drawChart();
+    }
+  }
+
+
+
+
+
+  arrData: any = [];
   Norte: any = [];
   Nordeste: any = [];
   Sudeste: any = [];
@@ -30,133 +48,131 @@ export class ColumnPreviComponent implements OnInit {
   @ViewChild('columnChart') columnChart: ElementRef
 
 
-  constructor(private http: HttpClient, public toastr: ToastrManager) {
+  constructor(http: HttpClient, public toastr: ToastrManager) {
+    this.http = http;
+    this.endpoint[0] = "column";
+    this.endpoint[1] = "columnPredict";
   }
 
   ngOnInit(): void {
 
-    this.filtros = {
+    this.filtro = {
       faixaEtaria: " 70 a 79 anos",
       ano: "2018",
-      genero:" Masc"
+      genero: " Masc"
     }
 
-    google.charts.load('current', { 'packages': ['corechart'] });
-    const headers = new HttpHeaders()
-    .set('Authorization', 'my-auth-token')
-    .set('Content-Type', 'application/json')
-    this.http.post(`http://localhost:3002/index/column`,
-      JSON.stringify(this.filtros),{
-      headers: headers
-    })
-    .subscribe(data => {
-      //console.log(data);
-    this.arrData.push(['Mês', 'Norte' , 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
-      for(let obj in data['data']){
-        if(data['data'][obj]['regio'] === "1 Região Norte"){
-          this.mes.push(data['data'][obj]['mes']);
-        }
-        if(data['data'][obj]['regio'] === "1 Região Norte"){
-            this.Norte.push(data['data'][obj]['bitos']);
-        }else if(data['data'][obj]['regio'] === "2 Região Nordeste"){
-            this.Nordeste.push(data['data'][obj]['bitos']);
-        }else if(data['data'][obj]['regio'] === "3 Região Sudeste"){
-            this.Sudeste.push(data['data'][obj]['bitos']);
-        }else if(data['data'][obj]['regio'] === "4 Região Sul"){
-          this.Sul.push(data['data'][obj]['bitos']);
-        }else if(data['data'][obj]['regio'] === "5 Região Centro-Oeste"){
-          this.Centro.push(data['data'][obj]['bitos']);
+    this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
+    this.realColumn();
+  }
+
+  realColumn(){
+    RequisitonService.montaGrafico(this);
+  }
+
+  montaGrafico(data: any) {
+    this.mes = [];
+    this.Nordeste = [];
+    this.Norte = [];
+    this.Sudeste = [];
+    this.Sul = [];
+    this.Centro = [];
+
+    for (let obj in data['data']) {
+      if (data['data'][obj]['regio'] === "1 Região Norte") {
+        this.mes.push(data['data'][obj]['mes']);
+      }
+      if (data['data'][obj]['regio'] === "1 Região Norte") {
+        this.Norte.push(data['data'][obj]['bitos']);
+      } else if (data['data'][obj]['regio'] === "2 Região Nordeste") {
+        this.Nordeste.push(data['data'][obj]['bitos']);
+      } else if (data['data'][obj]['regio'] === "3 Região Sudeste") {
+        this.Sudeste.push(data['data'][obj]['bitos']);
+      } else if (data['data'][obj]['regio'] === "4 Região Sul") {
+        this.Sul.push(data['data'][obj]['bitos']);
+      } else if (data['data'][obj]['regio'] === "5 Região Centro-Oeste") {
+        this.Centro.push(data['data'][obj]['bitos']);
       }
     }
+
+    if("2018" == this.filtro.ano){
       for(var i = 0;i < this.mes.length; i++){
         this.arrData.push([this.mes[i]+'/18', parseInt(this.Norte[i]), parseInt(this.Nordeste[i]), parseInt(this.Sudeste[i]), parseInt(this.Sul[i]), parseInt(this.Centro[i]),]);
       }
+
+      this.filtro = {
+        faixaEtaria: " 70 a 79 anos",
+        ano: "2019",
+        genero: " Masc"
+      }
+    } else {
       this.previColumn();
-    })
+    }
   }
 
 
- previColumn(): void {
 
-    this.filtros = {
-      faixaEtaria: " 70 a 79 anos",
-      ano: "2019",
-      genero:" Masc"
-    }
+  previColumn(): void {
 
-    google.charts.load('current', { 'packages': ['corechart'] });
-    const headers = new HttpHeaders()
-    .set('Authorization', 'my-auth-token')
-    .set('Content-Type', 'application/json')
-    this.http.post(`http://localhost:3002/index/columnPredict`,
-      JSON.stringify(this.filtros),{
-      headers: headers
-    })
-    .subscribe(data => {
-      //console.log(data);
-      for(let obj in data['data']){
-        if(data['data'][obj]['regio'] === "1 Região Norte"){
-          this.previmes.push(data['data'][obj]['mes']);
-        }
-        if(data['data'][obj]['regio'] === "1 Região Norte"){
-            this.previNorte.push(data['data'][obj]['bitos']);
-        }else if(data['data'][obj]['regio'] === "2 Região Nordeste"){
-            this.previNordeste.push(data['data'][obj]['bitos']);
-        }else if(data['data'][obj]['regio'] === "3 Região Sudeste"){
-            this.previSudeste.push(data['data'][obj]['bitos']);
-        }else if(data['data'][obj]['regio'] === "4 Região Sul"){
-          this.previSul.push(data['data'][obj]['bitos']);
-        }else if(data['data'][obj]['regio'] === "5 Região Centro-Oeste"){
-          this.previCentro.push(data['data'][obj]['bitos']);
+
+        // for (let obj in data['data']) {
+        //   if (data['data'][obj]['regio'] === "1 Região Norte") {
+        //     this.previmes.push(data['data'][obj]['mes']);
+        //   }
+        //   if (data['data'][obj]['regio'] === "1 Região Norte") {
+        //     this.previNorte.push(data['data'][obj]['bitos']);
+        //   } else if (data['data'][obj]['regio'] === "2 Região Nordeste") {
+        //     this.previNordeste.push(data['data'][obj]['bitos']);
+        //   } else if (data['data'][obj]['regio'] === "3 Região Sudeste") {
+        //     this.previSudeste.push(data['data'][obj]['bitos']);
+        //   } else if (data['data'][obj]['regio'] === "4 Região Sul") {
+        //     this.previSul.push(data['data'][obj]['bitos']);
+        //   } else if (data['data'][obj]['regio'] === "5 Região Centro-Oeste") {
+        //     this.previCentro.push(data['data'][obj]['bitos']);
+        //   }
+        // }
+        
+      for (var i = 0; i < this.mes.length; i++) {
+        this.arrData.push([this.mes[i] + '/19', parseInt(this.Norte[i]), parseInt(this.Nordeste[i]), parseInt(this.Sudeste[i]), parseInt(this.Sul[i]), parseInt(this.Centro[i]),]);
       }
-    }
-      for(var i = 0;i < this.previmes.length; i++){
-        this.arrData.push([this.previmes[i]+'/19', parseInt(this.previNorte[i]), parseInt(this.previNordeste[i]), parseInt(this.previSudeste[i]), parseInt(this.previSul[i]), parseInt(this.previCentro[i]),]);
-      }
-      //console.log(this.arrData);
-      google.charts.setOnLoadCallback(this.drawChart);
-    })
+
+      this.drawChart();
   }
-      
+
   drawChart = () => {
     var data = google.visualization.arrayToDataTable(this.arrData);
     var options = {
       width: 1220,
       height: 520,
-      title: 'Previsão de obitos em '+this.filtros.ano +' do sexo '+ this.filtros.genero+' de '+this.filtros.faixaEtaria+' todas as regiões',
+      title: 'Previsão de obitos em ' + this.filtro.ano + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria + ' todas as regiões',
       // backgroundColor: 'white',
-      legend: { position: 'top', maxLines: 3},
+      legend: { position: 'top', maxLines: 3 },
       bar: { groupWidth: '75%' },
       isStacked: true,
       hAxis: {
         textStyle: {
-            color: '#0baeb7'
+          color: '#0baeb7'
         },
         titleTextStyle: {
-            color: '#0baeb7'
+          color: '#0baeb7'
         }
       },
       vAxis: {
-          textStyle: {
-              color: '#0baeb7'
-          },
-          titleTextStyle: {
-              color: '#0baeb7'
-          }
+        textStyle: {
+          color: '#0baeb7'
+        },
+        titleTextStyle: {
+          color: '#0baeb7'
+        }
       },
-      chartArea:{left:'7%',top:'18%',width:'90%',height:'70%'}
+      chartArea: { left: '7%', top: '18%', width: '90%', height: '70%' }
     };
     const chart = new google.visualization.ColumnChart(this.columnChart.nativeElement);
-    
+
     chart.draw(data, options);
   }
 
-  ngAfterViewInit() {   
+  ngAfterViewInit() {
   }
 
-/*
-  drawChart(drawChart: any) {
-    throw new Error("Method not implemented.");
-  }
-*/
 }
