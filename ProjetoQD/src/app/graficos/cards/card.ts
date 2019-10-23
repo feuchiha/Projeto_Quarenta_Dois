@@ -4,7 +4,7 @@ export interface Card {
 
     http: HttpClient;
     filtro:any;
-    endpoint:string;
+    endpoint:string[];
 
     montaGrafico(data: any);
 }

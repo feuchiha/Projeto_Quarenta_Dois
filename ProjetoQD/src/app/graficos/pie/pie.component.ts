@@ -13,7 +13,7 @@ declare var google: any;
   styleUrls: ['./pie.component.css']
 })
 export class PieComponent implements OnInit, IFilter, Card {
-  endpoint: string = "pie";
+  endpoint: string[] = [];
   arrData: any = [];
   Mas: any = [];
   Fem: any = [];
@@ -52,6 +52,7 @@ export class PieComponent implements OnInit, IFilter, Card {
 
   constructor(http: HttpClient, private viewContainerRef: ViewContainerRef) {
     this.http = http;
+    this.endpoint[0] = "pie";
   }
 
   atualizarFiltro(filtro: string): void {

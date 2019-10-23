@@ -18,7 +18,7 @@ declare var google: any;
 export class ColumnComponent implements OnInit, IFilter, Card {
   http: HttpClient;
   filtro: any = [];
-  endpoint: string = "column";
+  endpoint: string[] = [];
 
   arrData: any = [];
   Norte: any = [];
@@ -67,7 +67,7 @@ export class ColumnComponent implements OnInit, IFilter, Card {
 
   constructor(http: HttpClient, public toastr: ToastrManager, private viewContainerRef: ViewContainerRef) {
     this.http = http;
-
+    this.endpoint[0]= "column";
   }
 
   ngOnInit(): void {

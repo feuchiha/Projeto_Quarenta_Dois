@@ -18,7 +18,7 @@ export class LinePredictComponent implements OnInit, IFilter, Card {
   http: HttpClient;
 
   filtro: any;
-  endpoint: string = 'linePredict';
+  endpoint: string[]=[];
 
   // filtros = { ano: "", faixaEtaria: "", regio: "" };
   filtros: any = [];
@@ -59,7 +59,7 @@ export class LinePredictComponent implements OnInit, IFilter, Card {
 
   constructor(http: HttpClient, public toastr: ToastrManager, private viewContainerRef: ViewContainerRef) {
   this.http =http;
-  
+  this.endpoint[0] = "linePredict";
   }
 
   atualizarFiltro(filtro: string): void {

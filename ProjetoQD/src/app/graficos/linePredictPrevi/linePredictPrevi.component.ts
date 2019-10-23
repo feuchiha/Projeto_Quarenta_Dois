@@ -2,6 +2,9 @@ import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angula
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { stringify } from '@angular/compiler/src/util';
+import { IFilter } from 'app/components/qd-filtro/filtro';
+import { Card } from '../cards/card';
+import { RequisitonService } from '../cards/requisition.service';
 declare var google: any;
 
 @Component({
@@ -10,9 +13,13 @@ declare var google: any;
   styleUrls: ['./linePredictPrevi.component.scss']
 })
 
-export class LinePredictPreviComponent implements OnInit {
-  filtros = {ano:"", faixaEtaria:"", regio:""};
-  arrData:any = [];
+export class LinePredictPreviComponent implements OnInit, IFilter, Card {
+
+  http: HttpClient;
+  filtro: any;
+  endpoint: string[] = [];
+
+  arrData: any = [];
   Mas: any = [];
   Fem: any = [];
   meses: any = [];
@@ -22,110 +29,105 @@ export class LinePredictPreviComponent implements OnInit {
 
   @ViewChild('lineChart') lineChart: ElementRef
 
-  constructor(private http: HttpClient, public toastr: ToastrManager) {
+  atualizarFiltro(filtro: string): void {
+    if (null !== filtro) {
+      this.filtro = filtro;
+      this.drawChart();
+    }
+  }
+
+  constructor(http: HttpClient, public toastr: ToastrManager) {
+    this.http = http;
+    this.endpoint[0] = "line";
+    this.endpoint[1] = "linePredict";
+
   }
 
   ngOnInit(): void {
 
-      this.filtros = {
-          ano: "2018",
-          faixaEtaria: " 70 a 79 anos",
-          regio: "3 Região Sudeste",
-        }
+    this.filtro = {
+      ano: "2018",
+      faixaEtaria: " 70 a 79 anos",
+      regio: "3 Região Sudeste",
+    }
 
-        google.charts.load('current', { 'packages': ['corechart'] });
-        const headers = new HttpHeaders()
-        .set('Authorization', 'my-auth-token')
-        .set('Content-Type', 'application/json')
-        this.http.post(`http://localhost:3002/index/line`,
-          JSON.stringify(this.filtros),{
-          headers: headers
-        })
-        .subscribe(data => {
-          //console.log(data)
-          this.arrData.push(['Mês', 'Masculino', 'Feminino']);
-          for(let obj in data['data']){
-            if(data['data'][obj]['genero'] == " Masc" ){
-              this.meses.push(data['data'][obj]['mes'] , );
-          }
-            if(data['data'][obj]['genero'] === " Masc"){
-              this.Mas.push(data['data'][obj]['bitos']);
-            }else{
-              this.Fem.push(data['data'][obj]['bitos']);
-            } 
-          }
+    this.arrData.push(['Mês', 'Masculino', 'Feminino']);
 
-          for(var i = 0;i < this.meses.length; i++){
-            this.arrData.push([stringify(this.meses[i] +'/18'), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
-          }
-          this.predictBusca();
-        })
-          
+
+    RequisitonService.montaGrafico(this);
+
+  }
+
+  montaGrafico(data: any) {
+
+    this.meses = [];
+    this.Mas = [];
+    this.Fem = [];
+
+    for (let obj in data['data']) {
+      if (data['data'][obj]['genero'] == " Masc") {
+        this.meses.push(data['data'][obj]['mes']);
+      }
+      if (data['data'][obj]['genero'] === " Masc") {
+        this.Mas.push(data['data'][obj]['bitos']);
+      } else {
+        this.Fem.push(data['data'][obj]['bitos']);
+      }
+    }
+
+    if ("2018" == this.filtro.ano) {
+      for (var i = 0; i < this.meses.length; i++) {
+        this.arrData.push([stringify(this.meses[i] + '/18'), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
       }
 
-
-  predictBusca(): void {
-
-      this.filtros = {
+      this.filtro = {
         ano: "2019",
         faixaEtaria: " 70 a 79 anos",
         regio: "3 Região Sudeste",
       }
-
-      google.charts.load('current', { 'packages': ['corechart'] });
-      const headers = new HttpHeaders()
-      .set('Authorization', 'my-auth-token')
-      .set('Content-Type', 'application/json')
-      this.http.post(`http://localhost:3002/index/linePredict`,
-        JSON.stringify(this.filtros),{
-        headers: headers
-      })
-      .subscribe(data => {
-        //console.log(data)
-        for(let obj in data['data']){
-          if(data['data'][obj]['genero'] == " Masc" ){
-            this.mesesPredit.push(data['data'][obj]['mes'] , );
-        }
-          if(data['data'][obj]['genero'] === " Masc"){
-            this.MasPredict.push(data['data'][obj]['bitos']);
-          }else{
-            this.FemPredict.push(data['data'][obj]['bitos']);
-          } 
-        }
-
-        for(var i = 0;i < this.mesesPredit.length; i++){
-          this.arrData.push([stringify(this.mesesPredit[i] +'/19'), parseInt(this.MasPredict[i]), parseInt(this.FemPredict[i])]);
-        }
-        google.charts.setOnLoadCallback(this.drawChart);
-      })
+    } else {
+      this.predictBusca();
     }
+  }
+
+
+  predictBusca(): void {
+
+
+    for (var i = 0; i < this.meses.length; i++) {
+      this.arrData.push([stringify(this.meses[i] + '/19'), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
+    }
+
+    this.drawChart();
+  }
 
   drawChart = () => {
     var data = google.visualization.arrayToDataTable(this.arrData);
-    const options = {      
+    const options = {
       width: 1200,
       height: 520,
-      title: 'Previsão de obitos por genero de '+ this.filtros.faixaEtaria + " no ano de " + this.filtros.ano + ' na ' + this.filtros.regio,
+      title: 'Previsão de obitos por genero de ' + this.filtro.faixaEtaria + " no ano de " + this.filtro.ano + ' na ' + this.filtro.regio,
       curveType: 'function',
-      legend: { 
-        position: 'bottom' },
-        hAxis: {
-          textStyle: {
-              color: '#0baeb7'
-          },
-          titleTextStyle: {
-              color: '#0baeb7'
-          }
+      legend: {
+        position: 'bottom'
+      },
+      hAxis: {
+        textStyle: {
+          color: '#0baeb7'
         },
-        vAxis: {
-            textStyle: {
-                color: '#0baeb7'
-            },
-            titleTextStyle: {
-                color: '#0baeb7'
-            }
+        titleTextStyle: {
+          color: '#0baeb7'
+        }
+      },
+      vAxis: {
+        textStyle: {
+          color: '#0baeb7'
         },
-        chartArea:{left:'7%',top:'15%',width:'90%',height:'70%'}
+        titleTextStyle: {
+          color: '#0baeb7'
+        }
+      },
+      chartArea: { left: '7%', top: '15%', width: '90%', height: '70%' }
     };
     const chart = new google.visualization.LineChart(this.lineChart.nativeElement);
     chart.draw(data, options);

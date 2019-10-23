@@ -16,7 +16,7 @@ declare var google: any;
 
 export class LineComponent implements OnInit, IFilter, Card {
   http: HttpClient;
-  endpoint: string = 'line';
+  endpoint: string[] = [];
 
   filtro: any = [];
   arrData: any = [];
@@ -56,6 +56,7 @@ export class LineComponent implements OnInit, IFilter, Card {
 
   constructor(http: HttpClient, private viewContainerRef: ViewContainerRef) {
     this.http = http;
+    this.endpoint[0] = 'line';
   }
 
   atualizarFiltro(filtro: string): void {
