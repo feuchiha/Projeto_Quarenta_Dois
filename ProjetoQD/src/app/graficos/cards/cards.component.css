@@ -4,7 +4,6 @@ body {
     padding: 0%;
     background-attachment: fixed;
 }
-
   
 .demo-card-square.mdl-card {
     width: 25vw;
@@ -16,7 +15,6 @@ body {
     background-color: #0baeb7;
     opacity: 0.5;
 }
-
 
 .card-table {
     max-width: 1980px;
@@ -43,32 +41,10 @@ body {
     overflow: hidden;
 }
 
-.filtro1 {
-    padding: 40px 20px;
-    font-family: "montserrat", sans-serif;
-    position: relative;
-    overflow: hidden;
-    z-index: 1000;
-}
-
-.filtro2 {
-    padding: 100px 20px;
-    font-family: "montserrat", sans-serif;
-    position: relative;
-    overflow: hidden;
-    margin: 0px 100px 0px 200px;
-    z-index: 1000;
-}
-
 .filtro{
     z-index: 1000;
     position: relative;
     top: 15px;
-}
-
-.botao{
-    position: relative;
-    right: 24%;
 }
 
 .table h2 {

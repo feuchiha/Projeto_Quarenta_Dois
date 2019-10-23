@@ -24,7 +24,7 @@ export class CardsComponent implements OnInit {
     this.notifyObservers(json);
   }
 
-  addObserver(ob: IFilter) {
+  addObserver(ob: IFilter) {   
     this.observers.push(ob)
   }
 

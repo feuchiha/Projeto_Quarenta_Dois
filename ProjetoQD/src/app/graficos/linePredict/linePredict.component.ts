@@ -18,7 +18,7 @@ export class LinePredictComponent implements OnInit, IFilter, Card {
   http: HttpClient;
 
   filtro: any;
-  endpoint: string;
+  endpoint: string = 'linePredict';
 
   // filtros = { ano: "", faixaEtaria: "", regio: "" };
   filtros: any = [];
@@ -74,7 +74,7 @@ export class LinePredictComponent implements OnInit, IFilter, Card {
     google.charts.load("visualization", "1", { packages: ["corechart"] });
     google.charts.setOnLoadCallback(this.drawChart);
 
-    this.filtros = {
+    this.filtro = {
       ano: "2019",
       faixaEtaria: " 30 a 39 anos",
       regio: "1 Região Norte",
@@ -88,7 +88,7 @@ export class LinePredictComponent implements OnInit, IFilter, Card {
     this.Fem = [];
     this.meses = [];
 
-    this.options.title = 'Previsão de obitos por genero de ' + this.filtros.faixaEtaria + ' no ano de 2019 na ' + this.filtros.regio;
+    this.options.title = 'Previsão de obitos por genero de ' + this.filtro.faixaEtaria + ' no ano de 2019 na ' + this.filtro.regio;
 
     this.chart = new google.visualization.LineChart(this.lineChart.nativeElement);
     RequisitonService.montaGrafico(this);

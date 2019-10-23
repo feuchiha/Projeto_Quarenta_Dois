@@ -61,7 +61,7 @@ export class LoginComponent extends  BlankLayoutCardComponent {
         }else{
         }setTimeout(
           function(){ 
-          window.location.href = 'http://localhost:4200/#/app/graficos'
+          window.location.href = 'http://localhost:4200/#/app/dashboard'
           }, 500);
       });
   }

@@ -22,7 +22,7 @@ import { PrevisoesComponent } from './pages/previsoes/previsoes.component';
   imports: [
     RouterModule.forRoot(
       [
-        { path: '', redirectTo: '/pages/login', pathMatch: 'full' },
+        { path: '', redirectTo: 'app/dashboard', pathMatch: 'full' },
         { path: 'app', component: CommonLayoutComponent, children: [
           { path: 'dashboard', component: DashboardComponent, pathMatch: 'full' },
           { path: 'forms', component: FormsComponent, pathMatch: 'full' },
