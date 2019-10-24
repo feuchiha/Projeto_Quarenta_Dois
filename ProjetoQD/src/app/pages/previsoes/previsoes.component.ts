@@ -10,8 +10,8 @@ import { IFilter } from 'app/components/qd-filtro/filtro';
 })
 
 export class PrevisoesComponent extends SidebarComponent implements OnInit {
-  private observers: IFilter[];
-
+  private observers: IFilter[]=[];
+  
   
   ngOnInit() {
     if (this.loadSession()) {

@@ -5,6 +5,7 @@ import { stringify } from '@angular/compiler/src/util';
 import { IFilter } from 'app/components/qd-filtro/filtro';
 import { Card } from '../cards/card';
 import { GetParent } from '../cards/parent.directive';
+import { RequisitonService } from '../cards/requisition.service';
 declare var google: any;
 
 @Component({
@@ -15,7 +16,8 @@ declare var google: any;
 export class LineCustoComponent implements OnInit, IFilter, Card {
   http: HttpClient;
   atualizarFiltro(filtro: string): void {
-    throw new Error("Method not implemented.");
+   this.filtro = filtro;
+   RequisitonService.montaGrafico(this);
   }
   filtro: any;
   endpoint: string[] = [];
@@ -49,6 +51,7 @@ export class LineCustoComponent implements OnInit, IFilter, Card {
     this.arrData.push(['Mês', 'Masculino', 'Feminino']);
 
     GetParent.addObserverToFilter(this);
+    RequisitonService.montaGrafico(this);
 
   }
 
@@ -57,6 +60,8 @@ export class LineCustoComponent implements OnInit, IFilter, Card {
     this.meses = [];
     this.Mas = [];
     this.Fem = [];
+
+    console.log(data['data'])
 
     for (let obj in data['data']) {
       if (data['data'][obj]['genero'] == " Masc") {
@@ -73,27 +78,21 @@ export class LineCustoComponent implements OnInit, IFilter, Card {
       for (var i = 0; i < this.meses.length; i++) {
         this.arrData.push([stringify(this.meses[i] + '/18'), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
       }
-
-
-      this.filtro = {
-        ano: "2019",
-        faixaEtaria: " 70 a 79 anos",
-        regio: "3 Região Sudeste",
-      }
+      this.filtro.ano = "2019";
     } else {
       this.predictBusca();
     }
   }
   predictBusca(): void {
-
     for (var i = 0; i < this.meses.length; i++) {
       this.arrData.push([stringify(this.meses[i] + '/19'), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
     }
-
+    
     this.drawChart();
   }
 
   drawChart = () => {
+    console.log(this.arrData)
     var data = google.visualization.arrayToDataTable(this.arrData);
     const options = {
       width: 1200,

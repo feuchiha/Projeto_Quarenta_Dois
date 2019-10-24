@@ -103,12 +103,7 @@ export class ColumnPreviComponent implements OnInit, IFilter, Card {
       for(var i = 0;i < this.mes.length; i++){
         this.arrData.push([this.mes[i]+'/18', parseInt(this.Norte[i]), parseInt(this.Nordeste[i]), parseInt(this.Sudeste[i]), parseInt(this.Sul[i]), parseInt(this.Centro[i]),]);
       }
-
-      this.filtro = {
-        faixaEtaria: " 70 a 79 anos",
-        ano: "2019",
-        genero: " Masc"
-      }
+      this.filtro.ano = "2019"
     } else {
       this.previColumn();
     }

@@ -80,12 +80,7 @@ export class LinePredictPreviComponent implements OnInit, IFilter, Card {
       for (var i = 0; i < this.meses.length; i++) {
         this.arrData.push([stringify(this.meses[i] + '/18'), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
       }
-
-      this.filtro = {
-        ano: "2019",
-        faixaEtaria: " 70 a 79 anos",
-        regio: "3 Região Sudeste",
-      }
+      this.filtro.ano = "2019"
     } else {
       this.predictBusca();
     }

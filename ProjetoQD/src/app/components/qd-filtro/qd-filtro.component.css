@@ -36,7 +36,17 @@
     left: 21.5%;
 }
 
+.filtro5 {
+    padding: 100px 20px;
+    font-family: "montserrat", sans-serif;
+    position: relative;
+    overflow: hidden;
+    margin: 0px 100px 0px 200px;
+    z-index: 1000;
+    left: 31.5%;
+}
+
 .botao {
     position: relative  ;
-    right: 21.5%;
+    right: 32%;
 }

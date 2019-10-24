@@ -11,6 +11,9 @@
     <app-qd-select class="filtro4" [arrSelect]="filtros.faixaEtaria" [titulo]="filtro.faixaEtaria"
         (retPlaceholder)="onSelect($event)" [id]="element4.id"></app-qd-select>
 
+    <app-qd-select class="filtro5" [arrSelect]="filtros.regio" [titulo]="filtro.regio"
+        (retPlaceholder)="onSelect($event)" [id]="element5.id"></app-qd-select>    
+
 <button (click)="onFiltra()" class="mdl-button mdl-js-button mdl-button--raised color--light-blue botao">
     Filtrar
 </button>
