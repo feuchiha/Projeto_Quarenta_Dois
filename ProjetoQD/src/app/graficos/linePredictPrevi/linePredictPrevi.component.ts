@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, OnInit, ViewContainerRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { stringify } from '@angular/compiler/src/util';
@@ -37,7 +37,7 @@ export class LinePredictPreviComponent implements OnInit, IFilter, Card {
     }
   }
 
-  constructor(http: HttpClient, public toastr: ToastrManager) {
+  constructor(http: HttpClient, public toastr: ToastrManager,private viewContainerRef: ViewContainerRef) {
     this.http = http;
     this.endpoint[0] = "line";
     this.endpoint[1] = "linePredict";
