@@ -5,6 +5,7 @@ import { stringify } from '@angular/compiler/src/util';
 import { IFilter } from 'app/components/qd-filtro/filtro';
 import { Card } from '../cards/card';
 import { RequisitonService } from '../cards/requisition.service';
+import { GetParent } from '../cards/parent.directive';
 declare var google: any;
 
 @Component({
@@ -63,6 +64,9 @@ export class ColumnPreviComponent implements OnInit, IFilter, Card {
     }
 
     this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
+    
+    GetParent.addObserverToFilter(this);
+    
     this.realColumn();
   }
 

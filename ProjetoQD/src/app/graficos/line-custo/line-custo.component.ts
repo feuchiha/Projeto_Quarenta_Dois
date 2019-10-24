@@ -4,6 +4,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { stringify } from '@angular/compiler/src/util';
 import { IFilter } from 'app/components/qd-filtro/filtro';
 import { Card } from '../cards/card';
+import { GetParent } from '../cards/parent.directive';
 declare var google: any;
 
 @Component({
@@ -46,6 +47,9 @@ export class LineCustoComponent implements OnInit, IFilter, Card {
     }
 
     this.arrData.push(['Mês', 'Masculino', 'Feminino']);
+
+    GetParent.addObserverToFilter(this);
+
   }
 
   montaGrafico(data: any) {
