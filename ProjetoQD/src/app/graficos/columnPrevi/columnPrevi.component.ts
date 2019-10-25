@@ -20,11 +20,14 @@ export class ColumnPreviComponent implements OnInit, IFilter, Card {
   filtro: any;
   endpoint: string[] = [];
 
-
   atualizarFiltro(filtro: string): void {
     if (null !== filtro) {
       this.filtro = filtro;
-      this.drawChart();
+      this.filtro.ano = "2018";
+
+      this.arrData=[];
+      this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
+      RequisitonService.montaGrafico(this);
     }
   }
 
@@ -52,7 +55,6 @@ export class ColumnPreviComponent implements OnInit, IFilter, Card {
   constructor(http: HttpClient, public toastr: ToastrManager, private viewContainerRef: ViewContainerRef) {
     this.http = http;
     this.endpoint[0] = "column";
-    this.endpoint[1] = "columnPredict";
   }
 
   ngOnInit(): void {
@@ -63,8 +65,8 @@ export class ColumnPreviComponent implements OnInit, IFilter, Card {
       genero: " Masc"
     }
 
-    this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
     
+    this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
     GetParent.addObserverToFilter(this);
     
     this.realColumn();
@@ -98,12 +100,14 @@ export class ColumnPreviComponent implements OnInit, IFilter, Card {
         this.Centro.push(data['data'][obj]['bitos']);
       }
     }
-
+    
     if("2018" == this.filtro.ano){
       for(var i = 0;i < this.mes.length; i++){
         this.arrData.push([this.mes[i]+'/18', parseInt(this.Norte[i]), parseInt(this.Nordeste[i]), parseInt(this.Sudeste[i]), parseInt(this.Sul[i]), parseInt(this.Centro[i]),]);
       }
       this.filtro.ano = "2019"
+      this.endpoint[0] = "columnPredict";
+      RequisitonService.montaGrafico(this);
     } else {
       this.previColumn();
     }
@@ -113,24 +117,6 @@ export class ColumnPreviComponent implements OnInit, IFilter, Card {
 
   previColumn(): void {
 
-
-        // for (let obj in data['data']) {
-        //   if (data['data'][obj]['regio'] === "1 Região Norte") {
-        //     this.previmes.push(data['data'][obj]['mes']);
-        //   }
-        //   if (data['data'][obj]['regio'] === "1 Região Norte") {
-        //     this.previNorte.push(data['data'][obj]['bitos']);
-        //   } else if (data['data'][obj]['regio'] === "2 Região Nordeste") {
-        //     this.previNordeste.push(data['data'][obj]['bitos']);
-        //   } else if (data['data'][obj]['regio'] === "3 Região Sudeste") {
-        //     this.previSudeste.push(data['data'][obj]['bitos']);
-        //   } else if (data['data'][obj]['regio'] === "4 Região Sul") {
-        //     this.previSul.push(data['data'][obj]['bitos']);
-        //   } else if (data['data'][obj]['regio'] === "5 Região Centro-Oeste") {
-        //     this.previCentro.push(data['data'][obj]['bitos']);
-        //   }
-        // }
-        
       for (var i = 0; i < this.mes.length; i++) {
         this.arrData.push([this.mes[i] + '/19', parseInt(this.Norte[i]), parseInt(this.Nordeste[i]), parseInt(this.Sudeste[i]), parseInt(this.Sul[i]), parseInt(this.Centro[i]),]);
       }

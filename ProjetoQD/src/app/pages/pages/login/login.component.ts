@@ -59,9 +59,10 @@ export class LoginComponent extends  BlankLayoutCardComponent {
         if(data['success'] === false){
           this.toastr.errorToastr(data['message'], 'Oops!');
         }else{
+          window.location.href = 'http://localhost:4200/#/app/dashboard'
         }setTimeout(
           function(){ 
-          window.location.href = 'http://localhost:4200/#/app/dashboard'
+          window.location.href = 'http://localhost:4200/#/app/graficos'
           }, 500);
       });
   }

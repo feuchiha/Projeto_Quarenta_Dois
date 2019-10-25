@@ -33,11 +33,16 @@ export class LinePredictPreviComponent implements OnInit, IFilter, Card {
   atualizarFiltro(filtro: string): void {
     if (null !== filtro) {
       this.filtro = filtro;
-      this.drawChart();
+      this.filtro.ano = "2018";
+      
+      this.arrData = [];
+      this.arrData.push(['Mês', 'Masculino', 'Feminino']);
+
+      RequisitonService.montaGrafico(this);
     }
   }
 
-  constructor(http: HttpClient, public toastr: ToastrManager,private viewContainerRef: ViewContainerRef) {
+  constructor(http: HttpClient, public toastr: ToastrManager, private viewContainerRef: ViewContainerRef) {
     this.http = http;
     this.endpoint[0] = "line";
     this.endpoint[1] = "linePredict";
@@ -52,8 +57,8 @@ export class LinePredictPreviComponent implements OnInit, IFilter, Card {
       regio: "3 Região Sudeste",
     }
 
-    this.arrData.push(['Mês', 'Masculino', 'Feminino']);
 
+    this.arrData.push(['Mês', 'Masculino', 'Feminino']);
     GetParent.addObserverToFilter(this);
     RequisitonService.montaGrafico(this);
 

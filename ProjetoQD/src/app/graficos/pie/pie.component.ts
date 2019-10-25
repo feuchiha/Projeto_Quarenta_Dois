@@ -83,7 +83,7 @@ export class PieComponent implements OnInit, IFilter, Card {
     this.arrData.push(['Região', 'Valor Gasto']);
     this.Mas = [];
     this.Fem = [];
-    this.options.title = 'Custos de internações' + ' em ' + this.filtro.ano + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria;
+    this.options.title = 'Custos de internações' + ' em ' + this.filtro.ano + ' no mês de ' + this.filtro.mes + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria;
 
     this.chart = new google.visualization.PieChart(this.pieChart.nativeElement);
 

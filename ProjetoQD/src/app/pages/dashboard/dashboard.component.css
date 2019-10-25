@@ -46,6 +46,14 @@ body {
     }
 }
 
+.texto{
+    padding: 80px 251px;
+    position: relative;
+    top:100px;
+    text-align: center;
+    margin: auto;
+    justify-content: center;
+}
 
 /* pricing-table = card-table
 col = card-box 

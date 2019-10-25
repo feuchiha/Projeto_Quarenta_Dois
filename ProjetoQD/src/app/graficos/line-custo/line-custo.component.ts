@@ -17,6 +17,10 @@ export class LineCustoComponent implements OnInit, IFilter, Card {
   http: HttpClient;
   atualizarFiltro(filtro: string): void {
    this.filtro = filtro;
+   this.filtro.ano = "2018";
+
+   this.arrData=[];
+   this.arrData.push(['Mês', 'Masculino', 'Feminino']);
    RequisitonService.montaGrafico(this);
   }
   filtro: any;
@@ -49,19 +53,15 @@ export class LineCustoComponent implements OnInit, IFilter, Card {
     }
 
     this.arrData.push(['Mês', 'Masculino', 'Feminino']);
-
     GetParent.addObserverToFilter(this);
     RequisitonService.montaGrafico(this);
 
   }
 
   montaGrafico(data: any) {
-
     this.meses = [];
     this.Mas = [];
     this.Fem = [];
-
-    console.log(data['data'])
 
     for (let obj in data['data']) {
       if (data['data'][obj]['genero'] == " Masc") {
@@ -73,7 +73,7 @@ export class LineCustoComponent implements OnInit, IFilter, Card {
         this.Fem.push(data['data'][obj]['valorServicoesHospitalares']);
       }
     }
-
+    
     if ("2018" == this.filtro.ano) {
       for (var i = 0; i < this.meses.length; i++) {
         this.arrData.push([stringify(this.meses[i] + '/18'), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
@@ -92,7 +92,6 @@ export class LineCustoComponent implements OnInit, IFilter, Card {
   }
 
   drawChart = () => {
-    console.log(this.arrData)
     var data = google.visualization.arrayToDataTable(this.arrData);
     const options = {
       width: 1200,
