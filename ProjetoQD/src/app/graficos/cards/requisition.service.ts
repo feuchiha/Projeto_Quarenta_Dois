@@ -11,14 +11,14 @@ export class RequisitonService {
             .set('Content-Type', 'application/json');
         var passFor;
         if (typeof cardPrevisao !== 'undefined' && cardPrevisao.length > 0) {
-            passFor = cardPrevisao[0];
+            passFor = cardPrevisao[0].montaGrafico.bind(cardPrevisao[0], card)
         } else {
-            passFor = card;
+            passFor = card.montaGrafico.bind(card);
         }
         card.http.post(`http://localhost:3002/index/${card.endpoint}`,
             JSON.stringify(card.filtro), {
             headers: headers
-        }).subscribe(card.montaGrafico.bind(passFor, card))
+        }).subscribe(passFor)
 
     }
 
