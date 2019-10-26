@@ -18,7 +18,7 @@ declare var google: any;
 export class AreaComponent implements OnInit, IFilter, Card {
   http: HttpClient;
 
-  endpoint: string[] = [];
+  endpoint: string = "";
   // filtro = {faixaEtaria:"", ano:"", genero:""};
   filtro: any = [];
   arrData: any = [];
@@ -66,7 +66,7 @@ export class AreaComponent implements OnInit, IFilter, Card {
 
   constructor(http: HttpClient, public toastr: ToastrManager,  private viewContainerRef: ViewContainerRef) {
     this.http = http;
-    this.endpoint[0] = "area";
+    this.endpoint = "area";
   }
 
   ngOnInit(): void {

@@ -3,9 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { stringify } from '@angular/compiler/src/util';
 import { IFilter } from 'app/components/qd-filtro/filtro';
-import { Card } from '../cards/card';
+import { Card, GraficoPrevisao } from '../cards/card';
 import { RequisitonService } from '../cards/requisition.service';
 import { GetParent } from '../cards/parent.directive';
+import { GraficosComponent } from '../graficos.component';
 declare var google: any;
 
 @Component({
@@ -15,22 +16,22 @@ declare var google: any;
 })
 
 
-export class ColumnPreviComponent implements OnInit, IFilter, Card {
-  http: HttpClient;
-  filtro: any;
-  endpoint: string[] = [];
+export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
+  cards: Card[] = [];
 
   atualizarFiltro(filtro: string): void {
     if (null !== filtro) {
-      this.filtro = filtro;
-      this.filtro.ano = "2018";
+      this.cards[0].filtro = filtro;
+      this.cards[0].filtro.ano = "2018";
 
-      this.arrData=[];
+      this.cards[1].filtro = filtro;
+      this.cards[1].filtro.ano = "2019";
+
+      this.arrData = [];
       this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
-      RequisitonService.montaGrafico(this);
+      RequisitonService.montaGraficoPrevi(this);
     }
   }
-
 
 
 
@@ -52,31 +53,40 @@ export class ColumnPreviComponent implements OnInit, IFilter, Card {
   @ViewChild('columnChart') columnChart: ElementRef
 
 
-  constructor(http: HttpClient, public toastr: ToastrManager, private viewContainerRef: ViewContainerRef) {
-    this.http = http;
-    this.endpoint[0] = "column";
+  constructor(private http: HttpClient, public toastr: ToastrManager, private viewContainerRef: ViewContainerRef) {
+
+    this.cards[0] = <Card>{
+      http: this.http,
+      filtro: {
+        faixaEtaria: " 70 a 79 anos",
+        ano: "2018",
+        genero: " Masc"
+      },
+      endpoint: 'column',
+      montaGrafico: this.montaGrafico
+    }
+
+    this.cards[1] = <Card>{
+      http: this.http,
+      filtro: {
+        faixaEtaria: " 70 a 79 anos",
+        ano: "2019",
+        genero: " Masc"
+      },
+      endpoint: 'columnPredict',
+      montaGrafico: this.montaGrafico
+    }
   }
 
   ngOnInit(): void {
 
-    this.filtro = {
-      faixaEtaria: " 70 a 79 anos",
-      ano: "2018",
-      genero: " Masc"
-    }
-
-    
     this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
     GetParent.addObserverToFilter(this);
-    
-    this.realColumn();
+
+    RequisitonService.montaGraficoPrevi(this);
   }
 
-  realColumn(){
-    RequisitonService.montaGrafico(this);
-  }
-
-  montaGrafico(data: any) {
+  montaGrafico(card: Card, data: any) {
     this.mes = [];
     this.Nordeste = [];
     this.Norte = [];
@@ -100,36 +110,39 @@ export class ColumnPreviComponent implements OnInit, IFilter, Card {
         this.Centro.push(data['data'][obj]['bitos']);
       }
     }
-    
-    if("2018" == this.filtro.ano){
-      for(var i = 0;i < this.mes.length; i++){
-        this.arrData.push([this.mes[i]+'/18', parseInt(this.Norte[i]), parseInt(this.Nordeste[i]), parseInt(this.Sudeste[i]), parseInt(this.Sul[i]), parseInt(this.Centro[i]),]);
-      }
-      this.filtro.ano = "2019"
-      this.endpoint[0] = "columnPredict";
-      RequisitonService.montaGrafico(this);
-    } else {
-      this.previColumn();
+
+    for (var i = 0; i < this.mes.length; i++) {
+      this.arrData.push([this.mes[i] + card.filtro.ano.slice(-2), parseInt(this.Norte[i]), parseInt(this.Nordeste[i]), parseInt(this.Sudeste[i]), parseInt(this.Sul[i]), parseInt(this.Centro[i]),]);
     }
+
+    this.drawChart();
+    // if ("2018" == card.filtro.ano) {
+    //   for (var i = 0; i < this.mes.length; i++) {
+    //     this.arrData.push([this.mes[i] + '/18', parseInt(this.Norte[i]), parseInt(this.Nordeste[i]), parseInt(this.Sudeste[i]), parseInt(this.Sul[i]), parseInt(this.Centro[i]),]);
+    //   }
+    //   // this.cards[0].filtro.ano = "2019"
+    //   // this.endpoint[0] = "columnPredict";
+    //   // RequisitonService.montaGraficoPrevi(this);
+    // } else {
+    //   this.previColumn();
+    // }
   }
 
+  // previColumn(): void {
 
+  //   for (var i = 0; i < this.mes.length; i++) {
+  //     this.arrData.push([this.mes[i] + '/19', parseInt(this.Norte[i]), parseInt(this.Nordeste[i]), parseInt(this.Sudeste[i]), parseInt(this.Sul[i]), parseInt(this.Centro[i]),]);
+  //   }
 
-  previColumn(): void {
-
-      for (var i = 0; i < this.mes.length; i++) {
-        this.arrData.push([this.mes[i] + '/19', parseInt(this.Norte[i]), parseInt(this.Nordeste[i]), parseInt(this.Sudeste[i]), parseInt(this.Sul[i]), parseInt(this.Centro[i]),]);
-      }
-
-      this.drawChart();
-  }
+  //   this.drawChart();
+  // }
 
   drawChart = () => {
     var data = google.visualization.arrayToDataTable(this.arrData);
     var options = {
       width: 1220,
       height: 520,
-      title: 'Previsão de obitos em ' + this.filtro.ano + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria + ' todas as regiões',
+      // title: 'Previsão de obitos em ' + this.cards[0].filtro.ano + ' do sexo ' + this.cardUtilizado.filtro.genero + ' de ' + this.cardUtilizado.filtro.faixaEtaria + ' todas as regiões',
       // backgroundColor: 'white',
       legend: { position: 'top', maxLines: 3 },
       bar: { groupWidth: '75%' },

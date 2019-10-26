@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { stringify } from '@angular/compiler/src/util';
 import { IFilter } from 'app/components/qd-filtro/filtro';
-import { Card } from '../cards/card';
+import { Card, GraficoPrevisao } from '../cards/card';
 import { RequisitonService } from '../cards/requisition.service';
 import { GetParent } from '../cards/parent.directive';
 declare var google: any;
@@ -14,11 +14,8 @@ declare var google: any;
   styleUrls: ['./linePredictPrevi.component.scss']
 })
 
-export class LinePredictPreviComponent implements OnInit, IFilter, Card {
-
-  http: HttpClient;
-  filtro: any;
-  endpoint: string[] = [];
+export class LinePredictPreviComponent implements OnInit, IFilter, GraficoPrevisao {
+  cards: Card[] =[];
 
   arrData: any = [];
   Mas: any = [];
@@ -32,39 +29,52 @@ export class LinePredictPreviComponent implements OnInit, IFilter, Card {
 
   atualizarFiltro(filtro: string): void {
     if (null !== filtro) {
-      this.filtro = filtro;
-      this.filtro.ano = "2018";
-      
+      this.cards[0].filtro = filtro;
+      this.cards[0].filtro.ano = "2018";
+
+      this.cards[1].filtro = filtro;
+      this.cards[1].filtro.ano = "2019";
+
       this.arrData = [];
       this.arrData.push(['Mês', 'Masculino', 'Feminino']);
 
-      RequisitonService.montaGrafico(this);
+      RequisitonService.montaGraficoPrevi(this);
     }
   }
 
-  constructor(http: HttpClient, public toastr: ToastrManager, private viewContainerRef: ViewContainerRef) {
-    this.http = http;
-    this.endpoint[0] = "line";
-    this.endpoint[1] = "linePredict";
+  constructor(private http: HttpClient, public toastr: ToastrManager, private viewContainerRef: ViewContainerRef) {
+    this.cards[0] = <Card>{
+      http: this.http,
+      filtro: {
+        ano: "2018",
+        faixaEtaria: " 70 a 79 anos",
+        regio: "3 Região Sudeste",
+      },
+      endpoint: 'line',
+      montaGrafico: this.montaGrafico
+    }
+
+    this.cards[1] = <Card>{
+      http: this.http,
+      filtro: {
+        ano: "2019",
+        faixaEtaria: " 70 a 79 anos",
+        regio: "3 Região Sudeste",
+      },
+      endpoint: 'linePredict',
+      montaGrafico: this.montaGrafico
+    }
 
   }
 
   ngOnInit(): void {
-
-    this.filtro = {
-      ano: "2018",
-      faixaEtaria: " 70 a 79 anos",
-      regio: "3 Região Sudeste",
-    }
-
-
     this.arrData.push(['Mês', 'Masculino', 'Feminino']);
     GetParent.addObserverToFilter(this);
-    RequisitonService.montaGrafico(this);
+    RequisitonService.montaGraficoPrevi(this);
 
   }
 
-  montaGrafico(data: any) {
+  montaGrafico(card: Card, data: any) {
 
     this.meses = [];
     this.Mas = [];
@@ -81,24 +91,9 @@ export class LinePredictPreviComponent implements OnInit, IFilter, Card {
       }
     }
 
-    if ("2018" == this.filtro.ano) {
-      for (var i = 0; i < this.meses.length; i++) {
-        this.arrData.push([stringify(this.meses[i] + '/18'), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
-      }
-      this.filtro.ano = "2019"
-    } else {
-      this.predictBusca();
-    }
-  }
-
-
-  predictBusca(): void {
-
-
     for (var i = 0; i < this.meses.length; i++) {
-      this.arrData.push([stringify(this.meses[i] + '/19'), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
+      this.arrData.push([stringify(this.meses[i] + card.filtro.ano.slice(-2)), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
     }
-
     this.drawChart();
   }
 
@@ -107,7 +102,7 @@ export class LinePredictPreviComponent implements OnInit, IFilter, Card {
     const options = {
       width: 1200,
       height: 520,
-      title: 'Previsão de obitos por genero de ' + this.filtro.faixaEtaria + " no ano de " + this.filtro.ano + ' na ' + this.filtro.regio,
+      // title: 'Previsão de obitos por genero de ' + this.filtro.faixaEtaria + " no ano de " + this.filtro.ano + ' na ' + this.filtro.regio,
       curveType: 'function',
       legend: {
         position: 'bottom'

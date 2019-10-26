@@ -1,21 +1,30 @@
 import { HttpHeaders } from "@angular/common/http";
-import { Card } from "./card";
+import { Card, GraficoPrevisao } from "./card";
 
 export class RequisitonService {
 
     constructor() { }
 
-    static montaGrafico(card: Card) {
+    static montaGrafico(card: Card, ...cardPrevisao: GraficoPrevisao[]) {
         const headers = new HttpHeaders()
             .set('Authorization', 'my-auth-token')
             .set('Content-Type', 'application/json');
-        console.log(card.endpoint[0])
-            console.log(card.filtro)
-        //card.endpoint.forEach(endpoint => {
-            card.http.post(`http://localhost:3002/index/${card.endpoint[0]}`,
-                JSON.stringify(card.filtro), {
-                headers: headers
-            }).subscribe(card.montaGrafico.bind(card))
-        //});
+        var passFor;
+        if (typeof cardPrevisao !== 'undefined' && cardPrevisao.length > 0) {
+            passFor = cardPrevisao[0];
+        } else {
+            passFor = card;
+        }
+        card.http.post(`http://localhost:3002/index/${card.endpoint}`,
+            JSON.stringify(card.filtro), {
+            headers: headers
+        }).subscribe(card.montaGrafico.bind(passFor, card))
+
+    }
+
+    static montaGraficoPrevi(graficoPrevi: GraficoPrevisao) {
+        graficoPrevi.cards.forEach(card => {
+            this.montaGrafico(card, graficoPrevi);
+        });
     }
 }

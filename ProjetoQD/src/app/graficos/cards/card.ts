@@ -4,7 +4,12 @@ export interface Card {
 
     http: HttpClient;
     filtro:any;
-    endpoint:string[];
+    endpoint:string;
 
     montaGrafico(data: any);
+}
+
+export interface GraficoPrevisao {
+    cards: Card[];
+    montaGrafico(card: Card, data: any);
 }
