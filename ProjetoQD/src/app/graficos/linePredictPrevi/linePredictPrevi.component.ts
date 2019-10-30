@@ -92,16 +92,21 @@ export class LinePredictPreviComponent implements OnInit, IFilter, GraficoPrevis
     }
 
     for (var i = 0; i < this.meses.length; i++) {
-      this.arrData.push([stringify(this.meses[i] + card.filtro.ano.slice(-2)), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
+      this.arrData.push([stringify(this.meses[i] + "/" + card.filtro.ano.slice(-2)), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
     }
-    this.drawChart();
+    if("2019"==card.filtro.ano){
+      this.drawChart();
+    }
   }
 
   drawChart = () => {
+    console.log(this.arrData);
+    
     var data = google.visualization.arrayToDataTable(this.arrData);
     const options = {
       width: 1200,
       height: 520,
+      title: 'Custo por internação na região norte de 15 a 19 anos com todos os gêneros no período de Jan a Dez 2018 os dados reais e  Jan a Jun de 2019 a previsão',
       // title: 'Previsão de obitos por genero de ' + this.filtro.faixaEtaria + " no ano de " + this.filtro.ano + ' na ' + this.filtro.regio,
       curveType: 'function',
       legend: {

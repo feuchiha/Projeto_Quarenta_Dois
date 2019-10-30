@@ -93,7 +93,7 @@ export class AreaComponent implements OnInit, IFilter, Card {
     this.Centro = [];
     this.mes = [];
 
-    this.options.title = 'Obitos em ' + this.filtro.ano + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria;
+    this.options.title = 'Internações em ' + this.filtro.ano + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria;
 
     this.chart = new google.visualization.AreaChart(this.areaChart.nativeElement);
 

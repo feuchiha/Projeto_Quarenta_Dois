@@ -95,7 +95,7 @@ export class ColumnComponent implements OnInit, IFilter, Card {
     this.Centro = [];
     this.mes = [];
 
-    this.options.title = 'Obitos em ' + this.filtro.ano + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria;
+    this.options.title = 'Óbitos em ' + this.filtro.ano + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria;
 
     this.chart = new google.visualization.ColumnChart(this.columnChart.nativeElement);
     RequisitonService.montaGrafico(this);

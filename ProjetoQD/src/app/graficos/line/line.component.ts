@@ -28,7 +28,7 @@ export class LineComponent implements OnInit, IFilter, Card {
   options = {
     width: 620,
     height: 520,
-    title: 'Obitos por genero de ' + this.filtro.faixaEtaria + " no ano de " + this.filtro.ano + ' na ' + this.filtro.regio,
+    title: 'Óbitos por gênero de ' + this.filtro.faixaEtaria + " no ano de " + this.filtro.ano + ' na ' + this.filtro.regio,
     curveType: 'function',
     legend: {
       position: 'bottom'
@@ -87,7 +87,7 @@ export class LineComponent implements OnInit, IFilter, Card {
     this.Fem = [];
     this.meses = [];
 
-    this.options.title = 'Total de obitos por genero de ' + this.filtro.faixaEtaria + " no ano de " + this.filtro.ano + ' na ' + this.filtro.regio;
+    this.options.title = 'Total de óbitos por gênero de ' + this.filtro.faixaEtaria + " no ano de " + this.filtro.ano + ' na ' + this.filtro.regio;
 
     this.chart = new google.visualization.LineChart(this.lineChart.nativeElement);
 

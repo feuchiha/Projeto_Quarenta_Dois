@@ -88,7 +88,7 @@ export class LinePredictComponent implements OnInit, IFilter, Card {
     this.Fem = [];
     this.meses = [];
 
-    this.options.title = 'Previsão de obitos por genero de ' + this.filtro.faixaEtaria + ' no ano de 2019 na ' + this.filtro.regio;
+    this.options.title = 'Previsão de óbitos por gênero de ' + this.filtro.faixaEtaria + ' no ano de 2019 na ' + this.filtro.regio;
 
     this.chart = new google.visualization.LineChart(this.lineChart.nativeElement);
     RequisitonService.montaGrafico(this);

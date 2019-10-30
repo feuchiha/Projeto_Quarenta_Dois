@@ -95,7 +95,7 @@ export class ColumnPredictComponent implements OnInit, IFilter, Card {
     this.Centro = [];
     this.mes = [];
 
-    this.options.title = 'Previsão de obitos em 2019' + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria;
+    this.options.title = 'Previsão de óbitos em 2019' + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria;
 
     this.chart = new google.visualization.ColumnChart(this.columnChart.nativeElement);
 
