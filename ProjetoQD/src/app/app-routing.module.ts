@@ -16,6 +16,7 @@ import { ChartsgoogleComponent } from './pages/chartsgoogle/chartsgoogle.compone
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { GraficosComponent } from './graficos/graficos.component';
 import { PrevisoesComponent } from './pages/previsoes/previsoes.component';
+import { DocumentacoesComponent } from './pages/documentacoes/documentacoes.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { PrevisoesComponent } from './pages/previsoes/previsoes.component';
           { path: 'dashboard', component: DashboardComponent, pathMatch: 'full' },
           { path: 'forms', component: FormsComponent, pathMatch: 'full' },
           { path: 'importacao', component: ImportacaoComponent, pathMatch: 'full' },
+          { path: 'documentacoes', component: DocumentacoesComponent, pathMatch: 'full'},
           { path: 'users', component: UsersComponent, pathMatch: 'full' },
           { path: 'graficos', component: GraficosComponent, pathMatch: 'full' },
           { path: 'about', component: AboutComponent, pathMatch: 'full'},

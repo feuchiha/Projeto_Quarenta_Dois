@@ -12,12 +12,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ToastrModule} from 'ng6-toastr-notifications';
 import { GoogleChartsModule } from 'angular-google-charts';
+import {MatCardModule} from '@angular/material/card';
 
 import {
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
-    MatCardModule,
     MatCheckboxModule,
     MatChipsModule,
     MatDatepickerModule,
@@ -70,10 +70,11 @@ import { PrevisoesComponent } from './pages/previsoes/previsoes.component';
 import { TesteFiltroComponent } from './graficos/teste-filtro/teste-filtro.component';
 import { ColumnPreviComponent } from './graficos/columnPrevi/columnPrevi.component';
 import { LineCustoComponent } from './graficos/line-custo/line-custo.component';
+import { DocumentacoesComponent } from './pages/documentacoes/documentacoes.component';
 
 @NgModule({
 
-  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent, QdSelectComponent, User2testeComponent, ChartsgoogleComponent, PieChartComponent, GraficosComponent, CardsComponent, GeoComponent, LineComponent, LinePredictComponent, LinePredictPreviComponent, ColumnComponent, ColumnPredictComponent, AreaComponent, PieComponent, PrevisoesComponent, TesteFiltroComponent, ColumnPreviComponent, QdFiltroComponent, LineCustoComponent ],
+  declarations: [AppComponent, ImportacaoComponent, LogsComponent, VisualizacaoDadosComponent, AboutComponent, UsersComponent, QdSelectComponent, User2testeComponent, ChartsgoogleComponent, PieChartComponent, GraficosComponent, CardsComponent, GeoComponent, LineComponent, LinePredictComponent, LinePredictPreviComponent, ColumnComponent, ColumnPredictComponent, AreaComponent, PieComponent, PrevisoesComponent, TesteFiltroComponent, ColumnPreviComponent, QdFiltroComponent, LineCustoComponent, DocumentacoesComponent ],
 
 
   imports: [
