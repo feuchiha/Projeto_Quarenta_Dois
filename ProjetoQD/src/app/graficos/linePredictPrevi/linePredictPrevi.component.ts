@@ -15,7 +15,9 @@ declare var google: any;
 })
 
 export class LinePredictPreviComponent implements OnInit, IFilter, GraficoPrevisao {
-  cards: Card[] =[];
+  cards: Card[] = [];
+
+  jaPassou2018: boolean = false;
 
   arrData: any = [];
   Mas: any = [];
@@ -94,14 +96,14 @@ export class LinePredictPreviComponent implements OnInit, IFilter, GraficoPrevis
     for (var i = 0; i < this.meses.length; i++) {
       this.arrData.push([stringify(this.meses[i] + "/" + card.filtro.ano.slice(-2)), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
     }
-    if("2019"==card.filtro.ano){
+
+    // if ("2019" == card.filtro.ano) {
       this.drawChart();
-    }
+    // }
   }
 
   drawChart = () => {
-    console.log(this.arrData);
-    
+
     var data = google.visualization.arrayToDataTable(this.arrData);
     const options = {
       width: 1200,
@@ -130,6 +132,9 @@ export class LinePredictPreviComponent implements OnInit, IFilter, GraficoPrevis
       },
       chartArea: { left: '7%', top: '15%', width: '90%', height: '70%' }
     };
+
+    this.jaPassou2018 = false;
+
     const chart = new google.visualization.LineChart(this.lineChart.nativeElement);
     chart.draw(data, options);
   }

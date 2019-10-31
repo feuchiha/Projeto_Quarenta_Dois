@@ -14,19 +14,20 @@ declare var google: any;
   styleUrls: ['./line-custo.component.css']
 })
 export class LineCustoComponent implements OnInit, IFilter, GraficoPrevisao {
-  cards: Card[] =[];
-  
+  cards: Card[] = [];
+
   atualizarFiltro(filtro: string): void {
     this.cards[0].filtro = filtro;
     this.cards[0].filtro.ano = "2018";
 
     this.cards[1].filtro = filtro;
     this.cards[1].filtro.ano = "2019";
-   this.arrData=[];
-   this.arrData.push(['Mês', 'Masculino', 'Feminino']);
-   RequisitonService.montaGraficoPrevi(this);
+    this.arrData = [];
+    this.arrData.push(['Mês', 'Masculino', 'Feminino']);
+
+    RequisitonService.montaGraficoPrevi(this);
   }
-  
+
 
   arrData: any = [];
   Mas: any = [];
@@ -39,7 +40,7 @@ export class LineCustoComponent implements OnInit, IFilter, GraficoPrevisao {
   @ViewChild('lineChart') lineChart: ElementRef
 
   constructor(private http: HttpClient, public toastr: ToastrManager, private viewContainerRef: ViewContainerRef) {
-    
+
     this.cards[0] = <Card>{
       http: this.http,
       filtro: {
@@ -54,16 +55,13 @@ export class LineCustoComponent implements OnInit, IFilter, GraficoPrevisao {
     this.cards[1] = <Card>{
       http: this.http,
       filtro: {
-        ano: "2018",
+        ano: "2019",
         faixaEtaria: " 70 a 79 anos",
         regio: "3 Região Sudeste",
       },
       endpoint: 'linePredict',
       montaGrafico: this.montaGrafico
     }
-    // this.endpoint[0] = "";
-    // this.endpoint[1] = "";
-    
   }
 
   ngOnInit(): void {
@@ -74,7 +72,7 @@ export class LineCustoComponent implements OnInit, IFilter, GraficoPrevisao {
 
   }
 
-  montaGrafico(card:Card, data: any) {
+  montaGrafico(card: Card, data: any) {
     this.meses = [];
     this.Mas = [];
     this.Fem = [];
@@ -89,13 +87,13 @@ export class LineCustoComponent implements OnInit, IFilter, GraficoPrevisao {
         this.Fem.push(data['data'][obj]['valorServicoesHospitalares']);
       }
     }
-    
+
     for (var i = 0; i < this.meses.length; i++) {
       this.arrData.push([stringify(this.meses[i] + card.filtro.ano.slice(-2)), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
     }
 
     this.drawChart()
-    
+
   }
 
   drawChart = () => {

@@ -30,6 +30,7 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
       this.arrData = [];
       this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
       RequisitonService.montaGraficoPrevi(this);
+
     }
   }
 

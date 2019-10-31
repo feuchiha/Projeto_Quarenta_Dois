@@ -23,8 +23,14 @@ export class RequisitonService {
     }
 
     static montaGraficoPrevi(graficoPrevi: GraficoPrevisao) {
-        graficoPrevi.cards.forEach(card => {
-            this.montaGrafico(card, graficoPrevi);
-        });
+       
+        var card2018:Card = graficoPrevi.cards[0];
+        var card2019:Card = graficoPrevi.cards[1];
+
+        // var card2018:Card = graficoPrevi.cards.filter(card => "2018" == card.filtro.ano)[0];
+        // var card2019:Card = graficoPrevi.cards.filter(card => "2019" == card.filtro.ano)[0];
+
+        this.montaGrafico(card2018,graficoPrevi);
+        this.montaGrafico(card2019,graficoPrevi);
     }
 }
