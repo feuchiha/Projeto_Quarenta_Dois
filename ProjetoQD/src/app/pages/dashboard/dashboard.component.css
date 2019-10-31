@@ -31,7 +31,7 @@ body {
 
 .table h2 {
     text-transform: uppercase;
-    color: aqua;
+    color: #0baeb7;
 }
 
 @media screen and (max-width:980px) {
