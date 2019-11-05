@@ -33,8 +33,15 @@ export class LineCustoComponent implements OnInit, IFilter, GraficoPrevisao {
     this.jaPassouPorTodos[1] = false;
 
     this.arrData = [];
-    this.arrData.push(['Mês', 'Masculino', 'Feminino']);
-    
+
+    if(this.cards[1].filtro.genero == " Masc"){
+      this.arrData.push(['Mês', 'Masculino']);
+    }else if(this.cards[1].filtro.genero == " Fem"){
+      this.arrData.push(['Mês', 'Feminino']);
+    }else if(this.cards[1].filtro.genero == "Todos"){
+      this.arrData.push(['Mês', 'Masculino', 'Feminino']);
+    }
+
     RequisitonService.montaGraficoPrevi(this);
   }
 
@@ -58,6 +65,7 @@ export class LineCustoComponent implements OnInit, IFilter, GraficoPrevisao {
         ano: "2018",
         faixaEtaria: " 70 a 79 anos",
         regio: "3 Região Sudeste",
+        genero: " Masc"
       },
       endpoint: 'line',
       montaGrafico: this.montaGrafico
@@ -69,6 +77,7 @@ export class LineCustoComponent implements OnInit, IFilter, GraficoPrevisao {
         ano: "2019",
         faixaEtaria: " 70 a 79 anos",
         regio: "3 Região Sudeste",
+        genero: " Masc"
       },
       endpoint: 'linePredict',
       montaGrafico: this.montaGrafico
@@ -77,7 +86,14 @@ export class LineCustoComponent implements OnInit, IFilter, GraficoPrevisao {
 
   ngOnInit(): void {
 
-    this.arrData.push(['Mês', 'Masculino', 'Feminino']);
+    if(this.cards[1].filtro.genero == " Masc"){
+      this.arrData.push(['Mês', 'Masculino']);
+    }else if(this.cards[1].filtro.genero == " Fem"){
+      this.arrData.push(['Mês', 'Feminino']);
+    }else if(this.cards[1].filtro.genero == "Todos"){
+      this.arrData.push(['Mês', 'Masculino', 'Feminino']);
+    }
+    
     GetParent.addObserverToFilter(this);
     RequisitonService.montaGraficoPrevi(this);
 
@@ -89,6 +105,26 @@ export class LineCustoComponent implements OnInit, IFilter, GraficoPrevisao {
     this.Fem = [];
 
     for (let obj in data['data']) {
+      if(card.filtro.genero == " Masc"){
+
+      if (data['data'][obj]['genero'] == " Masc") {
+        this.meses.push(data['data'][obj]['mes']);
+      }
+      if (data['data'][obj]['genero'] === " Masc") {
+        this.Mas.push(data['data'][obj]['valorServicoesHospitalares']);
+      } 
+
+    }else if(card.filtro.genero == " Fem"){
+
+      if (data['data'][obj]['genero'] == " Fem") {
+        this.meses.push(data['data'][obj]['mes']);
+      }
+      if (data['data'][obj]['genero'] === " Fem") {
+        this.Fem.push(data['data'][obj]['valorServicoesHospitalares']);
+      }
+      
+    }else{
+
       if (data['data'][obj]['genero'] == " Masc") {
         this.meses.push(data['data'][obj]['mes']);
       }
@@ -97,11 +133,24 @@ export class LineCustoComponent implements OnInit, IFilter, GraficoPrevisao {
       } else {
         this.Fem.push(data['data'][obj]['valorServicoesHospitalares']);
       }
-    }
 
-    for (var i = 0; i < this.meses.length; i++) {
-      this.arrData.push([stringify(this.meses[i] +"/"+ card.filtro.ano.slice(-2)), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
     }
+  }
+
+    if(card.filtro.genero == "Todos"){
+      for (var i = 0; i < this.meses.length; i++) {
+        this.arrData.push([stringify(this.meses[i] +"/"+ card.filtro.ano.slice(-2)), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
+      }
+    }else if(card.filtro.genero == " Masc"){
+      for (var i = 0; i < this.meses.length; i++) {
+        this.arrData.push([stringify(this.meses[i] +"/"+ card.filtro.ano.slice(-2)), parseInt(this.Mas[i])]);
+      }
+    }else if(card.filtro.genero == " Fem"){
+      for (var i = 0; i < this.meses.length; i++) {
+        this.arrData.push([stringify(this.meses[i] +"/"+ card.filtro.ano.slice(-2)), parseInt(this.Fem[i])]);
+      }
+    }
+    
 
     if ("2018" == card.filtro.ano) {
       this.jaPassouPorTodos[0] = true;

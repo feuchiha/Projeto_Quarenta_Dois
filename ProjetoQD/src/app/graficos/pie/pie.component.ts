@@ -91,6 +91,18 @@ export class PieComponent implements OnInit, IFilter, Card {
   }
 
   montaGrafico(data: any) {
+    if(this.filtro.genero == 'Todos'){
+
+      data['data'].filter(({ regio }) => {
+        return regio != "Total";
+      }).forEach(({ regio, valorServicoesHospitalares, genero }) => {
+        this.arrData.push([regio + '/' + genero, parseInt(valorServicoesHospitalares)]);
+      });
+      var data1 = google.visualization.arrayToDataTable(this.arrData);
+      this.chart.draw(data1, this.options);
+    
+    }else{
+
     data['data'].filter(({ regio }) => {
       return regio != "Total";
     }).forEach(({ regio, valorServicoesHospitalares }) => {
@@ -98,5 +110,6 @@ export class PieComponent implements OnInit, IFilter, Card {
     });
     var data1 = google.visualization.arrayToDataTable(this.arrData);
     this.chart.draw(data1, this.options);
+  }
   }
 }

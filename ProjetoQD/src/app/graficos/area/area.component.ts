@@ -102,6 +102,7 @@ export class AreaComponent implements OnInit, IFilter, Card {
 
 
   montaGrafico(data: any) {
+    
     this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
 
     data['data'].filter(({ regio }) => {

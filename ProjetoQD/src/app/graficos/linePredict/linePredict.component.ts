@@ -78,6 +78,7 @@ export class LinePredictComponent implements OnInit, IFilter, Card {
       ano: "2019",
       faixaEtaria: " 30 a 39 anos",
       regio: "1 Região Norte",
+      genero: " Masc" 
     }
     GetParent.addObserverToFilter(this);
   }
@@ -106,24 +107,66 @@ export class LinePredictComponent implements OnInit, IFilter, Card {
 
 
   montaGrafico(data: any) {
-    this.arrData.push(['Mês', 'Masculino', 'Feminino']);
 
-    data['data'].filter(({genero})=>{
-      return " Masc" === genero
-    }).forEach(({mes, bitos}) => {
-      this.meses.push(mes);
-      this.Mas.push(bitos);
-    });
+    if(this.filtro.genero == 'Todos'){
+      this.arrData.push(['Mês', 'Masculino', 'Feminino']);
 
-    data['data'].filter(({genero})=>{
-      return " Masc" !== genero
-    }).forEach(({ bitos}) => {
-      this.Fem.push(bitos);
-    });
+      data['data'].filter(({genero})=>{
+        return " Masc" === genero
+      }).forEach(({mes, bitos}) => {
+        this.meses.push(mes);
+        this.Mas.push(bitos);
+      });
+  
+      console.log(this.meses);
 
-    for (var i = 0; i < this.meses.length; i++) {
-      this.arrData.push([stringify(this.meses[i]), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
+      data['data'].filter(({genero})=>{
+        return " Masc" !== genero
+      }).forEach(({ bitos}) => {
+        this.Fem.push(bitos);
+      });
+
+      for (var i = 0; i < this.meses.length; i++) {
+        this.arrData.push([stringify(this.meses[i]), parseInt(this.Mas[i]), parseInt(this.Fem[i])]);
+      }
+
+    }else if(this.filtro.genero == ' Masc'){
+      this.arrData.push(['Mês', 'Masculino']);
+
+      
+      data['data'].filter(({genero})=>{
+        return " Masc" === genero
+      }).forEach(({mes, bitos}) => {
+        this.meses.push(mes);
+        this.Mas.push(bitos);
+      });
+
+      for (var i = 0; i < this.meses.length; i++) {
+        this.arrData.push([stringify(this.meses[i]), parseInt(this.Mas[i])]);
+      }
+
+      console.log(this.meses);
+
+    }else if(this.filtro.genero == ' Fem'){
+      this.arrData.push(['Mês', 'Feminino']);
+
+      
+      data['data'].filter(({genero})=>{
+        return " Fem" === genero
+      }).forEach(({mes, bitos}) => {
+        this.meses.push(mes);
+        this.Fem.push(bitos);
+      });
+
+      console.log(this.meses);
+
+      for (var i = 0; i < this.meses.length; i++) {
+        this.arrData.push([stringify(this.meses[i]), parseInt(this.Fem[i])]);
+      }
+
     }
+
+   
     var data1 = google.visualization.arrayToDataTable(this.arrData);
     this.chart.draw(data1, this.options);
   }

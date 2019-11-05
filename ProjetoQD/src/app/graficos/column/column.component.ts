@@ -104,6 +104,45 @@ export class ColumnComponent implements OnInit, IFilter, Card {
   montaGrafico(data: any) {
     this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
 
+    if(this.filtro.genero == 'Todos'){
+    
+    data['data'].filter(({ regio }) => {
+      return "1 Região Norte" === regio;
+    }).forEach(({ mes, bitos, genero }) => {
+      this.mes.push(mes+ '/'+ genero);
+      this.Norte.push(bitos);
+    });
+
+    data['data'].filter(({ regio }) => {
+      return "2 Região Nordeste" === regio;
+    }).forEach(({ bitos }) => {
+      this.Nordeste.push(bitos);
+    });
+
+    data['data'].filter(({ regio }) => {
+      return "3 Região Sudeste" === regio;
+    }).forEach(({ bitos }) => {
+      this.Sudeste.push(bitos);
+    });
+
+    data['data'].filter(({ regio }) => {
+      return "4 Região Sul" === regio;
+    }).forEach(({ bitos }) => {
+      this.Sul.push(bitos);
+    });
+
+    data['data'].filter(({ regio }) => {
+      return "5 Região Centro-Oeste" === regio;
+    }).forEach(({ bitos }) => {
+      this.Centro.push(bitos);
+    });
+
+    this.mes.forEach((mes, index) => {
+      this.arrData.push([mes, parseInt(this.Norte[index]), parseInt(this.Nordeste[index]), parseInt(this.Sudeste[index]), parseInt(this.Sul[index]), parseInt(this.Centro[index]),]);
+    });
+
+  }else{
+
     data['data'].filter(({ regio }) => {
       return "1 Região Norte" === regio;
     }).forEach(({ mes, bitos }) => {
@@ -138,6 +177,8 @@ export class ColumnComponent implements OnInit, IFilter, Card {
     this.mes.forEach((mes, index) => {
       this.arrData.push([mes, parseInt(this.Norte[index]), parseInt(this.Nordeste[index]), parseInt(this.Sudeste[index]), parseInt(this.Sul[index]), parseInt(this.Centro[index]),]);
     });
+
+  }
 
     var data1 = google.visualization.arrayToDataTable(this.arrData);
 
