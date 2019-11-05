@@ -27,6 +27,7 @@ export class LineCustoComponent implements OnInit, IFilter, GraficoPrevisao {
         filtro.ano = "2019"
       }
 
+      filtro["paraPredicao"] = true;
       card.filtro = filtro;        
     }
     this.jaPassouPorTodos[0]=false;
@@ -65,6 +66,8 @@ export class LineCustoComponent implements OnInit, IFilter, GraficoPrevisao {
         ano: "2018",
         faixaEtaria: " 70 a 79 anos",
         regio: "3 Região Sudeste",
+        paraPredicao:true,
+        mes:"Jan",
         genero: " Masc"
       },
       endpoint: 'line',
@@ -77,7 +80,9 @@ export class LineCustoComponent implements OnInit, IFilter, GraficoPrevisao {
         ano: "2019",
         faixaEtaria: " 70 a 79 anos",
         regio: "3 Região Sudeste",
-        genero: " Masc"
+        genero: " Masc",
+        mes:"Jan",
+        paraPredicao:true
       },
       endpoint: 'linePredict',
       montaGrafico: this.montaGrafico
@@ -247,7 +252,7 @@ export class LineCustoComponent implements OnInit, IFilter, GraficoPrevisao {
     const options = {
       width: 1200,
       height: 520,
-      // title: 'Previsão dos custos de internações por genero de ' + this.filtro.faixaEtaria + ' em ' + this.filtro.ano + ' na ' + this.filtro.regio,
+      title: 'Previsão dos custos de internações por genero de ' + this.cards[0].filtro.faixaEtaria + ' em de '+ this.cards[0].filtro.mes +' a Dez 2018 os dados reais e  Jan a Jun de 2019 a previsão na ' + this.cards[0].filtro.regio,
       curveType: 'function',
       legend: {
         position: 'bottom'

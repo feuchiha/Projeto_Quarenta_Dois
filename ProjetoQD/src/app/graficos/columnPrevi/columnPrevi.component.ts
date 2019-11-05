@@ -30,6 +30,7 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
           filtro.ano = "2019"
         }
 
+        filtro["paraPredicao"] = true;
         card.filtro = filtro;
       }
 
@@ -70,7 +71,8 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
       filtro: {
         faixaEtaria: " 70 a 79 anos",
         ano: "2018",
-        genero: " Masc"
+        genero: " Masc",
+        paraPredicao:true
       },
       endpoint: 'column',
       montaGrafico: this.montaGrafico
@@ -81,7 +83,8 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
       filtro: {
         faixaEtaria: " 70 a 79 anos",
         ano: "2019",
-        genero: " Masc"
+        genero: " Masc",
+        paraPredicao:true
       },
       endpoint: 'columnPredict',
       montaGrafico: this.montaGrafico
@@ -217,7 +220,7 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
     var options = {
       width: 1220,
       height: 520,
-      title: 'Previsão de obitos em ' + this.cards[0].filtro.ano + ' do sexo ' + this.cards[0].filtro.genero + ' de ' + this.cards[0].filtro.faixaEtaria + ' todas as regiões',
+      title: 'Previsão de obitos em ' + this.cards[0].filtro.ano + ' do sexo ' + this.cards[0].filtro.genero + ' de ' + this.cards[0].filtro.faixaEtaria + ' todas as regiões de '+ this.cards[0].filtro.mes +' a Dez 2018 os dados reais e  Jan a Jun de 2019 a previsão',
       backgroundColor: 'white',
       legend: { position: 'top', maxLines: 3 },
       bar: { groupWidth: '75%' },

@@ -33,7 +33,7 @@ export class LinePredictPreviComponent implements OnInit, IFilter, GraficoPrevis
 
   atualizarFiltro(filtro: any): void {
     if (null !== filtro) {
-      
+      console.log(filtro);
       for (let index = 0; index < this.cards.length; index++) {
         const card = this.cards[index];
         filtro = Object.assign({}, filtro);
@@ -42,7 +42,7 @@ export class LinePredictPreviComponent implements OnInit, IFilter, GraficoPrevis
         } else {
           filtro.ano = "2019"
         }
-
+        filtro["paraPredicao"] = true;
         card.filtro = filtro;        
       }
 
@@ -70,6 +70,8 @@ export class LinePredictPreviComponent implements OnInit, IFilter, GraficoPrevis
         ano: "2018",
         faixaEtaria: " 70 a 79 anos",
         regio: "3 Região Sudeste",
+        paraPredicao:true,
+        mes:"Jun",
         genero: " Masc",
       },
       endpoint: 'line',
@@ -82,7 +84,9 @@ export class LinePredictPreviComponent implements OnInit, IFilter, GraficoPrevis
         ano: "2019",
         faixaEtaria: " 70 a 79 anos",
         regio: "3 Região Sudeste",
-        genero: " Masc"
+        genero: " Masc",
+        mes:"Jun",
+        paraPredicao:true
       },
       endpoint: 'linePredict',
       montaGrafico: this.montaGrafico
@@ -106,7 +110,7 @@ export class LinePredictPreviComponent implements OnInit, IFilter, GraficoPrevis
   }
 
   montaGrafico(card: Card, data: any) {
-
+    console.log(data);
     this.meses = [];
     this.Mas = [];
     this.Fem = [];
@@ -253,7 +257,7 @@ export class LinePredictPreviComponent implements OnInit, IFilter, GraficoPrevis
     const options = {
       width: 1200,
       height: 520,
-      title: 'Custo por internação na região norte de 15 a 19 anos com todos os gêneros no período de Jan a Dez 2018 os dados reais e  Jan a Jun de 2019 a previsão',
+      title: 'Previsão de obitos por '+this.cards[0].filtro.regio +' de '+this.cards[0].filtro.faixaEtaria +' com todos os gêneros no período de '+ this.cards[0].filtro.mes +' a Dez 2018 os dados reais e  Jan a Jun de 2019 a previsão',
       // title: 'Previsão de obitos por genero de ' + this.filtro.faixaEtaria + " no ano de " + this.filtro.ano + ' na ' + this.filtro.regio,
       curveType: 'function',
       legend: {
