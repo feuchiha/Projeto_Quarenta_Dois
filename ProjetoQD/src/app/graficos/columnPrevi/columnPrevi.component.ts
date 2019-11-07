@@ -38,12 +38,17 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
       this.jaPassouPorTodos[1] = false;
 
       this.arrData = [];
-      this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
+      //this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
+      
+      if(this.cards[1].filtro.genero == "Todos"){
+        this.arrData.push(['Mês', 'Norte/Fem', 'Norte/Masc', 'Nordeste/Fem', 'Nordeste/Masc' , 'Sudeste/Fem', 'Sudeste/Masc' , 'Sul/Fem', 'Sul/Masc' , 'Centro-Oeste/Fem', 'Centro-Oeste/Masc']);
+      }else{
+        this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
+      }
+           
       RequisitonService.montaGraficoPrevi(this);
     }
   }
-
-
 
   jaPassouPorTodos: boolean[] = [false, false];
 
@@ -53,6 +58,11 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
   Sudeste: any = [];
   Sul: any = [];
   Centro: any = [];
+  NorteMasc: any = [];
+  NordesteMasc: any = [];
+  SudesteMasc: any = [];
+  SulMasc: any = [];
+  CentroMasc: any = [];
   mes: any = [];
   previNorte: any = [];
   previNordeste: any = [];
@@ -60,6 +70,12 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
   previSul: any = [];
   previCentro: any = [];
   previmes: any = [];
+  previNorteMasc: any = [];
+  previNordesteMasc: any = [];
+  previSudesteMasc: any = [];
+  previSulMasc: any = [];
+  previCentroMasc: any = [];
+  
 
   @ViewChild('columnChart') columnChart: ElementRef
 
@@ -72,6 +88,7 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
         faixaEtaria: " 70 a 79 anos",
         ano: "2018",
         genero: " Masc",
+        mes:"Jan",
         paraPredicao:true
       },
       endpoint: 'column',
@@ -84,6 +101,7 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
         faixaEtaria: " 70 a 79 anos",
         ano: "2019",
         genero: " Masc",
+        mes:"Jan",
         paraPredicao:true
       },
       endpoint: 'columnPredict',
@@ -93,7 +111,12 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
 
   ngOnInit(): void {
 
-    this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
+    if(this.cards[1].filtro.genero == "Todos"){
+      this.arrData.push(['Mês', 'Norte/Fem', 'Norte/Masc', 'Nordeste/Fem', 'Nordeste/Masc' , 'Sudeste/Fem', 'Sudeste/Masc' , 'Sul/Fem', 'Sul/Masc' , 'Centro-Oeste/Fem', 'Centro-Oeste/Masc']);
+    }else{
+      this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
+    }
+   
     GetParent.addObserverToFilter(this);
     RequisitonService.montaGraficoPrevi(this);
   }
@@ -105,6 +128,53 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
     this.Sudeste = [];
     this.Sul = [];
     this.Centro = [];
+    this.NordesteMasc = [];
+    this.NorteMasc = [];
+    this.SudesteMasc = [];
+    this.SulMasc = [];
+    this.CentroMasc = [];
+
+    if(this.cards[1].filtro.genero == 'Todos'){
+      for (let obj in data['data']) {
+        if (data['data'][obj]['regio'] === "1 Região Norte" && data['data'][obj]['genero'] === " Fem") {
+          this.mes.push(data['data'][obj]['mes']);
+        }
+
+        if(data['data'][obj]['genero'] === " Fem"){
+
+          if (data['data'][obj]['regio'] === "1 Região Norte") {
+            this.Norte.push(data['data'][obj]['bitos']);
+          } else if (data['data'][obj]['regio'] === "2 Região Nordeste") {
+            this.Nordeste.push(data['data'][obj]['bitos']);
+          } else if (data['data'][obj]['regio'] === "3 Região Sudeste") {
+            this.Sudeste.push(data['data'][obj]['bitos']);
+          } else if (data['data'][obj]['regio'] === "4 Região Sul") {
+            this.Sul.push(data['data'][obj]['bitos']);
+          } else if (data['data'][obj]['regio'] === "5 Região Centro-Oeste") {
+            this.Centro.push(data['data'][obj]['bitos']);
+          }
+
+        }else if(data['data'][obj]['genero'] === " Masc"){
+
+        if (data['data'][obj]['regio'] === "1 Região Norte") {
+          this.NorteMasc.push(data['data'][obj]['bitos']);
+        } else if (data['data'][obj]['regio'] === "2 Região Nordeste") {
+          this.NordesteMasc.push(data['data'][obj]['bitos']);
+        } else if (data['data'][obj]['regio'] === "3 Região Sudeste") {
+          this.SudesteMasc.push(data['data'][obj]['bitos']);
+        } else if (data['data'][obj]['regio'] === "4 Região Sul") {
+          this.SulMasc.push(data['data'][obj]['bitos']);
+        } else if (data['data'][obj]['regio'] === "5 Região Centro-Oeste") {
+          this.CentroMasc.push(data['data'][obj]['bitos']);
+        }
+      }
+    }
+  
+      for (var i = 0; i < this.mes.length; i++) {
+        this.arrData.push([this.mes[i] + "/" + card.filtro.ano.slice(-2), parseInt(this.Norte[i]), parseInt(this.NorteMasc[i]) , parseInt(this.Nordeste[i]), parseInt(this.NordesteMasc[i]) , parseInt(this.Sudeste[i]), parseInt(this.SudesteMasc[i]) , parseInt(this.Sul[i]), parseInt(this.SulMasc[i]) , parseInt(this.Centro[i]), parseInt(this.CentroMasc[i]), ]);
+      }
+
+    }else{
 
     for (let obj in data['data']) {
       if (data['data'][obj]['regio'] === "1 Região Norte") {
@@ -126,6 +196,7 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
     for (var i = 0; i < this.mes.length; i++) {
       this.arrData.push([this.mes[i] + "/" + card.filtro.ano.slice(-2), parseInt(this.Norte[i]), parseInt(this.Nordeste[i]), parseInt(this.Sudeste[i]), parseInt(this.Sul[i]), parseInt(this.Centro[i]),]);
     }
+  }
 
     if ("2018" == card.filtro.ano) {
       this.jaPassouPorTodos[0] = true;

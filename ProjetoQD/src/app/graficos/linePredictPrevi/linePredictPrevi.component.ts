@@ -71,7 +71,7 @@ export class LinePredictPreviComponent implements OnInit, IFilter, GraficoPrevis
         faixaEtaria: " 70 a 79 anos",
         regio: "3 Região Sudeste",
         paraPredicao:true,
-        mes:"Jun",
+        mes:"Jan",
         genero: " Masc",
       },
       endpoint: 'line',
@@ -85,7 +85,7 @@ export class LinePredictPreviComponent implements OnInit, IFilter, GraficoPrevis
         faixaEtaria: " 70 a 79 anos",
         regio: "3 Região Sudeste",
         genero: " Masc",
-        mes:"Jun",
+        mes:"Jan",
         paraPredicao:true
       },
       endpoint: 'linePredict',

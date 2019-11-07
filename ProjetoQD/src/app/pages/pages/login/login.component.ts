@@ -63,7 +63,7 @@ export class LoginComponent extends  BlankLayoutCardComponent {
         }setTimeout(
           function(){ 
           window.location.href = 'http://localhost:4200/#/app/previsoes'
-          }, 500);
+          }, 0);
       });
   }
 }
