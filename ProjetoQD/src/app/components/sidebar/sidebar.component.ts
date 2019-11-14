@@ -26,10 +26,10 @@ export class SidebarComponent extends BaseSidebarComponent implements OnInit {
   ngOnInit(){
         if(this.token.perfil != "User" ){
             this.menu =  [
-              { name: 'Previsoes', link: '/app/previsoes', icon: 'insert_chart' },
-              { name: 'Gráficos', link: '/app/graficos', icon: 'insert_chart'},
               { name: 'Dados', link: '/app/documentacoes', icon: 'apps'},
-              { name: 'Resumo', link: '/app/dashboard', icon: 'home' },
+              { name: 'Previsoes', link: '/app/previsoes', icon: 'insert_chart' },
+              { name: 'Gráficos', link: '/app/graficos', icon: 'pie_chart'},
+              // { name: 'Resumo', link: '/app/dashboard', icon: 'home' },
               //{ name: 'Importar', link: '/app/importacao', icon: 'backup' },
               //{ name: 'Histórico', link: '/app/logs', icon: 'history' },
               //{ name: 'Análises', link: '/app/visualizacao-dados', icon: 'broken_image' },
@@ -49,10 +49,11 @@ export class SidebarComponent extends BaseSidebarComponent implements OnInit {
       }else{
         
       this.menu =  [
-        { name: 'Previsoes', link: '/app/previsoes', icon: 'insert_chart' },
-        { name: 'Gráficos', link: '/app/graficos', icon: 'insert_chart'},
         { name: 'Dados', link: '/app/documentacoes', icon: 'apps'},
-        { name: 'Resumo', link: '/app/dashboard', icon: 'home' },
+        { name: 'Previsoes', link: '/app/previsoes', icon: 'insert_chart' },
+        { name: 'Gráficos', link: '/app/graficos', icon: 'pie_chart'},
+      
+        // { name: 'Resumo', link: '/app/dashboard', icon: 'home' },
         // { name: 'Início', link: '/app/dashboard', icon: 'home' },
         //{ name: 'Importar', link: '/app/importacao', icon: 'backup' },
         //{ name: 'Histórico', link: '/app/logs', icon: 'history' },

@@ -115,9 +115,10 @@ export class AreaComponent implements OnInit, IFilter, Card {
       this.calculaCentroOeste(valor);
 
     } else {
+
       data['data'].filter(({ regio }) => {
         return "1 Região Norte" === regio
-      }).forEach(({ mes, internacoes }) => {
+      }).forEach(({ mes , internacoes }) => {
         this.mes.push(mes);
         this.Norte.push(internacoes);
       });
@@ -466,28 +467,29 @@ export class AreaComponent implements OnInit, IFilter, Card {
   }
 
   adicionaNorte(meses, objetoFem, objetoMasc){
-    this.mes.push(meses);    
-    this.Norte[this.getPosicao(this.Norte)] = objetoFem.internacoes + objetoMasc.internacoes;
+    this.mes.push(meses); 
+    this.Norte[this.getPosicao(this.Norte)] = parseInt(objetoFem.internacoes) + parseInt(objetoMasc.internacoes);
+
   }
 
   adicionaNordeste(meses, objetoFem, objetoMasc){
     // this.mes.push(meses);
-    this.Nordeste[this.getPosicao(this.Nordeste)] = objetoFem.internacoes + objetoMasc.internacoes;
+    this.Nordeste[this.getPosicao(this.Nordeste)] = parseInt(objetoFem.internacoes) + parseInt(objetoMasc.internacoes);
   }
 
   adicionaSuldeste(meses, objetoFem, objetoMasc){
     // this.mes.push(meses);
-    this.Sudeste[this.getPosicao(this.Sudeste)] = objetoFem.internacoes + objetoMasc.internacoes;
+    this.Sudeste[this.getPosicao(this.Sudeste)] = parseInt(objetoFem.internacoes) + parseInt(objetoMasc.internacoes);
   }
 
   adicionaSul(meses, objetoFem, objetoMasc){
     // this.mes.push(meses);
-    this.Sul[this.getPosicao(this.Sul)] = objetoFem.internacoes + objetoMasc.internacoes;
+    this.Sul[this.getPosicao(this.Sul)] = parseInt(objetoFem.internacoes) + parseInt(objetoMasc.internacoes);
   }
 
   adicionaCentroOeste(meses, objetoFem, objetoMasc){
     // this.mes.push(meses);
-    this.Centro[this.getPosicao(this.Centro)] = objetoFem.internacoes + objetoMasc.internacoes;
+    this.Centro[this.getPosicao(this.Centro)] = parseInt(objetoFem.internacoes) + parseInt(objetoMasc.internacoes);
   }
 
 
