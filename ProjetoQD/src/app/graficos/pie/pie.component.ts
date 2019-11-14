@@ -18,7 +18,7 @@ export class PieComponent implements OnInit, IFilter, Card {
   Mas: any = [];
   Fem: any = [];
   filtro: any = [];
-  total: any = [];
+  total;
   totalFem;
   totalMas;
   http: HttpClient;
@@ -89,7 +89,12 @@ export class PieComponent implements OnInit, IFilter, Card {
     this.totalFem = null;
     this.totalMas = null;
     this.total = [];
-    this.options.title = 'Custos de internações' + ' em ' + this.filtro.ano + ' no mês de ' + this.filtro.mes + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria + ' valor total do custo no filtro selecionado ' + this.total;
+
+
+
+
+
+   // this.options.title = 'Custos de internações' + ' em ' + this.filtro.ano + ' no mês de ' + this.filtro.mes + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria + ' valor total do custo no filtro selecionado ' + this.total;
 
     this.chart = new google.visualization.PieChart(this.pieChart.nativeElement);
 
@@ -190,6 +195,8 @@ export class PieComponent implements OnInit, IFilter, Card {
           valorServicoesHospitalares: (objetoFemCentroOeste.valorServicoesHospitalares + objetoMascCentroOeste.valorServicoesHospitalares)
         };
 
+      this.total = parseInt(valoresOrdenados[1].valorServicoesHospitalares) + parseInt(valoresOrdenados[2].valorServicoesHospitalares) + parseInt(valoresOrdenados[3].valorServicoesHospitalares)  + parseInt(valoresOrdenados[4].valorServicoesHospitalares); 
+
       valoresOrdenados.forEach(({ regio, valorServicoesHospitalares, genero }) => {
         this.arrData.push([regio + '/' + genero, parseInt(valorServicoesHospitalares)]);
       });
@@ -201,6 +208,8 @@ export class PieComponent implements OnInit, IFilter, Card {
       });
 
     }
+
+    this.options.title = 'Custos de internações' + ' em ' + this.filtro.ano + ' no mês de ' + this.filtro.mes + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria + ' valor total do custo no filtro selecionado ' + this.total;
 
     var data1 = google.visualization.arrayToDataTable(this.arrData);
     this.chart.draw(data1, this.options);
