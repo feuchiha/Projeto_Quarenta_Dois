@@ -78,7 +78,7 @@ export class ColumnComponent implements OnInit, IFilter, Card {
 
     this.filtro = {
       faixaEtaria: " 70 a 79 anos",
-      ano: "2008",
+      ano: "2018",
       genero: " Masc"
     }
 

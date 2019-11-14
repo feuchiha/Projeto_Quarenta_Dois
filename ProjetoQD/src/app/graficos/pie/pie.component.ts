@@ -18,6 +18,9 @@ export class PieComponent implements OnInit, IFilter, Card {
   Mas: any = [];
   Fem: any = [];
   filtro: any = [];
+  total: any = [];
+  totalFem;
+  totalMas;
   http: HttpClient;
   chart;
 
@@ -70,7 +73,7 @@ export class PieComponent implements OnInit, IFilter, Card {
     this.filtro = {
       ano: '2018',
       genero: ' Masc',
-      faixaEtaria: ' 15 a 19 anos',
+      faixaEtaria: ' 70 a 79 anos',
       mes: 'Jan',
       regio: '1 Região Norte'
     }
@@ -83,7 +86,10 @@ export class PieComponent implements OnInit, IFilter, Card {
     this.arrData.push(['Região', 'Valor Gasto']);
     this.Mas = [];
     this.Fem = [];
-    this.options.title = 'Custos de internações' + ' em ' + this.filtro.ano + ' no mês de ' + this.filtro.mes + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria;
+    this.totalFem = null;
+    this.totalMas = null;
+    this.total = [];
+    this.options.title = 'Custos de internações' + ' em ' + this.filtro.ano + ' no mês de ' + this.filtro.mes + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria + ' valor total do custo no filtro selecionado ' + this.total;
 
     this.chart = new google.visualization.PieChart(this.pieChart.nativeElement);
 
@@ -93,6 +99,20 @@ export class PieComponent implements OnInit, IFilter, Card {
   montaGrafico(data: any) {
     if(this.filtro.genero == 'Todos'){
 
+
+      data['data'].filter(({ regio }) => {
+        return regio === "Total";
+      }).forEach(({valorServicoesHospitalares, genero }) => {
+        if(genero === " Masc"){
+          this.totalMas = parseInt(valorServicoesHospitalares);
+        }else if(genero === " Fem"){
+          this.totalFem = parseInt(valorServicoesHospitalares);
+        }
+        
+      });
+
+      this.total = this.totalFem + this.totalMas;
+      
       data['data'].filter(({ regio }) => {
         return regio != "Total";
       }).forEach(({ regio, valorServicoesHospitalares, genero }) => {
@@ -103,6 +123,12 @@ export class PieComponent implements OnInit, IFilter, Card {
     
     }else{
 
+      data['data'].filter(({ regio }) => {
+        return regio === "Total";
+      }).forEach(({valorServicoesHospitalares }) => {
+      this.total.push(valorServicoesHospitalares);
+      });
+
     data['data'].filter(({ regio }) => {
       return regio != "Total";
     }).forEach(({ regio, valorServicoesHospitalares }) => {
@@ -110,6 +136,7 @@ export class PieComponent implements OnInit, IFilter, Card {
     });
     var data1 = google.visualization.arrayToDataTable(this.arrData);
     this.chart.draw(data1, this.options);
+
   }
   }
 }

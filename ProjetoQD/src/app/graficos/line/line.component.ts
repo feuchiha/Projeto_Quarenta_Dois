@@ -74,7 +74,7 @@ export class LineComponent implements OnInit, IFilter, Card {
 
     this.filtro = {
       ano: "2018",
-      faixaEtaria: " 30 a 39 anos",
+      faixaEtaria: " 70 a 79 anos",
       regio: "1 Região Norte",
       genero: " Masc"
     }

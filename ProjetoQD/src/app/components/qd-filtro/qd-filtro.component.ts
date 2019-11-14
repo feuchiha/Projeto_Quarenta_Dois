@@ -27,7 +27,7 @@ export class QdFiltroComponent implements OnInit {
   filtro = {
     ano: '2018',
     genero: ' Masc',
-    faixaEtaria: ' 15 a 19 anos',
+    faixaEtaria: ' 70 a 79 anos',
     mes: 'Jan',
     regio: '1 Região Norte'
   }

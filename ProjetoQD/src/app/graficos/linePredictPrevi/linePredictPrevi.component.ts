@@ -257,7 +257,7 @@ export class LinePredictPreviComponent implements OnInit, IFilter, GraficoPrevis
     const options = {
       width: 1200,
       height: 520,
-      title: 'Previsão de obitos por '+this.cards[0].filtro.regio +' de '+this.cards[0].filtro.faixaEtaria +' com todos os gêneros no período de '+ this.cards[0].filtro.mes +' a Dez 2018 os dados reais e  Jan a Jun de 2019 a previsão',
+      title: 'Previsão de obitos por '+this.cards[0].filtro.regio +' de '+this.cards[0].filtro.faixaEtaria +' do gênero ' + this.cards[0].filtro.genero + ' no período de '+ this.cards[0].filtro.mes +' a Dez 2018 os dados reais e  Jan a Jun de 2019 a previsão',
       // title: 'Previsão de obitos por genero de ' + this.filtro.faixaEtaria + " no ano de " + this.filtro.ano + ' na ' + this.filtro.regio,
       curveType: 'function',
       legend: {
