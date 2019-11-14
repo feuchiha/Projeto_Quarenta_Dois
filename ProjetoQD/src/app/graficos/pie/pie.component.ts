@@ -91,25 +91,125 @@ export class PieComponent implements OnInit, IFilter, Card {
   }
 
   montaGrafico(data: any) {
-    if(this.filtro.genero == 'Todos'){
 
-      data['data'].filter(({ regio }) => {
-        return regio != "Total";
-      }).forEach(({ regio, valorServicoesHospitalares, genero }) => {
+    const valoresRegioes = data['data'].filter(({ regio }) => {
+      return regio != "Total";
+    });
+
+    if (this.filtro.genero == 'Todos') {
+
+      const regiao = {
+        NORTE: "1 Região Norte",
+        NORDESTE: "2 Região Nordeste",
+        SUDESTE: "3 Região Sudeste",
+        SUL: "4 Região Sul",
+        CENTRO_OESTE: "5 Região Centro-Oeste"
+      }
+
+      const genero = {
+        MASC: " Masc",
+        FEM: " Fem",
+      }
+
+      var objetoFemNorte = valoresRegioes.find(({ regio, genero }) => {
+        return genero.FEM === genero  || regiao.NORTE === regio
+      });
+      
+      var objetoMascNorte = valoresRegioes.find(({ regio, genero }) => {
+        return genero.MASC === genero || regiao.NORTE === regio
+      });
+
+      var objetoFemNordeste = valoresRegioes.find(({ regio, genero }) => {
+        return genero.FEM === genero  || regiao.NORDESTE === regio
+      });
+      
+      var objetoMascNordeste = valoresRegioes.find(({ regio, genero }) => {
+        return genero.MASC === genero || regiao.NORDESTE === regio
+      });
+
+      var objetoFemSudeste = valoresRegioes.find(({ regio, genero }) => {
+        return genero.FEM === genero  || regiao.SUDESTE === regio
+      });
+      
+      var objetoMascSudeste = valoresRegioes.find(({ regio, genero }) => {
+        return genero.MASC === genero || regiao.SUDESTE === regio
+      });
+
+      var objetoFemSul = valoresRegioes.find(({ regio, genero }) => {
+        return genero.FEM === genero  || regiao.SUL === regio
+      });
+      
+      var objetoMascSul = valoresRegioes.find(({ regio, genero }) => {
+        return genero.MASC === genero || regiao.SUL === regio
+      });
+
+      var objetoFemCentroOeste = valoresRegioes.find(({ regio, genero }) => {
+        return genero.FEM === genero  || regiao.CENTRO_OESTE === regio
+      });
+      
+      var objetoMascCentroOeste = valoresRegioes.find(({ regio, genero }) => {
+        return genero.MASC === genero || regiao.CENTRO_OESTE === regio
+      });
+
+
+      var valoresOrdenados = [];
+
+        valoresOrdenados[0] = {
+          regio: objetoFemNorte.regio,
+          genero: "Todos",
+          valorServicoesHospitalares: (objetoFemNorte.valorServicoesHospitalares + objetoMascNorte.valorServicoesHospitalares)
+        };
+
+        valoresOrdenados[1] = {
+          regio: objetoFemNordeste.regio,
+          genero: "Todos",
+          valorServicoesHospitalares: (objetoFemNordeste.valorServicoesHospitalares + objetoMascNordeste.valorServicoesHospitalares)
+        };
+
+        valoresOrdenados[2] = {
+          regio: objetoFemSudeste.regio,
+          genero: "Todos",
+          valorServicoesHospitalares: (objetoFemSudeste.valorServicoesHospitalares + objetoMascSudeste.valorServicoesHospitalares)
+        };
+
+        valoresOrdenados[3] = {
+          regio: objetoFemSul.regio,
+          genero: "Todos",
+          valorServicoesHospitalares: (objetoFemSul.valorServicoesHospitalares + objetoMascSul.valorServicoesHospitalares)
+        };
+
+        valoresOrdenados[4] = {
+          regio: objetoFemCentroOeste.regio,
+          genero: "Todos",
+          valorServicoesHospitalares: (objetoFemCentroOeste.valorServicoesHospitalares + objetoMascCentroOeste.valorServicoesHospitalares)
+        };
+
+      valoresOrdenados.forEach(({ regio, valorServicoesHospitalares, genero }) => {
         this.arrData.push([regio + '/' + genero, parseInt(valorServicoesHospitalares)]);
       });
-      var data1 = google.visualization.arrayToDataTable(this.arrData);
-      this.chart.draw(data1, this.options);
-    
-    }else{
 
-    data['data'].filter(({ regio }) => {
-      return regio != "Total";
-    }).forEach(({ regio, valorServicoesHospitalares }) => {
-      this.arrData.push([regio, parseInt(valorServicoesHospitalares)]);
-    });
+    } else {
+
+      valoresRegioes.forEach(({ regio, valorServicoesHospitalares }) => {
+        this.arrData.push([regio, parseInt(valorServicoesHospitalares)]);
+      });
+
+    }
+
     var data1 = google.visualization.arrayToDataTable(this.arrData);
     this.chart.draw(data1, this.options);
+
   }
+
+  sort(objetoAntigo, objetoAtual) {
+    var { regio: regioAntigo, genero: generoAntigo } = objetoAntigo;
+    var { regio: regioAtual, genero: generoAtual } = objetoAtual;
+
+    if (regioAntigo == regioAtual) {
+      return 1;
+    }
+
+    return 0;
   }
+
 }
