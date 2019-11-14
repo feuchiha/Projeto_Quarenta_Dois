@@ -90,7 +90,7 @@
 }
 
 .card-header .cover{
-  background: #232323;
+  /* background: #232323; */
   position: absolute;
   top: 0;
   width: 100%;
@@ -174,7 +174,6 @@
   padding: 5px 0;
   transition: 0.2s all;
 }
-
 
 
 .right-section{
