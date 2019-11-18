@@ -110,7 +110,6 @@ export class LinePredictPreviComponent implements OnInit, IFilter, GraficoPrevis
   }
 
   montaGrafico(card: Card, data: any) {
-    console.log(data);
     this.meses = [];
     this.Mas = [];
     this.Fem = [];

@@ -117,8 +117,6 @@ export class LinePredictComponent implements OnInit, IFilter, Card {
         this.meses.push(mes);
         this.Mas.push(bitos);
       });
-  
-      console.log(this.meses);
 
       data['data'].filter(({genero})=>{
         return " Masc" !== genero
@@ -145,8 +143,6 @@ export class LinePredictComponent implements OnInit, IFilter, Card {
         this.arrData.push([stringify(this.meses[i]), parseInt(this.Mas[i])]);
       }
 
-      console.log(this.meses);
-
     }else if(this.filtro.genero == ' Fem'){
       this.arrData.push(['Mês', 'Feminino']);
 
@@ -157,8 +153,6 @@ export class LinePredictComponent implements OnInit, IFilter, Card {
         this.meses.push(mes);
         this.Fem.push(bitos);
       });
-
-      console.log(this.meses);
 
       for (var i = 0; i < this.meses.length; i++) {
         this.arrData.push([stringify(this.meses[i]), parseInt(this.Fem[i])]);

@@ -88,16 +88,16 @@ export class PieComponent implements OnInit, IFilter, Card {
     this.Fem = [];
     this.totalFem = null;
     this.totalMas = null;
-    this.total = [];
+    this.total = 0;
 
 
 
 
 
-   // this.options.title = 'Custos de internações' + ' em ' + this.filtro.ano + ' no mês de ' + this.filtro.mes + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria + ' valor total do custo no filtro selecionado ' + this.total;
+    // this.options.title = 'Custos de internações' + ' em ' + this.filtro.ano + ' no mês de ' + this.filtro.mes + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria + ' valor total do custo no filtro selecionado ' + this.total;
 
     this.chart = new google.visualization.PieChart(this.pieChart.nativeElement);
-
+    
     RequisitonService.montaGrafico(this);
   }
 
@@ -123,77 +123,78 @@ export class PieComponent implements OnInit, IFilter, Card {
       }
 
       var objetoFemNorte = valoresRegioes.find(({ regio, genero }) => {
-        return genero.FEM === genero  || regiao.NORTE === regio
+        return genero.FEM === genero || regiao.NORTE === regio
       });
-      
+
       var objetoMascNorte = valoresRegioes.find(({ regio, genero }) => {
         return genero.MASC === genero || regiao.NORTE === regio
       });
 
       var objetoFemNordeste = valoresRegioes.find(({ regio, genero }) => {
-        return genero.FEM === genero  || regiao.NORDESTE === regio
+        return genero.FEM === genero || regiao.NORDESTE === regio
       });
-      
+
       var objetoMascNordeste = valoresRegioes.find(({ regio, genero }) => {
         return genero.MASC === genero || regiao.NORDESTE === regio
       });
 
       var objetoFemSudeste = valoresRegioes.find(({ regio, genero }) => {
-        return genero.FEM === genero  || regiao.SUDESTE === regio
+        return genero.FEM === genero || regiao.SUDESTE === regio
       });
-      
+
       var objetoMascSudeste = valoresRegioes.find(({ regio, genero }) => {
         return genero.MASC === genero || regiao.SUDESTE === regio
       });
 
       var objetoFemSul = valoresRegioes.find(({ regio, genero }) => {
-        return genero.FEM === genero  || regiao.SUL === regio
+        return genero.FEM === genero || regiao.SUL === regio
       });
-      
+
       var objetoMascSul = valoresRegioes.find(({ regio, genero }) => {
         return genero.MASC === genero || regiao.SUL === regio
       });
 
       var objetoFemCentroOeste = valoresRegioes.find(({ regio, genero }) => {
-        return genero.FEM === genero  || regiao.CENTRO_OESTE === regio
+        return genero.FEM === genero || regiao.CENTRO_OESTE === regio
       });
-      
+
       var objetoMascCentroOeste = valoresRegioes.find(({ regio, genero }) => {
         return genero.MASC === genero || regiao.CENTRO_OESTE === regio
       });
 
+      
 
       var valoresOrdenados = [];
 
-        valoresOrdenados[0] = {
-          regio: objetoFemNorte.regio,
-          genero: "Todos",
-          valorServicoesHospitalares: (objetoFemNorte.valorServicoesHospitalares + objetoMascNorte.valorServicoesHospitalares)
-        };
+      valoresOrdenados[0] = {
+        regio: objetoFemNorte.regio,
+        genero: "Todos",
+        valorServicoesHospitalares: parseInt(objetoFemNorte.valorServicoesHospitalares) + parseInt(objetoMascNorte.valorServicoesHospitalares)
+      };
 
-        valoresOrdenados[1] = {
-          regio: objetoFemNordeste.regio,
-          genero: "Todos",
-          valorServicoesHospitalares: (objetoFemNordeste.valorServicoesHospitalares + objetoMascNordeste.valorServicoesHospitalares)
-        };
+      valoresOrdenados[1] = {
+        regio: objetoFemNordeste.regio,
+        genero: "Todos",
+        valorServicoesHospitalares: parseInt(objetoFemNordeste.valorServicoesHospitalares) + parseInt(objetoMascNordeste.valorServicoesHospitalares)
+      };
 
-        valoresOrdenados[2] = {
-          regio: objetoFemSudeste.regio,
-          genero: "Todos",
-          valorServicoesHospitalares: (objetoFemSudeste.valorServicoesHospitalares + objetoMascSudeste.valorServicoesHospitalares)
-        };
+      valoresOrdenados[2] = {
+        regio: objetoFemSudeste.regio,
+        genero: "Todos",
+        valorServicoesHospitalares: parseInt(objetoFemSudeste.valorServicoesHospitalares) + parseInt(objetoMascSudeste.valorServicoesHospitalares)
+      };
 
-        valoresOrdenados[3] = {
-          regio: objetoFemSul.regio,
-          genero: "Todos",
-          valorServicoesHospitalares: (objetoFemSul.valorServicoesHospitalares + objetoMascSul.valorServicoesHospitalares)
-        };
+      valoresOrdenados[3] = {
+        regio: objetoFemSul.regio,
+        genero: "Todos",
+        valorServicoesHospitalares: parseInt(objetoFemSul.valorServicoesHospitalares) + parseInt(objetoMascSul.valorServicoesHospitalares)
+      };
 
-        valoresOrdenados[4] = {
-          regio: objetoFemCentroOeste.regio,
-          genero: "Todos",
-          valorServicoesHospitalares: (objetoFemCentroOeste.valorServicoesHospitalares + objetoMascCentroOeste.valorServicoesHospitalares)
-        };
+      valoresOrdenados[4] = {
+        regio: objetoFemCentroOeste.regio,
+        genero: "Todos",
+        valorServicoesHospitalares:parseInt(objetoFemCentroOeste.valorServicoesHospitalares) + parseInt(objetoMascCentroOeste.valorServicoesHospitalares)
+      };
 
       this.total = parseInt(valoresOrdenados[1].valorServicoesHospitalares) + parseInt(valoresOrdenados[2].valorServicoesHospitalares) + parseInt(valoresOrdenados[3].valorServicoesHospitalares)  + parseInt(valoresOrdenados[4].valorServicoesHospitalares); 
 
@@ -201,9 +202,12 @@ export class PieComponent implements OnInit, IFilter, Card {
         this.arrData.push([regio + '/' + genero, parseInt(valorServicoesHospitalares)]);
       });
 
+
+
     } else {
 
       valoresRegioes.forEach(({ regio, valorServicoesHospitalares }) => {
+        this.total += parseInt(valorServicoesHospitalares);
         this.arrData.push([regio, parseInt(valorServicoesHospitalares)]);
       });
 
@@ -215,16 +219,4 @@ export class PieComponent implements OnInit, IFilter, Card {
     this.chart.draw(data1, this.options);
 
   }
-
-  sort(objetoAntigo, objetoAtual) {
-    var { regio: regioAntigo, genero: generoAntigo } = objetoAntigo;
-    var { regio: regioAtual, genero: generoAtual } = objetoAtual;
-
-    if (regioAntigo == regioAtual) {
-      return 1;
-    }
-
-    return 0;
-  }
-
 }
