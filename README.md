@@ -24,8 +24,8 @@ https://github.com/Paterninho/myapp.git
 Para utilizar nosso projeto, por favor siga estas indicações:
 1. Importe o repositório.
 2. Tenha instalado o nodejs e o npm.
-3. Instale um banco de dados relacional, utilizamos no nosso projeto o MySQL.
-4. Importe as bases que estão na pasta DataSets para o banco relacional.
+3. Instale um banco de dados não relacional, utilizamos no nosso projeto o Mongodb.
+4. Importe as bases que estão no arquivo Bases.zip.
 5. Abra o terminal, navegue até a pasta onde clonou o repositório e execute o comando npm install, ele irá baixar todas as dependências que são necessárias para que o projeto execute.
 6. Importe o repositório do backend (https://github.com/Paterninho/myapp.git).
 7. Execute o passo 3 na pasta onde importou o repositório do backend.
