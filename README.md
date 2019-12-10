@@ -11,7 +11,7 @@ Algumas informações sobre o projeto e como usá-lo.
 
 O projeto foi desenvolvido:
 1. Um bot para ler arquivos em CSV e realizar a normalização dos dados que continham dentro, realizando a padronização dos dados, assim poderíamos ler essas informações em um banco de dados relacional e assim relacionar as informações que temos.
-2. Um segundo bot que lia todos as informações contidas nos arquivos CSV, importava essas informações para tables de um banco Microsoft SQL Server.
+2. Um segundo bot que lia todos as informações contidas nos arquivos CSV, importava essas informações para tables de um banco MongoDB.
 3. Uma aplicação web, desenvolvida em angular, contento:
   a. Dash, contendo gráficos que foram feitos utilizando os dados importados para o banco SQL juntamente com a API do Google Chart para gerar os gráficos.
   b. Painel de controle de usuário. Cada usuário que quiser utilizar a aplicação tem de criar uma conta da aplicação, utilizamos o banco MongoDB para gerir os usuários. Temos uma tela para controle do próprio usuário, onde ele pode alterar suas informações, e temos a tela de controle de usuários, para os usuário administradores poderem gerir os usuários que utilizam a aplicação, como alterar senha, mudar nível de usuário, desativar ou ativar um usuário.
