@@ -26,26 +26,24 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
         filtro = Object.assign({}, filtro);
         if (0 == index) {
           filtro.ano = "2018"
+          filtro.genero = "Todos"
+          filtro.regio = "Total";
         } else {
+          filtro.genero = "Todos"
           filtro.ano = "2019"
+          filtro.regio = "Total";
         }
 
         filtro["paraPredicao"] = true;
         card.filtro = filtro;
       }
 
-      this.jaPassouPorTodos[0]=false;
+      this.jaPassouPorTodos[0] = false;
       this.jaPassouPorTodos[1] = false;
 
       this.arrData = [];
-      //this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
-      
-      if(this.cards[1].filtro.genero == "Todos"){
-        this.arrData.push(['Mês', 'Norte/Fem', 'Norte/Masc', 'Nordeste/Fem', 'Nordeste/Masc' , 'Sudeste/Fem', 'Sudeste/Masc' , 'Sul/Fem', 'Sul/Masc' , 'Centro-Oeste/Fem', 'Centro-Oeste/Masc']);
-      }else{
-        this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
-      }
-           
+
+      this.arrData.push(['Mês', 'Masculino', 'Feminino']);
       RequisitonService.montaGraficoPrevi(this);
     }
   }
@@ -75,7 +73,7 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
   previSudesteMasc: any = [];
   previSulMasc: any = [];
   previCentroMasc: any = [];
-  
+
 
   @ViewChild('columnChart') columnChart: ElementRef
 
@@ -87,9 +85,10 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
       filtro: {
         faixaEtaria: " 70 a 79 anos",
         ano: "2018",
-        genero: " Masc",
-        mes:"Jan",
-        paraPredicao:true
+        genero: "Todos",
+        mes: "Jan",
+        regio: "Total",
+        paraPredicao: true
       },
       endpoint: 'column',
       montaGrafico: this.montaGrafico
@@ -100,9 +99,10 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
       filtro: {
         faixaEtaria: " 70 a 79 anos",
         ano: "2019",
-        genero: " Masc",
-        mes:"Jan",
-        paraPredicao:true
+        genero: "Todos",
+        mes: "Jan",
+        regio: "Total",
+        paraPredicao: true
       },
       endpoint: 'columnPredict',
       montaGrafico: this.montaGrafico
@@ -111,17 +111,12 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
 
   ngOnInit(): void {
 
-    if(this.cards[1].filtro.genero == "Todos"){
-      this.arrData.push(['Mês', 'Norte/Fem', 'Norte/Masc', 'Nordeste/Fem', 'Nordeste/Masc' , 'Sudeste/Fem', 'Sudeste/Masc' , 'Sul/Fem', 'Sul/Masc' , 'Centro-Oeste/Fem', 'Centro-Oeste/Masc']);
-    }else{
-      this.arrData.push(['Mês', 'Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oeste']);
-    }
-   
+    this.arrData.push(['Mês', 'Masculino', 'Feminino']);
     GetParent.addObserverToFilter(this);
     RequisitonService.montaGraficoPrevi(this);
   }
 
-  montaGrafico(card: Card, data: any) {
+  montaGrafico(card: Card, {data: dados}) {
     this.mes = [];
     this.Nordeste = [];
     this.Norte = [];
@@ -134,69 +129,24 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
     this.SulMasc = [];
     this.CentroMasc = [];
 
-    if(this.cards[1].filtro.genero == 'Todos'){
-      for (let obj in data['data']) {
-        if (data['data'][obj]['regio'] === "1 Região Norte" && data['data'][obj]['genero'] === " Fem") {
-          this.mes.push(data['data'][obj]['mes']);
-        }
+    console.log(dados);
+    
+    dados.filter(data => {
+      return data['regio'] === "Total" && data['genero'].includes("Masc");
+    }).forEach(({ bitos: obitos }) => {
+      this.Norte.push(parseInt(obitos));
+    });
 
-        if(data['data'][obj]['genero'] === " Fem"){
-
-          if (data['data'][obj]['regio'] === "1 Região Norte") {
-            this.Norte.push(data['data'][obj]['bitos']);
-          } else if (data['data'][obj]['regio'] === "2 Região Nordeste") {
-            this.Nordeste.push(data['data'][obj]['bitos']);
-          } else if (data['data'][obj]['regio'] === "3 Região Sudeste") {
-            this.Sudeste.push(data['data'][obj]['bitos']);
-          } else if (data['data'][obj]['regio'] === "4 Região Sul") {
-            this.Sul.push(data['data'][obj]['bitos']);
-          } else if (data['data'][obj]['regio'] === "5 Região Centro-Oeste") {
-            this.Centro.push(data['data'][obj]['bitos']);
-          }
-
-        }else if(data['data'][obj]['genero'] === " Masc"){
-
-        if (data['data'][obj]['regio'] === "1 Região Norte") {
-          this.NorteMasc.push(data['data'][obj]['bitos']);
-        } else if (data['data'][obj]['regio'] === "2 Região Nordeste") {
-          this.NordesteMasc.push(data['data'][obj]['bitos']);
-        } else if (data['data'][obj]['regio'] === "3 Região Sudeste") {
-          this.SudesteMasc.push(data['data'][obj]['bitos']);
-        } else if (data['data'][obj]['regio'] === "4 Região Sul") {
-          this.SulMasc.push(data['data'][obj]['bitos']);
-        } else if (data['data'][obj]['regio'] === "5 Região Centro-Oeste") {
-          this.CentroMasc.push(data['data'][obj]['bitos']);
-        }
-      }
-    }
-  
-      for (var i = 0; i < this.mes.length; i++) {
-        this.arrData.push([this.mes[i] + "/" + card.filtro.ano.slice(-2), parseInt(this.Norte[i]), parseInt(this.NorteMasc[i]) , parseInt(this.Nordeste[i]), parseInt(this.NordesteMasc[i]) , parseInt(this.Sudeste[i]), parseInt(this.SudesteMasc[i]) , parseInt(this.Sul[i]), parseInt(this.SulMasc[i]) , parseInt(this.Centro[i]), parseInt(this.CentroMasc[i]), ]);
-      }
-
-    }else{
-
-    for (let obj in data['data']) {
-      if (data['data'][obj]['regio'] === "1 Região Norte") {
-        this.mes.push(data['data'][obj]['mes']);
-      }
-      if (data['data'][obj]['regio'] === "1 Região Norte") {
-        this.Norte.push(data['data'][obj]['bitos']);
-      } else if (data['data'][obj]['regio'] === "2 Região Nordeste") {
-        this.Nordeste.push(data['data'][obj]['bitos']);
-      } else if (data['data'][obj]['regio'] === "3 Região Sudeste") {
-        this.Sudeste.push(data['data'][obj]['bitos']);
-      } else if (data['data'][obj]['regio'] === "4 Região Sul") {
-        this.Sul.push(data['data'][obj]['bitos']);
-      } else if (data['data'][obj]['regio'] === "5 Região Centro-Oeste") {
-        this.Centro.push(data['data'][obj]['bitos']);
-      }
-    }
+    dados.filter(data => {
+      return data['regio'] === "Total" && data['genero'].includes("Fem");
+    }).forEach(({ bitos: obitos, mes }) => {
+      this.mes.push(mes);
+      this.NorteMasc.push(parseInt(obitos));
+    });
 
     for (var i = 0; i < this.mes.length; i++) {
-      this.arrData.push([this.mes[i] + "/" + card.filtro.ano.slice(-2), parseInt(this.Norte[i]), parseInt(this.Nordeste[i]), parseInt(this.Sudeste[i]), parseInt(this.Sul[i]), parseInt(this.Centro[i]),]);
+      this.arrData.push([this.mes[i] + "/" + card.filtro.ano.slice(-2), this.Norte[i], this.NorteMasc[i]]);
     }
-  }
 
     if ("2018" == card.filtro.ano) {
       this.jaPassouPorTodos[0] = true;
@@ -206,14 +156,10 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
 
     if (this.jaPassouPorTodosMetodo()) {
       this.ordenarPorAno();
-
       this.drawChart();
     }
   }
 
-  ordenarPorAno() {
-    this.sort()
-  }
 
   grafico = {
     "Jan/18": 1,
@@ -262,7 +208,7 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
 
   }
 
-  sort() {
+  ordenarPorAno() {
     const cabecalho = this.arrData[0];
     delete this.arrData[0];
 
@@ -291,11 +237,10 @@ export class ColumnPreviComponent implements OnInit, IFilter, GraficoPrevisao {
     var options = {
       width: 1220,
       height: 520,
-      title: 'Previsão de obitos em ' + this.cards[0].filtro.ano + ' do sexo ' + this.cards[0].filtro.genero + ' de ' + this.cards[0].filtro.faixaEtaria + ' todas as regiões de '+ this.cards[0].filtro.mes +' a Dez 2018 os dados reais e  Jan a Jun de 2019 a previsão',
+      title: 'Previsão de obitos em ' + this.cards[0].filtro.ano + ' do sexo ' + this.cards[0].filtro.genero + ' de ' + this.cards[0].filtro.faixaEtaria + ' todas as regiões de ' + this.cards[0].filtro.mes + ' a Dez 2018 os dados reais e  Jan a Jun de 2019 a previsão',
       backgroundColor: 'white',
       legend: { position: 'top', maxLines: 3 },
       bar: { groupWidth: '75%' },
-      isStacked: true,
       hAxis: {
         textStyle: {
           color: '#0baeb7'
