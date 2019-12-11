@@ -36,7 +36,6 @@ export class ColumnPredictComponent implements OnInit, IFilter, Card {
     title: 'Previsão de obitos em ' + this.filtro.ano + ' do sexo ' + this.filtro.genero + ' de ' + this.filtro.faixaEtaria + ' todas as regiões',
     legend: { position: 'top', maxLines: 3 },
     bar: { groupWidth: '75%' },
-    isStacked: true,
     hAxis: {
       textStyle: {
         color: '#0baeb7'

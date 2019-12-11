@@ -36,7 +36,6 @@ export class ColumnComponent implements OnInit, IFilter, Card {
     // backgroundColor: 'white',
     legend: { position: 'top', maxLines: 3 },
     bar: { groupWidth: '75%' },
-    isStacked: true,
     hAxis: {
       textStyle: {
         color: '#0baeb7'
