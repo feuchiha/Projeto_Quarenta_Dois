@@ -60,7 +60,7 @@
     "react": "^16.8.4",
     "rxjs": "6.3.3",
     "rxjs-compat": "^6.4.0",
-    "underscore": "^1.9.1",
+    "underscore": "^1.12.1",
     "zone.js": "0.8.28"
   },
   "devDependencies": {
